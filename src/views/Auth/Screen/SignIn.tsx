@@ -208,8 +208,8 @@ const SignInScreen = (props: SignInProps) => {
           </Text>
         </View>
       </Form>
-      <FooterBlock />
-      <ModalLoading visible={loading} />
+      {/* <FooterBlock />
+      <ModalLoading visible={loading} /> */}
     </Content>
   );
 };
