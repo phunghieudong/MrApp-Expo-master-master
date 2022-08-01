@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "MrApp-Expo",
+    "slug": "MrApp-Expo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.monamedia.mrapp",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.monamedia.mrapp",
+      "versionCode": 1
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
+    },
+    "description": ""
+  }
+}
