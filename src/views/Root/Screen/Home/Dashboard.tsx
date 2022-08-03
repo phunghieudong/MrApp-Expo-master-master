@@ -173,12 +173,12 @@ const DashboardScreen = (props: DashboardProps) => {
           <View style={[styles.flex, { alignItems: "stretch" }]}>
             <View style={styles.menubox}>
               <TouchableOpacity
-                // onPress={() =>
-                //   navigation.navigate("Profile", {
-                //     screen: "MedicalStory",
-                //     params: {},
-                //   })
-                // }
+                onPress={() =>
+                  navigation.navigate("Profile", {
+                    screen: "MedicalStory",
+                    params: {},
+                  })
+                }
                 activeOpacity={0.9}
               >
                 <View
@@ -197,9 +197,9 @@ const DashboardScreen = (props: DashboardProps) => {
             />
             <View style={styles.menubox}>
               <TouchableOpacity
-                // onPress={() =>
-                //   navigation.navigate("Profile", { screen: "Vaccination" })
-                // }
+                onPress={() =>
+                  navigation.navigate("Profile", { screen: "Vaccination" })
+                }
                 activeOpacity={0.9}
               >
                 <View
