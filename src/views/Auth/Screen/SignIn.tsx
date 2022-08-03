@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { SignInProps } from "@/navigation/types/Auth";
 import { Content, Form, Icon, Text, Toast, View } from "native-base";
@@ -8,6 +9,7 @@ import {
   InteractionManager,
   StatusBar,
   StyleSheet,
+  TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
 import { useAppDispatch } from "@/store/hook";
@@ -166,11 +168,10 @@ const SignInScreen = (props: SignInProps) => {
             >
               <View style={styles.socialsigninitem}>
                 <View style={styles.socialsigninbox}>
-                  <Icon
-                    type="FontAwesome"
-                    name="facebook"
-                    style={styles.socialsigninicon}
-                  />
+                <Image
+          source={require("../../../assets/images/zalo.png")}
+          style={{height:40 , width:40}}
+        />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Facebook</Text> */}
               </View>
@@ -184,14 +185,53 @@ const SignInScreen = (props: SignInProps) => {
                 <View
                   style={[
                     styles.socialsigninbox,
-                    { backgroundColor: "#E92928" },
+                    { backgroundColor: "#fff" },
                   ]}
                 >
-                  <Icon
-                    type="FontAwesome"
-                    name="google"
-                    style={styles.socialsigninicon}
-                  />
+                         <Image
+          source={require("../../../assets/images/face.png")}
+          style={{height:40 , width:40}}
+        />
+                </View>
+                {/* <Text style={styles.socialsignintext}>Google</Text> */}
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+            >
+              <View style={styles.socialsigninitem}>
+                <View
+                  style={[
+                    styles.socialsigninbox,
+                    { backgroundColor: "#fff" },
+                  ]}
+                >
+                         <Image
+          source={require("../../../assets/images/gg.png")}
+          style={{height:40 , width:40}}
+        />
+                </View>
+                {/* <Text style={styles.socialsignintext}>Google</Text> */}
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+            >
+              <View style={styles.socialsigninitem}>
+                <View
+                  style={[
+                    styles.socialsigninbox,
+                    { backgroundColor: "#fff" },
+                  ]}
+                >
+                         <Image
+          source={require("../../../assets/images/gmail.png")}
+          style={{height:40 , width:40}}
+        />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Google</Text> */}
               </View>
@@ -206,6 +246,92 @@ const SignInScreen = (props: SignInProps) => {
               ĐĂNG KÝ
             </Text>
           </Text>
+        </View>
+        <View style={{flexDirection:'row' , justifyContent:"space-evenly" , alignItems:"stretch" , paddingVertical:40}}>
+
+          <View>
+            <TouchableOpacity 
+            
+            onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+
+              <Image
+          source={require("../../../assets/images/tintuc.png")}
+          style={{height:25 , width:25}}
+        />
+        <Text>Tin tức</Text>
+              </View>
+        
+
+            </TouchableOpacity>
+      
+          </View>
+        
+          <View>
+            <TouchableOpacity 
+            
+            onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+
+              <Image
+          source={require("../../../assets/images/quydinh.png")}
+          style={{height:30 , width:25}}
+        />
+        <Text>Quy định</Text>
+        <Text>sử dụng</Text>
+              </View>
+        
+
+            </TouchableOpacity>
+      
+          </View>
+          <View>
+            <TouchableOpacity 
+            
+            onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+
+              <Image
+          source={require("../../../assets/images/huongđan.png")}
+          style={{height:25 , width:25}}
+        />
+        <Text>Hướng dẫn</Text>
+              </View>
+        
+
+            </TouchableOpacity>
+      
+          </View>
+          <View>
+            <TouchableOpacity 
+            
+            onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+
+              <Image
+          source={require("../../../assets/images/lienhe.png")}
+          style={{height:25 , width:25}}
+        />
+        <Text>Liên hệ</Text>
+              </View>
+        
+
+            </TouchableOpacity>
+      
+          </View>
+          
         </View>
       </Form>
       {/* <FooterBlock />
@@ -322,9 +448,11 @@ const styles = StyleSheet.create({
   },
   socialsignin: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignItems:'center',
 
     marginTop: 18,
+  
   },
   socialsigninitem: {
     alignItems: "center",

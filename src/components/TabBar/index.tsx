@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Footer, FooterTab } from "native-base";
 import React from "react";
@@ -27,7 +28,7 @@ const TabBar = (props: BottomTabBarProps) => {
       icon: "chatbubble-ellipses-outline",
     },
     ["Advise"]: {
-      label: "Tư vấn",
+      label: "Tư vấn Hỗ trợ trực tiếp ",
       type: "Feather",
       icon: "video",
     },

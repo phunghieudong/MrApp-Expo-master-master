@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
 import { HeaderRoot } from "@/components";
 import { Container, Icon, Text, Toast, View } from "native-base";
@@ -50,7 +51,11 @@ const DashboardScreen = (props: DashboardProps) => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Trang chủ" />
+      <HeaderRoot logo ={true} 
+      
+   
+      />
+       
       {/* <View style={styles.info}>
         <Image
           defaultSource={require("@/assets/images/no-avatar.jpg")}
@@ -81,9 +86,10 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#9DD6EB",
           }}
         >
-          <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
-            Image 1
-          </Text>
+            <Image
+          source={require("../../../../assets/images/Rectangle.png")}
+          style={{height:184 , width:'100%'}}
+        />
         </View>
         <View
           style={{
@@ -93,9 +99,10 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#97CAE5",
           }}
         >
-          <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
-            Image 2
-          </Text>
+            <Image
+          source={require("../../../../assets/images/Rectangle.png")}
+          style={{height:184 , width:'100%'}}
+        />
         </View>
         <View
           style={{
@@ -105,9 +112,10 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#92BBD9",
           }}
         >
-          <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
-            Image 3
-          </Text>
+              <Image
+          source={require("../../../../assets/images/Rectangle.png")}
+          style={{height:184 , width:'100%'}}
+        />
         </View>
       </Swiper>
       <View style={styles.body}>
@@ -122,12 +130,12 @@ const DashboardScreen = (props: DashboardProps) => {
                   style={[
                     styles.menuimgbox,
                     {
-                      backgroundColor: "#FFDA44",
+                      backgroundColor: "#FFB703",
                     },
                   ]}
                 >
                   <ExaminationCalendarIcon />
-                  <View style={[styles.badge, { backgroundColor: "#FFDA44" }]}>
+                  <View style={[styles.badge, { backgroundColor: "#FFB703" }]}>
                     <Text style={styles.badgetext}>4</Text>
                   </View>
                 </View>
@@ -146,7 +154,7 @@ const DashboardScreen = (props: DashboardProps) => {
                 activeOpacity={0.9}
               >
                 <View
-                  style={[styles.menuimgbox, { backgroundColor: "#FFDA44" }]}
+                  style={[styles.menuimgbox, { backgroundColor: "#FB8500" }]}
                 >
                   <ScheduleIcon />
                 </View>
@@ -174,7 +182,7 @@ const DashboardScreen = (props: DashboardProps) => {
                 activeOpacity={0.9}
               >
                 <View
-                  style={[styles.menuimgbox, { backgroundColor: "#FFDA44" }]}
+                  style={[styles.menuimgbox, { backgroundColor: "#142977" }]}
                 >
                   <MedicalRecordIcon />
                 </View>
@@ -195,7 +203,7 @@ const DashboardScreen = (props: DashboardProps) => {
                 activeOpacity={0.9}
               >
                 <View
-                  style={[styles.menuimgbox, { backgroundColor: "#FFDA44" }]}
+                  style={[styles.menuimgbox, { backgroundColor: "#219EBC" }]}
                 >
                   {(!user.BirthDate ||
                     _format.getAge(new Date(user.BirthDate))) < 12 && (
@@ -313,7 +321,7 @@ const styles = StyleSheet.create({
   badge: {
     width: 26,
     height: 26,
-    borderRadius: 100,
+   borderRadius:100,
     backgroundColor: "#FB8500",
     position: "absolute",
     top: -8,

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { Header, Icon, Text, Toast, View } from "native-base";
 import { settings } from "@/config";
@@ -7,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import Logo from "../Logo";
@@ -56,7 +58,13 @@ const CustomHeader = ({
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate("Profile", { screen: "Menu" })}
             >
-              <Icon type="Feather" name="menu" style={styles.bar} />
+             
+             <Image
+          source={require("../../assets/images/menu.png")}
+          style={{height:24 , width:24}}
+             />
+             
+       
             </TouchableWithoutFeedback>
           )}
         </View>
@@ -134,18 +142,19 @@ const CustomHeader = ({
           </Svg>
         )}
       </View>
+
       <View style={styles.right}>
+
         {notifications !== false && (
           <TouchableOpacity
             onPress={() => navigation.navigate("Notification")}
             activeOpacity={0.9}
           >
             <View style={styles.noti}>
-              <Icon
-                name="bell"
-                type={"Fontisto" as any}
-                style={styles.notiicon}
-              />
+            <Image
+          source={require("../../assets/images/bell.png")}
+          style={{height:24 , width:24}}
+             />
               <View style={styles.badge} />
             </View>
           </TouchableOpacity>
