@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { HeaderRoot } from "@/components";
 import { Container, Icon, Text, Toast, View } from "native-base";
+import Modal from 'react-native-modal'
 import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
   Image,
   BackHandler,
+  Button
 } from "react-native";
 import { DashboardProps } from "@/navigation/types/Home";
 import { settings } from "@/config";
@@ -19,7 +21,7 @@ import {
   AdultVaccinationCalendarIcon,
 } from "../../Block/Dashboard";
 import { useAppSelector } from "@/store/hook";
-import ModalBottom from "@/components/ModalBottom";
+
 import { Modalize } from "react-native-modalize";
 import { _format } from "@/utils";
 import { UserData } from "@/types/User";
@@ -30,6 +32,13 @@ const { mainColorText, borderColor, padding, mainColor } = settings.styles;
 
 const DashboardScreen = (props: DashboardProps) => {
   const { navigation } = props;
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
 
   // user
   const user = useAppSelector((state) => state.user.current) as UserData;
@@ -49,13 +58,13 @@ const DashboardScreen = (props: DashboardProps) => {
     navigation.navigate(route, {});
   };
 
+
   return (
     <Container style={styles.container}>
-      <HeaderRoot logo ={true} 
-      
-   
+      <HeaderRoot logo={true}
+
+
       />
-       
       {/* <View style={styles.info}>
         <Image
           defaultSource={require("@/assets/images/no-avatar.jpg")}
@@ -86,10 +95,10 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#9DD6EB",
           }}
         >
-            <Image
-          source={require("../../../../assets/images/Rectangle.png")}
-          style={{height:184 , width:'100%'}}
-        />
+          <Image
+            source={require("../../../../assets/images/Rectangle.png")}
+            style={{ height: 184, width: '100%' }}
+          />
         </View>
         <View
           style={{
@@ -99,10 +108,10 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#97CAE5",
           }}
         >
-            <Image
-          source={require("../../../../assets/images/Rectangle.png")}
-          style={{height:184 , width:'100%'}}
-        />
+          <Image
+            source={require("../../../../assets/images/Rectangle.png")}
+            style={{ height: 184, width: '100%' }}
+          />
         </View>
         <View
           style={{
@@ -112,13 +121,26 @@ const DashboardScreen = (props: DashboardProps) => {
             backgroundColor: "#92BBD9",
           }}
         >
-              <Image
-          source={require("../../../../assets/images/Rectangle.png")}
-          style={{height:184 , width:'100%'}}
-        />
+          <Image
+            source={require("../../../../assets/images/Rectangle.png")}
+            style={{ height: 184, width: '100%' }}
+          />
         </View>
       </Swiper>
       <View style={styles.body}>
+        {/* <View >
+
+          <Button title="Show modal" onPress={toggleModal} style={{ marginTop: 300 }} />
+          <Modal isVisible={isModalVisible}>
+            <View style={{ flex: 1 }}>
+              <Text>Hello!</Text>
+
+              <Button title="Hide modal" onPress={toggleModal} />
+            </View>
+          </Modal>
+
+
+        </View> */}
         <View style={styles.menu}>
           <View style={[styles.flex, { alignItems: "stretch" }]}>
             <View style={styles.menubox}>
@@ -148,9 +170,10 @@ const DashboardScreen = (props: DashboardProps) => {
                 borderColor,
               }}
             />
+
             <View style={styles.menubox}>
               <TouchableOpacity
-                onPress={() => modal.current?.open()}
+                onPress={toggleModal}
                 activeOpacity={0.9}
               >
                 <View
@@ -207,8 +230,8 @@ const DashboardScreen = (props: DashboardProps) => {
                 >
                   {(!user.BirthDate ||
                     _format.getAge(new Date(user.BirthDate))) < 12 && (
-                    <VaccinationCalendarIcon />
-                  )}
+                      <VaccinationCalendarIcon />
+                    )}
                   {user.BirthDate &&
                     _format.getAge(new Date(user.BirthDate)) >= 12 && (
                       <AdultVaccinationCalendarIcon />
@@ -219,31 +242,35 @@ const DashboardScreen = (props: DashboardProps) => {
             </View>
           </View>
         </View>
+        <Modal isVisible={isModalVisible} style={{ backgroundColor: '#fff' , height:100}}>
+
+          <View style={{ paddingHorizontal: 30, paddingVertical: 20 , backgroundColor:'yellow' }}>
+            <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
+              <View style={[styles.box, { marginBottom: 6 }]}>
+                <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
+                <Icon
+                  type="Ionicons"
+                  name="chevron-forward-sharp"
+                  style={styles.icon}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
+              <View style={[styles.box]}>
+                <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
+                <Icon
+                  type="Ionicons"
+                  name="chevron-forward-sharp"
+                  style={styles.icon}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+          <Button title="Hide modal" onPress={toggleModal} />
+        </Modal>
       </View>
-      <ModalBottom heading="Đặt lịch khám" ref={modal}>
-        <View style={{ paddingHorizontal: 30, paddingVertical: 20 }}>
-          <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
-            <View style={[styles.box, { marginBottom: 6 }]}>
-              <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
-              <Icon
-                type="Ionicons"
-                name="chevron-forward-sharp"
-                style={styles.icon}
-              />
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
-            <View style={[styles.box]}>
-              <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
-              <Icon
-                type="Ionicons"
-                name="chevron-forward-sharp"
-                style={styles.icon}
-              />
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
-      </ModalBottom>
+      {/* ref={modal} */}
+
     </Container>
   );
 };
@@ -321,7 +348,7 @@ const styles = StyleSheet.create({
   badge: {
     width: 26,
     height: 26,
-   borderRadius:100,
+    borderRadius: 100,
     backgroundColor: "#FB8500",
     position: "absolute",
     top: -8,
