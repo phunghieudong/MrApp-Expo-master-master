@@ -149,14 +149,14 @@ const SignInScreen = (props: SignInProps) => {
         >
           Quên mật khẩu ?
         </Text>
-        <View style={styles.submit}>
+        <TouchableOpacity style={styles.submit}>
           <Text
             onPress={loading ? undefined : handleSubmit(_onPress)}
             style={styles.submittext}
           >
             ĐĂNG NHẬP
           </Text>
-        </View>
+        </TouchableOpacity>
         <Text style={styles.otherssignin}>HOẶC ĐĂNG NHẬP BẰNG</Text>
         <View style={{ alignSelf: "center" }}>
           <View style={styles.socialsignin}>

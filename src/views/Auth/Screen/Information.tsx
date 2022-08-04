@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Logo, ModalCenter } from "@/components";
 import { settings } from "@/config";
 import { InformationProps } from "@/navigation/types/Auth";
@@ -88,7 +89,7 @@ const InformationScreen = (props: InformationProps) => {
               {active === 0 ? "Tiếng việt" : "Tiếng anh"}
             </Text>
             <View style={styles.languagecontrol}>
-              <Icon
+              {/* <Icon
                 type="Ionicons"
                 name="caret-up-sharp"
                 style={[styles.languageicon, { top: 3 }]}
@@ -97,7 +98,17 @@ const InformationScreen = (props: InformationProps) => {
                 type="Ionicons"
                 name="caret-down-sharp"
                 style={[styles.languageicon, { bottom: 3 }]}
-              />
+              /> */}
+
+          <Image
+          source={require("@/assets/images/up.png")}
+          style={{height:5 , width:10}}
+        />
+
+<Image
+          source={require("@/assets/images/down.png")}
+          style={{height:5 , width:10}}
+        />
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -110,23 +121,23 @@ const InformationScreen = (props: InformationProps) => {
           style={styles.coopimg}
         />
         <Image
+          source={require("@/assets/images/hospital-2.png")}
+          style={styles.coopimg}
+        />
+        <Image
+          source={require("@/assets/images/hospital-3.png")}
+          style={styles.coopimg}
+        />
+        <Image
+          source={require("@/assets/images/hospital-2.png")}
+          style={styles.coopimg}
+        />
+        <Image
           source={require("@/assets/images/hospital-3.png")}
           style={styles.coopimg}
         />
         <Image
           source={require("@/assets/images/hospital-1.png")}
-          style={styles.coopimg}
-        />
-        <Image
-          source={require("@/assets/images/hospital-3.png")}
-          style={styles.coopimg}
-        />
-        <Image
-          source={require("@/assets/images/hospital-1.png")}
-          style={styles.coopimg}
-        />
-        <Image
-          source={require("@/assets/images/hospital-3.png")}
           style={styles.coopimg}
         />
       
@@ -149,12 +160,20 @@ const InformationScreen = (props: InformationProps) => {
           onPress={() => Toast.show({ text: "Chức năng còn đang phát triển" })}
         >
           <View style={styles.footerbuttonsmall}>
-            <Icon
+            {/* <Icon
               type="Ionicons"
               name="chatbubble-ellipses"
               style={styles.footericon}
-            />
+            /> */}
+            <View style={{flexDirection:'row' ,alignItems:'center' , justifyContent:"space-evenly"  }}>
+
+            <Image
+          source={require("@/assets/images/chat.png")}
+          style={{width:15 , height:15 , marginRight:10}}
+        />
             <Text style={styles.footertextsmall}>Liên hệ</Text>
+            </View>
+    
           </View>
         </TouchableWithoutFeedback>
       </View>
