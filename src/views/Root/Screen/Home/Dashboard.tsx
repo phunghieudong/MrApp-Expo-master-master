@@ -1,15 +1,15 @@
-// @ts-nocheck
+
+//@ts-nocheck
+
 import React, { useEffect, useRef, useState } from "react";
 import { HeaderRoot } from "@/components";
 import { Container, Icon, Text, Toast, View } from "native-base";
-import Modal from 'react-native-modal'
 import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
   Image,
   BackHandler,
-  Button
 } from "react-native";
 import { DashboardProps } from "@/navigation/types/Home";
 import { settings } from "@/config";
@@ -21,7 +21,7 @@ import {
   AdultVaccinationCalendarIcon,
 } from "../../Block/Dashboard";
 import { useAppSelector } from "@/store/hook";
-
+import ModalBottom from "@/components/ModalBottom";
 import { Modalize } from "react-native-modalize";
 import { _format } from "@/utils";
 import { UserData } from "@/types/User";
@@ -32,13 +32,6 @@ const { mainColorText, borderColor, padding, mainColor } = settings.styles;
 
 const DashboardScreen = (props: DashboardProps) => {
   const { navigation } = props;
-
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
 
   // user
   const user = useAppSelector((state) => state.user.current) as UserData;
@@ -58,13 +51,9 @@ const DashboardScreen = (props: DashboardProps) => {
     navigation.navigate(route, {});
   };
 
-
   return (
     <Container style={styles.container}>
-      <HeaderRoot logo={true}
-
-
-      />
+      <HeaderRoot logo={true} />
       {/* <View style={styles.info}>
         <Image
           defaultSource={require("@/assets/images/no-avatar.jpg")}
@@ -130,17 +119,17 @@ const DashboardScreen = (props: DashboardProps) => {
       <View style={styles.body}>
         {/* <View >
 
-          <Button title="Show modal" onPress={toggleModal} style={{ marginTop: 300 }} />
-          <Modal isVisible={isModalVisible}>
-            <View style={{ flex: 1 }}>
-              <Text>Hello!</Text>
+    <Button title="Show modal" onPress={toggleModal} style={{ marginTop: 300 }} />
+    <Modal isVisible={isModalVisible}>
+      <View style={{ flex: 1 }}>
+        <Text>Hello!</Text>
 
-              <Button title="Hide modal" onPress={toggleModal} />
-            </View>
-          </Modal>
+        <Button title="Hide modal" onPress={toggleModal} />
+      </View>
+    </Modal>
 
 
-        </View> */}
+  </View> */}
         <View style={styles.menu}>
           <View style={[styles.flex, { alignItems: "stretch" }]}>
             <View style={styles.menubox}>
@@ -156,7 +145,10 @@ const DashboardScreen = (props: DashboardProps) => {
                     },
                   ]}
                 >
-                  <ExaminationCalendarIcon />
+                  <Image
+                    source={require("../../../../assets/images/LKST.png")}
+                    style={{ height: 50, width: 50 }}
+                  />
                   <View style={[styles.badge, { backgroundColor: "#FFB703" }]}>
                     <Text style={styles.badgetext}>4</Text>
                   </View>
@@ -173,7 +165,7 @@ const DashboardScreen = (props: DashboardProps) => {
 
             <View style={styles.menubox}>
               <TouchableOpacity
-                onPress={toggleModal}
+                onPress={() => modal.current?.open()}
                 activeOpacity={0.9}
               >
                 <View
@@ -242,35 +234,32 @@ const DashboardScreen = (props: DashboardProps) => {
             </View>
           </View>
         </View>
-        <Modal isVisible={isModalVisible} style={{ backgroundColor: '#fff' , height:100}}>
-
-          <View style={{ paddingHorizontal: 30, paddingVertical: 20 , backgroundColor:'yellow' }}>
-            <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
-              <View style={[styles.box, { marginBottom: 6 }]}>
-                <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
-                <Icon
-                  type="Ionicons"
-                  name="chevron-forward-sharp"
-                  style={styles.icon}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
-              <View style={[styles.box]}>
-                <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
-                <Icon
-                  type="Ionicons"
-                  name="chevron-forward-sharp"
-                  style={styles.icon}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-          <Button title="Hide modal" onPress={toggleModal} />
-        </Modal>
       </View>
       {/* ref={modal} */}
-
+      <View heading="Đặt lịch khám" ref={modal} >
+        <View style={{ paddingHorizontal: 30, paddingVertical: 20 }}>
+          <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
+            <View style={[styles.box, { marginBottom: 6 }]}>
+              <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
+              <Icon
+                type="Ionicons"
+                name="chevron-forward-sharp"
+                style={styles.icon}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
+            <View style={[styles.box]}>
+              <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
+              <Icon
+                type="Ionicons"
+                name="chevron-forward-sharp"
+                style={styles.icon}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
     </Container>
   );
 };

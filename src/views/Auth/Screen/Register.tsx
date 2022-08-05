@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { RegisterProps } from "@/navigation/types/Auth";
 import { RegisterData } from "@/types/Auth";
@@ -314,7 +315,7 @@ const RegisterScreen = (props: RegisterProps) => {
         <Form style={styles.frmcontrol}>
           <InputBlock
             owner="userFullName"
-            placeholder="HỌ VÀ TÊN"
+            placeholder="TÊN ĐĂNG NHẬP"
             onValueChange={onValueChange}
             onTrigger={onTrigger}
             errors={errors.userFullName}

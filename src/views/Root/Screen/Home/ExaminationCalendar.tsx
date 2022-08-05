@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getUpcomingExaminationCalendar } from "@/api/ExaminationCalendar";
 import {
   Dialog,
@@ -16,6 +17,7 @@ import {
   InteractionManager,
   StyleSheet,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { ExaminationCalendarProps } from "@/navigation/types/Home";
 import { removePayment, updatePayment } from "@/api/ExaminationForm";
@@ -46,28 +48,34 @@ const renderItem = (
   return (
     <View style={[styles.item, first]}>
       <View style={styles.left}>
-        <Text style={styles.word}>BV</Text>
+        <View style={{height: 87, width: 87}}>
+        <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 87, width: 87 }}
+          />
+        </View>
       </View>
       <View style={styles.right}>
         <Text style={styles.date}>
           {_format.getVNDate(item.ExaminationDate)}{" "}
           {(item.Status === 2 || item.Status === 5) && (
             <Text style={[styles.paid, { color: successColor }]}>
-              {"- Đã thanh toán"}
+             {item.ConfigTimeExaminationValue}
             </Text>
           )}
           {item.Status === 1 && (
-            <Text style={styles.paid}>{"- Đang chờ xác nhận"}</Text>
+            <Text style={styles.paid}>{item.ConfigTimeExaminationValue}</Text>
           )}
           {item.Status === 0 && (
-            <Text style={[styles.paid, { color: dangerColor }]}>
-              {"- Chưa thanh toán"}
+            <Text style={[styles.paid]}>
+             {item.ConfigTimeExaminationValue}
             </Text>
           )}
         </Text>
         <Text style={styles.hospital}>{item.HospitalName}</Text>
         <Text style={styles.position}>
-          {item.RoomExaminationName} - {"09:00 ~ 10:00"}
+          {/* {item.RoomExaminationName} - {"09:00 ~ 10:00"} */}
+          {item.RoomExaminationName}
         </Text>
         <View style={styles.flex}>
           {item.Status === 0 && (
@@ -284,10 +292,8 @@ const styles = StyleSheet.create({
   },
   left: {
     marginRight: 12,
-    backgroundColor: blueColor,
-    borderRadius: 6,
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -308,8 +314,8 @@ const styles = StyleSheet.create({
   paid: {
     fontSize: 14,
     lineHeight: 19,
-    fontFamily: "SFProDisplay-Regular",
-    color: blueColor,
+    fontFamily: "SFProDisplay-Bold",
+    color: "#142977",
   },
   hospital: {
     fontSize: 20,

@@ -51,7 +51,9 @@ const CustomHeader = ({
         <View style={styles.menu}>
           {previous && (
             <TouchableWithoutFeedback onPress={previous}>
+             
               <Icon type="Ionicons" name="chevron-back" style={styles.back} />
+             
             </TouchableWithoutFeedback>
           )}
           {!previous && (

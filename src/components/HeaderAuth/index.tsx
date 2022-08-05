@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { useNavigation } from "@react-navigation/core";
 import { Header, Icon, Left, Right, Text, View } from "native-base";
@@ -60,22 +61,29 @@ const styles = StyleSheet.create({
   },
   back: {
     marginRight: 8,
+    backgroundColor:'#EFBC2E', 
+    height:40, 
+    width:40,
+    borderRadius:100,
+    justifyContent:'center',
+    alignItems:'center'
+
   },
   backicon: {
     fontSize: 20,
-    color: goldColor,
+    color: "#239EBB",
   },
   backtext: {
     fontSize: 16,
     fontFamily: "SFProDisplay-Regular",
-    color: goldColor,
+    color: "#fff",
   },
   right: {},
   signin: {
     fontSize: 14,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Semibold",
-    color: goldColor,
+    color: "#fff",
   },
 });
 
