@@ -12,6 +12,7 @@ const RootStackNavigator = () => {
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen name="Home" component={HomeStackNavigator} />
+      <Tab.Screen name="Taikhoan" component={TutorialScreen} />
       <Tab.Screen name="Chat" component={TutorialScreen} />
       <Tab.Screen name="Advise" component={TutorialScreen} />
       <Tab.Screen name="Contact" component={ContactScreen} />

@@ -2,7 +2,7 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Footer, FooterTab } from "native-base";
 import React from "react";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet , View } from "react-native";
 import TabButton from "./TabButton";
 
 const { height: dH } = Dimensions.get("window");
@@ -22,11 +22,17 @@ const TabBar = (props: BottomTabBarProps) => {
       type: "SimpleLineIcons",
       icon: "home",
     },
+    ["Taikhoan"]: {
+      label: "Tài khoản",
+      type: "FontAwesome",
+      icon: "user",
+    },
     ["Chat"]: {
       label: "Chat",
       type: "Ionicons",
       icon: "chatbubble-ellipses-outline",
     },
+  
     ["Advise"]: {
       label: "Tư vấn Hỗ trợ trực tiếp ",
       type: "Feather",
@@ -38,6 +44,7 @@ const TabBar = (props: BottomTabBarProps) => {
   return (
     <Footer style={styles.footer}>
       <FooterTab style={styles.footertab}>
+       
         {state.routes.map((route, index) => {
           const options = TabbarLabelIconSettings[route.name];
           const isFocused = state.index === index;
@@ -50,6 +57,8 @@ const TabBar = (props: BottomTabBarProps) => {
             );
           }
         })}
+
+      
       </FooterTab>
     </Footer>
   );
@@ -58,6 +67,7 @@ const TabBar = (props: BottomTabBarProps) => {
 const styles = StyleSheet.create({
   footer: {
     height: dH * 0.09,
+
   },
   footertab: {
     backgroundColor: "#fff",

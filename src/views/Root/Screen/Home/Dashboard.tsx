@@ -4,12 +4,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { HeaderRoot } from "@/components";
 import { Container, Icon, Text, Toast, View } from "native-base";
+import Modal from "react-native-modalbox";
 import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
   Image,
   BackHandler,
+  Dimensions
 } from "react-native";
 import { DashboardProps } from "@/navigation/types/Home";
 import { settings } from "@/config";
@@ -29,7 +31,7 @@ import Swiper from "react-native-swiper";
 
 const { hostURL } = settings;
 const { mainColorText, borderColor, padding, mainColor } = settings.styles;
-
+const { width, height } = Dimensions.get("window");
 const DashboardScreen = (props: DashboardProps) => {
   const { navigation } = props;
 
@@ -50,22 +52,54 @@ const DashboardScreen = (props: DashboardProps) => {
     modal.current?.close();
     navigation.navigate(route, {});
   };
+  const [modalVisible, setModalVisible] = useState(false);
 
+  const getModal = () => {
+    return (
+      <Modal
+        entry="bottom"
+        backdropPressToClose={true}
+        isOpen={modalVisible}
+        style={styles.modalBox1}
+        onClosed={() => setModalVisible(false)}
+      >
+
+        <View style={styles.content1}>
+
+
+        <View style={{paddingRight:300 , paddingBottom:20}}>
+          <Text style={{fontSize:20 , fontFamily: "SFProDisplay-Regular"}}>Đặt lịch khám</Text>
+        </View>
+          <View style={{ paddingRight: 30 , paddingBottom:80}}>
+            <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
+              <View style={[styles.box, { marginBottom: 6 }]}>
+                <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
+                <Icon
+                  type="Ionicons"
+                  name="chevron-down-sharp"
+                  style={styles.icon}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
+              <View style={[styles.box]}>
+                <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
+                <Icon
+                  type="Ionicons"
+                  name="chevron-down-sharp"
+                  style={styles.icon}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
   return (
     <Container style={styles.container}>
       <HeaderRoot logo={true} />
-      {/* <View style={styles.info}>
-        <Image
-          defaultSource={require("@/assets/images/no-avatar.jpg")}
-          onError={() => setAvatar(null)}
-          source={
-            !avatar ? require("@/assets/images/no-avatar.jpg") : { uri: avatar }
-          }
-          style={styles.avatar}
-        />
-        <Text style={styles.fullname}>{user.UserFullName}</Text>
-        <Text style={styles.code}>{"TA - " + user.Id}</Text>
-      </View> */}
+
       <Swiper
         showsButtons={false}
         height={160}
@@ -116,20 +150,9 @@ const DashboardScreen = (props: DashboardProps) => {
           />
         </View>
       </Swiper>
+
+      {getModal()}
       <View style={styles.body}>
-        {/* <View >
-
-    <Button title="Show modal" onPress={toggleModal} style={{ marginTop: 300 }} />
-    <Modal isVisible={isModalVisible}>
-      <View style={{ flex: 1 }}>
-        <Text>Hello!</Text>
-
-        <Button title="Hide modal" onPress={toggleModal} />
-      </View>
-    </Modal>
-
-
-  </View> */}
         <View style={styles.menu}>
           <View style={[styles.flex, { alignItems: "stretch" }]}>
             <View style={styles.menubox}>
@@ -165,12 +188,14 @@ const DashboardScreen = (props: DashboardProps) => {
 
             <View style={styles.menubox}>
               <TouchableOpacity
-                onPress={() => modal.current?.open()}
-                activeOpacity={0.9}
+                // onPress={() => modal.current?.open()}
+                onPress={() => setModalVisible(true)}
+
               >
                 <View
                   style={[styles.menuimgbox, { backgroundColor: "#FB8500" }]}
                 >
+                  {getModal()}
                   <ScheduleIcon />
                 </View>
                 <Text style={styles.menutext}>ĐẶT LỊCH KHÁM</Text>
@@ -235,36 +260,41 @@ const DashboardScreen = (props: DashboardProps) => {
           </View>
         </View>
       </View>
-      {/* ref={modal} */}
-      <View heading="Đặt lịch khám" ref={modal} >
-        <View style={{ paddingHorizontal: 30, paddingVertical: 20 }}>
-          <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
-            <View style={[styles.box, { marginBottom: 6 }]}>
-              <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
-              <Icon
-                type="Ionicons"
-                name="chevron-forward-sharp"
-                style={styles.icon}
-              />
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => nav("SpecialSchedule")}>
-            <View style={[styles.box]}>
-              <Text style={styles.link}>ĐẶT LỊCH KHÁM DỊCH VỤ</Text>
-              <Icon
-                type="Ionicons"
-                name="chevron-forward-sharp"
-                style={styles.icon}
-              />
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
+
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
+
+  container1: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  modalBox1: {
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+    height,
+    width,
+    backgroundColor: "transparent"
+  },
+  content1: {
+    position: "absolute",
+    bottom: 0,
+    width,
+    height: 300,
+    borderTopLeftRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopRightRadius: 20,
+    backgroundColor: "#fff"
+  },
+  textStyle1: {
+    fontSize: 22
+  },
   flex: {
     flexDirection: "row",
     alignItems: "center",
@@ -369,9 +399,10 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Semibold",
   },
   icon: {
-    color: "#000",
+    color: "#898FB6",
     fontSize: 24,
     marginRight: -5,
+    paddingLeft:120
   },
 });
 

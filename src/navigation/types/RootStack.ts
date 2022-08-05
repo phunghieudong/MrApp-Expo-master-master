@@ -9,6 +9,7 @@ export type RootStackParamList = {
   Chat: undefined;
   Advise: undefined;
   Contact: undefined;
+  Taikhoan :undefined;
   Profile: NavigatorScreenParams<ProfileParamList>;
   Notification: undefined;
 };
