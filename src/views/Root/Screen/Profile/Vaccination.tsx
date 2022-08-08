@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Empty, HeaderRoot, LazyLoading, ModalLoading } from "@/components";
 import { Container, Icon, Text, View } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
@@ -55,19 +56,21 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
         title="LỊCH TIÊM CHỦNG"
         previous={() => navigation.goBack()}
       />
-      {!ready && <LazyLoading />}
+      {!ready && <LazyLoading/>}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ lịch tiêm chủng nào cả" />
       )}
       {ready && data.length > 0 && (
         <>
           <SectionList
+        
             sections={data.map((item) => {
               return { title: item, data: [item] };
             })}
             stickySectionHeadersEnabled
             renderSectionHeader={({ section }) => (
-              <BaseHeadingDate
+              <BaseHeadingDate 
+            
                 text={
                   _format.getDateOfWeek(section.title.ExaminationDate) +
                   ", " +
@@ -170,6 +173,7 @@ const styles = StyleSheet.create({
     borderColor,
     marginHorizontal: padding,
     marginTop: 10,
+   
   },
   hospital: {
     color: blueColor,
@@ -181,6 +185,7 @@ const styles = StyleSheet.create({
   flex: {
     flexDirection: "row",
     alignItems: "center",
+   
   },
   icon: {
     fontSize: 14,

@@ -67,7 +67,7 @@ const DashboardScreen = (props: DashboardProps) => {
         <View style={styles.content1}>
 
 
-        <View style={{paddingRight:300 , paddingBottom:20}}>
+        <View style={{paddingRight:280 , paddingBottom:20}}>
           <Text style={{fontSize:20 , fontFamily: "SFProDisplay-Regular"}}>Đặt lịch khám</Text>
         </View>
           <View style={{ paddingRight: 30 , paddingBottom:80}}>

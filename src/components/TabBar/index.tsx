@@ -24,7 +24,7 @@ const TabBar = (props: BottomTabBarProps) => {
     },
     ["Taikhoan"]: {
       label: "Tài khoản",
-      type: "FontAwesome",
+      type: "SimpleLineIcons",
       icon: "user",
     },
     ["Chat"]: {
@@ -46,7 +46,8 @@ const TabBar = (props: BottomTabBarProps) => {
       <FooterTab style={styles.footertab}>
        
         {state.routes.map((route, index) => {
-          const options = TabbarLabelIconSettings[route.name];
+         
+         const options = TabbarLabelIconSettings[route.name];
           const isFocused = state.index === index;
           if (route.name !== "Profile" && route.name !== "Notification") {
             return (
@@ -66,12 +67,16 @@ const TabBar = (props: BottomTabBarProps) => {
 
 const styles = StyleSheet.create({
   footer: {
-    height: dH * 0.09,
+    height: dH * 0.09, 
+
 
   },
   footertab: {
     backgroundColor: "#fff",
     elevation: 24,
+    justifyContent:'center', 
+    alignContent:'center'
+    
   },
 });
 

@@ -4,7 +4,7 @@ import React from "react";
 const ContactScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Contact screen</Text>
+      <Text>Hello</Text>
     </View>
   );
 };
