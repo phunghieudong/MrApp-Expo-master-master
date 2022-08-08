@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, Container, Icon } from "native-base";
 import { Empty, HeaderRoot, LazyLoading } from "@/components";
