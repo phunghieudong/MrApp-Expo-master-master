@@ -35,6 +35,7 @@ const CustomHeaderAuth = (props: Props) => {
         </Left>
       </TouchableWithoutFeedback>
       <Right style={styles.right}>
+   
         <Text
           style={styles.signin}
           onPress={signOut ? signOut : () => navigation.navigate("SignIn")}
@@ -76,14 +77,16 @@ const styles = StyleSheet.create({
   backtext: {
     fontSize: 16,
     fontFamily: "SFProDisplay-Regular",
-    color: "#fff",
+    color: "#FFB703",
   },
-  right: {},
-  signin: {
+  right: {
+    backgroundColor:'#142977'
+  },
+  signin: {      
     fontSize: 14,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Semibold",
-    color: "#fff",
+    color: "#FFB703",
   },
 });
 

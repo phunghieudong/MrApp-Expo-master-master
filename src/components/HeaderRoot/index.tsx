@@ -164,7 +164,7 @@ const CustomHeader = ({
           
         )}
 
-        s
+        
         {filter && (
           <TouchableOpacity onPress={filter} activeOpacity={0.9}>
             <View style={styles.noti}>

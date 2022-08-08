@@ -118,7 +118,7 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
                         backgroundColor: mainColorLight,
                       },
                     ]}
-                  >
+                  > 
                     <Icon
                       type="Feather"
                       name={item.Status === 6 ? "check-circle" : "x-circle"}

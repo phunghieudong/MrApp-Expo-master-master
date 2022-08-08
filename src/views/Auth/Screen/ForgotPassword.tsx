@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Medium",
   },
   submit: {
-    backgroundColor: blueColor,
+    backgroundColor: "#142977",
     marginTop: 40,
     alignSelf: "center",
     paddingHorizontal: 56,

@@ -12,13 +12,12 @@ import {
   InteractionManager,
   StyleSheet,
   TouchableWithoutFeedback,
-  Image
 } from "react-native";
 
 const { mainColor, mainColorText, padding, blueColor, orangeColor } =
   settings.styles;
 
-const HospitalPickerScreen = (props: HospitalPickerProps) => {
+const ChooseHospital = (props: HospitalPickerProps) => {
   const {
     navigation,
     route: {
@@ -87,29 +86,19 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
               }
             >
               <View style={styles.box}>
-                <View>
-                  <Image
-                    source={require("../../../../assets/images/LKSTvuong.png")}
-                    style={{ height: 87, width: 87 }}
+                <View style={styles.heading}>
+                  <Icon
+                    type="Feather"
+                    name="bookmark"
+                    style={styles.headingicon}
                   />
+                  <Text style={styles.headingtext}>{item.Name}</Text>
                 </View>
-                <View style={{flexDirection:'column'}}>
-
-
-                  <View style={styles.heading}>
-                    {/* <Icon
-                      type="Feather"
-                      name="bookmark"
-                      style={styles.headingicon}
-                    /> */}
-                    <Text style={styles.headingtext}>{item.Name}</Text>
-                  </View>
-                  <View style={styles.detail}>
-                    <Text style={styles.value}>{item.Address}</Text>
-                  </View>
+                <View style={styles.detail}>
+                  <Text style={styles.label}>ĐỊA CHỈ</Text>
+                  <Text style={styles.value}>{item.Address}</Text>
                 </View>
-
-                {/* <View style={styles.detail}>
+                <View style={styles.detail}>
                   <Text style={styles.label}>WEBSITE</Text>
                   <Text style={styles.value}>{item.WebSiteUrl}</Text>
                 </View>
@@ -140,7 +129,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
                       style={styles.clickchecked}
                     />
                   )}
-                </View> */}
+                </View>
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -167,26 +156,27 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 15,
     marginTop: 10,
-    flexDirection: 'row',
-
   },
-
+  heading: {
+    marginRight: 40,
+    flexDirection: "row",
+  },
   headingicon: {
     color: blueColor,
     fontSize: 18,
     marginRight: 4,
   },
   headingtext: {
-    color: "#000000",
+    color: blueColor,
     fontFamily: "SFProDisplay-Semibold",
-    fontSize: 20, 
-    paddingLeft:10
-   
-  
+    letterSpacing: 1.25,
+    fontSize: 14,
+    lineHeight: 18,
+    flex: 1,
   },
   detail: {
     marginTop: 12,
-    paddingLeft:10
+    marginLeft: 24,
   },
   label: {
     fontSize: 13,
@@ -235,4 +225,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HospitalPickerScreen;
+export default ChooseHospital;

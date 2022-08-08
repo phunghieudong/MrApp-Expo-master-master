@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   HeaderRoot,
   LazyLoading,
@@ -418,7 +419,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 selected={value?.hospitalName || ""}
               />
               <Select
-                nav={next >= 1 ? () => modalSpecial.current?.open() : undefined}
+                nav={next >= 2 ? () => modalSpecial.current?.open() : undefined}
                 placeholder="KHOA"
                 next={next === 1 ? true : false}
                 selected={value?.specialistTypeName || ""}

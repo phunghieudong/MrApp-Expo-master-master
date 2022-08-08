@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot } from "@/components";
 import { Container } from "native-base";
 import React, { FC, useState } from "react";
@@ -58,6 +59,7 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
           routes: [
             { key: "first", title: "THÔNG TIN BỆNH ÁN" },
             { key: "second", title: "TIỀN SỬ BỆNH ÁN" },
+            { key: "third ", title: "Hieu Dong test" },
           ],
         }}
         renderScene={({ route }) => {
@@ -65,6 +67,8 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
             case "first":
               return <Information />;
             case "second":
+              return <Diagnosis />;
+            case "third":
               return <Diagnosis />;
             default:
               return null;
