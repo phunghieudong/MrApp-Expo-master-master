@@ -27,7 +27,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
   } = props;
 
   const nav = (
-    hospitalId: number,
+    hospitalId: number,  
     hospitalName: string,
     hospitalAddress: string,
     hospitalWebsite: string,
@@ -96,13 +96,13 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
                 <View style={{flexDirection:'column'}}>
 
 
-                  <View style={styles.heading}>
+                  <View style={{ width:280}}>
                     {/* <Icon
                       type="Feather"
                       name="bookmark"
                       style={styles.headingicon}
                     /> */}
-                    <Text style={styles.headingtext}>{item.Name}</Text>
+                    <Text style={styles.headingtext} numberOfLines={2}>{item.Name}</Text>
                   </View>
                   <View style={styles.detail}>
                     <Text style={styles.value}>{item.Address}</Text>
@@ -180,12 +180,13 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontFamily: "SFProDisplay-Semibold",
     fontSize: 20, 
-    paddingLeft:10
+    paddingLeft:10,
+
    
   
   },
   detail: {
-    marginTop: 12,
+    marginTop: 6,
     paddingLeft:10
   },
   label: {
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 20,
     fontFamily: "SFProDisplay-Regular",
-    color: mainColorText,
+    color: "#919191",
   },
   icon: {
     width: 24,
