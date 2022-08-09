@@ -45,6 +45,10 @@ const TabButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     height: "100%",
+    flexDirection:"column" , 
+    justifyContent:"space-around", 
+    alignItems:'center'
+    
   },
   icon: {
     fontSize: 20,
@@ -56,6 +60,10 @@ const styles = StyleSheet.create({
     lineHeight: 15,
     fontFamily: "SFProDisplay-Bold",
     color: "#898FB6",
+    textAlign:'center' 
+    
+ 
+  
   },
   active: {
     position: "absolute",
