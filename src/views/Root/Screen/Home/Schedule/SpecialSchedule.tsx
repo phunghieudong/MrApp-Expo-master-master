@@ -1,3 +1,6 @@
+
+
+//@ts-nocheck
 import {
   HeaderRoot,
   LazyLoading,
@@ -443,7 +446,7 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
               selected={value?.specialistTypeName || ""}
             />
             <Select
-              nav={next >= 2 ? beforeNavDoctorPicker : undefined}
+              nav={next >= 2 ? navDoctorPicker : undefined}
               placeholder="BÁC SĨ"
               next={next === 2 ? true : false}
               selected={value?.doctorName || ""}

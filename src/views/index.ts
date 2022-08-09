@@ -15,6 +15,7 @@ export { default as DashboardScreen } from "./Root/Screen/Home/Dashboard";
 export { default as DoctorPickerScreen } from "./Root/Screen/Home/DoctorPicker";
 export { default as ExaminationCalendarScreen } from "./Root/Screen/Home/ExaminationCalendar";
 export { default as HospitalPickerScreen } from "./Root/Screen/Home/HospitalPicker";
+export { default as HospitalPickerScreen1 } from "./Root/Screen/Home/HospitalPicker";
 export { default as NotificationScreen } from "./Root/Screen/Home/Notification";
 export { default as PaymentScreen } from "./Root/Screen/Home/Payment";
 export { default as NormalScheduleScreen } from "./Root/Screen/Home/Schedule/NormalSchedule";

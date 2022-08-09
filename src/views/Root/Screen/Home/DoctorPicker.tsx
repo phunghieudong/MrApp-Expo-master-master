@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getDoctors } from "@/api/ExaminationForm";
 import { HeaderRoot, Empty, ModalLoading, LazyLoading } from "@/components";
 import { settings } from "@/config";
