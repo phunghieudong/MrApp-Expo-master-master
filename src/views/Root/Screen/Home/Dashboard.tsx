@@ -67,10 +67,11 @@ const DashboardScreen = (props: DashboardProps) => {
         <View style={styles.content1}>
 
 
-        <View style={{paddingRight:280 , paddingBottom:20}}>
-          <Text style={{fontSize:20 , fontFamily: "SFProDisplay-Regular"}}>Đặt lịch khám</Text>
-        </View>
-          <View style={{ paddingRight: 30 , paddingBottom:80}}>
+          <View style={{ paddingRight: 280, paddingBottom: 20 }}>
+            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Regular" }}>Đặt lịch khám</Text>
+          </View>
+          <View></View>
+          <View style={{ paddingRight: 30, paddingBottom: 80 }}>
             <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
               <View style={[styles.box, { marginBottom: 6 }]}>
                 <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
@@ -290,7 +291,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderTopRightRadius: 20,
-    backgroundColor: "#fff"
+    backgroundColor: "#F9F9F9"
+
   },
   textStyle1: {
     fontSize: 22
@@ -402,7 +404,7 @@ const styles = StyleSheet.create({
     color: "#898FB6",
     fontSize: 24,
     marginRight: -5,
-    paddingLeft:120
+    paddingLeft: 120
   },
 });
 
