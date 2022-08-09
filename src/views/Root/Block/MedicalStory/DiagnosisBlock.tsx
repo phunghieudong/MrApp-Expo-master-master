@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import ModalBottom from "@/components/ModalBottom";
 import { settings } from "@/config";
 import { DiagnosticData } from "@/types/MedicalRecordDetail";

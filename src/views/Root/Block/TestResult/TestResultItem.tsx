@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import React, { FC, useRef, useState } from "react";
 import { View, Text, Icon, Spinner } from "native-base";
 import BaseHospital from "../Base/BaseHospital";

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { addNewAllergy, editAllergy } from "@/api/allergy";
 import { getAllergy } from "@/api/Catalogue";
 import {
@@ -132,13 +133,13 @@ const AddAllergyScreen = ({
   const edit = async (data: AddAllergyData) => {
     if (id) {
       try {
-        setLoading(true);
+        setLoading(false);
         await editAllergy(id, data);
         Toast.show({ text: "Cập nhật dị ứng thành công" });
       } catch (error) {
         Toast.show({ text: "Cập nhật dị ứng thất bại" });
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     }
   };
@@ -331,7 +332,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     elevation: 4,
-    backgroundColor: blueColor,
+    backgroundColor: "#142977",
     alignSelf: "flex-end",
     marginTop: 30,
     marginBottom: padding,

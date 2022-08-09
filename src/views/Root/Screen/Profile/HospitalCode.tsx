@@ -1,7 +1,8 @@
+//@ts-nocheck
 import React, { FC, useEffect, useRef, useState } from "react";
 import { View, Text, Container, Input, Icon } from "native-base";
 import { Empty, HeaderRoot, LazyLoading, Loading } from "@/components";
-import { StyleSheet, Dimensions, FlatList } from "react-native";
+import { StyleSheet, Dimensions, FlatList, Image } from "react-native";
 import { settings } from "@/config";
 import { HospitalData } from "@/types/base";
 import { _format } from "@/utils";
@@ -47,10 +48,14 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
 
   return (
     <Container style={styles.container}>
+
       <HeaderRoot
-        title="MÃ HỒ SƠ BỆNH VIỆN"
+        title="MÃ HỒ SƠ B. VIỆN"
         previous={() => navigation.goBack()}
       />
+      <View style={{ backgroundColor: '#D8D6D2', height: 46, width: "100%", alignItems: 'center' }}>
+        <Text>Nhập tên bệnh viện</Text>
+      </View>
       {!ready && <LazyLoading />}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ hồ sơ bệnh viện nào" />
@@ -61,69 +66,33 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
           style={styles.body}
           keyExtractor={(i) => i.Id.toString()}
           renderItem={({ item }) => (
+
             <View style={styles.block}>
-              <View style={styles.flex}>
-                <Text style={styles.label}>MÃ HỒ SƠ BỆNH</Text>
-                <Text
-                  style={[
-                    styles.value,
-                    { color: blueColor, fontFamily: "SFProDisplay-Bold" },
-                  ]}
-                >
-                  {item.Code}
-                </Text>
+
+              <View>
+
+                <Image
+                  source={require("../../../../assets/images/LKSTvuong.png")}
+                  style={{ height: 87, width: 87 }}
+                />
               </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>NƠI KHÁM</Text>
-                <Text style={styles.value}>{item.HospitalName}</Text>
+              <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+                <Text numberOfLines={2} style={{ fontSize: 18, fontFamily: 'SFProDisplay-Bold' }}> {item.HospitalName}</Text>
+                <Text style={{ color: "#FB8500", fontSize: 14 }}> Mã hồ sơ: {item.Code}</Text>
+                <Text style={{ color: "#142977", fontSize: 14 }}> Ngày cấp {item.ConfigTimeValue}</Text>
+                <View style={{
+                  fontSize: 14,
+                  fontFamily: "Regular",
+                  lineHeight: 18,
+                  borderBottomWidth: 1,
+                  borderColor: "rgba(0, 0, 0, 0.1)",
+                  width: "100%",
+                  paddingVertical: 5,
+                }}></View>
               </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>ĐỊA CHỈ</Text>
-                <Text style={styles.value}>{item.HospitalAddress}</Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>WEBSITE</Text>
-                <Text
-                  style={[
-                    styles.value,
-                    { color: blueColor, textDecorationLine: "underline" },
-                  ]}
-                >
-                  {item.HospitalWebSite}
-                </Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>SĐT</Text>
-                <Text
-                  style={[
-                    styles.value,
-                    { color: blueColor, textDecorationLine: "underline" },
-                  ]}
-                >
-                  {item.HospitalPhone}
-                </Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>NGÀY KHÁM</Text>
-                <Text style={styles.value}>
-                  {_format.getShortVNDate(item.ExaminationDate)}
-                </Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>THỜI GIAN</Text>
-                <Text style={styles.value}>{item.ConfigTimeValue}</Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>BỆNH NHÂN</Text>
-                <Text style={styles.value}>{user.UserFullName}</Text>
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.label}>NGÀY SINH</Text>
-                <Text style={styles.value}>
-                  {_format.getShortVNDate(user.BirthDate)}
-                </Text>
-              </View>
+
             </View>
+
           )}
         />
       )}
@@ -131,18 +100,22 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
   );
 };
 
+
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgb(216, 227, 232)",
+    backgroundColor: "#fff",
   },
   body: {
     paddingHorizontal: padding,
   },
   block: {
-    backgroundColor: "#fff",
+
     borderRadius: 16,
     marginVertical: 5,
-    padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center'
+
   },
   flex: {
     flexDirection: "row",
