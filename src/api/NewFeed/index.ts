@@ -22,3 +22,4 @@ export const getNewFeedDetail = async (id: number) => {
     return Promise.reject(error);
   }
 };
+ 

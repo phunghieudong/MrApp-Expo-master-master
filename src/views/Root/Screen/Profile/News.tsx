@@ -74,18 +74,18 @@ const News: FC<NewsProps> = ({ navigation }) => {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", paddingVertical: 5 }}>
                   <Image
                     source={require("../../../../assets/images/newcalender.png")}
-                    style={{ height: 15, width: 15 , marginRight:8 }}
+                    style={{ height: 15, width: 15, marginRight: 8 }}
                   />
-                  <Text style={{color:"#666666" , marginRight:8}}>25/07/21</Text>
+                  <Text style={{ color: "#666666", marginRight: 8 }}>{item.Created}</Text>
                   <Image
                     source={require("../../../../assets/images/line.png")}
-                    style={{ height: 17, width: 1 ,marginRight:8}}
+                    style={{ height: 17, width: 1, marginRight: 8 }}
                   />
                   <Image
                     source={require("../../../../assets/images/usernews.png")}
                     style={{ height: 15, width: 15 }}
                   />
-                  <Text style={{color:"#666666"}}> admin</Text>
+                  <Text style={{ color: "#666666" }}> {item.CreatedBy}</Text>
                 </View>
                 <View style={styles.flex}>
                   <Text style={styles.title}>{item.Title}</Text>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 4,
     padding: 14,
-    marginTop: 10,
+    marginTop: 5,
     flexDirection: "column",
 
   },
