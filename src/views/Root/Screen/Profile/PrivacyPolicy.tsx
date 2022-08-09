@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Content, Text } from "native-base";
@@ -22,7 +23,7 @@ const PrivacyPolicyScreen = () => {
   return (
     <Container style={styles.container}>
       <HeaderRoot
-        title="Chính sách bảo mật"
+        title="Chính sách"
         hideAvatar={true}
         previous={true}
       />

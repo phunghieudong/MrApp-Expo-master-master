@@ -401,7 +401,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         </Svg>
       ),
       text: "Chính sách",
-      navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+      navigate: () => navigation.navigate("PrivacyPolicy"),
     },
     {
       svg: (
