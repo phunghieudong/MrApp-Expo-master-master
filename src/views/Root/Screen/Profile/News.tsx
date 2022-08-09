@@ -65,22 +65,47 @@ const News: FC<NewsProps> = ({ navigation }) => {
               }
             >
               <View style={styles.box}>
-                <View style={styles.logo}>
-                  <Text style={styles.logotext}>LG</Text>
+                <View>
+                  <Image
+                    source={require("../../../../assets/images/News.png")}
+                    style={{ height: 150, width: "100%", borderRadius: 6 }}
+                  />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", paddingVertical: 5 }}>
+                  <Image
+                    source={require("../../../../assets/images/newcalender.png")}
+                    style={{ height: 15, width: 15 , marginRight:8 }}
+                  />
+                  <Text style={{color:"#666666" , marginRight:8}}>25/07/21</Text>
+                  <Image
+                    source={require("../../../../assets/images/line.png")}
+                    style={{ height: 17, width: 1 ,marginRight:8}}
+                  />
+                  <Image
+                    source={require("../../../../assets/images/usernews.png")}
+                    style={{ height: 15, width: 15 }}
+                  />
+                  <Text style={{color:"#666666"}}> admin</Text>
+                </View>
+                <View style={styles.flex}>
+                  <Text style={styles.title}>{item.Title}</Text>
                 </View>
                 <View style={styles.detail}>
-                  <View style={styles.flex}>
-                    <Text style={styles.title}>{item.Title}</Text>
-                    <Icon
-                      style={styles.icon}
-                      type="Ionicons"
-                      name="chevron-forward"
-                    />
-                  </View>
+
                   <Text style={styles.content} numberOfLines={5}>
                     {item.Content}
                   </Text>
+
                 </View>
+                <View style={{
+                  fontSize: 14,
+                  fontFamily: "Regular",
+                  lineHeight: 18,
+                  borderBottomWidth: 1,
+                  borderColor: "rgba(0, 0, 0, 0.1)",
+                  width: "100%",
+                  paddingVertical: 5,
+                }}></View>
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -92,7 +117,7 @@ const News: FC<NewsProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgb(216, 227, 232)",
+    backgroundColor: "#fff",
   },
   body: {
     paddingHorizontal: padding,
@@ -100,9 +125,10 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: "#fff",
     borderRadius: 4,
-    marginTop: 10,
     padding: 14,
-    flexDirection: "row",
+    marginTop: 10,
+    flexDirection: "column",
+
   },
   logo: {
     backgroundColor: successColor,
@@ -130,6 +156,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 8,
     left: 8,
+
   },
   title: {
     marginTop: 8,

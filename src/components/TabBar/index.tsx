@@ -4,7 +4,7 @@ import { Footer, FooterTab } from "native-base";
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import TabButton from "./TabButton";
-
+``
 const { height: dH } = Dimensions.get("window");
 
 const TabBar = (props: BottomTabBarProps) => {
@@ -30,12 +30,13 @@ const TabBar = (props: BottomTabBarProps) => {
     },
     ["Chat"]: {
       label: "Tin tức",
-      type: "Ionicons",
-      icon: "chatbubble-ellipses-outline",
+      type: "SimpleLineIcons",
+      icon: "notebook",
     },
 
     ["Advise"]: {
-      label: "Tư vấn Hỗ trợ trực tiếp ",
+      label: "Tư vấn",
+      // label: "Hỗ trợ trực tiếp",
       type: "Feather",
       icon: "video",
     },
