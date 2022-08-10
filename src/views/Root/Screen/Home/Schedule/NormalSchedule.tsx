@@ -322,6 +322,15 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
     }
   }, [status]);
 
+ // Chuyển qua cái khoa khám
+ const navDepartment = () => {
+  navigation.navigate("Department", {
+    hospitalId: value?.hospitalId ?? undefined,
+    typeId,
+  });
+};
+
+
   // chuyển hướng trang
   const navHospital = () => {
     navigation.navigate("HospitalPicker", {
@@ -329,7 +338,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       typeId,
     });
   };
-
+ // Cái lịch
   const navCalendar = () => {
     navigation.navigate("Calendar", {
       hospitalId: value?.hospitalId as number,
@@ -337,7 +346,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       typeId,
     });
   };
-
+// Cái phòng
   const navTimePicker = () => {
     navigation.navigate("ChooseARoom", {
       typeId,
@@ -419,8 +428,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 selected={value?.hospitalName || ""}
               />
               <Select
-                nav={next >= 2 ? () => modalSpecial.current?.open() : undefined}
-                placeholder="KHOA"
+                // nav={next >= 2 ? () => modalSpecial.current?.open() : undefined}
+                nav={navDepartment}
+                placeholder="CHỌN CHUYÊN KHOA"
                 next={next === 1 ? true : false}
                 selected={value?.specialistTypeName || ""}
               />

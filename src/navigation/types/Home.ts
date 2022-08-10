@@ -43,6 +43,7 @@ export type HomeParamList = {
     typeId: number;
   };
   HospitalPicker: { hospitalId?: number; typeId: number };
+  Department: { hospitalId?: number; typeId: number };
   DoctorPicker: {
     hospitalId: number;
     specialistTypeId: number;
@@ -216,6 +217,16 @@ type HospitalPickerScreenRouteProp = RouteProp<HomeParamList, "HospitalPicker">;
 export type HospitalPickerProps = {
   navigation: HospitalPickerScreenNavigationProp;
   route: HospitalPickerScreenRouteProp;
+};
+// PhungHieuDong
+type DepartmentScreenNavigationProp = StackNavigationProp<
+  HomeParamList,
+  "Department"
+>;
+type DepartmentScreenRouteProp = RouteProp<HomeParamList, "Department">;
+export type DepartmentProps = {
+  navigation: DepartmentScreenNavigationProp;
+  route: DepartmentScreenRouteProp;
 };
 
 // ++ doctor picker

@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, Container, Icon } from "native-base";
 import { Empty, HeaderRoot, LazyLoading } from "@/components";
-import { NewsProps } from "@/navigation/types/profile";
+
 import {
   FlatList,
   Image,
@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { getNewFeed } from "@/api/NewFeed";
+import { NewsProps } from "@/navigation/types/profile";
 import { NewFeedData } from "@/types/NewFeed";
 import { settings } from "@/config";
 

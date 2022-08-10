@@ -62,6 +62,7 @@ export type ProfileParamList = {
   MedicalHistory: undefined;
   MedicalHistoryDetail: undefined;
   News: undefined;
+  Policy: undefined;
   NewsDetail: {
     title: string;
     content: string;
@@ -283,6 +284,15 @@ type NewsScreenRouteProp = RouteProp<ProfileParamList, "News">;
 export type NewsProps = {
   navigation: NewsScreenNavigationProp;
   route: NewsScreenRouteProp;
+};
+
+
+// ++ Polycy
+type PolycyScreenNavigationProp = StackNavigationProp<ProfileParamList, "Policy">;
+type PolycyScreenRouteProp = RouteProp<ProfileParamList, "Policy">;
+export type PolycyProps = {
+  navigation: PolycyScreenNavigationProp;
+  route: PolycyScreenRouteProp;
 };
 
 // ++ news detail

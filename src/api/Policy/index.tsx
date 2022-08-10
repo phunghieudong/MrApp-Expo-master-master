@@ -5,7 +5,7 @@ export const getPolicy = async (params: {
   pageSize: number;
 }) => {
   try {
-    const res = await instance.get("/app-policy", {
+    const res = await instance.get("/app-policy/1", {
       params: { ...params, orderBy: "Id desc" },
     });
     return res.data;
