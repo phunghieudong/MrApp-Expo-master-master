@@ -8,7 +8,8 @@ import { logout } from "@/store/reducers/UserSlice";
 import _format from "@/utils/Base";
 import { Container, Content, Text, Toast, View } from "native-base";
 import React, { FC } from "react";
-import { FlatList, StyleSheet, TouchableWithoutFeedback, Image } from "react-native";
+import { FlatList, StyleSheet, TouchableWithoutFeedback, Image, Touchable } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Svg, {
   Circle,
   ClipPath,
@@ -38,41 +39,10 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clipPath">
-              <Rect
-                id="Rectangle_933"
-                data-name="Rectangle 933"
-                width="20"
-                height="20"
-                transform="translate(37 132)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_341"
-            data-name="Mask Group 341"
-            transform="translate(-37 -132)"
-            clipPath="url(#clipPath)"
-          >
-            <G
-              id="user_12_"
-              data-name="user (12)"
-              transform="translate(37 132)"
-            >
-              <G id="Group_928" data-name="Group 928">
-                <Path
-                  id="Path_2246"
-                  data-name="Path 2246"
-                  d="M19.949,17.138a.781.781,0,0,0-1.53.318.816.816,0,0,1-.165.684.794.794,0,0,1-.625.3H2.371a.794.794,0,0,1-.625-.3.816.816,0,0,1-.165-.684,8.632,8.632,0,0,1,8.212-6.835q.1,0,.207,0t.208,0a8.594,8.594,0,0,1,6.941,3.815.781.781,0,1,0,1.3-.87,10.162,10.162,0,0,0-5.266-4,5.312,5.312,0,1,0-6.359,0A10.161,10.161,0,0,0,.051,17.138,2.373,2.373,0,0,0,2.371,20H17.629a2.374,2.374,0,0,0,2.32-2.862ZM6.25,5.313a3.75,3.75,0,1,1,3.94,3.745l-.19,0-.189,0A3.755,3.755,0,0,1,6.25,5.313Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
+          <Image
+            source={require("../../../../assets/images/hscn.png")}
+            style={{ height: 20, width: 20, }}
+          />
         </Svg>
       ),
       text: "Hồ sơ\ncá nhân",
@@ -81,39 +51,10 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clipPath">
-              <Rect
-                id="Rectangle_1064"
-                data-name="Rectangle 1064"
-                width="20"
-                height="20"
-                transform="translate(37 206)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_346"
-            data-name="Mask Group 346"
-            transform="translate(-37 -206)"
-            clipPath="url(#clipPath)"
-          >
-            <G
-              id="Layer_2"
-              data-name="Layer 2"
-              transform="translate(36.333 205.333)"
-            >
-              <Path
-                id="Path_2254"
-                data-name="Path 2254"
-                d="M17.153.667H4.18A2.187,2.187,0,0,0,2,2.847v15.64a2.187,2.187,0,0,0,2.18,2.18H9.653a2.873,2.873,0,0,0,2.173-1l6.667-7.76a3.4,3.4,0,0,0,.84-2.267V2.847a2.187,2.187,0,0,0-2.18-2.18Zm-5.82,17.507v-5.46a1.38,1.38,0,0,1,1.373-1.38h4.507Z"
-                fill="#219ebc"
-              />
-            </G>
-          </G>
+          <Image
+            source={require("../../../../assets/images/hdsd.png")}
+            style={{ height: 20, width: 15, }}
+          />
         </Svg>
       ),
       text: "Hướng dẫn\nsử dụng",
@@ -183,6 +124,8 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       navigate: () => navigation.navigate("ServiceAccount"),
     },
     {
+
+
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
           <Defs>
@@ -265,7 +208,8 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         </Svg>
       ),
       text: "Cài đặt",
-      navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+      // navigate: () => navigation.navigate("ServiceAccount"),
+
     },
     {
       svg: (
@@ -595,8 +539,25 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       },
     },
   ];
+  const menuc = [
+    {
+      svg: (
 
+        <Svg width="36" height="36" viewBox="0 0 36 36">
+
+          <Image
+            source={require("../../../../assets/images/mhsbv.png")}
+            style={{ height: 36, width: 36 }}
+          />
+        </Svg>
+      ),
+
+      text: "phunghieudong",
+      navigate: () => navigation.navigate("HospitalCode"),
+    },
+  ];
   const menuRight = [
+
     {
       svg: (
 
@@ -615,7 +576,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-        <Image
+          <Image
             source={require("../../../../assets/images/ha.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -627,7 +588,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-         <Image
+          <Image
             source={require("../../../../assets/images/kqxn.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -639,7 +600,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-       <Image
+          <Image
             source={require("../../../../assets/images/lstc.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -651,7 +612,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-   <Image
+          <Image
             source={require("../../../../assets/images/TT.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -663,7 +624,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-        <Image
+          <Image
             source={require("../../../../assets/images/du.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -675,7 +636,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-  <Image
+          <Image
             source={require("../../../../assets/images/Tk.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -687,7 +648,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
-       <Image
+          <Image
             source={require("../../../../assets/images/lskb.png")}
             style={{ height: 36, width: 36 }}
           />
@@ -722,147 +683,78 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         </View>
         <Content contentContainerStyle={styles.right}>
           <View style={styles.profile}>
-            <Text style={styles.name}>Nguyễn Văn A</Text>
+            <View style={{ flexDirection: 'row', alignItems: "baseline", justifyContent: 'space-between' }}>
+
+
+              <Text style={styles.name}>Nguyễn Văn A</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
+                <Text onPress={() => navigation.navigate("MedicalStory", {})} style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
+                <Image
+                  source={require("../../../../assets/images/xct.png")}
+                  style={{ height: 12, width: 12, }}
+                />
+              </View>
+
+            </View>
+
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate("MedicalStory", {})}
             >
-              <View style={{ alignSelf: "flex-start" }}>
+              <View style={{ alignSelf: "flex-start", }}>
                 <View style={styles.icon}>
                   <Svg width="36" height="36" viewBox="0 0 36 36">
-                    <Defs>
-                      <ClipPath id="clip-path">
-                        <Rect
-                          id="Rectangle_786"
-                          data-name="Rectangle 786"
-                          width="36"
-                          height="36"
-                          transform="translate(123 170)"
-                          fill="#142977"
-                          stroke="#707070"
-                          strokeWidth="1"
-                        />
-                      </ClipPath>
-                    </Defs>
-                    <G
-                      id="Mask_Group_387"
-                      data-name="Mask Group 387"
-                      transform="translate(-123 -170)"
-                      clipPath="url(#clip-path)"
-                    >
-                      <G id="stethoscope-2" transform="translate(123 170)">
-                        <G id="Group_1013" data-name="Group 1013">
-                          <G id="Group_1006" data-name="Group 1006">
-                            <G id="Group_1005" data-name="Group 1005">
-                              <G id="Group_1004" data-name="Group 1004">
-                                <G id="Group_1003" data-name="Group 1003">
-                                  <G id="Group_1002" data-name="Group 1002">
-                                    <Path
-                                      id="Path_2346"
-                                      data-name="Path 2346"
-                                      d="M15.369,36a3.713,3.713,0,0,1-3.709-3.708V25.109a.7.7,0,0,1,1.406,0v7.183a2.3,2.3,0,0,0,4.605,0V24.123a2.562,2.562,0,0,1,5.123,0v4.195a3.067,3.067,0,0,0,6.134,0V16.347a.7.7,0,1,1,1.406,0V28.318a4.473,4.473,0,0,1-8.946,0V24.123a1.155,1.155,0,0,0-2.311,0v8.169A3.713,3.713,0,0,1,15.369,36Z"
-                                      fill="#142977"
-                                    />
-                                  </G>
-                                </G>
-                              </G>
-                            </G>
-                          </G>
-                          <G id="Group_1012" data-name="Group 1012">
-                            <G id="Group_1011" data-name="Group 1011">
-                              <G id="Group_1010" data-name="Group 1010">
-                                <G id="Group_1009" data-name="Group 1009">
-                                  <G id="Group_1008" data-name="Group 1008">
-                                    <G id="Group_1007" data-name="Group 1007">
-                                      <Ellipse
-                                        id="Ellipse_159"
-                                        data-name="Ellipse 159"
-                                        cx="2.129"
-                                        cy="2.128"
-                                        rx="2.129"
-                                        ry="2.128"
-                                        transform="translate(10.234 21.56)"
-                                        fill="#b2f0fb"
-                                      />
-                                    </G>
-                                  </G>
-                                </G>
-                              </G>
-                            </G>
-                          </G>
-                        </G>
-                        <G id="Group_1026" data-name="Group 1026">
-                          <Path
-                            id="Path_2347"
-                            data-name="Path 2347"
-                            d="M22.341,7.293H21.63V1.739a.7.7,0,0,0-.7-.7H17.007V.7A.7.7,0,0,0,15.6.7V2.774a.7.7,0,0,0,1.406,0V2.442h3.216V7.293h-.711a.7.7,0,0,0-.7.7v3.342a6.446,6.446,0,0,1-12.892,0V8a.7.7,0,0,0-.7-.7H4.5V2.442H7.719v.332a.7.7,0,0,0,1.406,0V.7A.7.7,0,0,0,7.719.7v.333H3.8a.7.7,0,0,0-.7.7V7.293H2.385a.7.7,0,0,0-.7.7v3.342a10.682,10.682,0,0,0,21.363,0V8a.7.7,0,0,0-.7-.7Zm-.7,4.045a9.275,9.275,0,0,1-18.551,0V8.7H4.511v2.639a7.852,7.852,0,0,0,15.7,0V8.7h1.423Z"
-                            fill="#142977"
-                          />
-                          <G id="Group_1019" data-name="Group 1019">
-                            <G id="Group_1018" data-name="Group 1018">
-                              <G id="Group_1017" data-name="Group 1017">
-                                <G id="Group_1016" data-name="Group 1016">
-                                  <G id="Group_1015" data-name="Group 1015">
-                                    <G id="Group_1014" data-name="Group 1014">
-                                      <Ellipse
-                                        id="Ellipse_160"
-                                        data-name="Ellipse 160"
-                                        cx="4.687"
-                                        cy="4.685"
-                                        rx="4.687"
-                                        ry="4.685"
-                                        transform="translate(24.945 7.306)"
-                                        fill="#b2f0fb"
-                                      />
-                                    </G>
-                                  </G>
-                                </G>
-                              </G>
-                            </G>
-                          </G>
-                          <G id="Group_1025" data-name="Group 1025">
-                            <G id="Group_1024" data-name="Group 1024">
-                              <G id="Group_1023" data-name="Group 1023">
-                                <G id="Group_1022" data-name="Group 1022">
-                                  <G id="Group_1021" data-name="Group 1021">
-                                    <G id="Group_1020" data-name="Group 1020">
-                                      <Path
-                                        id="Path_2348"
-                                        data-name="Path 2348"
-                                        d="M29.632,14.241a2.25,2.25,0,1,1,2.25-2.25A2.252,2.252,0,0,1,29.632,14.241Zm0-3.093a.843.843,0,1,0,.844.843A.845.845,0,0,0,29.632,11.148Z"
-                                        fill="#142977"
-                                      />
-                                    </G>
-                                  </G>
-                                </G>
-                              </G>
-                            </G>
-                          </G>
-                        </G>
-                      </G>
-                    </G>
+                    <Image
+                      source={require("../../../../assets/images/tsba.png")}
+                      style={{ height: 36, width: 27 }}
+                    />
                   </Svg>
                 </View>
-                <Text style={styles.story}>Tiểu sử bệnh án</Text>
+
+                <Text style={styles.story} >TIỂU SỬ BỆNH ÁN</Text>
+
+
               </View>
             </TouchableWithoutFeedback>
           </View>
+
+          {/* Chổ này để lấy APi phaanf ngay  */}
           <View style={styles.menu}>
             <Text style={styles.date}>
               {_format.getShortVNDate(new Date())} - Ngày hiện tại
             </Text>
-            <View style={styles.list}>
-              {menuRight.map((item) => (
-                <TouchableWithoutFeedback
-                  key={item.text}
-                  onPress={item.navigate}
-                >
-                  <View style={styles.item}>
-                    {item.svg}
-                    <Text style={styles.itemtext}>{item.text}</Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              ))}
+
+            <View style={{ flexDirection: 'column', justifyContent: "space-between", alignItems: "flex-end" }}>
+
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingRight: 20 }}>
+                <Text  style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
+                <Image
+                  source={require("../../../../assets/images/xct.png")}
+                  style={{ height: 12, width: 12, }}
+                />
+              </View>
+
+
+              <View style={styles.list}>
+
+                {menuRight.map((item) => (
+
+                  <TouchableWithoutFeedback
+                    onPress={(event) => setActive(event)}
+                    key={item.text}
+                    onPress={item.navigate}
+                  >
+                    <View style={styles.item}>
+                      {item.svg}
+                      <Text style={styles.itemtext}>{item.text}</Text>
+                    </View>
+                  </TouchableWithoutFeedback>
+                ))}
+              </View>
+
+
+
             </View>
+
           </View>
         </Content>
       </View>
@@ -900,7 +792,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 14,
     fontFamily: "SFProDisplay-Semibold",
-    color: mainColorText,
+    color: "#142977",
   },
   menu: {
     marginTop: 20,
@@ -917,6 +809,7 @@ const styles = StyleSheet.create({
   list: {
     flexDirection: "row",
     flexWrap: "wrap",
+
   },
   item: {
     width: "33.33333%",
