@@ -749,7 +749,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
               <View style={styles.list}>
 
-                {setting.map((item) => (
+                {menuRight.map((item) => (
 
                   <TouchableWithoutFeedback
                     onPress={(event) => setActive(event)}
