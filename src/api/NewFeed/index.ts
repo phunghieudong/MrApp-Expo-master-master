@@ -1,4 +1,4 @@
-import instance from "../instance";
+import instance from "../instance"; 
 
 export const getNewFeed = async (params: {
   pageIndex: number;
@@ -9,7 +9,10 @@ export const getNewFeed = async (params: {
       params: { ...params, orderBy: "Id desc" },
     });
     return res.data;
-  } catch (error) {
+
+    
+   
+    } catch (error) {
     return Promise.reject(error);
   }
 };
