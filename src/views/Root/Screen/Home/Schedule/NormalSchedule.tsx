@@ -27,7 +27,8 @@ import { ServiceData, SpecialTypeData, VaccineData } from "@/types/base";
 import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { getLastestExamination } from "@/api/ExaminationForm";
-
+import { Modal, Portal, Button, Provider } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
   settings.styles;
 
@@ -330,7 +331,15 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
     });
   };
 
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = { backgroundColor: 'white' };
 
+  const [visible1, setVisible1] = React.useState(false);
+  const showModal1 = () => setVisible1(true);
+  const hideModal1 = () => setVisible1(false);
+  const containerStyle1 = { backgroundColor: 'white' };
   // chuyển hướng trang
   const navHospital = () => {
     navigation.navigate("HospitalPicker", {
@@ -417,9 +426,13 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                   )}
 
                   <Text style={styles.tabTitle}>Dịch vụ </Text>
+
                 </View>
               </TouchableWithoutFeedback>
+          
+          
             </View>
+           
             <Form style={styles.frmcontrol}>
               <Select
                 nav={navHospital}
@@ -428,14 +441,16 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 selected={value?.hospitalName || ""}
               />
               <Select
-                // nav={next >= 2 ? () => modalSpecial.current?.open() : undefined}
-                nav={navDepartment}
+                nav={next >= 2 ? () => showModal() : undefined}
+                // nav={navDepartment}
+                // onPress={showModal}
                 placeholder="CHỌN CHUYÊN KHOA"
                 next={next === 1 ? true : false}
                 selected={value?.specialistTypeName || ""}
               />
               <Select
-                nav={next >= 2 ? () => modalService.current?.open() : undefined}
+                // nav={next >= 2 ? () => modalService.current?.open() : undefined}
+                nav={next >= 2 ? () => showModal1() : undefined}
                 placeholder="CHỌN DỊCH VỤ"
                 next={next >= 2 ? true : false}
                 selected={value?.serviceTypeName || ""}
@@ -478,7 +493,8 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
 
 
                 )}
-              <View ref={modalSpecial} style={{ borderRadius: 4 }}>
+              
+              <ModalCenter ref={modalSpecial} style={{ borderRadius: 4 }}>
                 <>
                   {specialistType.length > 0 &&
                     specialistType.map((i) => (
@@ -513,7 +529,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                     </Text>
                   )}
                 </>
-              </View>
+              </ModalCenter>
 
               {status === 1 &&
                 (value.isBHYTService === undefined ||
@@ -605,6 +621,78 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 </View>
               </TouchableWithoutFeedback>
             </Form>
+            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{height: "100%", width: "100%"}}>
+                <>
+                  {specialistType.length > 0 &&
+                    specialistType.map((i) => (
+                      <TouchableWithoutFeedback
+                        key={i.Id}
+                        onPress={() => handleSpecial(i.Id, i.Name)}
+                      >
+                        <View style={styles.service}>
+                          <Text
+                            style={[
+                              styles.servicename,
+                              value?.specialistTypeId === i.Id && {
+                                color: blueColor,
+                              },
+                            ]}
+                          >
+                            {i.Name}
+                          </Text>
+                          {value?.specialistTypeId === i.Id && (
+                            <Icon
+                              type="Feather"
+                              name="check-circle"
+                              style={styles.serviceicon}
+                            />
+                          )}
+                        </View>
+                      </TouchableWithoutFeedback>
+                    ))}
+                  {!specialistType.length && (
+                    <Text style={[styles.service, styles.servicename]}>
+                      Hiện tại chưa có bất kỳ khoa nào
+                    </Text>
+                  )}
+                </>
+              </Modal>
+              <Modal visible={visible1} onDismiss={hideModal1} contentContainerStyle={containerStyle1} style={{height: "100%", width: "100%"}}>
+              <>
+              {services.map((i) => {
+                if (i.Id !== 7) {
+                  return (
+                    <TouchableWithoutFeedback
+                      key={i.Id}
+                      onPress={() =>
+                        handleModal(i.Id, i.Name, i.IsBHYT, "service")
+                      }
+                    >
+                      <View style={styles.service}>
+                        <Text
+                          style={[
+                            styles.servicename,
+                            value?.serviceTypeId === i.Id && {
+                              color: blueColor,
+                            },
+                          ]}
+                        >
+                          {i.Name}
+                        </Text>
+                        {value?.serviceTypeId === i.Id && (
+                          <Icon
+                            type="Feather"
+                            name="check-circle"
+                            style={styles.serviceicon}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
+                  );
+                }
+              })}
+            </>
+              </Modal>
           </Content>
           <ModalCenter ref={modalService} style={{ borderRadius: 4 }}>
             <>
@@ -872,6 +960,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 14,
     paddingVertical: 12,
+  
   },
   servicename: {
     fontSize: 16,

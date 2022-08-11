@@ -69,7 +69,7 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
             case "second":
               return <Diagnosis />;
             case "third":
-              return <Diagnosis />;
+              return <Information />;
             default:
               return null;
           }

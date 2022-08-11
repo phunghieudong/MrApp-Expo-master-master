@@ -24,7 +24,6 @@ import { MenuItem } from "../../Block/Menu";
 const { padding, mainColorText } = settings.styles;
 
 const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
-
   // redux
   const dispatch = useAppDispatch();
 
@@ -40,14 +39,11 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
-
           <Image
             source={require("../../../../assets/images/hscn.png")}
             style={{ height: 20, width: 20, }}
           />
-
         </Svg>
-
       ),
       text: "Hồ sơ\ncá nhân",
       navigate: () => navigation.navigate("PatientProfile"),
@@ -67,74 +63,71 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
-          <TouchableOpacity onPress={() => onPress(0)}>
-            <Defs>
-              <ClipPath id="clipPath">
-                <Rect
-                  id="Rectangle_1065"
-                  data-name="Rectangle 1065"
-                  width="20"
-                  height="20"
-                  transform="translate(136 142)"
-                  fill="#fff"
-                  stroke="#707070"
-                  strokeWidth="1"
-                />
-              </ClipPath>
-            </Defs>
+          <Defs>
+            <ClipPath id="clipPath">
+              <Rect
+                id="Rectangle_1065"
+                data-name="Rectangle 1065"
+                width="20"
+                height="20"
+                transform="translate(136 142)"
+                fill="#fff"
+                stroke="#707070"
+                strokeWidth="1"
+              />
+            </ClipPath>
+          </Defs>
+          <G
+            id="Mask_Group_314"
+            data-name="Mask Group 314"
+            transform="translate(-136 -142)"
+            clipPath="url(#clipPath)"
+          >
             <G
-              id="Mask_Group_314"
-              data-name="Mask Group 314"
-              transform="translate(-136 -142)"
-              clipPath="url(#clipPath)"
+              id="Layer_2"
+              data-name="Layer 2"
+              transform="translate(136 144.415)"
             >
-              <G
-                id="Layer_2"
-                data-name="Layer 2"
-                transform="translate(136 144.415)"
-              >
-                <Path
-                  id="Path_2167"
-                  data-name="Path 2167"
-                  d="M10.4,8.968H5.066a.667.667,0,1,0,0,1.333H10.4a.667.667,0,1,0,0-1.333Z"
-                  transform="translate(-1.067 -3.645)"
-                  fill="#fff"
-                />
-                <Path
-                  id="Path_2168"
-                  data-name="Path 2168"
-                  d="M10.4,13.031H5.066a.667.667,0,1,0,0,1.333H10.4a.667.667,0,1,0,0-1.333Z"
-                  transform="translate(-1.067 -4.014)"
-                  fill="#fff"
-                />
-                <Path
-                  id="Path_2169"
-                  data-name="Path 2169"
-                  d="M21.312,3.676a2.053,2.053,0,0,0-2.827,0L13.9,8.283a1.14,1.14,0,0,0-.34.813v1.187a1.16,1.16,0,0,0,1.16,1.16H15.9a1.187,1.187,0,0,0,.82-.34l4.566-4.573a2,2,0,0,0,0-2.827Z"
-                  transform="translate(-1.899 -3.112)"
-                  fill="#fff"
-                />
-                <Path
-                  id="Path_2170"
-                  data-name="Path 2170"
-                  d="M20.066,8.88a.667.667,0,0,0-.667.667v6.7a.747.747,0,0,1-.753.753H2.82a.747.747,0,0,1-.753-.753V5.753A.747.747,0,0,1,2.82,5H14.006a.667.667,0,0,0,0-1.333H2.82A2.087,2.087,0,0,0,.733,5.753V16.246A2.087,2.087,0,0,0,2.82,18.333H18.646a2.087,2.087,0,0,0,2.087-2.087V9.58a.667.667,0,0,0-.667-.7Z"
-                  transform="translate(-0.733 -3.163)"
-                  fill="#fff"
-                />
-              </G>
+              <Path
+                id="Path_2167"
+                data-name="Path 2167"
+                d="M10.4,8.968H5.066a.667.667,0,1,0,0,1.333H10.4a.667.667,0,1,0,0-1.333Z"
+                transform="translate(-1.067 -3.645)"
+                fill="#fff"
+              />
+              <Path
+                id="Path_2168"
+                data-name="Path 2168"
+                d="M10.4,13.031H5.066a.667.667,0,1,0,0,1.333H10.4a.667.667,0,1,0,0-1.333Z"
+                transform="translate(-1.067 -4.014)"
+                fill="#fff"
+              />
+              <Path
+                id="Path_2169"
+                data-name="Path 2169"
+                d="M21.312,3.676a2.053,2.053,0,0,0-2.827,0L13.9,8.283a1.14,1.14,0,0,0-.34.813v1.187a1.16,1.16,0,0,0,1.16,1.16H15.9a1.187,1.187,0,0,0,.82-.34l4.566-4.573a2,2,0,0,0,0-2.827Z"
+                transform="translate(-1.899 -3.112)"
+                fill="#fff"
+              />
+              <Path
+                id="Path_2170"
+                data-name="Path 2170"
+                d="M20.066,8.88a.667.667,0,0,0-.667.667v6.7a.747.747,0,0,1-.753.753H2.82a.747.747,0,0,1-.753-.753V5.753A.747.747,0,0,1,2.82,5H14.006a.667.667,0,0,0,0-1.333H2.82A2.087,2.087,0,0,0,.733,5.753V16.246A2.087,2.087,0,0,0,2.82,18.333H18.646a2.087,2.087,0,0,0,2.087-2.087V9.58a.667.667,0,0,0-.667-.7Z"
+                transform="translate(-0.733 -3.163)"
+                fill="#fff"
+              />
             </G>
-          </TouchableOpacity>
+          </G>
         </Svg>
       ),
       text: "Hồ sơ\nbệnh án",
-      navigate: () => navigation.navigate("ServiceAccount"),
+      // navigate: () => navigation.navigate("ServiceAccount"),
     },
     {
 
 
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
-
           <Defs>
             <ClipPath id="clipPath">
               <Rect
@@ -212,7 +205,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
               />
             </G>
           </G>
-
         </Svg>
       ),
       text: "Cài đặt",
@@ -555,19 +547,25 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
 
-        <Svg width="36" height="36" viewBox="0 0 36 36">
+        <Svg>
 
-
-
-
-          <Image
-            source={require("../../../../assets/images/mhsbv.png")}
-            style={{ height: 36, width: 36 }}
-          />
+          <View style={{ backgroundColor: 'blue', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
+            <View>
+              <Text>Nhận thông báo</Text>
+            </View>
+            <View>
+              <Text>Nhận tin nhắn SMS</Text>
+            </View>
+            <View>
+              <Text>Nhận tin tức quảng cáo</Text>
+            </View>
+          </View>
         </Svg>
-      ),
 
-      text: "phunghieudong",
+      ),
+     
+
+      // text: "phunghieudong",
       // navigate: () => navigation.navigate("HospitalCode"),
     },
   ];
@@ -749,29 +747,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
               </View>
 
 
-              {/* {actived == 0 && (
-                <View style={styles.list}>
-
-
-
-                  {menuRight.map((item) => (
-
-                    <TouchableWithoutFeedback
-                      onPress={(event) => setActive(event)}
-                      key={item.text}
-                      onPress={item.navigate}
-                    >
-                      <View style={styles.item}>
-                        {item.svg}
-                        <Text style={styles.itemtext}>{item.text}</Text>
-                      </View>
-                    </TouchableWithoutFeedback>
-                  ))}
-                </View>
-              )} */}
-
               <View style={styles.list}>
-
 
                 {setting.map((item) => (
 

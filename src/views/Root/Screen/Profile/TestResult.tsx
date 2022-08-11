@@ -26,7 +26,8 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Array<DiagnosticData>>([]);
   const [page, setPage] = useState({ current: 1, next: true });
-  const [ready, setReady] = useS       
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
     (async () => {
       try {
