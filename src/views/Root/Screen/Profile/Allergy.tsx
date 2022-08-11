@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, Container, Icon, Toast } from "native-base";
 import { Empty, HeaderRoot, LazyLoading, ModalLoading } from "@/components";
@@ -219,6 +220,8 @@ const AllergyScreen: FC<AllergyProps> = ({ navigation, route: { params } }) => {
           </Text>
         </View>
       )}
+
+
       <ModalLoading visible={loading} />
     </Container>
   );

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Content, Text } from "native-base";
@@ -6,7 +7,7 @@ import { InteractionManager, StyleSheet } from "react-native";
 
 const { mainColorText, padding } = settings.styles;
 
-const ServiceAccountScreen = () => {
+const ServiceAccountScreen = ({navigation}) => {
   // interaction
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -21,11 +22,7 @@ const ServiceAccountScreen = () => {
 
   return (
     <Container>
-      <HeaderRoot
-        title="Điều khoản dịch vụ"
-        hideAvatar={true}
-        previous={true}
-      />
+        <HeaderRoot title="Điều khoản" previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -35,6 +32,7 @@ const ServiceAccountScreen = () => {
           ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
           sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna
+          
         </Text>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam

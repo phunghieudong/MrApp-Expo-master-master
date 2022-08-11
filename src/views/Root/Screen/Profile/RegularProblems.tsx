@@ -7,7 +7,7 @@ import { InteractionManager, StyleSheet } from "react-native";
 
 const { mainColorText, padding } = settings.styles;
 
-const RegularProblemsScreen = () => {
+const RegularProblemsScreen = ({ navigation }) => {
   // interaction
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -22,11 +22,7 @@ const RegularProblemsScreen = () => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot
-        title="Các vấn đề thường gặp"
-        hideAvatar={true}
-        previous={true}
-      />
+      <HeaderRoot title="Câu hỏi thường gặp" previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
         <View style={styles.box}>
           <Text style={styles.question}>

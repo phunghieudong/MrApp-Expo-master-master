@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Content, Text, View } from "native-base";
@@ -6,7 +7,7 @@ import { InteractionManager, StyleSheet } from "react-native";
 
 const { mainColor, mainColorText, padding } = settings.styles;
 
-const TermOfMedicalScreen = () => {
+const TermOfMedicalScreen = ({navigation}) => {
   // interaction
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -21,11 +22,7 @@ const TermOfMedicalScreen = () => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot
-        title="Quy trình khám bệnh"
-        hideAvatar={true}
-        previous={true}
-      />
+      <HeaderRoot title="Quy trình khám bệnh" previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
         <View style={styles.box}>
           <Text style={styles.step}>Bước 1:</Text>

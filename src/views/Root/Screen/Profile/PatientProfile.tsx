@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, Loading, ModalCenter } from "@/components";
 import { Container, Content, Icon, Input, Text, View } from "native-base";
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react";

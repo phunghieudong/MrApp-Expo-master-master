@@ -322,13 +322,13 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
     }
   }, [status]);
 
- // Chuyển qua cái khoa khám
- const navDepartment = () => {
-  navigation.navigate("Department", {
-    hospitalId: value?.hospitalId ?? undefined,
-    typeId,
-  });
-};
+  // Chuyển qua cái khoa khám
+  const navDepartment = () => {
+    navigation.navigate("Department", {
+      hospitalId: value?.hospitalId ?? undefined,
+      typeId,
+    });
+  };
 
 
   // chuyển hướng trang
@@ -338,7 +338,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       typeId,
     });
   };
- // Cái lịch
+  // Cái lịch
   const navCalendar = () => {
     navigation.navigate("Calendar", {
       hospitalId: value?.hospitalId as number,
@@ -346,7 +346,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       typeId,
     });
   };
-// Cái phòng
+  // Cái phòng
   const navTimePicker = () => {
     navigation.navigate("ChooseARoom", {
       typeId,
@@ -404,7 +404,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 </View>
               </TouchableWithoutFeedback>
 
-              
+
               <TouchableWithoutFeedback onPress={() => setStatus(0)}>
                 <View style={[styles.rowCenter, { paddingLeft: 30 }]}>
                   {status === 0 ? (
@@ -457,28 +457,64 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 />
               )}
 
-                {status > 0 &&
+              {status > 0 &&
                 (value.isBHYTService === undefined ||
                   value.isBHYTService === true) && (
                   <View>
                     <Select
-                    nav={next >= 3 ? navCalendar : undefined}
-                    placeholder="CHỌN NGÀY KHÁM"
-                    next={next >= 3 ? true : false}
-                    selected={_format.getShortVNDate(value?.examinationDate) || ""}
-                  />
-                  <Select
-                    nav={next >= 4 ? navTimePicker : undefined}
-                    placeholder="CHỌN GIỜ KHÁM"
-                    next={next >= 4 ? true : false}
-                    selected={value?.examinationScheduleDetailName || ""}
-                  />
-              
-                    </View>
-                   
+                      nav={next >= 3 ? navCalendar : undefined}
+                      placeholder="CHỌN NGÀY KHÁM"
+                      next={next >= 3 ? true : false}
+                      selected={_format.getShortVNDate(value?.examinationDate) || ""}
+                    />
+                    <Select
+                      nav={next >= 4 ? navTimePicker : undefined}
+                      placeholder="CHỌN GIỜ KHÁM"
+                      next={next >= 4 ? true : false}
+                      selected={value?.examinationScheduleDetailName || ""}
+                    />
 
+                  </View>
+
+
+                )}
+              <View ref={modalSpecial} style={{ borderRadius: 4 }}>
+                <>
+                  {specialistType.length > 0 &&
+                    specialistType.map((i) => (
+                      <TouchableWithoutFeedback
+                        key={i.Id}
+                        onPress={() => handleSpecial(i.Id, i.Name)}
+                      >
+                        <View style={styles.service}>
+                          <Text
+                            style={[
+                              styles.servicename,
+                              value?.specialistTypeId === i.Id && {
+                                color: blueColor,
+                              },
+                            ]}
+                          >
+                            {i.Name}
+                          </Text>
+                          {value?.specialistTypeId === i.Id && (
+                            <Icon
+                              type="Feather"
+                              name="check-circle"
+                              style={styles.serviceicon}
+                            />
+                          )}
+                        </View>
+                      </TouchableWithoutFeedback>
+                    ))}
+                  {!specialistType.length && (
+                    <Text style={[styles.service, styles.servicename]}>
+                      Hiện tại chưa có bất kỳ khoa nào
+                    </Text>
                   )}
-          
+                </>
+              </View>
+
               {status === 1 &&
                 (value.isBHYTService === undefined ||
                   value.isBHYTService === true) && (
@@ -501,9 +537,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                             style={[
                               styles.chkboxvalue,
                               next > 4 &&
-                                (value?.isBHYT as number) < 2 && {
-                                  color: orangeColor,
-                                },
+                              (value?.isBHYT as number) < 2 && {
+                                color: orangeColor,
+                              },
                             ]}
                           />
                           <Text
@@ -511,9 +547,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                               styles.chkboxlabel,
                               { fontFamily: "SFProDisplay-Semibold" },
                               next > 4 &&
-                                (value?.isBHYT as number) < 2 && {
-                                  color: orangeColor,
-                                },
+                              (value?.isBHYT as number) < 2 && {
+                                color: orangeColor,
+                              },
                             ]}
                           >
                             Có
@@ -534,9 +570,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                             style={[
                               styles.chkboxvalue,
                               next > 4 &&
-                                (value?.isBHYT as number) >= 2 && {
-                                  color: orangeColor,
-                                },
+                              (value?.isBHYT as number) >= 2 && {
+                                color: orangeColor,
+                              },
                             ]}
                           />
                           <Text
@@ -544,9 +580,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                               styles.chkboxlabel,
                               { fontFamily: "SFProDisplay-Semibold" },
                               next > 4 &&
-                                (value?.isBHYT as number) >= 2 && {
-                                  color: orangeColor,
-                                },
+                              (value?.isBHYT as number) >= 2 && {
+                                color: orangeColor,
+                              },
                             ]}
                           >
                             Không
@@ -828,7 +864,7 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   service: {
     flexDirection: "row",

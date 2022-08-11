@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, Container } from "native-base";
 import { HeaderRoot } from "@/components";
