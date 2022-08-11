@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, LazyLoading, Loading, ModalLoading } from "@/components";
 import { Container } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
@@ -25,8 +26,7 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Array<DiagnosticData>>([]);
   const [page, setPage] = useState({ current: 1, next: true });
-  const [ready, setReady] = useState(false);
-
+  const [ready, setReady] = useS       
   useEffect(() => {
     (async () => {
       try {

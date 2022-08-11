@@ -46,7 +46,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    (async () => {
+    (async () => {     
       const res = await getHospitals();
       setHospitals([...res.Data]);
       setLoad(false);
