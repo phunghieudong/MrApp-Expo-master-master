@@ -24,8 +24,8 @@ import { MenuItem } from "../../Block/Menu";
 
 const { padding, mainColorText } = settings.styles;
 // const navigation = useNavigation();
-const MenuScreen: FC<ProfileProps> = (navigation, props) => {
-  const { onPress } = props;
+const MenuScreen: FC<ProfileProps> = ({navigation}) => {
+  // const { onPress } = props;, props
   const [actived, setActive] = React.useState(0);
   // redux
   const dispatch = useAppDispatch();
