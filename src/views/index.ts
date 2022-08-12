@@ -51,3 +51,4 @@ export { default as FolderScreen } from "./Root/Screen/Profile/Folder";
 export { default as NewsScreen } from "./Root/Screen/Profile/News";
 export { default as NewsDetailScreen } from "./Root/Screen/Profile/NewsDetail";
 export { default as DiagnoticTypeScreen } from "./Root/Screen/Profile/DiagnoticType";
+export { default as ProfileMenuScreen } from "./Root/Screen/Profile/ProfileMenu";

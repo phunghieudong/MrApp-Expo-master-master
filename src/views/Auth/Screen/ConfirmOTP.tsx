@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   checkOTPEmail,
   checkOTPPhone,
@@ -162,7 +163,7 @@ const ConfirmOTPScreen: FC<ConfirmOTPProps> = ({
           Vui lòng nhập mã OTP được gửi qua {type === "phone" ? "số" : "email"}
         </Text>
         <Text style={styles.numberphone}>
-          {type === "phone" ? phone : email}
+          + {type === "phone" ? phone : email}
         </Text>
         <View style={styles.numberotpbox}>
           <View style={styles.underline}>
@@ -226,13 +227,21 @@ const ConfirmOTPScreen: FC<ConfirmOTPProps> = ({
             />
           </View>
         </View>
+        <Text style={{
+          fontSize: 20,
+          // lineHeight: 20,
+          fontFamily: "SFProDisplay-Regular",
+          color: "#FB8500",
+          textAlign: "center",
+          marginVertical: 30,
+        }}>XÁC NHẬN TÀI KHOẢN</Text>
         <Text style={styles.dontgetotp}>Bạn không nhận được OTP ?</Text>
         <View style={styles.flex}>
           <Text
             onPress={second < 1 ? getOTPOnce : () => null}
             style={styles.sendmore}
           >
-            Gửi lại{second < 1 && " ngay"}
+            GỬI LẠI NGAY{second < 1 && ""}
           </Text>
           {second > 0 && (
             <Text style={styles.sendmorenumber}>
@@ -327,7 +336,7 @@ const styles = StyleSheet.create({
   dontgetotp: {
     fontSize: 16,
     lineHeight: 20,
-    fontFamily: "SFProDisplay-Regular",
+    fontFamily: "SFProDisplay-Bold",
     color: mainColorText,
     textAlign: "center",
     marginVertical: 30,
@@ -335,22 +344,23 @@ const styles = StyleSheet.create({
   flex: {
     flexDirection: "row",
     alignSelf: "center",
+    
   },
   sendmore: {
-    color: mainColorText,
+    color:'#2EA0B8',
     fontSize: 16,
     lineHeight: 20,
     letterSpacing: 1.25,
-    fontFamily: "SFProDisplay-Regular",
+    fontFamily: "SFProDisplay-Bold",
     textDecorationLine: "underline",
     textAlign: "center",
   },
   sendmorenumber: {
-    color: orangeColor,
+    color: "#2EA0B8",
     fontSize: 16,
     lineHeight: 20,
     letterSpacing: 1.25,
-    fontFamily: "SFProDisplay-Regular",
+    fontFamily: "SFProDisplay-Bold",
   },
   disabled: {
     ...(StyleSheet.absoluteFill as {}),

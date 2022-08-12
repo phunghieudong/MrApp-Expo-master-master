@@ -10,6 +10,7 @@ import { Container, Content, Text, Toast, View } from "native-base";
 import React, { FC } from "react";
 import { FlatList, StyleSheet, TouchableWithoutFeedback, Image, Touchable } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+// import { useNavigation } from "@react-navigation/native";
 import Svg, {
   Circle,
   ClipPath,
@@ -22,8 +23,10 @@ import Svg, {
 import { MenuItem } from "../../Block/Menu";
 
 const { padding, mainColorText } = settings.styles;
-
+// const navigation = useNavigation();
 const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
+  // const { onPress } = props;
+  const [actived, setActive] = React.useState(0);
   // redux
   const dispatch = useAppDispatch();
 
@@ -62,7 +65,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     },
     {
       svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
+        <Svg width="20" height="20" viewBox="0 0 20 20" onPress={() => onPress(0)}>
           <Defs>
             <ClipPath id="clipPath">
               <Rect
@@ -121,14 +124,15 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         </Svg>
       ),
       text: "Hồ sơ\nbệnh án",
-      // navigate: () => navigation.navigate("ServiceAccount"),
+      navigate: () => setActive(0),
     },
     {
 
 
       svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
+        <Svg width="20" height="20" viewBox="0 0 20 20" >
+          <Defs onPress={() => onPress(1)}>
+
             <ClipPath id="clipPath">
               <Rect
                 id="Rectangle_1066"
@@ -208,7 +212,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         </Svg>
       ),
       text: "Cài đặt",
-      // navigate: () => navigation.navigate("ServiceAccount"),
+      navigate: () => setActive(1),
 
     },
     {
@@ -242,9 +246,12 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
             />
           </G>
         </Svg>
+
       ),
+
       text: "Tư vấn khám\ntrực tiếp",
       navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+
     },
     {
       svg: (
@@ -544,30 +551,21 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     },
   ];
   const setting = [
+
     {
       svg: (
-
-        <Svg>
-
-          <View style={{ backgroundColor: 'blue', justifyContent: 'center', alignItems: 'center', width: "100%" }}>
-            <View>
-              <Text>Nhận thông báo</Text>
-            </View>
-            <View>
-              <Text>Nhận tin nhắn SMS</Text>
-            </View>
-            <View>
-              <Text>Nhận tin tức quảng cáo</Text>
-            </View>
-          </View>
+        <Svg width="36" height="36" viewBox="0 0 36 36">
+          <Image
+            source={require("../../../../assets/images/ha.png")}
+            style={{ height: 36, width: 36 }}
+          />
         </Svg>
-
       ),
-     
-
-      // text: "phunghieudong",
-      // navigate: () => navigation.navigate("HospitalCode"),
+      text: "Hình ảnh",
+      navigate: () => navigation.navigate("Folder"),
     },
+
+
   ];
   const menuRight = [
 
@@ -670,9 +668,11 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Lịch sử\nkhám bệnh",
       navigate: () => navigation.navigate("MedicalHistoryDetail"),
     },
+
   ];
 
   return (
+
     <Container style={styles.container}>
       <HeaderRoot
         title="Menu"
@@ -680,7 +680,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         logo
         previous={() => navigation.goBack()}
       />
-      <View style={styles.body}>
+      <View style={styles.body} onPress={(event) => setActive(event)}>
         <View style={styles.left}>
           <FlatList
             data={menuLeft}
@@ -712,6 +712,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate("MedicalStory", {})}
+            // onPress={() => navigation.navigate("MedicalStory", {})}
             >
               <View style={{ alignSelf: "flex-start", }}>
                 <View style={styles.icon}>
@@ -746,23 +747,48 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
                 />
               </View>
 
+              {actived == 0 && (
 
-              <View style={styles.list}>
+                <View style={styles.list}>
 
-                {menuRight.map((item) => (
+                  {menuRight.map((item) => (
 
-                  <TouchableWithoutFeedback
-                    onPress={(event) => setActive(event)}
-                    key={item.text}
-                    onPress={item.navigate}
-                  >
-                    <View style={styles.item}>
-                      {item.svg}
-                      <Text style={styles.itemtext}>{item.text}</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                ))}
-              </View>
+                    <TouchableWithoutFeedback
+                      onPress={(event) => setActive(event)}
+                      key={item.text}
+                      onPress={item.navigate}
+                    >
+                      <View style={styles.item}>
+                        {item.svg}
+                        <Text style={styles.itemtext}>{item.text}</Text>
+                      </View>
+                    </TouchableWithoutFeedback>
+                  ))}
+                </View>
+              )}
+
+
+              {actived == 1 && (
+
+                <View style={styles.list}>
+
+                  {setting.map((item) => (
+
+                    <TouchableWithoutFeedback
+                      onPress={(event) => setActive(event)}
+                      key={item.text}
+                      onPress={item.navigate}
+                    >
+                      <View style={styles.item}>
+                        {item.svg}
+                        <Text style={styles.itemtext}>{item.text}</Text>
+                      </View>
+                
+                    </TouchableWithoutFeedback>
+
+                  ))}
+                </View>
+              )}
 
 
 

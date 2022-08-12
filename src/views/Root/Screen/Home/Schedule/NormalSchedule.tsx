@@ -457,7 +457,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 // nav={next >= 2 ? () => modalService.current?.open() : undefined}
                 nav={next >= 2 ? () => showModal1() : undefined}
                 placeholder="CHỌN DỊCH VỤ"
-                next={next >= 2 ? true : fals       e}
+                next={next >= 2 ? true : false}
                 selected={value?.serviceTypeName || ""}
               />
               {value.isBHYTService === false && (

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { schedule } from "@/api/ExaminationForm";
 import { HeaderRoot, Loading, ModalLoading } from "@/components";
 import { settings } from "@/config";
@@ -9,6 +10,7 @@ import {
   Platform,
   StyleSheet,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { useAppSelector } from "@/store/hook";
 import { _format } from "@/utils";
@@ -137,13 +139,24 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
       />
       <Content contentContainerStyle={styles.body} style={{}}>
         <View style={[styles.hospital, { padding }]}>
-          <Text style={styles.hospitalname}>{hospitalName}</Text>
-          {specialistTypeName && (
+
+          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: "flex-start" }}>
+            <Text style={styles.hospitalname}>{hospitalName}</Text>
+
+            <Text style={styles.hospitalvalue}>{hospitalAddress}</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Image
+              source={require("../../../../assets/images/i.png")}
+              style={{ height: 24, width: 11 }}
+            />
+          </View>
+
+          {/* {specialistTypeName && (
             <Text style={styles.hospitalspecial}>{specialistTypeName}</Text>
-          )}
-          <Text style={styles.hospitallabel}>ĐỊA CHỈ</Text>
-          <Text style={styles.hospitalvalue}>{hospitalAddress}</Text>
-          <Text style={styles.hospitallabel}>WEBSITE</Text>
+          )} */}
+
+          {/* <Text style={styles.hospitallabel}>WEBSITE</Text>
           <Text
             style={[
               styles.hospitalvalue,
@@ -162,21 +175,108 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             onPress={() => handleLinking("phone")}
           >
             {hospitalPhoneNumber}
-          </Text>
+          </Text> */}
         </View>
         <View style={styles.info}>
-          <View style={styles.datebox}>
+          {/* <View style={styles.datebox}>
             <Text style={styles.date}>
               {_format.getVNDate(examinationDate)}
             </Text>
             <Text style={styles.time}>{examinationScheduleDetailName}</Text>
-          </View>
+          </View> */}
           <View style={styles.infobox}>
-            <Text style={[styles.infotext, { marginTop: 0 }]}>
-              Họ tên: {user?.UserFullName}
-            </Text>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Website
+              </Text>
+              <Text>{user?.Email}</Text>
+            </View>
 
-            <Text style={styles.infotext}>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Số điện thoại
+              </Text>
+              <Text>{user?.CreatedBy}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Tên bệnh nhân
+              </Text>
+              <Text>{user?.UserFullName}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Mã bệnh viện
+              </Text>
+              <Text>{user?.CountryId}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Ngày khám
+              </Text>
+              <Text>{user?.Created}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Giờ khám
+              </Text>
+              <Text>{user?.Created}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Khu vực khám
+              </Text>
+              <Text>{user?.CountryName}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Phòng khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Bác sĩ khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Loại dịch vụ khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Trạng thái
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Loại khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Khoa khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Sổ bảo hiểm
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+              <Text style={[styles.infotext, { marginTop: 0 }]}>
+                Khoa khám
+              </Text>
+              <Text>{user?.Code}</Text>
+            </View>
+            {/* <Text style={styles.infotext}>
               Ngày sinh: {_format.getVNDate(user?.BirthDate)}
             </Text>
 
@@ -194,7 +294,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               <Text style={styles.infotext}>
                 Bảo hiểm y tế: {isBHYT < 2 ? "Có" : "Không"}
               </Text>
-            )}
+            )} */}
           </View>
           <View style={styles.agreement}>
             <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}>
@@ -218,11 +318,12 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             onPress={agreement && !loading ? navPayment : undefined}
           >
             <View
-              style={[styles.btn, agreement && { backgroundColor: blueColor }]}
+              style={[styles.btn, agreement && { backgroundColor: "#142977" }]}
             >
               <Text style={styles.btntext}>THANH TOÁN</Text>
             </View>
           </TouchableWithoutFeedback>
+     
         </View>
       </Content>
       <ModalLoading visible={loading} />
@@ -242,6 +343,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderColor,
     backgroundColor: "#E8F5F8",
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'center',
+    height: 120
   },
   hospitalname: {
     fontSize: 18,
@@ -283,15 +388,15 @@ const styles = StyleSheet.create({
   infobox: {
     padding: 15,
     backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "#219EBC",
+    // borderWidth: 1,
+    // borderColor: "#219EBC",
     borderRadius: 2,
     marginTop: 10,
   },
   infotext: {
     fontSize: 16,
-    fontFamily: "SFProDisplay-Semibold",
-    color: "#219EBC",
+    // fontFamily: "SFProDisplay-Semibold",
+    color: "#525252",
     marginTop: 5,
   },
   date: {

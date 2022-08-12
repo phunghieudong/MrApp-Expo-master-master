@@ -22,6 +22,16 @@ export type ProfileParamList = {
     surgeryResult?: string;
     sympToms?: string;
   };
+  ProfileMenu: {
+    refetchMRD?: number;
+    refetchSMRD?: number;
+    id?: number;
+    surgeryPart?: string;
+    surgeryYear?: string;
+    surgeryPlace?: string;
+    surgeryResult?: string;
+    sympToms?: string;
+  };
   AddMedicalStory: { refetch: number };
   AddSurgeryMedicalStory: {
     type: number;
@@ -110,6 +120,17 @@ type EditPatientProfileScreenRouteProp = RouteProp<
 export type EditPatientProfileProps = {
   navigation: EditPatientProfileScreenNavigationProp;
   route: EditPatientProfileScreenRouteProp;
+};
+
+// ++ medical story
+type ProfileMenuScreenNavigationProp = StackNavigationProp<
+  ProfileParamList,
+  "ProfileMenu"
+>;
+type ProfileMenuScreenRouteProp = RouteProp<ProfileParamList, "ProfileMenu">;
+export type ProfileMenuProps = {
+  navigation: ProfileMenuScreenNavigationProp;
+  route: ProfileMenuScreenRouteProp;
 };
 
 // ++ medical story

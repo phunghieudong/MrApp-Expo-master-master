@@ -80,7 +80,7 @@ const renderItem = (
         <View style={styles.flex}>
           {item.Status === 0 && (
             <TouchableWithoutFeedback onPress={() => pay(item)}>
-              <View style={[styles.btn, { backgroundColor: blueColor }]}>
+              <View style={[styles.btn, { backgroundColor: "#142977" }]}>
                 <Text style={[styles.btntext, { color: "#fff" }]}>
                   XÁC NHẬN
                 </Text>
@@ -89,7 +89,7 @@ const renderItem = (
           )}
           {(item.Status === 2 || item.Status === 5) && (
             <TouchableWithoutFeedback onPress={() => see(item)}>
-              <View style={[styles.btn, { backgroundColor: blueColor }]}>
+              <View style={[styles.btn, { backgroundColor: "#142977" }]}>
                 <Text style={[styles.btntext, { color: "#fff" }]}>
                   CHI TIẾT
                 </Text>

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getOTPEmail, getOTPPhone } from "@/api/Auth";
 import { HeaderAuth, HeadingAuth, ModalLoading } from "@/components";
 import { settings } from "@/config";
@@ -227,7 +228,7 @@ const ForgotPasswordScreen: FC<ForgotPasswordProps> = ({ navigation }) => {
                 <Icon
                   type="Feather"
                   name="check-circle"
-                  style={[styles.chkbox, { color: orangeColor }]}
+                  style={[styles.chkbox, { color: "#142977" }]}
                 />
               )}
             </Animated.View>
@@ -240,7 +241,7 @@ const ForgotPasswordScreen: FC<ForgotPasswordProps> = ({ navigation }) => {
               <Animated.Text
                 style={[styles.label, { top: animatedLabelEmail }]}
               >
-                EMAIL
+                TÊN ĐĂNG NHẬP
               </Animated.Text>
               <Input
                 placeholderTextColor="rgba(0, 0, 0, .5)"
@@ -266,7 +267,7 @@ const ForgotPasswordScreen: FC<ForgotPasswordProps> = ({ navigation }) => {
                 <Icon
                   type="Feather"
                   name="check-circle"
-                  style={[styles.chkbox, { color: orangeColor }]}
+                  style={[styles.chkbox, { color: "#142977" }]}
                 />
               )}
             </Animated.View>
@@ -288,6 +289,7 @@ const ForgotPasswordScreen: FC<ForgotPasswordProps> = ({ navigation }) => {
                 onFocus={() => toggleCheckbox("phonenumber")}
                 onChangeText={(value) => setPhonenumber(value)}
               />
+         
             </View>
           </View>
           <View style={styles.errorbox}>
