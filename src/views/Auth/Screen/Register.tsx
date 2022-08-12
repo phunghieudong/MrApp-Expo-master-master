@@ -16,6 +16,7 @@ import {
   StyleSheet,
   InteractionManager,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import {
   DateTimePickerBlock,
@@ -325,6 +326,11 @@ const RegisterScreen = (props: RegisterProps) => {
               pattern: "Họ và tên không hợp lệ",
             }}
           />
+          <View style={{flexDirection:"row" , justifyContent:"space-evenly" , alignItems:"baseline"}}>
+          {/* <Image
+            source={require("../../../assets/images/vietnam.png")}
+            style={{ height: 22, width: 22 ,  }}
+          /> */}
           <InputBlock
             userName
             keyboardType="numeric"
@@ -339,7 +345,11 @@ const RegisterScreen = (props: RegisterProps) => {
               maxLength: "Số điện thoại phải từ 9 đến 11 kí tự",
               pattern: "Số điện thoại không hợp lệ",
             }}
+
+
           />
+         
+          </View>
           <InputBlock
             owner="email"
             placeholder="EMAIL"
@@ -640,7 +650,7 @@ const styles = StyleSheet.create({
   },
   submit: {
     elevation: 4,
-    backgroundColor: blueColor,
+    backgroundColor: "#142977",
     alignSelf: "flex-end",
     marginVertical: 24,
     paddingHorizontal: 57,

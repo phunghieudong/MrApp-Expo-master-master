@@ -340,6 +340,11 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   const showModal1 = () => setVisible1(true);
   const hideModal1 = () => setVisible1(false);
   const containerStyle1 = { backgroundColor: 'white' };
+
+  const [visible2, setVisible2] = React.useState(false);
+  const showModal2 = () => setVisible2(true);
+  const hideModal2 = () => setVisible2(false);
+  const containerStyle2= { backgroundColor: 'white' };
   // chuyển hướng trang
   const navHospital = () => {
     navigation.navigate("HospitalPicker", {
@@ -452,7 +457,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 // nav={next >= 2 ? () => modalService.current?.open() : undefined}
                 nav={next >= 2 ? () => showModal1() : undefined}
                 placeholder="CHỌN DỊCH VỤ"
-                next={next >= 2 ? true : false}
+                next={next >= 2 ? true : fals       e}
                 selected={value?.serviceTypeName || ""}
               />
               {value.isBHYTService === false && (
@@ -464,7 +469,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
               {value?.serviceTypeId === 6 && (
                 <Select
                   nav={
-                    next >= 2 ? () => modalVaccine.current?.open() : undefined
+                    next >= 2 ? () =>showModal2() : undefined
                   }
                   placeholder="CHỌN VACCINE"
                   next={next >= 2 ? true : false}
@@ -694,79 +699,8 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
             </>
               </Modal>
           </Content>
-          <ModalCenter ref={modalService} style={{ borderRadius: 4 }}>
-            <>
-              {services.map((i) => {
-                if (i.Id !== 7) {
-                  return (
-                    <TouchableWithoutFeedback
-                      key={i.Id}
-                      onPress={() =>
-                        handleModal(i.Id, i.Name, i.IsBHYT, "service")
-                      }
-                    >
-                      <View style={styles.service}>
-                        <Text
-                          style={[
-                            styles.servicename,
-                            value?.serviceTypeId === i.Id && {
-                              color: blueColor,
-                            },
-                          ]}
-                        >
-                          {i.Name}
-                        </Text>
-                        {value?.serviceTypeId === i.Id && (
-                          <Icon
-                            type="Feather"
-                            name="check-circle"
-                            style={styles.serviceicon}
-                          />
-                        )}
-                      </View>
-                    </TouchableWithoutFeedback>
-                  );
-                }
-              })}
-            </>
-          </ModalCenter>
-          <ModalCenter ref={modalSpecial} style={{ borderRadius: 4 }}>
-            <>
-              {specialistType.length > 0 &&
-                specialistType.map((i) => (
-                  <TouchableWithoutFeedback
-                    key={i.Id}
-                    onPress={() => handleSpecial(i.Id, i.Name)}
-                  >
-                    <View style={styles.service}>
-                      <Text
-                        style={[
-                          styles.servicename,
-                          value?.specialistTypeId === i.Id && {
-                            color: blueColor,
-                          },
-                        ]}
-                      >
-                        {i.Name}
-                      </Text>
-                      {value?.specialistTypeId === i.Id && (
-                        <Icon
-                          type="Feather"
-                          name="check-circle"
-                          style={styles.serviceicon}
-                        />
-                      )}
-                    </View>
-                  </TouchableWithoutFeedback>
-                ))}
-              {!specialistType.length && (
-                <Text style={[styles.service, styles.servicename]}>
-                  Hiện tại chưa có bất kỳ khoa nào
-                </Text>
-              )}
-            </>
-          </ModalCenter>
-          <ModalCenter ref={modalVaccine} style={{ borderRadius: 4 }}>
+       
+          <Modal visible={visible2} onDismiss={hideModal2} contentContainerStyle={containerStyle2} style={{height: "100%", width: "100%"}}>
             <>
               {vaccines.length > 0 &&
                 vaccines.map((i) => (
@@ -805,7 +739,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 </View>
               )}
             </>
-          </ModalCenter>
+          </Modal>
           <ModalBottom
             heading="Kiểm tra bảo hiểm y tế"
             ref={modalBHYT}
