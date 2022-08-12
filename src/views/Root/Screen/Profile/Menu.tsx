@@ -7,9 +7,9 @@ import { changeRoute } from "@/store/reducers/RouteSlice";
 import { logout } from "@/store/reducers/UserSlice";
 import _format from "@/utils/Base";
 import { Container, Content, Text, Toast, View } from "native-base";
-import React, { FC } from "react";
-import { FlatList, StyleSheet, TouchableWithoutFeedback, Image, Touchable } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import React, { FC, useState } from "react";
+import { FlatList, StyleSheet, TouchableWithoutFeedback, Image, Touchable, Switch } from "react-native";
+
 // import { useNavigation } from "@react-navigation/native";
 import Svg, {
   Circle,
@@ -24,8 +24,8 @@ import { MenuItem } from "../../Block/Menu";
 
 const { padding, mainColorText } = settings.styles;
 // const navigation = useNavigation();
-const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
-  // const { onPress } = props;
+const MenuScreen: FC<ProfileProps> = (navigation, props) => {
+  const { onPress } = props;
   const [actived, setActive] = React.useState(0);
   // redux
   const dispatch = useAppDispatch();
@@ -36,7 +36,17 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Chức năng còn đang phát triển",
     });
   };
+  const [enabled, setEnabled] = useState(false);
 
+  const toggleSwitch = () => {
+    setEnabled((oldValue) => !oldValue);
+  };
+
+
+  const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
+  const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
+  const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
+  const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // menu
   const menuLeft = [
     {
@@ -552,18 +562,11 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
   ];
   const setting = [
 
-    {
-      svg: (
-        <Svg width="36" height="36" viewBox="0 0 36 36">
-          <Image
-            source={require("../../../../assets/images/ha.png")}
-            style={{ height: 36, width: 36 }}
-          />
-        </Svg>
-      ),
-      text: "Hình ảnh",
-      navigate: () => navigation.navigate("Folder"),
-    },
+    <View>
+      <Text>Phunghieuddong</Text>
+    </View>
+
+
 
 
   ];
@@ -699,7 +702,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
             <View style={{ flexDirection: 'row', alignItems: "baseline", justifyContent: 'space-between' }}>
 
 
-              <Text style={styles.name}>Nguyễn Văn A</Text>
+              <Text style={styles.name}>Phùng Hiểu Đông</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                 <Text onPress={() => navigation.navigate("MedicalStory", {})} style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
                 <Image
@@ -772,19 +775,52 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
                 <View style={styles.list}>
 
-                  {setting.map((item) => (
+                  {setting.map(() => (
 
-                    <TouchableWithoutFeedback
-                      onPress={(event) => setActive(event)}
-                      key={item.text}
-                      onPress={item.navigate}
-                    >
-                      <View style={styles.item}>
-                        {item.svg}
-                        <Text style={styles.itemtext}>{item.text}</Text>
+
+                    <View style={{ flexDirection: 'column', paddingTop: 5 }}>
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận thông báo</Text>
+                        <View>
+                          {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+                          <Switch
+                            onValueChange={toggleSwitch}
+                            value={enabled}
+                            thumbColor={enabled ? thumbColorOn : thumbColorOff}
+                            trackColor={{ false: trackColorOff, true: trackColorOn }}
+                            ios_backgroundColor={trackColorOff}
+                          />
+                        </View>
                       </View>
-                
-                    </TouchableWithoutFeedback>
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận tin nhắn SMS</Text>
+                        <View>
+                          {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+                          <Switch
+                            onValueChange={toggleSwitch}
+                            value={enabled}
+                            thumbColor={enabled ? thumbColorOn : thumbColorOff}
+                            trackColor={{ false: trackColorOff, true: trackColorOn }}
+                            ios_backgroundColor={trackColorOff}
+                          />
+                        </View>
+                      </View>
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận tin tức quảng cáo</Text>
+                        <View>
+                          {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+                          <Switch
+                            onValueChange={toggleSwitch}
+                            value={enabled}
+                            thumbColor={enabled ? thumbColorOn : thumbColorOff}
+                            trackColor={{ false: trackColorOff, true: trackColorOn }}
+                            ios_backgroundColor={trackColorOff}
+                          />
+                        </View>
+                      </View>
+
+
+                    </View>
 
                   ))}
                 </View>
@@ -848,6 +884,10 @@ const styles = StyleSheet.create({
   list: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+
+    width: "100%"
 
   },
   item: {
