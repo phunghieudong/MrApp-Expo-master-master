@@ -3,6 +3,7 @@
     "name": "MrApp-Expo",
     "slug": "MrApp-Expo",
     "version": "1.0.0",
+    "privacy":"public",
     "orientation": "portrait",
     "updates": {
       "fallbackToCacheTimeout": 0

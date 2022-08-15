@@ -714,7 +714,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
             </View>
 
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate("MedicalStory", {})}
+              onPress={() => navigation.navigate("ProfileMenu", {})}
             // onPress={() => navigation.navigate("MedicalStory", {})}
             >
               <View style={{ alignSelf: "flex-start", }}>

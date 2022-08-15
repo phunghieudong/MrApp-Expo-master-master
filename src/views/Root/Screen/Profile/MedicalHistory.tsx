@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Empty, HeaderRoot, LazyLoading, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Icon } from "native-base";

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { useAppSelector } from "@/store/hook";
 import { UserData } from "@/types/User";
@@ -29,8 +30,21 @@ const Information = () => {
           onPress: () => navigation.navigate("EditPatientProfile"),
         }}
       />
+      <View>
+        <Text style={{ color: '#219EBC', fontFamily: "SFProDisplay-Bold",fontSize:18 }}>BỆNH VIỆN 115, QUẬN 10</Text>
+      <Text style={{color:'#666666' , fontSize:12 , paddingTop:10}}>{user.Address}</Text>
+      </View>
       <View style={styles.info}>
-        <Text style={styles.label}>
+        <Text style={{
+          paddingTop: 24,
+          fontSize: 14,
+          letterSpacing: 1.5,
+          lineHeight: 18,
+          color: "rgba(0, 0, 0, 0.7)",
+          fontFamily: "SFProDisplay-Regular",
+          marginBottom: 8,
+          paddingLeft: 15,
+        }}>
           Tên: <Text style={styles.value}>{user.UserFullName}</Text>
         </Text>
         <Text style={styles.label}>
@@ -64,6 +78,18 @@ const Information = () => {
           <Text style={styles.value}>
             {user.Weight ? user.Weight + "kg" : "- -"}
           </Text>
+        </Text>
+        <Text style={{
+          paddingBottom: 24,
+          fontSize: 14,
+          letterSpacing: 1.5,
+          lineHeight: 18,
+          color: "rgba(0, 0, 0, 0.7)",
+          fontFamily: "SFProDisplay-Regular",
+          marginBottom: 8,
+          paddingLeft: 15,
+        }}>
+          Nghề nghiệp: <Text style={styles.value}>{user.JobName}</Text>
         </Text>
       </View>
       <BaseHeading
@@ -127,6 +153,8 @@ const styles = StyleSheet.create({
   },
   info: {
     marginTop: 16,
+    backgroundColor: '#E8F5F8',
+    borderRadius: 8,
   },
   date: {
     fontSize: 14,
@@ -141,6 +169,8 @@ const styles = StyleSheet.create({
     color: "rgba(0, 0, 0, 0.7)",
     fontFamily: "SFProDisplay-Regular",
     marginBottom: 8,
+    paddingLeft: 15,
+
   },
   value: {
     fontSize: 14,

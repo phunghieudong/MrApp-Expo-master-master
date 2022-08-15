@@ -1,35 +1,139 @@
 //@ts-nocheck
+import { HeaderRoot, Loading } from "@/components";
+import { settings } from "@/config";
+import { Container, Content, Text, View } from "native-base";
+import React, { useEffect, useState } from "react";
+import { InteractionManager, StyleSheet, Image ,TouchableOpacity} from "react-native";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 
-import React, { FC, useState } from "react";
-import { View, Text } from "native-base";
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
+const { mainColor, mainColorText, padding } = settings.styles;
 
-import { ProfileMenuProps } from "@/navigation/types/Profile";
-import { _format } from "@/utils";
+const ProfileMenuScreen = ({ navigation }) => {
+    // interaction
+    const [ready, setReady] = useState(false);
+    useEffect(() => {
+        InteractionManager.runAfterInteractions(() => {
+            setReady(true);
+        });
+    }, []);
+
+    if (!ready) {
+        return <Loading />;
+    }
+
+    return (
+        <Container style={styles.container}>
+            <HeaderRoot logo={true} previous={() => navigation.goBack()} />
+            <Content contentContainerStyle={styles.body}>
 
 
+                <View style={styles.box}>
 
-const ProfileMenuScreen: FC<ProfileMenuProps> = ({
-  navigation,
-  route: { params },
-}) => {
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/1.png")}
+                            style={{ height: 24, width: 24, marginRight: 10 }}
+                        />
+                    </View>
+                    <TouchableOpacity>
+                        <View>
 
+                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Bệnh án hiện tại</Text>
+                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/2.png")}
+                            style={{ height: 29, width: 29 }}
+                        />
+                    </View>
 
+                </View>
+                <View style={styles.box}>
 
-  return (
-    <View>
-        <Text>Phunghieudong</Text>
-    </View>
-  );
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/1.png")}
+                            style={{ height: 24, width: 24, marginRight: 10 }}
+                        />
+                    </View>
+                    <TouchableOpacity >
+                    <View>
+                        <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiểu sử phẫu thuật</Text>
+                        <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                    </View>
+                    </TouchableOpacity>
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/2.png")}
+                            style={{ height: 29, width: 29 }}
+                        />
+                    </View>
+
+                </View>
+                <View style={styles.box}>
+
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/1.png")}
+                            style={{ height: 24, width: 24, marginRight: 10 }}
+                        />
+                    </View>
+                    <TouchableOpacity onPress={()=> navigation.navigate("MedicalStory")}>
+                    <View>
+                        <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiền sử bệnh án</Text>
+                        <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                    </View>
+                    </TouchableOpacity>
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/2.png")}
+                            style={{ height: 29, width: 29 }}
+                        />
+                    </View>
+
+                </View>
+
+            </Content>
+        </Container>
+    );
 };
 
 const styles = StyleSheet.create({
- 
+    container: {
+        flex: 1,
+        backgroundColor: "#E8F5F8",
+    },
+    body: {
+        flexGrow: 1,
+        paddingHorizontal: padding,
+    },
+    box: {
+        paddingVertical: 20,
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+        backgroundColor: "#FFFFFF",
+        paddingLeft: 10,
+        marginTop: 18,
+        borderRadius: 12
+
+
+    },
+    step: {
+        color: mainColor,
+        fontSize: 20,
+        fontFamily: "SFProDisplay-Heavy",
+    },
+    text: {
+        fontSize: 16,
+        lineHeight: 24,
+        letterSpacing: 0.5,
+        color: mainColorText,
+        marginTop: 15,
+        fontFamily: "SFProDisplay-Regular",
+    },
 });
 
 export default ProfileMenuScreen;
+

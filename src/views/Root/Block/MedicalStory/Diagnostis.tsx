@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getAllMedicalRecord } from "@/api/MedicalRecordDetail";
 import { LazyLoading, ModalLoading } from "@/components";
 import { useAppSelector } from "@/store/hook";
