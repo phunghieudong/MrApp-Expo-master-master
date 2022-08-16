@@ -15,7 +15,7 @@ import { NewFeedData } from "@/types/NewFeed";
 import { settings } from "@/config";
 
 const { padding, mainColorText, successColor } = settings.styles;
-
+import { _format } from "@/utils";
 const News: FC<NewsProps> = ({ navigation }) => {
   const [data, setData] = useState<NewFeedData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
@@ -77,7 +77,7 @@ const News: FC<NewsProps> = ({ navigation }) => {
                     source={require("../../../../assets/images/newcalender.png")}
                     style={{ height: 15, width: 15, marginRight: 8 }}
                   />
-                  <Text style={{ color: "#666666", marginRight: 8 }}>{item.Created}</Text>
+                  <Text style={{ color: "#666666", marginRight: 8 }}>{_format.getShortVNDate(item.Created)}</Text>
                   <Image
                     source={require("../../../../assets/images/line.png")}
                     style={{ height: 17, width: 1, marginRight: 8 }}
@@ -123,14 +123,7 @@ const styles = StyleSheet.create({
   body: {
     paddingHorizontal: padding,
   },
-  box: {
-    backgroundColor: "#fff",
-    borderRadius: 4,
-    padding: 14,
-    marginTop: 5,
-    flexDirection: "column",
 
-  },
   logo: {
     backgroundColor: successColor,
     borderRadius: 100,
@@ -146,6 +139,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "SFProDisplay-Regular",
   },
+  box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
+
+  },
   detail: {
     flex: 1,
   },
@@ -153,11 +154,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  icon: {
-    fontSize: 18,
-    padding: 8,
-    left: 8,
-
+  content: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: "rgba(0, 0, 0, .5)",
+    fontFamily: "SFProDisplay-Regular",
   },
   title: {
     marginTop: 8,
@@ -169,11 +170,12 @@ const styles = StyleSheet.create({
   img: {
     width: 40,
   },
-  content: {
-    fontSize: 15,
-    lineHeight: 20,
-    color: "rgba(0, 0, 0, .5)",
-    fontFamily: "SFProDisplay-Regular",
+
+  icon: {
+    fontSize: 18,
+    padding: 8,
+    left: 8,
+
   },
 });
 

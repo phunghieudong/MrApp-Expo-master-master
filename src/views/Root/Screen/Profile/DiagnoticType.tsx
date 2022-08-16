@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import { getDiagnoticType } from "@/api/Catalogue";
 import { Empty, HeaderRoot, LazyLoading } from "@/components";
 import { DiagnoticTypeProps } from "@/navigation/types/profile";
