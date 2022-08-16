@@ -314,9 +314,10 @@ const SignInScreen = (props: SignInProps) => {
           <View>
             <TouchableOpacity 
             
-            onPress={() =>
-              Toast.show({ text: "Tính năng còn đang phát triển" })
-            }
+        
+              // Toast.show({ text: "Tính năng còn đang phát triển" })
+             
+             onPress={() => navigation.navigate("ConfirmOTP")}
             >
               <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
 

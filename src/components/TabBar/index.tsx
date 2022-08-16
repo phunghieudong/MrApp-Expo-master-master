@@ -40,7 +40,7 @@ const TabBar = (props: BottomTabBarProps) => {
       type: "Feather",
       icon: "video",
     },
-    ["Contact"]: { label: "Liên hệ", type: "Feather", icon: "phone" },
+    ["Contact"]: { label: "Liên hệ", type: "Feather", icon: "phone"  },
   };
 
   return (

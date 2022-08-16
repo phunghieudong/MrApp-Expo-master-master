@@ -59,7 +59,7 @@ const NewsDetail: FC<NewsDetailProps> = ({
           </View>
         </View>
 
-
+ 
 
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.content}>{content}</Text>

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { Text, Toast, View } from "native-base";
 import React from "react";
@@ -163,7 +164,7 @@ const menus = [
         />
       </Svg>
     ),
-    text: "Liên hệ",
+    text: "Liê n hệ",
   },
 
 ];

@@ -23,9 +23,10 @@ const TabButton = (props) => {
   return (
     <Button
       onPress={
-        route.name === "Home" || route.name === "Notification"
+        // Tính năng còn đang phát triển
+        route.name === "Home" || route.name === "Notification" ||route.name === "Contact"|| route.name ==="Advise"
           ? onPress
-          : () => Toast.show({ text: "Tính năng còn đang phát triển" })
+          : () => Toast.show({ text: "Phunghieudong" })
       }
       style={styles.button}
     >
