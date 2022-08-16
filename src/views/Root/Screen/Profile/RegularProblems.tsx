@@ -27,7 +27,7 @@ const RegularProblemsScreen = ({ navigation }) => {
         <View style={styles.box}>
           <Text style={styles.question}>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy
+            nonumys
           </Text>
           <Text style={styles.text}>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -36,7 +36,7 @@ const RegularProblemsScreen = ({ navigation }) => {
             et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
             Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
             sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna
+            et dolore magnass
           </Text>
         </View>
         <View style={styles.box}>

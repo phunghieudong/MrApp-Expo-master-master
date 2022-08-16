@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding,
     paddingTop: 13,
     paddingBottom: 15,
-    backgroundColor: sectionColor,
+    backgroundColor:"#219EBC",
     fontSize: 14,
     letterSpacing: 2,
     textTransform: "uppercase",

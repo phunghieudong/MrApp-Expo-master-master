@@ -88,6 +88,8 @@ export type ProfileParamList = {
     content: string;
     backgroundImage: string | null;
     bannerImage: string | null;
+    CreatedBy:Date;
+    Created:string;
   };
   DiagnoticType: { hospitalId: number };
 };

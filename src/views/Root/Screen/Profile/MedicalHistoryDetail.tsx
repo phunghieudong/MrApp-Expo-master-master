@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getHospitals } from "@/api/Catalogue";
 import { getExaminationFormHistory } from "@/api/ExaminationForm";
 import {
