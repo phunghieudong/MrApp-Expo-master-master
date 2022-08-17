@@ -1,7 +1,7 @@
 
 //@ts-nocheck
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { HeaderRoot } from "@/components";
 import { Container, Icon, Text, Toast, View } from "native-base";
 import Modal from "react-native-modalbox";
@@ -11,7 +11,10 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
-  Dimensions
+  Dimensions,
+  Alert,
+  Button,
+  Linking,
 } from "react-native";
 import { DashboardProps } from "@/navigation/types/Home";
 import { settings } from "@/config";
@@ -44,6 +47,26 @@ const DashboardScreen = (props: DashboardProps) => {
       : null
   );
 
+
+  // link di khai bao y te
+  const supportedURL = "https://kbyt.khambenh.gov.vn/#tokhai_yte/model";
+
+  const OpenURLButton = ({ url, children }) => {
+    const handlePress = useCallback(async () => {
+      // Checking if the link is supported for links with custom URL scheme.
+      const supported = await Linking.canOpenURL(url);
+
+      if (supported) {
+        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+        // by some browser in the mobile
+        await Linking.openURL(url);
+      } else {
+        Alert.alert(`Don't know how to open this URL: ${url}`);
+      }
+    }, [url]);
+
+    return <Button title={children} onPress={handlePress} />;
+  };
   // modal
   const modal = useRef<Modalize>(null);
 
@@ -111,19 +134,28 @@ const DashboardScreen = (props: DashboardProps) => {
           bottom: 8,
         }}
       >
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#9DD6EB",
-          }}
-        >
-          <Image
-            source={require("../../../../assets/images/Rectangle.png")}
-            style={{ height: 184, width: '100%' }}
-          />
-        </View>
+
+
+       
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#9DD6EB",
+            }}
+          >
+
+            <Image
+              source={require("../../../../assets/images/kbyt.png")}
+              style={{ height: 184, width: '100%' }}
+
+            />
+
+
+            <OpenURLButton url={supportedURL}>     </OpenURLButton>
+          </View>
+
         <View
           style={{
             flex: 1,
@@ -133,9 +165,10 @@ const DashboardScreen = (props: DashboardProps) => {
           }}
         >
           <Image
-            source={require("../../../../assets/images/Rectangle.png")}
+            source={require("../../../../assets/images/kbyt.png")}
             style={{ height: 184, width: '100%' }}
           />
+          <OpenURLButton url={supportedURL}>     </OpenURLButton>
         </View>
         <View
           style={{
@@ -146,9 +179,10 @@ const DashboardScreen = (props: DashboardProps) => {
           }}
         >
           <Image
-            source={require("../../../../assets/images/Rectangle.png")}
+            source={require("../../../../assets/images/kbyt.png")}
             style={{ height: 184, width: '100%' }}
           />
+          <OpenURLButton url={supportedURL}>     </OpenURLButton>
         </View>
       </Swiper>
 
@@ -177,6 +211,7 @@ const DashboardScreen = (props: DashboardProps) => {
                     <Text style={styles.badgetext}>4</Text>
                   </View>
                 </View>
+
                 <Text style={styles.menutext}>LỊCH KHÁM SẮP TỚI</Text>
               </TouchableOpacity>
             </View>
@@ -259,6 +294,10 @@ const DashboardScreen = (props: DashboardProps) => {
               </TouchableOpacity>
             </View>
           </View>
+
+
+
+
         </View>
       </View>
 

@@ -24,7 +24,7 @@ const TabButton = (props) => {
     <Button
       onPress={
         // Tính năng còn đang phát triển
-        route.name === "Home" || route.name === "Notification" ||route.name === "Contact"|| route.name ==="Advise"
+        route.name === "Home" || route.name === "Notification" ||route.name === "Contact"|| route.name ==="Advise"||route.name ==="Chat"||route.name ==="Profile"||route.name ==="Taikhoan"
           ? onPress
           : () => Toast.show({ text: "Phunghieudong" })
       }

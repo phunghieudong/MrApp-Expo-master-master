@@ -23,7 +23,8 @@ export { default as SpecialScheduleScreen } from "./Root/Screen/Home/Schedule/Sp
 export { default as ChooseARoomScreen } from "./Root/Screen/Home/ChooseARoom";
 export { default as TimePickerScreen } from "./Root/Screen/Home/TimePicker";
 export { default as TutorialScreen } from "./Root/Screen/Home/Tutorial";
-
+export { default as NewsMennuScreen } from "./Root/Screen/Home/NewsMennu";
+export { default as AccoountmenuScreen } from "./Root/Screen/Home/Accoountmenu";
 // profile
 export { default as VaccinationScreen } from "./Root/Screen/Profile/Vaccination";
 export { default as EditPatientProfileScreen } from "./Root/Screen/Profile/EditPatientProfile";

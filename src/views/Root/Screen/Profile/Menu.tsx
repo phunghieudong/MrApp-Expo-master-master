@@ -659,12 +659,14 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
       text: "Thai kì",
       navigate: () => navigation.navigate("Pregnancy"),
     },
+
+
     {
       svg: (
         <Svg width="36" height="36" viewBox="0 0 36 36">
           <Image
             source={require("../../../../assets/images/lskb.png")}
-            style={{ height: 36, width: 36 }}
+            style={{ height: 44, width: 36 }}
           />
         </Svg>
       ),
@@ -672,6 +674,34 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
       navigate: () => navigation.navigate("MedicalHistoryDetail"),
     },
 
+
+
+    {
+      svg: (
+        <Svg width="36" height="36" viewBox="0 0 36 36">
+          <Image
+            source={require("../../../../assets/images/thanhtoan.png")}
+            style={{ height: 36, width: 21 }}
+          />
+        </Svg>
+      ),
+      text: "Thanh toán\nnhanh",
+      navigate: () => navigation.navigate("MedicalHistoryDetail"),
+    },
+    
+
+    {
+      svg: (
+        <Svg width="36" height="36" viewBox="0 0 36 36">
+          <Image
+            source={require("../../../../assets/images/thanhtoan.png")}
+            style={{ height: 36, width: 21 }}
+          />
+        </Svg>
+      ),
+      text: "Lịch sử\nthanh toán",
+      navigate: () => navigation.navigate("MedicalHistoryDetail"),
+    },
   ];
 
   return (

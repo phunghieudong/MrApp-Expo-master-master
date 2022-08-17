@@ -3,7 +3,7 @@ import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Content, Text, View } from "native-base";
 import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet, Image ,TouchableOpacity} from "react-native";
+import { InteractionManager, StyleSheet, Image, TouchableOpacity } from "react-native";
 // import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { mainColor, mainColorText, padding } = settings.styles;
@@ -59,10 +59,10 @@ const ProfileMenuScreen = ({ navigation }) => {
                         />
                     </View>
                     <TouchableOpacity >
-                    <View>
-                        <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiểu sử phẫu thuật</Text>
-                        <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
-                    </View>
+                        <View>
+                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiểu sử phẫu thuật</Text>
+                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                        </View>
                     </TouchableOpacity>
                     <View>
                         <Image
@@ -80,11 +80,11 @@ const ProfileMenuScreen = ({ navigation }) => {
                             style={{ height: 24, width: 24, marginRight: 10 }}
                         />
                     </View>
-                    <TouchableOpacity onPress={()=> navigation.navigate("MedicalStory")}>
-                    <View>
-                        <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiền sử bệnh án</Text>
-                        <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
-                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                        <View>
+                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiền sử bệnh án</Text>
+                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                        </View>
                     </TouchableOpacity>
                     <View>
                         <Image
@@ -95,6 +95,30 @@ const ProfileMenuScreen = ({ navigation }) => {
 
                 </View>
 
+
+
+                <View style={styles.box}>
+
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/1.png")}
+                            style={{ height: 24, width: 24, marginRight: 10 }}
+                        />
+                    </View> 
+                    <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                        <View>
+                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Thông tin thai phụ</Text>
+                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View>
+                        <Image
+                            source={require("../../../../assets/images/2.png")}
+                            style={{ height: 29, width: 29 }}
+                        />
+                    </View>
+
+                </View>
             </Content>
         </Container>
     );

@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { View, Text, Container, Input, Icon } from "native-base";
 import { Empty, HeaderRoot, LazyLoading, Loading } from "@/components";
-import { StyleSheet, Dimensions, FlatList, Image } from "react-native";
+import { StyleSheet, Dimensions, FlatList, Image, TextInput } from "react-native";
 import { settings } from "@/config";
 import { HospitalData } from "@/types/base";
 import { _format } from "@/utils";
@@ -17,7 +17,7 @@ const { padding, mainColorText, blueColor } = settings.styles;
 const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
   // lấy user hiện tại
   const user = useAppSelector((state) => state.user.current) as UserData;
-
+  const [text, setText] = useState('');
   // get hospital data
   const [data, setData] = useState<DiagnosticData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
@@ -53,8 +53,22 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
         title="MÃ HỒ SƠ B. VIỆN"
         previous={() => navigation.goBack()}
       />
-      <View style={{ backgroundColor: '#D8D6D2', height: 46, width: "100%", alignItems: 'center' }}>
-        <Text>Nhập tên bệnh viện</Text>
+      <View style={{justifyContent:'center' , alignItems:'center'}}>
+        <TextInput
+          style={{
+            height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
+            margin: 12,
+            borderWidth: 1,
+            padding: 10,
+            justifyContent:'center',
+            backgroundColor:'#D8D6D2',
+          
+          }}
+          placeholder="Nhập tên bệnh viện"
+          defaultValue={text}
+
+        />
+
       </View>
       {!ready && <LazyLoading />}
       {ready && !data.length && (

@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import { getNotifications } from "@/api/Notification";
 import { Empty, HeaderRoot } from "@/components";
 import { NotificationProps } from "@/navigation/types/RootStack";
