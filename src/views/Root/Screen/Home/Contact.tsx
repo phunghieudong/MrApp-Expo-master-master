@@ -4,7 +4,11 @@ import React from "react";
 import { HeaderRoot, Empty, Loading, LazyLoading } from "../../../../components";
 import { Container, Content } from "native-base";
 import { Dimensions, StyleSheet, View, Text, Image, ScrollView } from "react-native";
-// import { ScrollView } from "react-native-gesture-handler";
+// nhun cai map vao 
+import Webview from "react-native-webview";
+
+ const map = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2660681269867!2d106.65395381431712!3d10.790922361877834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed189fa855d%3A0xf63e15bfce46baef!2sC%C3%B4ng%20ty%20TNHH%20-%20MONA%20MEDIA!5e0!3m2!1svi!2s!4v1660727364553!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+
 const ContactScreen = ({ navigation }) => {
   return (
 
@@ -12,10 +16,11 @@ const ContactScreen = ({ navigation }) => {
       <HeaderRoot title="Liên hệ" previous={() => navigation.goBack()} />
       <ScrollView>
         <View>
-          <Image
+          <Webview source={{ html: map }} style={{height:200}}/>
+          {/* <Image
             source={require("../../../../assets/images/map.png")}
             style={{ height: 183, width: "100%", marginRight: 8 }}
-          />
+          /> */}
         </View>
         <View style={{
           flexDirection: 'column', alignItems: "baseline", paddingHorizontal: 55, borderBottomWidth: 1,
