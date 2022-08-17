@@ -53,7 +53,7 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
   return (
     <Container>
       <HeaderRoot
-        title="LỊCH SỬ TIÊM CHỦNG"
+        title="Tiểu sử"
         previous={() => navigation.goBack()} 
       />
       {!ready && <LazyLoading/>}

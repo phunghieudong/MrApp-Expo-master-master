@@ -27,7 +27,7 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
 
   return (
     <Container>
-      <HeaderRoot title="TIỂU SỬ" previous={() => navigation.goBack()} />
+      <HeaderRoot title="LỊCH SỬ TIÊM CHỦNG" previous={() => navigation.goBack()} />
       <TabView
         lazy
         renderTabBar={(props) => (

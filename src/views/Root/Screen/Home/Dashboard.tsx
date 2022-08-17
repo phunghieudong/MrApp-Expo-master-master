@@ -136,25 +136,25 @@ const DashboardScreen = (props: DashboardProps) => {
       >
 
 
-       
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#9DD6EB",
-            }}
-          >
 
-            <Image
-              source={require("../../../../assets/images/kbyt.png")}
-              style={{ height: 184, width: '100%' }}
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#9DD6EB",
+          }}
+        >
 
-            />
+          <Image
+            source={require("../../../../assets/images/kbyt.png")}
+            style={{ height: 184, width: '100%' }}
+
+          />
 
 
-            <OpenURLButton url={supportedURL}>     </OpenURLButton>
-          </View>
+          <OpenURLButton url={supportedURL}>     </OpenURLButton>
+        </View>
 
         <View
           style={{
@@ -251,7 +251,7 @@ const DashboardScreen = (props: DashboardProps) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Profile", {
-                    screen: "MedicalStory",
+                    screen: "Vaccination",
                     params: {},
                   })
                 }
@@ -274,7 +274,7 @@ const DashboardScreen = (props: DashboardProps) => {
             <View style={styles.menubox}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("Profile", { screen: "Vaccination" })
+                  navigation.navigate("Profile", { screen: "MedicalStory" })
                 }
                 activeOpacity={0.9}
               >

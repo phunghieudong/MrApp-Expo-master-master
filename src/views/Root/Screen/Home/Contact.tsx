@@ -3,7 +3,7 @@
 import React from "react";
 import { HeaderRoot, Empty, Loading, LazyLoading } from "../../../../components";
 import { Container, Content } from "native-base";
-import { Dimensions, StyleSheet, View, Text, Image,ScrollView } from "react-native";
+import { Dimensions, StyleSheet, View, Text, Image, ScrollView } from "react-native";
 // import { ScrollView } from "react-native-gesture-handler";
 const ContactScreen = ({ navigation }) => {
   return (
@@ -75,7 +75,7 @@ const ContactScreen = ({ navigation }) => {
           borderBottomColor: "#0000003a",
 
         }}>
-          <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ justifyContent: "space-around", flexDirection: 'row', alignItems: 'center', width: "100%" }}>
 
 
             <View style={{ flexDirection: 'column', padding: 20 }}>
@@ -86,30 +86,30 @@ const ContactScreen = ({ navigation }) => {
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/zalo.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Zalo</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/face.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Facebook</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/ws.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Whatsapp</Text>
                 </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ justifyContent: "space-around", alignItems: 'center', }}>
                   <Image
                     source={require("../../../../assets/images/gmail.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
-                  <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Mail</Text>
+                  <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191', }}>Mail</Text>
                 </View>
               </View>
 
@@ -125,7 +125,7 @@ const ContactScreen = ({ navigation }) => {
           borderBottomColor: "#0000003a",
 
         }}>
-          <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ justifyContent: "space-around", flexDirection: 'row', alignItems: 'center', width: "100%" }}>
 
 
             <View style={{ flexDirection: 'column', padding: 20 }}>
@@ -136,30 +136,30 @@ const ContactScreen = ({ navigation }) => {
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/zalo.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Zalo</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/face.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Facebook</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <Image
                     source={require("../../../../assets/images/ws.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
                   <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Whatsapp</Text>
                 </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ justifyContent: "space-around", alignItems: 'center', }}>
                   <Image
                     source={require("../../../../assets/images/gmail.png")}
-                    style={{ height: 40, width: 40, marginRight: 8 }}
+                    style={{ height: 40, width: 40, }}
                   />
-                  <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191' }}>Mail</Text>
+                  <Text style={{ paddingTop: 10, fontSize: 14, color: '#919191', }}>Mail</Text>
                 </View>
               </View>
 
@@ -169,7 +169,6 @@ const ContactScreen = ({ navigation }) => {
 
 
         </View>
-
       </ScrollView>
     </Container>
   );
