@@ -60,7 +60,7 @@ export type ConfigTimeExaminationDayOfWeekData = {
 };
 
 export type ConfigTimeExaminationBySessionData = {
-  ConfigTimeExaminationDayOfWeeks: Array<ConfigTimeExaminationDayOfWeekData;
+  ConfigTimeExaminationDayOfWeeks: Array<ConfigTimeExaminationDayOfWeekData>;
   RoomExaminationId: number;
   RoomExaminationName: string;
   SessionTypeCode: string;
