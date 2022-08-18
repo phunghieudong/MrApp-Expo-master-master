@@ -25,12 +25,15 @@ export { default as TimePickerScreen } from "./Root/Screen/Home/TimePicker";
 export { default as TutorialScreen } from "./Root/Screen/Home/Tutorial";
 export { default as NewsMennuScreen } from "./Root/Screen/Home/NewsMennu";
 export { default as AccoountmenuScreen } from "./Root/Screen/Home/Accoountmenu";
+
 // profile
 export { default as VaccinationScreen } from "./Root/Screen/Profile/Vaccination";
 export { default as EditPatientProfileScreen } from "./Root/Screen/Profile/EditPatientProfile";
 export { default as IntroduceScreen } from "./Root/Screen/Profile/Introduce";
 export { default as PatientProfileScreen } from "./Root/Screen/Profile/PatientProfile";
+export { default as AdviseMenuScreen } from "./Root/Screen/Profile/AdviseMenu";
 export { default as PrivacyPolicyScreen } from "./Root/Screen/Profile/PrivacyPolicy";
+export { default as UserManualScreen } from "./Root/Screen/Profile/UserManual";
 export { default as MenuScreen } from "./Root/Screen/Profile/Menu";
 export { default as RegularProblemsScreen } from "./Root/Screen/Profile/RegularProblems";
 export { default as ServiceAccountScreen } from "./Root/Screen/Profile/ServiceAccount";

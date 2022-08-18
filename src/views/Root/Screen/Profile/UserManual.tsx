@@ -1,5 +1,3 @@
-
-
 //@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
@@ -9,7 +7,7 @@ import { InteractionManager, StyleSheet } from "react-native";
 
 const { mainColor, mainColorText, padding } = settings.styles;
 
-const PrivacyPolicyScreen = ({ navigation }) => {
+const UserManualScreen = ({ navigation }) => {
   // interaction
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -24,7 +22,7 @@ const PrivacyPolicyScreen = ({ navigation }) => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Chính sách" previous={() => navigation.goBack()} />
+      <HeaderRoot title="Hướng dẫn sử dụng" previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
         <View style={styles.box}>
           <Text style={styles.step}>Bước 1:</Text>
@@ -96,4 +94,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrivacyPolicyScreen;
+export default UserManualScreen;
+

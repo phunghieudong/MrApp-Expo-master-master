@@ -135,6 +135,10 @@ const DashboardScreen = (props: DashboardProps) => {
         }}
       >
 
+        {/* 
+<TouchableOpacity onPress={() => Linking.openURL(supportedURL)}> */}
+
+
 
 
         <View
@@ -142,20 +146,36 @@ const DashboardScreen = (props: DashboardProps) => {
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#9DD6EB",
+            backgroundColor: "#97CAE5",
           }}
         >
 
+          
+
+
+            <Image
+              source={require("../../../../assets/images/kbyt.png")}
+              style={{ height: 184, width: '100%' }}
+              // onClick={() => <OpenURLButton url={supportedURL}>     </OpenURLButton>}
+            />
+          
+          <OpenURLButton url={supportedURL} > </OpenURLButton>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#97CAE5",
+          }}
+        >
           <Image
             source={require("../../../../assets/images/kbyt.png")}
             style={{ height: 184, width: '100%' }}
-
           />
-
-
           <OpenURLButton url={supportedURL}>     </OpenURLButton>
         </View>
-
+        {/* <OpenURLButton url={supportedURL}>    </OpenURLButton> */}
         <View
           style={{
             flex: 1,
@@ -293,11 +313,8 @@ const DashboardScreen = (props: DashboardProps) => {
                 <Text style={styles.menutext}>LỊCH TIÊM CHỦNG</Text>
               </TouchableOpacity>
             </View>
+
           </View>
-
-
-
-
         </View>
       </View>
 

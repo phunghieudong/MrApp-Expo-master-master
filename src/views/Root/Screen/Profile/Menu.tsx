@@ -71,7 +71,11 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
         </Svg>
       ),
       text: "Hướng dẫn\nsử dụng",
-      navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+      // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+      navigate: () => navigation.navigate("UserManual"),
+
+      
+      
     },
     {
       svg: (
@@ -260,8 +264,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
       ),
 
       text: "Tư vấn khám\ntrực tiếp",
-      navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
-
+      navigate: () => navigation.navigate("AdviseMenu"),
     },
     {
       svg: (
@@ -734,7 +737,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
 
               <Text style={styles.name}>Phùng Hiểu Đông</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
-                <Text onPress={() => navigation.navigate("MedicalStory", {})} style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
+                <Text onPress={() => navigation.navigate("PatientProfile", {})} style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
                 <Image
                   source={require("../../../../assets/images/xct.png")}
                   style={{ height: 12, width: 12, }}
