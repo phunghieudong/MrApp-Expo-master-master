@@ -8,6 +8,7 @@ import {
   ModalCenter,
   ModalLoading,
 } from "@/components";
+import { Modal} from 'react-native-paper';
 import ModalBottom from "@/components/ModalBottom";
 import { settings } from "@/config";
 import { MedicalHistoryDetailProps } from "@/navigation/types/profile";
@@ -161,14 +162,18 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
     setItems({ ...item });
     info.current?.open();
   };
-
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = { backgroundColor: 'white' };
   return (
     <Container>
       <HeaderRoot
         title="Lịch sử khám bệnh"
         previous={() => navigation.goBack()}
         notifications={false}
-        filter={() => filter.current?.open()}
+        filter={() => showModal() }
+        // filter={() => filter.current?.open()}
       />
       {ready < 2 && <LazyLoading />}
       {ready >= 2 && (
@@ -188,7 +193,39 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
                 keyExtractor={(item) => item.Id.toString()}
                 renderItem={({ item, index }) => renderItem(item, index, see)}
               />
-              <ModalBottom ref={info} heading="Xem chi tiết">
+              <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "100%", width: "100%" }}>
+                <>
+                  <View style={styles.modal}>
+                    <Text style={styles.label}>BỆNH VIỆN</Text>
+                    <Text style={styles.value}>{item?.HospitalName}</Text>
+                    <Text style={styles.label}>ĐỊA CHỈ</Text>
+                    <Text style={styles.value}>{item?.HospitalAddress}</Text>
+                    <Text style={styles.label}>WEBSITE</Text>
+                    <Text style={styles.value}>{item?.HospitalWebSite}</Text>
+                    <Text style={styles.label}>SỐ ĐIỆN THOẠI</Text>
+                    <Text style={styles.value}>{item?.HospitalPhone}</Text>
+                    <Text style={styles.label}>LOẠI KHÁM</Text>
+                    <Text style={styles.value}>{item?.ServiceTypeName}</Text>
+                    {item?.ServiceTypeId === 7 && (
+                      <>
+                        <Text style={styles.label}>CHUYÊN KHOA</Text>
+                        <Text style={styles.value}>
+                          {item?.SpecialistTypeName}
+                        </Text>
+                      </>
+                    )}
+                    <Text style={styles.label}>PHÒNG KHÁM</Text>
+                    <Text style={styles.value}>{item?.RoomExaminationName}</Text>
+                    <Text style={styles.label}>NGÀY KHÁM</Text>
+                    <Text style={styles.value}>
+                      {_format.getVNDate(item?.ExaminationDate)}
+                    </Text>
+                    <View style={{ height: 10 }} />
+                  </View>
+                </>
+              </Modal>
+
+              {/* <ModalBottom ref={info} heading="Xem chi tiết">
                 <View style={styles.modal}>
                   <Text style={styles.label}>BỆNH VIỆN</Text>
                   <Text style={styles.value}>{item?.HospitalName}</Text>
@@ -216,7 +253,7 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
                   </Text>
                   <View style={{ height: 10 }} />
                 </View>
-              </ModalBottom>
+              </ModalBottom> */}
             </>
           )}
           <ModalBottom

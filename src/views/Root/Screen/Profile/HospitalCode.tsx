@@ -59,9 +59,10 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
             height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
             margin: 12,
             borderWidth: 1,
+            borderColor:'#D8D6D2',
             padding: 10,
             justifyContent:'center',
-            backgroundColor:'#D8D6D2',
+            backgroundColor:'#F0F0F0',
           
           }}
           placeholder="Nhập tên bệnh viện"

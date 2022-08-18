@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { View, Text, Icon } from "native-base";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";

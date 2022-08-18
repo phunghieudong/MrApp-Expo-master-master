@@ -54,7 +54,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
         <Svg width="20" height="20" viewBox="0 0 20 20">
           <Image
             source={require("../../../../assets/images/hscn.png")}
-            style={{ height: 20, width: 20, }}
+            style={{ height: 20, width: 21 , }}
           />
         </Svg>
       ),
@@ -669,7 +669,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
         <Svg width="36" height="36" viewBox="0 0 36 36">
           <Image
             source={require("../../../../assets/images/lskb.png")}
-            style={{ height: 44, width: 36 }}
+            style={{ height: 47, width: 36 }}
           />
         </Svg>
       ),
@@ -684,7 +684,7 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
         <Svg width="36" height="36" viewBox="0 0 36 36">
           <Image
             source={require("../../../../assets/images/thanhtoan.png")}
-            style={{ height: 36, width: 21 }}
+            style={{ height: 36, width: 25 }}
           />
         </Svg>
       ),
@@ -695,10 +695,10 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
 
     {
       svg: (
-        <Svg width="36" height="36" viewBox="0 0 36 36">
+        <Svg width="36" height="36" viewBox="0 0 36 36" >
           <Image
             source={require("../../../../assets/images/thanhtoan.png")}
-            style={{ height: 36, width: 21 }}
+            style={{ height: 36, width: 25 , justifyContent:'center' }}
           />
         </Svg>
       ),
@@ -755,13 +755,13 @@ const MenuScreen: FC<ProfileProps> = ({navigation}) => {
                   <Svg width="36" height="36" viewBox="0 0 36 36">
                     <Image
                       source={require("../../../../assets/images/tsba.png")}
-                      style={{ height: 36, width: 27 }}
+                      style={{ height: 36, width: 29 }}
                     />
                   </Svg>
                 </View>
 
                 <Text style={styles.story} >TIỂU SỬ BỆNH ÁN</Text>
-
+                <Text style={{ color: "#6A6A6A", fontSize: 13, marginRight: 5 }}>030606</Text>
 
               </View>
             </TouchableWithoutFeedback>

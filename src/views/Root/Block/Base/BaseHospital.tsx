@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { Icon } from "native-base";
 import React from "react";

@@ -82,15 +82,22 @@ const DashboardScreen = (props: DashboardProps) => {
       >
 
         <View style={styles.content1}>
+        {/* paddingRight: 260, paddingBottom: 20 */}
 
-
-          <View style={{ paddingRight: 280, paddingBottom: 20 }}>
+          <View style={{ paddingHorizontal:20,flexDirection:'row' , justifyContent:"space-between"  , width:'100%',paddingBottom: 20  }}>
             <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Regular" }}>Đặt lịch khám</Text>
+            <View style={{ height: 30, width: 30, backgroundColor: '#7676801F', borderRadius: 100 , justifyContent:'center' , alignItems:'center' }}>
+
+              <Image
+                source={require("../../../../assets/images/dlkmodal.png")}
+                style={{ height: 12, width: 12 }}
+              />
+            </View>
           </View>
           <View></View>
-          <View style={{ paddingRight: 30, paddingBottom: 80 }}>
+          <View style={{ paddingRight: 10, paddingBottom: 80 , backgroundColor:'#FFFFFF', width:"100%" , paddingHorizontal:30}}>
             <TouchableWithoutFeedback onPress={() => nav("NormalSchedule")}>
-              <View style={[styles.box, { marginBottom: 6 }]}>
+              <View style={[styles.box, { marginBottom: 6  }]}>
                 <Text style={styles.link}>ĐẶT LỊCH KHÁM THƯỜNG</Text>
                 <Icon
                   type="Ionicons"
@@ -430,7 +437,8 @@ const styles = StyleSheet.create({
     color: "#898FB6",
     fontSize: 24,
     marginRight: -5,
-    paddingLeft: 120
+    paddingLeft: 120, 
+    paddingHorizontal:30 
   },
 });
 

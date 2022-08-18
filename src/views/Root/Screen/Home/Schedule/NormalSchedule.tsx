@@ -27,7 +27,7 @@ import { ServiceData, SpecialTypeData, VaccineData } from "@/types/base";
 import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { getLastestExamination } from "@/api/ExaminationForm";
-import { Modal, Portal, Button, Provider } from 'react-native-paper';
+import { Modal} from 'react-native-paper';
 import { TouchableOpacity } from 'react-native';
 const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
   settings.styles;

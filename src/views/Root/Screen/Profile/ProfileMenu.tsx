@@ -138,9 +138,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "flex-start",
         backgroundColor: "#FFFFFF",
-        paddingLeft: 10,
+        padding: 5,
         marginTop: 18,
-        borderRadius: 12
+        borderRadius: 12,
+        alignItems:'center'
 
 
     },
