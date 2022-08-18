@@ -52,20 +52,14 @@ const DashboardScreen = (props: DashboardProps) => {
   const supportedURL = "https://kbyt.khambenh.gov.vn/#tokhai_yte/model";
 
   const OpenURLButton = ({ url, children }) => {
-    const handlePress = useCallback(async () => {
-      // Checking if the link is supported for links with custom URL scheme.
-      const supported = await Linking.canOpenURL(url);
 
-      if (supported) {
-        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-        // by some browser in the mobile
-        await Linking.openURL(url);
-      } else {
-        Alert.alert(`Don't know how to open this URL: ${url}`);
-      }
-    }, [url]);
 
-    return <Button title={children} onPress={handlePress} />;
+
+    const handlePress = () => {
+      Linking.openURL(url);
+    }
+
+    return <TouchableOpacity onPress={handlePress} activeOpacity={0.2}>{children}</TouchableOpacity>;
   };
   // modal
   const modal = useRef<Modalize>(null);
@@ -141,56 +135,33 @@ const DashboardScreen = (props: DashboardProps) => {
 
 
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#97CAE5",
-          }}
-        >
-
-          
 
 
-            <Image
-              source={require("../../../../assets/images/kbyt.png")}
-              style={{ height: 184, width: '100%' }}
-              // onClick={() => <OpenURLButton url={supportedURL}>     </OpenURLButton>}
-            />
-          
-          <OpenURLButton url={supportedURL} > </OpenURLButton>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#97CAE5",
-          }}
-        >
+        <OpenURLButton url={supportedURL} >
+
           <Image
             source={require("../../../../assets/images/kbyt.png")}
-            style={{ height: 184, width: '100%' }}
+            style={{ height: 165, width: '100%' }}
           />
-          <OpenURLButton url={supportedURL}>     </OpenURLButton>
-        </View>
-        {/* <OpenURLButton url={supportedURL}>    </OpenURLButton> */}
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#97CAE5",
-          }}
-        >
+        </OpenURLButton>
+
+        <OpenURLButton url={supportedURL} >
+
           <Image
             source={require("../../../../assets/images/kbyt.png")}
-            style={{ height: 184, width: '100%' }}
+            style={{ height: 165, width: '100%' }}
           />
-          <OpenURLButton url={supportedURL}>     </OpenURLButton>
-        </View>
-        <View
+        </OpenURLButton>
+
+        <OpenURLButton url={supportedURL} >
+
+          <Image
+            source={require("../../../../assets/images/kbyt.png")}
+            style={{ height: 165, width: '100%' }}
+          />
+        </OpenURLButton>
+
+        {/* <View
           style={{
             flex: 1,
             justifyContent: "center",
@@ -202,8 +173,7 @@ const DashboardScreen = (props: DashboardProps) => {
             source={require("../../../../assets/images/kbyt.png")}
             style={{ height: 184, width: '100%' }}
           />
-          <OpenURLButton url={supportedURL}>     </OpenURLButton>
-        </View>
+        </View> */}
       </Swiper>
 
       {getModal()}
