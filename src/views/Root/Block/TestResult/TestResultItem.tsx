@@ -1,13 +1,17 @@
 
 //@ts-nocheck
 import React, { FC, useRef, useState } from "react";
-import { View, Text, Icon, Spinner } from "native-base";
+import { Icon, Spinner } from "native-base";
 import BaseHospital from "../Base/BaseHospital";
 import {
   FlatList,
   Image,
   StyleSheet,
   TouchableWithoutFeedback,
+  SafeAreaView,
+  View,
+  Text,
+  Button
 } from "react-native";
 import { DiagnosticData } from "@/types/MedicalRecordDetail";
 import { settings } from "@/config";
@@ -19,7 +23,7 @@ import { useAppSelector } from "@/store/hook";
 import { UserData } from "@/types/User";
 import ModalBottom from "@/components/ModalBottom";
 import { ModalImage, ModalLoading } from "@/components";
-
+import { BottomSheet } from 'react-native-btr';
 const { padding, blueColor, orangeColor, mainColorLight, mainColor } =
   settings.styles;
 
@@ -38,6 +42,7 @@ const Index: FC<IProps> = ({
     HospitalId,
     SpecialistTypeName,
     Id,
+    RoomName,
   },
   first,
 }) => {
@@ -105,13 +110,18 @@ const Index: FC<IProps> = ({
         setLoading(true);
         await uploadMedicalRecordDetailMultipleFiles(Id, images);
         setLoading(false);
-      } catch (error) {}
-    } catch (error) {}
+      } catch (error) { }
+    } catch (error) { }
   };
 
   // xem slide hình
   const slide = useRef<Modalize>(null);
+  const [visible, setVisible] = useState(false);
 
+  const toggleBottomNavigationView = () => {
+
+    setVisible(!visible);
+  };
   return (
     <View style={styles.block}>
       <BaseHospital
@@ -121,16 +131,52 @@ const Index: FC<IProps> = ({
       />
       <View style={styles.profile}>
         <View style={styles.group}>
-          <Text style={styles.label}>MÃ HỒ SƠ BỆNH VIỆN</Text>
-          <Text style={styles.value}>BV-{HospitalId}</Text>
-        </View>
-        <View style={styles.group}>
           <Text style={styles.label}>KHOA</Text>
           <Text style={styles.value}>{SpecialistTypeName}</Text>
         </View>
         <View style={styles.group}>
-          <Text style={styles.label}>KẾT QUẢ XÉT NGHIỆM</Text>
+          <Text style={styles.label}>PHÒNG</Text>
+          <Text style={styles.value}>{RoomName}</Text>
+        </View>
+        <View style={styles.group}>
+          <Text style={styles.label}>MÃ HỒ SƠ BỆNH VIỆN</Text>
+          <Text style={styles.value}>BV-{HospitalId}</Text>
+        </View>
+
+        <View style={styles.group}>
+          <Text style={styles.label}>CHUẨN ĐOÁN</Text>
           <Text style={styles.value}>{DoctorComment}</Text>
+        </View>
+      </View>
+
+      <View style={{  width: "100%", height: 200 }}>
+        <View style={{ flexDirection: 'row', justifyContent:'space-evenly' , padding:10 }}>
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102,  }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent:'space-evenly' , padding:10 }}>
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102,  }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
         </View>
       </View>
       <FlatList
@@ -148,7 +194,7 @@ const Index: FC<IProps> = ({
             <View
               style={[
                 firstOrLast,
-                { width: 72, height: 72, marginRight: 8, marginTop: 8 },
+                { width: 72, height: 72, marginRight: 8, marginTop: 8 , },
               ]}
             >
               <TouchableWithoutFeedback onPress={() => slide.current?.open()}>
@@ -158,12 +204,44 @@ const Index: FC<IProps> = ({
           );
         }}
       />
-      <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+      <TouchableWithoutFeedback onPress={toggleBottomNavigationView}>
         <View style={styles.document}>
-          <Icon type="EvilIcons" name="camera" style={styles.documenticon} />
-          <Text style={styles.documenttext}>TẢI ẢNH / LƯU HỒ SƠ</Text>
+          <Image
+            source={require("../../../../assets/images/camera.png")}
+            style={{ height: 17, width: 20, marginRight: 10 }}
+          />
+          <Text style={styles.documenttext}>ĐÍNH KÈM ẢNH TƯ LIỆU / HỒ SƠ</Text>
         </View>
       </TouchableWithoutFeedback>
+      <View style={{ flexDirection: 'row', justifyContent: "space-evenly", alignItems: 'center', paddingHorizontal: 80 ,}}>
+
+
+        <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+          <View style={styles.document}>
+            <Image
+              source={require("../../../../assets/images/kqxndown.png")}
+              style={{ height: 25, width: 13 }}
+            />
+            <Text style={styles.documenttext}>TẢI XUỐNG</Text>
+          </View>
+
+        </TouchableWithoutFeedback>
+        <View style={styles.document}>
+
+          <Text style={{ color: "#D9D9D9", fontSize: 20 }}>|</Text>
+        </View>
+        <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+          <View style={styles.document}>
+            <Image
+              source={require("../../../../assets/images/SHARE.png")}
+              style={{ height: 20, width: 20 }}
+            />
+            <Text style={styles.documenttext}>SHARE</Text>
+          </View>
+
+        </TouchableWithoutFeedback>
+      </View>
+
       {images.length > 0 && (
         <TouchableWithoutFeedback onPress={loading ? undefined : _onPress}>
           <View style={styles.update}>
@@ -171,8 +249,12 @@ const Index: FC<IProps> = ({
           </View>
         </TouchableWithoutFeedback>
       )}
-      <ModalBottom
-        ref={select}
+      {/* <BottomSheet
+        visible={visible}
+
+        onBackButtonPress={toggleBottomNavigationView}
+
+        onBackdropPress={toggleBottomNavigationView}
         heading="Chọn hình ảnh"
         headingButton={
           images.length > 0 ? { text: "LƯU", onPress: _onPress } : undefined
@@ -209,11 +291,7 @@ const Index: FC<IProps> = ({
             }}
           />
           <View
-            style={{
-              paddingHorizontal: 30,
-              marginTop: 10,
-              marginBottom: 4,
-            }}
+            style={styles.bottomNavigationView}
           >
             <TouchableWithoutFeedback onPress={loading ? undefined : takeImage}>
               <View style={styles.add}>
@@ -227,7 +305,44 @@ const Index: FC<IProps> = ({
             </TouchableWithoutFeedback>
           </View>
         </>
-      </ModalBottom>
+      </BottomSheet> */}
+      <View style={styles.container}>
+
+
+        <BottomSheet
+          visible={visible}
+
+          onBackButtonPress={toggleBottomNavigationView}
+
+          onBackdropPress={toggleBottomNavigationView}
+
+        >
+
+          <View style={styles.bottomNavigationView}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}>
+              <View
+                style={styles.bottomNavigationView}
+              >
+                <TouchableWithoutFeedback onPress={loading ? undefined : takeImage}>
+                  <View style={styles.add}>
+                    <Text style={styles.addtext}>Chụp ảnh</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={loading ? undefined : pickImage}>
+                  <View style={styles.add}>
+                    <Text style={styles.addtext}>Thêm hình ảnh từ thiết bị</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+          </View>
+        </BottomSheet>
+      </View>
       <ModalImage ref={slide} images={images} />
       <ModalLoading visible={loading} />
     </View>
@@ -237,6 +352,15 @@ const Index: FC<IProps> = ({
 const styles = StyleSheet.create({
   block: {
     paddingBottom: 10,
+  },
+  bottomNavigationView: {
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopEndRadius: 16,
+    borderTopStartRadius: 16
   },
   profile: {
     marginHorizontal: padding,
@@ -254,11 +378,11 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 1.5,
     fontFamily: "SFProDisplay-Regular",
-    color: mainColor,
+    color: "#142977",
     opacity: 0.5,
   },
   value: {
-    color: mainColor,
+    color: "#142977",
     fontSize: 18,
     lineHeight: 22,
     fontFamily: "SFProDisplay-Regular",
@@ -289,8 +413,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 4,
-    marginTop: 15,
+    marginTop: 50,
     marginBottom: 5,
+
   },
   documenticon: {
     color: orangeColor,
@@ -298,7 +423,7 @@ const styles = StyleSheet.create({
   },
   documenttext: {
     textAlign: "center",
-    color: orangeColor,
+    color: "#E85D04",
     fontSize: 16,
     letterSpacing: 1.5,
     fontFamily: "SFProDisplay-Regular",
@@ -324,10 +449,11 @@ const styles = StyleSheet.create({
   add: {
     paddingTop: 15,
     paddingBottom: 17,
-    backgroundColor: blueColor,
+    backgroundColor: "#142977",
     paddingHorizontal: 12,
     borderRadius: 100,
     marginBottom: 6,
+    width: 300
   },
   addtext: {
     textAlign: "center",

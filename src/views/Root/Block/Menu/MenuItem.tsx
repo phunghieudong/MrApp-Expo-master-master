@@ -21,7 +21,7 @@ const MenuItem = (props: Props) => {
       style={[
         styles.menubox,
         last && { marginBottom: 0 },
-        active && { backgroundColor: blueColor },
+     
       ]}
     >
       <View style={styles.menuicon}>{item.svg}</View>
@@ -29,8 +29,8 @@ const MenuItem = (props: Props) => {
         style={[
           styles.menutext,
           active && {
-            color: "#fff",
-            fontFamily: "SFProDisplay-Semibold",
+            color: "#666666",
+           
             opacity: 1,
           },
         ]}

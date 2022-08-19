@@ -134,7 +134,7 @@ const FolderScreen: FC<FolderProps> = ({ navigation }) => {
 
   return (
     <Container>
-      <HeaderRoot title="HÌNH ẢNH" previous={() => navigation.goBack()} />
+      <HeaderRoot title="HÌNH ẢNH" filter={true} notifications={false}  previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && (
         <>
@@ -217,7 +217,7 @@ const FolderScreen: FC<FolderProps> = ({ navigation }) => {
                           transform="translate(0 0)"
                         >
                           <Path
-                            id="Path_2450"
+                            id="Path_2450"     
                             data-name="Path 2450"
                             d="M30.072,204.431H1.636a1.629,1.629,0,0,1-1.573-2.055l6.475-17.758a1.613,1.613,0,0,1,1.556-1.152H36.53a1.7,1.7,0,0,1,1.595,1.889.635.635,0,0,1-.038.218l-6.458,17.707A1.613,1.613,0,0,1,30.072,204.431ZM8.094,184.736a.36.36,0,0,0-.346.265L1.274,202.76a.341.341,0,0,0,.078.259.352.352,0,0,0,.285.141H30.072a.36.36,0,0,0,.346-.265l6.431-17.639c-.016-.174-.078-.521-.319-.521Z"
                             transform="translate(-0.006 -173.301)"

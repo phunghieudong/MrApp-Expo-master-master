@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding,
     paddingTop: 13,
     paddingBottom: 15,
-    backgroundColor:"#219EBC",
+    backgroundColor:"#F0F0F0",
     fontSize: 14,
     letterSpacing: 2,
     textTransform: "uppercase",

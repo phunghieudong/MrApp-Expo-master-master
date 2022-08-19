@@ -56,7 +56,7 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
   return (
     <Container>
       <HeaderRoot
-        title="K.QUẢ XÉT NGHIỆM"
+        title="KẾT QUẢ XÉT NGHIỆM"
         previous={() => navigation.goBack()}
       />
       {!ready && <LazyLoading />}
