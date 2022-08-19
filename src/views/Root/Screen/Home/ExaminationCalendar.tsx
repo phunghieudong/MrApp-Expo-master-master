@@ -17,14 +17,15 @@ import {
   InteractionManager,
   StyleSheet,
   TouchableWithoutFeedback,
-  Image
+  Image,
+  Button
 } from "react-native";
 import { ExaminationCalendarProps } from "@/navigation/types/Home";
 import { removePayment, updatePayment } from "@/api/ExaminationForm";
 import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { _format } from "@/utils";
-
+import Modal from "react-native-modal";
 const {
   mainColorText,
   padding,
@@ -47,9 +48,10 @@ const renderItem = (
 
   return (
     <View style={[styles.item, first]}>
+
       <View style={styles.left}>
-        <View style={{height: 87, width: 87}}>
-        <Image
+        <View style={{ height: 87, width: 87 }}>
+          <Image
             source={require("../../../../assets/images/LKSTvuong.png")}
             style={{ height: 87, width: 87 }}
           />
@@ -60,7 +62,7 @@ const renderItem = (
           {_format.getVNDate(item.ExaminationDate)}{" "}
           {(item.Status === 2 || item.Status === 5) && (
             <Text style={[styles.paid, { color: successColor }]}>
-             {item.ConfigTimeExaminationValue}
+              {item.ConfigTimeExaminationValue}
             </Text>
           )}
           {item.Status === 1 && (
@@ -68,7 +70,7 @@ const renderItem = (
           )}
           {item.Status === 0 && (
             <Text style={[styles.paid]}>
-             {item.ConfigTimeExaminationValue}
+              {item.ConfigTimeExaminationValue}
             </Text>
           )}
         </Text>
@@ -102,6 +104,8 @@ const renderItem = (
             </View>
           </TouchableWithoutFeedback>
         </View>
+
+
       </View>
     </View>
   );
@@ -211,7 +215,10 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
       }
     })();
   }, [page.current]);
-
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
     <Container>
       <HeaderRoot title="LỊCH KHÁM SẮP TỚI" />
@@ -228,6 +235,15 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
               renderItem(item, index, pay, noti, see)
             }
           />
+
+         
+          <Modal isVisible={isModalVisible}>
+            <View style={{ flex: 1, backgroundColor: 'red' }}>
+              <Text>Hello!</Text>
+
+              <Button title="Hide modal" onPress={toggleModal} />
+            </View>
+          </Modal>
           <ModalLoading visible={loading} />
           <ModalCenter ref={notification} style={{ borderRadius: 2 }}>
             <Dialog

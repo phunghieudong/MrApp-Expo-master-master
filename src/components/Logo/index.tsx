@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 

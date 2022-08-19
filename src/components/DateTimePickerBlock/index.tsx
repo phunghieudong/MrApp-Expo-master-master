@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Icon, Text, View } from "native-base";
 import React, { useRef, useState } from "react";
 import { Animated, Platform, StyleSheet, TouchableOpacity } from "react-native";

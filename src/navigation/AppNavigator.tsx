@@ -1,3 +1,4 @@
+//@ts-nocheck
 import useCheckLogout from "@/libs/rxjs";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import {

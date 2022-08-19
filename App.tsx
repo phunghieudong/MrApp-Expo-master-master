@@ -1,5 +1,5 @@
 
-//@tss-nocheck
+//@ts-nocheck
 import "react-native-gesture-handler";
 import AppNavigator from "@/navigation/AppNavigator";
 import store from "@/store";

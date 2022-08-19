@@ -1,3 +1,4 @@
+//@ts-nocheck
 import AnimatedLottieView from "lottie-react-native";
 import { Text, View } from "native-base";
 import React from "react";

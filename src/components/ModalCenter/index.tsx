@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Content, View } from "native-base";
 import React, {
   ForwardedRef,

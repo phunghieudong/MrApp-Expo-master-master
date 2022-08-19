@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { Input, Text, View } from "native-base";
 import React, { useCallback, useEffect, useRef, useState } from "react";

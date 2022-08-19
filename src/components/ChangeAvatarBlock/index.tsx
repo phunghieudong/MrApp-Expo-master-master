@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { View, Text, Icon, Input } from "native-base";
 import { settings } from "@/config";
