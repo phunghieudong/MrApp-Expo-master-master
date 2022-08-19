@@ -18,7 +18,8 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Image,
-  Button
+  Button,
+  TouchableOpacity
 } from "react-native";
 import { ExaminationCalendarProps } from "@/navigation/types/Home";
 import { removePayment, updatePayment } from "@/api/ExaminationForm";
@@ -26,6 +27,7 @@ import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { _format } from "@/utils";
 import Modal from "react-native-modal";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 const {
   mainColorText,
   padding,
@@ -40,8 +42,9 @@ const renderItem = (
   item: CalendarData,
   index,
   pay: (item: CalendarData) => void,
-  noti: (item: CalendarData, index: number) => void,
+  toggleModal: (item: CalendarData, index: number) => void,
   see: (item: CalendarData) => void
+
 ) => {
   let first = {};
   if (index === 0) first["borderTopWidth"] = 0;
@@ -98,7 +101,7 @@ const renderItem = (
               </View>
             </TouchableWithoutFeedback>
           )}
-          <TouchableWithoutFeedback onPress={() => noti(item, index)}>
+          <TouchableWithoutFeedback onPress={() => toggleModal(item, index)}>
             <View style={styles.btn}>
               <Text style={styles.btntext}>HỦY</Text>
             </View>
@@ -155,7 +158,8 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
 
   const noti = (item: CalendarData, index: number) => {
     setItem({ ...item, index });
-    notification.current?.open();
+    // notification.current?.open();
+    setModalVisible(!isModalVisible);
   };
 
   const remove = async () => {
@@ -180,7 +184,10 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
     setItem(item);
     seeCalendar.current?.open();
   };
-
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   // dữ liệu lịch sử khám bệnh sắp tới
   const [ready, setReady] = useState(false);
   const [calendarsUpcoming, setCalendarsUpcoming] = useState<
@@ -215,10 +222,7 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
       }
     })();
   }, [page.current]);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+
   return (
     <Container>
       <HeaderRoot title="LỊCH KHÁM SẮP TỚI" />
@@ -236,33 +240,33 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
             }
           />
 
-         
-          <Modal isVisible={isModalVisible}>
-            <View style={{ flex: 1, backgroundColor: 'red' }}>
-              <Text>Hello!</Text>
 
-              <Button title="Hide modal" onPress={toggleModal} />
-            </View>
-          </Modal>
           <ModalLoading visible={loading} />
-          <ModalCenter ref={notification} style={{ borderRadius: 2 }}>
-            <Dialog
-              text={{
-                heading: "Thông báo",
-                body: 'Bạn có chắc muốn hủy lịch hẹn này? Nếu chắc thì hãy bấm "TIẾP TỤC" (Lưu ý: Nếu hủy lịch 3 lần sẽ bị khóa tài khoản)',
-              }}
-              button={{
-                ok: {
-                  text: "TIẾP TỤC",
-                  onPress: item ? remove : undefined,
-                },
-                cancel: {
-                  text: "HUỶ BỎ",
-                  onPress: () => notification.current?.close(),
-                },
-              }}
-            />
-          </ModalCenter>
+          <Modal isVisible={isModalVisible} style={{ borderRadius: 2 }}>
+
+            <TouchableOpacity onPress={toggleModal} style={{ justifyContent: 'flex-end', alignItems: 'flex-end', }}>
+              <Image
+                source={require("../../../../assets/images/out.png")}
+                style={{ height: 24, width: 24, }}
+              />
+            </TouchableOpacity>
+            <View style={{ flexDirection: 'column', justifyContent: "center", alignItems: 'center', }}>
+
+
+              <View style={{ backgroundColor: "#fff", height: 211, width: 343, borderRadius: 12, justifyContent: 'center', alignItems: 'center', }}>
+
+                <Image
+                  source={require("../../../../assets/images/ok.png")}
+                  style={{ height: 56, width: 60, }}
+                />
+                <Text style={{ paddingHorizontal: 40, textAlign: 'center', fontSize: 16, }}>Bạn còn 24h50 phút hủy không tính phí  DVTI 10.000</Text>
+                <Text style={{ paddingHorizontal: 40, paddingTop: 10, textAlign: 'center', color: '#DC233C', fontFamily: "SFProDisplay-Bold" }}>Chính sách hủy dịch vụ</Text>
+
+              </View>
+
+            </View>
+
+          </Modal>
           <ModalBottom ref={seeCalendar} heading="Xem chi tiết lịch hẹn">
             <View style={styles.modal}>
               <Text style={styles.label}>BỆNH VIỆN</Text>
