@@ -76,6 +76,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
         <Empty text="Không tìm thấy bất kỳ hồ sơ bệnh viện nào" />
       )}
       {ready && data.length > 0 && (
+        
         <FlatList
           data={data}
           style={styles.body}

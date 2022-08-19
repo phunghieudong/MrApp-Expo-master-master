@@ -36,6 +36,7 @@ export { default as PrivacyPolicyScreen } from "./Root/Screen/Profile/PrivacyPol
 export { default as UserManualScreen } from "./Root/Screen/Profile/UserManual";
 export { default as MenuScreen } from "./Root/Screen/Profile/Menu";
 export { default as RegularProblemsScreen } from "./Root/Screen/Profile/RegularProblems";
+export { default as RegularProblemsDetailScreen } from "./Root/Screen/Profile/RegularProblemsDetail";
 export { default as ServiceAccountScreen } from "./Root/Screen/Profile/ServiceAccount";
 export { default as TermOfMedicalScreen } from "./Root/Screen/Profile/TermOfMedical";
 export { default as TermOfUseScreen } from "./Root/Screen/Profile/TermOfUse";

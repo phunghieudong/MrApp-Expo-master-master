@@ -29,7 +29,8 @@ import {
   DiagnoticTypeScreen,
   ProfileMenuScreen,
   UserManualScreen,
-  AdviseMenuScreen
+  AdviseMenuScreen,
+  RegularProblemsDetailScreen
 } from "@/views";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import React from "react";
@@ -57,6 +58,7 @@ const ProfileStackNavigator = () => {
       <Stack.Screen name="TermOfUse" component={TermOfUseScreen} />
       <Stack.Screen name="TermOfMedical" component={TermOfMedicalScreen} />
       <Stack.Screen name="RegularProblems" component={RegularProblemsScreen} />
+      <Stack.Screen name="RegularProblemsDetail" component={RegularProblemsDetailScreen} />
       <Stack.Screen name="Introduct" component={IntroduceScreen} />
       <Stack.Screen name="MedicalStory" component={MedicalStoryScreen} />
       <Stack.Screen name="ProfileMenu" component={ProfileMenuScreen} />

@@ -3,15 +3,17 @@ import { schedule } from "@/api/ExaminationForm";
 import { HeaderRoot, Loading, ModalLoading } from "@/components";
 import { settings } from "@/config";
 import { CheckScheduleProps } from "@/navigation/types/Home";
-import { Container, Content, Icon, Text, Toast, View } from "native-base";
+import { Container, Content, Icon, Text, Toast, View, Button } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
 import {
   Linking,
   Platform,
   StyleSheet,
   TouchableWithoutFeedback,
-  Image
+  Image,
+  TouchableOpacity
 } from "react-native";
+import Modal from "react-native-modal";
 import { useAppSelector } from "@/store/hook";
 import { _format } from "@/utils";
 import { UserData } from "@/types/User";
@@ -130,7 +132,11 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
       Toast.show({ text: "Lỗi không thể thưc hiện thao tác này" });
     }
   };
+  const [isModalVisible, setModalVisible] = useState(false);
 
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
     <Container style={styles.container}>
       <HeaderRoot
@@ -152,38 +158,10 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             />
           </View>
 
-          {/* {specialistTypeName && (
-            <Text style={styles.hospitalspecial}>{specialistTypeName}</Text>
-          )} */}
 
-          {/* <Text style={styles.hospitallabel}>WEBSITE</Text>
-          <Text
-            style={[
-              styles.hospitalvalue,
-              { color: blueColor, textDecorationLine: "underline" },
-            ]}
-            onPress={() => handleLinking("website")}
-          >
-            {hospitalWebsite}
-          </Text>
-          <Text style={styles.hospitallabel}>SỐ ĐIỆN THOẠI</Text>
-          <Text
-            style={[
-              styles.hospitalvalue,
-              { color: blueColor, textDecorationLine: "underline" },
-            ]}
-            onPress={() => handleLinking("phone")}
-          >
-            {hospitalPhoneNumber}
-          </Text> */}
         </View>
         <View style={styles.info}>
-          {/* <View style={styles.datebox}>
-            <Text style={styles.date}>
-              {_format.getVNDate(examinationDate)}
-            </Text>
-            <Text style={styles.time}>{examinationScheduleDetailName}</Text>
-          </View> */}
+
           <View style={styles.infobox}>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
               <Text style={[styles.infotext, { marginTop: 0 }]}>
@@ -276,25 +254,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               </Text>
               <Text>{user?.Code}</Text>
             </View>
-            {/* <Text style={styles.infotext}>
-              Ngày sinh: {_format.getVNDate(user?.BirthDate)}
-            </Text>
 
-            {doctorName && (
-              <Text style={styles.infotext}>Bác sĩ: {doctorName}</Text>
-            )}
-            <Text style={styles.infotext}>
-              Phòng khám: {roomExaminationName}
-            </Text>
-            <Text style={styles.infotext}>Loại: {serviceTypeName}</Text>
-            {serviceTypeId === 6 && (
-              <Text style={styles.infotext}>Vaccine: {vaccineTypeName}</Text>
-            )}
-            {status === 1 && (
-              <Text style={styles.infotext}>
-                Bảo hiểm y tế: {isBHYT < 2 ? "Có" : "Không"}
-              </Text>
-            )} */}
           </View>
           <View style={styles.agreement}>
             <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}>
@@ -314,17 +274,53 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               {hospitalName}
             </Text>
           </View>
-          <TouchableWithoutFeedback
-            onPress={agreement && !loading ? navPayment : undefined}
-          >
-            <View
-              style={[styles.btn, agreement && { backgroundColor: "#142977" }]}
+          <View style={{ flexDirection: 'row', }}>
+            <TouchableWithoutFeedback
+              onPress={agreement && !loading ? navPayment : undefined}
             >
-              <Text style={styles.btntext}>THANH TOÁN</Text>
-            </View>
-          </TouchableWithoutFeedback>
-     
+              <View
+                style={[styles.btn, { backgroundColor: "#142977" }]}
+              >
+                <Text style={styles.btntext}>ĐỔI LỊCH</Text>
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={toggleModal}
+            // onPress={agreement && !loading ? navPayment : undefined}
+            >
+
+              <View
+                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)" }]}
+              // style={[styles.btn, agreement && { backgroundColor: "#FFDDDD" }]} đổi màu khi click sự kiện
+
+              >
+                <Text style={styles.btntext1}>HỦY LỊCH</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+
         </View>
+        <Modal isVisible={isModalVisible} style={{ borderRadius: 2 }}>
+
+          <TouchableOpacity onPress={toggleModal} style={{ justifyContent: 'flex-end', alignItems: 'flex-end', }}>
+            <Image
+              source={require("../../../../assets/images/out.png")}
+              style={{ height: 24, width: 24, }}
+            />
+          </TouchableOpacity>
+          <View style={{ flexDirection: 'column', justifyContent: "center", alignItems: 'center', }}>
+
+
+            <View style={{ backgroundColor: "#fff", height: 121, width: 343, borderRadius: 12, justifyContent: 'center', alignItems: 'center', }}>
+
+
+              <Text style={{ paddingHorizontal: 40, paddingTop: 10, textAlign: 'center', color: '#DC233C', fontFamily: "SFProDisplay-Bold" }}>Lịch đã được hủy thành công</Text>
+              <Text style={{ paddingHorizontal: 40, textAlign: 'center', fontSize: 16, }}>Vui lòng liên hệ hotline 1900 000 khi cần được hỗ trợ</Text>
+            </View>
+
+          </View>
+
+        </Modal>
       </Content>
       <ModalLoading visible={loading} />
     </Container>
@@ -457,16 +453,22 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Medium",
   },
   btn: {
-    marginTop: 15,
+
     backgroundColor: placeholderColor,
-    alignSelf: "flex-end",
-    elevation: 4,
+
     paddingHorizontal: 20,
     paddingVertical: 19,
     borderRadius: 100,
+
   },
   btntext: {
     color: "#fff",
+    fontSize: 16,
+    letterSpacing: 1.25,
+    fontFamily: "SFProDisplay-Semibold",
+  },
+  btntext1: {
+    color: "#DC233C",
     fontSize: 16,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Semibold",
