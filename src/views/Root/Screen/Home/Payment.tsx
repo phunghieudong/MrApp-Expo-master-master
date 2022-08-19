@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   Dialog,
   HeaderRoot,
@@ -163,8 +164,8 @@ const PaymentScreen: FC<PaymentProps> = ({ navigation, route: { params } }) => {
     <Container style={styles.container}>
       <HeaderRoot
         title="THANH TOÁN"
-        previous={backAction}
-        notifications={false}
+        previous={() => navigation.goBack()}
+        notifications={true}
       />
       {!ready && <LazyLoading />}
       {ready && (
@@ -172,13 +173,19 @@ const PaymentScreen: FC<PaymentProps> = ({ navigation, route: { params } }) => {
           <Content contentContainerStyle={styles.body}>
             <View style={[styles.display, { padding }]}>
               <View style={[styles.service, styles.spacebetween]}>
-                <Text style={styles.labelservice}>GIÁ DỊCH VỤ</Text>
+                <Text style={styles.labelservice}>VIỆN PHÍ NỘI TRÚ</Text>
                 <Text style={styles.priceservice}>
                   {fee?.ExaminationPriceDisplay}
                 </Text>
               </View>
               <View style={[styles.service, styles.spacebetween]}>
-                <Text style={styles.labelservice}>PHÍ DỊCH VỤ</Text>
+                <Text style={styles.labelservice}>DỊCH VỤ CỘNG THÊM 1</Text>
+                <Text style={styles.priceservice}>
+                  + {fee?.ExaminationFeeDisplay}
+                </Text>
+              </View>
+              <View style={[styles.service, styles.spacebetween]}>
+                <Text style={styles.labelservice}>DỊCH VỤ CỘNG THÊM 2</Text>
                 <Text style={styles.priceservice}>
                   + {fee?.ExaminationFeeDisplay}
                 </Text>
@@ -192,7 +199,7 @@ const PaymentScreen: FC<PaymentProps> = ({ navigation, route: { params } }) => {
                 { marginTop: 10, paddingHorizontal: padding },
               ]}
             >
-              <Text style={styles.labelservice}>TỔNG TIỀN</Text>
+              <Text style={styles.labelservice}>THÀNH TIỀN</Text>
               <Text
                 style={[
                   styles.priceservice,
@@ -334,16 +341,62 @@ const PaymentScreen: FC<PaymentProps> = ({ navigation, route: { params } }) => {
                 </View>
               </Form>
             )}
-            <TouchableWithoutFeedback onPress={loading ? undefined : _onPress}>
-              <View
-                style={[
-                  styles.btn,
-                  paymentMethodId === 1 && { backgroundColor: blueColor },
-                ]}
-              >
-                <Text style={styles.btntext}>XÁC NHẬN</Text>
+
+
+            <View style={[styles.display, { padding }]}>
+              <View style={{ flexDirection: 'column', paddingVertical: 10 }}>
+                <Text style={{ color: '#666666', fontSize: 12 }}>SỐ TÀI KHOẢN</Text>
+                <Text style={styles.labelservice}>
+                  1234567890
+                </Text>
               </View>
-            </TouchableWithoutFeedback>
+              <View style={{ flexDirection: 'column', paddingVertical: 10 }}>
+                <Text style={{ color: '#666666', fontSize: 12 }}>NGÂN HÀNG</Text>
+                <Text style={styles.labelservice}>
+                  ABC
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'column', paddingVertical: 10 }}>
+                <Text style={{ color: '#666666', fontSize: 12 }}>CHỦ TÀI KHOẢN</Text>
+                <Text style={styles.labelservice}>
+                  PHÙNG HIỂU ĐÔNG
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-between" , paddingBottom:20}}>
+
+              <TouchableWithoutFeedback onPress={()=> navigation.goBack()}>
+                <View
+                  style={[
+                    styles.btn,
+                    paymentMethodId === 1 && { backgroundColor: "#F0F0F0" },
+                  ]}
+                >
+                  <Text style={{
+                    color: "black",
+                    fontSize: 16,
+                    letterSpacing: 1.25,
+                    fontFamily: "SFProDisplay-Semibold",
+                  }}>TRỞ LẠI</Text>
+                </View>
+
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={loading ? undefined : _onPress}>
+                <View
+                  style={[
+                    styles.btn,
+                    paymentMethodId === 1 && { backgroundColor: "#142977" },
+                  ]}
+                >
+                  <Text style={styles.btntext}>TIẾP THEO</Text>
+                </View>
+              </TouchableWithoutFeedback>
+
+            </View>
+
+
+
+
           </Content>
           <ModalCenter ref={dialog}>
             <Dialog

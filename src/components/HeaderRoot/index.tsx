@@ -16,12 +16,13 @@ import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 
 const { height: dH } = Dimensions.get("window");
 const { mainColor, goldColor, padding } = settings.styles;
-
+ 
 type IProps = {
   title: string;
   previous?: () => void;
   hideRoute?: true;
   logo?: true;
+  logo1?: true;
   notifications?: false;
   filter?: () => void;
 };
@@ -31,6 +32,7 @@ const CustomHeader = ({
   previous,
   hideRoute,
   logo,
+  logo1,
   notifications,
   filter,
 }: IProps) => {

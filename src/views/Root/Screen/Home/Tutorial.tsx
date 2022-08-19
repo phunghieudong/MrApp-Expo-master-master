@@ -29,6 +29,7 @@ const TutorialScreen = ({ navigation }) => {
                   margin: 12,
                   borderWidth: 1,
                   padding: 10,
+                  borderColor:"#666666",
                 }}
                 placeholder="Họ và tên*"
                 defaultValue={text}
@@ -43,6 +44,7 @@ const TutorialScreen = ({ navigation }) => {
                   margin: 12,
                   borderWidth: 1,
                   padding: 10,
+                  borderColor:"#666666",
                 }}
                 placeholder="Email*"
                 defaultValue={text}
@@ -56,6 +58,7 @@ const TutorialScreen = ({ navigation }) => {
                   height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
                   margin: 12,
                   borderWidth: 1,
+                  borderColor:"#666666",
                   padding: 10,
                 }}
                 placeholder="Số điện thoại*"

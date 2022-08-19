@@ -21,7 +21,7 @@ const MenuItem = (props: Props) => {
       style={[
         styles.menubox,
         last && { marginBottom: 0 },
-     
+
       ]}
     >
       <View style={styles.menuicon}>{item.svg}</View>
@@ -29,8 +29,8 @@ const MenuItem = (props: Props) => {
         style={[
           styles.menutext,
           active && {
-            color: "#666666",
-           
+            color: "#666666", 
+
             opacity: 1,
           },
         ]}
