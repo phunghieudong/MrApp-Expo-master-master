@@ -6,6 +6,8 @@ import {
   InformationScreen,
   RegisterScreen,
   SignInScreen,
+  UsageRulesScreen,
+
 } from "@/views";
 import { settings } from "@/config";
 import { useAppSelector } from "@/store/hook";
@@ -28,7 +30,9 @@ const AuthNavigator = () => {
       initialRouteName={currentRoute}
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="Information" component={InformationScreen} />
+      <Stack.Screen name="UsageRules" component={UsageRulesScreen} />
+
+      <Stack.Screen name="Information" component  ={InformationScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="ConfirmOTP" component={ConfirmOTPScreen} />

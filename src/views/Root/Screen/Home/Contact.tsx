@@ -15,8 +15,8 @@ const ContactScreen = ({ navigation }) => {
     <Container>
       <HeaderRoot title="Liên hệ" previous={() => navigation.goBack()} />
       <ScrollView>
-        <View style={{height:183 , width:"100%" ,}}>
-          <Webview source={{ html: map }} style={{height:183 , width:"158%" }}/>
+        <View style={{height:183 , width:"100%" ,  }}>
+          <Webview source={{ html: map }} style={{height:183 , width:"158%" , }}/>
           {/* <Image
             source={require("../../../../assets/images/map.png")}
             style={{ height: 183, width: "100%", marginRight: 8 }}

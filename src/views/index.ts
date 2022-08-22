@@ -5,6 +5,7 @@ export { default as ForgotPasswordScreen } from "./Auth/Screen/ForgotPassword";
 export { default as SignInScreen } from "./Auth/Screen/SignIn";
 export { default as RegisterScreen } from "./Auth/Screen/Register";
 export { default as InformationScreen } from "./Auth/Screen/Information";
+export { default as UsageRulesScreen } from "./Auth/Screen/UsageRules";
 
 // home
 export { default as CalendarScreen } from "./Root/Screen/Home/Calendar";

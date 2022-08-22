@@ -45,13 +45,13 @@ const PrescriptionScreen: FC<PrescriptionProps> = ({ navigation }) => {
         } catch (error) {
           throw new Error("FETCH ALL MEDICAL RECORD IS FAILED !!!");
         }
-      }
+      }                 
     })();
   }, []);
 
   return (
     <Container>
-      <HeaderRoot title="TOA THUỐC" previous={() => navigation.goBack()} />
+      <HeaderRoot filter={true} title="TOA THUỐC" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ toa thuốc nào" />
@@ -61,6 +61,7 @@ const PrescriptionScreen: FC<PrescriptionProps> = ({ navigation }) => {
           <SectionList
             sections={data.map((item) => {
               return {
+               
                 title: _format.getShortVNDate(item.ExaminationDate) as string,
                 data: [{ ...item }],
               };

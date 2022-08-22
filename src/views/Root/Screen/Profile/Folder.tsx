@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import { InteractionManager, StyleSheet, View, Text, Image, TouchableWithoutFeedback } from "react-native";
 
 const { mainColorText, padding } = settings.styles;
-
-const FolderScreen = () => {
+import { BottomSheet } from 'react-native-btr';
+const FolderScreen = ({ navigation }) => {
   // interaction
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -19,10 +19,13 @@ const FolderScreen = () => {
   if (!ready) {
     return <Loading />;
   }
+  const toggleBottomNavigationView = () => {
 
+    setVisible(!visible);
+  };
   return (
-    <Container>
-      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true} previous={true} filter={true} />
+    <Container >
+      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true} previous={() => navigation.goBack()} filter={true} />
       <Content contentContainerStyle={styles.body}>
         <View style={{ height: 54, width: "100%", backgroundColor: '#F0F0F0' }}>
           <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#525252', paddingHorizontal: 30, justifyContent: 'center', paddingVertical: 18 }}>SIÊU ÂM</Text>
@@ -59,7 +62,7 @@ const FolderScreen = () => {
             />
           </View>
         </View>
-        <View style={styles.document}>
+        <View style={styles.document} onPress={toggleBottomNavigationView}>
           <Image
             source={require("../../../../assets/images/blue1.png")}
             style={{ height: 17, width: 20, marginRight: 10 }}
@@ -195,7 +198,43 @@ const FolderScreen = () => {
 
 
       </Content>
+      {/* <View style={styles.container}>
 
+
+        <BottomSheet
+          visible={visible}
+
+          onBackButtonPress={toggleBottomNavigationView}
+
+          onBackdropPress={toggleBottomNavigationView}
+
+        >
+
+          <View style={styles.bottomNavigationView}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}>
+              <View
+                style={styles.bottomNavigationView}
+              >
+                <TouchableWithoutFeedback onPress={loading ? undefined : takeImage}>
+                  <View style={styles.add}>
+                    <Text style={styles.addtext}>Chụp ảnh</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={loading ? undefined : pickImage}>
+                  <View style={styles.add}>
+                    <Text style={styles.addtext}>Thêm hình ảnh từ thiết bị</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+          </View>
+        </BottomSheet>
+      </View> */}
     </Container>
   );
 };
@@ -208,6 +247,32 @@ const styles = StyleSheet.create({
   body: {
     flexGrow: 1,
 
+  },
+  bottomNavigationView: {
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopEndRadius: 16,
+    borderTopStartRadius: 16
+  },
+  add: {
+    paddingTop: 15,
+    paddingBottom: 17,
+    backgroundColor: "#142977",
+    paddingHorizontal: 12,
+    borderRadius: 100,
+    marginBottom: 6,
+    width: 300
+  },
+  addtext: {
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 15,
+    lineHeight: 20,
+    letterSpacing: 1.25,
+    fontFamily: "SFProDisplay-Semibold",
   },
   document: {
     paddingHorizontal: padding,

@@ -160,7 +160,7 @@ const SignInScreen = (props: SignInProps) => {
         <Text style={styles.otherssignin}>HOẶC ĐĂNG NHẬP BẰNG</Text>
         <View style={{ alignSelf: "center" }}>
           <View style={styles.socialsignin}>
-         
+
             <TouchableWithoutFeedback
               onPress={() =>
                 Toast.show({ text: "Tính năng còn đang phát triển" })
@@ -168,10 +168,10 @@ const SignInScreen = (props: SignInProps) => {
             >
               <View style={styles.socialsigninitem}>
                 <View style={styles.socialsigninbox}>
-                <Image
-          source={require("../../../assets/images/zalo.png")}
-          style={{height:40 , width:40}}
-        />
+                  <Image
+                    source={require("../../../assets/images/zalo.png")}
+                    style={{ height: 40, width: 40 }}
+                  />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Facebook</Text> */}
               </View>
@@ -188,10 +188,10 @@ const SignInScreen = (props: SignInProps) => {
                     { backgroundColor: "#fff" },
                   ]}
                 >
-                         <Image
-          source={require("../../../assets/images/face.png")}
-          style={{height:40 , width:40}}
-        />
+                  <Image
+                    source={require("../../../assets/images/face.png")}
+                    style={{ height: 40, width: 40 }}
+                  />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Google</Text> */}
               </View>
@@ -208,10 +208,10 @@ const SignInScreen = (props: SignInProps) => {
                     { backgroundColor: "#fff" },
                   ]}
                 >
-                         <Image
-          source={require("../../../assets/images/gg.png")}
-          style={{height:40 , width:40}}
-        />
+                  <Image
+                    source={require("../../../assets/images/gg.png")}
+                    style={{ height: 40, width: 40 }}
+                  />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Google</Text> */}
               </View>
@@ -228,10 +228,10 @@ const SignInScreen = (props: SignInProps) => {
                     { backgroundColor: "#fff" },
                   ]}
                 >
-                         <Image
-          source={require("../../../assets/images/gmail.png")}
-          style={{height:40 , width:40}}
-        />
+                  <Image
+                    source={require("../../../assets/images/gmail.png")}
+                    style={{ height: 40, width: 40 }}
+                  />
                 </View>
                 {/* <Text style={styles.socialsignintext}>Google</Text> */}
               </View>
@@ -247,92 +247,93 @@ const SignInScreen = (props: SignInProps) => {
             </Text>
           </Text>
         </View>
-        <View style={{flexDirection:'row' , justifyContent:"space-evenly" , alignItems:"stretch" , paddingVertical:40}}>
+        <View style={{ flexDirection: 'row', justifyContent: "space-evenly", alignItems: "stretch", paddingVertical: 40 }}>
 
           <View>
-            <TouchableOpacity 
-            
-            onPress={() =>
-              Toast.show({ text: "Tính năng còn đang phát triển" })
-            }
-            >
-              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+            <TouchableOpacity
 
-              <Image
-          source={require("../../../assets/images/tintuc.png")}
-          style={{height:25 , width:25}}
-        />
-        <Text>Tin tức</Text>
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+            >
+              <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
+                <Image
+                  source={require("../../../assets/images/tintuc.png")}
+                  style={{ height: 25, width: 25 }}
+                />
+                <Text>Tin tức</Text>
               </View>
-        
+
 
             </TouchableOpacity>
-      
-          </View>
-        
-          <View>
-            <TouchableOpacity 
-            
-            onPress={() =>
-              Toast.show({ text: "Tính năng còn đang phát triển" })
-            }
-            >
-              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
 
-              <Image
-          source={require("../../../assets/images/quydinh.png")}
-          style={{height:30 , width:25}}
-        />
-        <Text>Quy định</Text>
-        <Text>sử dụng</Text>
+          </View>
+
+          <View>
+            <TouchableOpacity
+
+              // onPress={() =>
+              //   Toast.show({ text: "Tính năng còn đang phát triển" })
+              // }
+              onPress={() => navigation.navigate("UsageRules")}
+            >
+              <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
+                <Image
+                  source={require("../../../assets/images/quydinh.png")}
+                  style={{ height: 30, width: 25 }}
+                />
+                <Text>Quy định</Text>
+                <Text>sử dụng</Text>
               </View>
-        
+
 
             </TouchableOpacity>
-      
+
           </View>
           <View>
-            <TouchableOpacity 
-            
-            onPress={() =>
-              Toast.show({ text: "Tính năng còn đang phát triển" })
-            }
-            >
-              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
+            <TouchableOpacity
 
-              <Image
-          source={require("../../../assets/images/huongđan.png")}
-          style={{height:25 , width:25}}
-        />
-        <Text>Hướng dẫn</Text>
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+            >
+              <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
+                <Image
+                  source={require("../../../assets/images/huongđan.png")}
+                  style={{ height: 25, width: 25 }}
+                />
+                <Text>Hướng dẫn</Text>
               </View>
-        
+
 
             </TouchableOpacity>
-      
+
           </View>
           <View>
-            <TouchableOpacity 
-            
-        
+            <TouchableOpacity
+
+
               // Toast.show({ text: "Tính năng còn đang phát triển" })
-             
-             onPress={() => navigation.navigate("ConfirmOTP")}
-            >
-              <View style={{flexDirection:'column' , justifyContent:'center' , alignItems:'center'}}>
 
-              <Image
-          source={require("../../../assets/images/lienhe.png")}
-          style={{height:25 , width:25}}
-        />
-        <Text>Liên hệ</Text>
+              // onPress={() => navigation.navigate("ConfirmOTP")}
+            >
+              <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
+                <Image
+                  source={require("../../../assets/images/lienhe.png")}
+                  style={{ height: 25, width: 25 }}
+                />
+                <Text>Liên hệ</Text>
               </View>
-        
+
 
             </TouchableOpacity>
-      
+
           </View>
-          
+
         </View>
       </Form>
       {/* <FooterBlock />
@@ -450,14 +451,14 @@ const styles = StyleSheet.create({
   socialsignin: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems:'center',
+    alignItems: 'center',
 
     marginTop: 18,
-  
+
   },
   socialsigninitem: {
     alignItems: "center",
-    paddingHorizontal:5,
+    paddingHorizontal: 5,
   },
   socialsigninbox: {
     width: 34,

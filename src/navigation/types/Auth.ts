@@ -4,6 +4,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 export type AuthParamList = {
   // nơi khai báo screen và params
   Information: undefined;
+  UsageRules: undefined;
+  ContactLogin: undefined;
   SignIn: undefined;
   Register: undefined;
   ForgotPassword: undefined;
@@ -33,6 +35,34 @@ export type InformationProps = {
   navigation: InformationScreenNavigationProp;
   route: InformationScreenRouteProp;
 };
+
+
+// ++ information
+type UsageRulesScreenNavigationProp = StackNavigationProp<
+  AuthParamList,
+  "UsageRules"
+>;
+type UsageRulesScreenRouteProp = RouteProp<AuthParamList, "UsageRules">;
+export type UsageRulesProps = {
+  navigation: UsageRulesScreenNavigationProp;
+  route: UsageRulesScreenRouteProp;
+};
+
+
+// ++ information
+type ContactLoginScreenNavigationProp = StackNavigationProp<
+  AuthParamList,
+  "ContactLogin"
+>;
+type ContactLoginScreenRouteProp = RouteProp<AuthParamList, "ContactLogin">;
+export type ContactLoginProps = {
+  navigation: ContactLoginScreenNavigationProp;
+  route: ContactLoginScreenRouteProp;
+};
+
+
+
+
 
 // ++ register
 type RegisterScreenNavigationProp = StackNavigationProp<

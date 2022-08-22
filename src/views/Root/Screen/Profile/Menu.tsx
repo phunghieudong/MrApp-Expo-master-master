@@ -79,8 +79,8 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     },
     {
       svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20" onPress={() => onPress(0)}>
-          <Defs>
+        <Svg width="20" height="20" viewBox="0 0 20 20" >
+          <Defs onPress={() => onPress(0)}>
             <ClipPath id="clipPath">
               <Rect
                 id="Rectangle_1065"

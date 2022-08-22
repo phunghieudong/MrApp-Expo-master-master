@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { DiagnosticData } from "@/types/MedicalRecordDetail";
 import { Icon, Text, View } from "native-base";
 import React, { FC, useRef, useState } from "react";
@@ -105,6 +106,33 @@ const PrescriptionItem: FC<IProps> = ({ item }) => {
         {item.SpecialistTypeId && `Khoa: ${item.SpecialistTypeName}, `}Phòng{" "}
         {item.RoomName}
       </Text>
+      <View style={{ backgroundColor: 'white', height: 419, width: "100%", paddingTop: 26, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: '#E8F5F8', height: 419, width: 315, borderRadius: 8 }}>
+          <View style={{ paddingLeft: 15, paddingTop: 25 }}>
+            <Text style={{ color: "#666666", fontSize: 12 }}>BÁC SĨ</Text>
+            <Text style={{ color: "#142977", fontSize: 18 }} >{item.DoctorName}</Text>
+          </View>
+          <View style={{ paddingLeft: 15, paddingTop: 20 }}>
+            <Text style={{ color: "#666666", fontSize: 12 }}>KHOA</Text>
+            <Text style={{ color: "#142977", fontSize: 18 }} >{item.SpecialistTypeName}</Text>
+          </View>
+          <View style={{ paddingLeft: 15, paddingTop: 20 }}>
+            <Text style={{ color: "#666666", fontSize: 12 }}>PHÒNG</Text>
+            <Text style={{ color: "#142977", fontSize: 18 }} >{item.RoomName}</Text>
+          </View>
+          <View style={{ paddingLeft: 15, paddingTop: 20 }}>
+            <Text style={{ color: "#666666", fontSize: 12 }}>MÃ HỒ SƠ BỆNH VIỆN</Text>
+            <Text style={{ color: "#142977", fontSize: 18, paddingRight: 10 }} >{item.Code}</Text>
+          </View>
+          <View style={{ paddingLeft: 15, paddingTop: 20 }}>
+            <Text style={{ color: "#666666", fontSize: 12 }}>TOA THUỐC-LỜI DẶN CỦA BÁC SĨ</Text>
+            <Text style={{ color: "#142977", fontSize: 18, paddingRight: 10 }} >{item.DoctorComment}</Text>
+          </View>
+
+
+
+        </View>
+      </View>
       <FlatList
         style={styles.list}
         horizontal
@@ -124,12 +152,111 @@ const PrescriptionItem: FC<IProps> = ({ item }) => {
           );
         }}
       />
-      <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+      <View style={{ width: "100%", height: 200, }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', padding: 10 }}>
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', padding: 10 }}>
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 102, width: 102, }}
+          />
+        </View>
+      </View>
+      <TouchableWithoutFeedback >
+        <View style={{
+          paddingHorizontal: padding,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 4,
+
+          paddingTop: 50
+        }}>
+          <Image
+            source={require("../../../../assets/images/camera.png")}
+            style={{ height: 17, width: 20, marginRight: 10 }}
+          />
+          <Text style={styles.documenttext}>ĐÍNH KÈM ẢNH TƯ LIỆU / HỒ SƠ</Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <View style={{ flexDirection: 'row', paddingTop: 30, justifyContent: "space-evenly", alignItems: 'center', paddingHorizontal: 80, }}>
+
+
+        <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+          <View style={styles.document}>
+            <Image
+              source={require("../../../../assets/images/kqxndown.png")}
+              style={{ height: 25, width: 13 }}
+            />
+            <Text style={styles.documenttext}>TẢI XUỐNG</Text>
+          </View>
+
+        </TouchableWithoutFeedback>
+        <View style={styles.document}>
+
+          <Text style={{ color: "#D9D9D9", fontSize: 20 }}>|</Text>
+        </View>
+        <TouchableWithoutFeedback onPress={() => select.current?.open()}>
+          <View style={styles.document}>
+            <Image
+              source={require("../../../../assets/images/SHARE.png")}
+              style={{ height: 20, width: 20 }}
+            />
+            <Text style={styles.documenttext}>SHARE</Text>
+          </View>
+
+        </TouchableWithoutFeedback>
+      </View>
+      {/* <TouchableWithoutFeedback onPress={() => select.current?.open()}>
         <View style={styles.document}>
           <Icon type="EvilIcons" name="camera" style={styles.documenticon} />
           <Text style={styles.documenttext}>CHỤP ẢNH / LƯU HỒ SƠ</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback> */}
+      <View style={{ width: "100%", flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', paddingHorizontal: 120, paddingTop: 30 }}>
+        <View>
+          <Image
+            source={require("../../../../assets/images/tri.png")}
+            style={{ height: 6, width: 18 }}
+          />
+        </View>
+        <View style={{ backgroundColor: '#142977', height: 44, width: 44, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: 'white' }}>01</Text>
+        </View>
+
+        <View style={{ backgroundColor: '#fff', height: 44, width: 44, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: 'black' }}>02</Text>
+        </View>
+        <View style={{ backgroundColor: '#fff', height: 44, width: 44, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: 'black' }}>03</Text>
+        </View>
+        <View>
+          <Image
+            source={require("../../../../assets/images/phai.png")}
+            style={{ height: 6, width: 18 }}
+          />
+        </View>
+      </View>
       {images.length > 0 && (
         <TouchableWithoutFeedback onPress={loading ? undefined : _onPress}>
           <View style={styles.update}>

@@ -54,7 +54,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
         previous={() => navigation.goBack()}
       />
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        {/* <TextInput
+        <TextInput
           style={{
             height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
             margin: 12,
@@ -68,7 +68,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
           placeholder="Nhập tên bệnh viện"
           defaultValue={text}
 
-        /> */}
+        />
 
       </View>
       {!ready && <LazyLoading />}
