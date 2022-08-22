@@ -11,12 +11,12 @@ import {
   Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-import Logo from "../Logo";
+
 import Svg, { Defs, G, LinearGradient, Path, Stop } from "react-native-svg";
 
 const { height: dH } = Dimensions.get("window");
 const { mainColor, goldColor, padding } = settings.styles;
- 
+
 type IProps = {
   title: string;
   previous?: () => void;
@@ -53,22 +53,22 @@ const CustomHeader = ({
         <View style={styles.menu}>
           {previous && (
             <TouchableWithoutFeedback onPress={previous}>
-             
+
               <Icon type="Ionicons" name="chevron-back" style={styles.back} />
-             
+
             </TouchableWithoutFeedback>
           )}
           {!previous && (
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate("Profile", { screen: "Menu" })}
             >
-             
-             <Image
-          source={require("../../assets/images/menu.png")}
-          style={{height:24 , width:24}}
-             />
-             
-       
+
+              <Image
+                source={require("../../assets/images/menu.png")}
+                style={{ height: 24, width: 24 }}
+              />
+
+
             </TouchableWithoutFeedback>
           )}
         </View>
@@ -148,32 +148,35 @@ const CustomHeader = ({
       </View>
 
       <View style={styles.right}>
-
+        {filter && (
+          <TouchableOpacity onPress={filter} activeOpacity={0.9}>
+            <View style={{paddingRight:5}}>
+              <Image
+                source={require("../../assets/images/locd.png")}
+                style={{ height: 24, width: 24 }}
+              />
+            </View>
+          </TouchableOpacity>
+        )}
         {notifications !== false && (
           <TouchableOpacity
             onPress={() => navigation.navigate("Notification")}
             activeOpacity={0.9}
           >
             <View style={styles.noti}>
-            <Image
-          source={require("../../assets/images/bell.png")}
-          style={{height:24 , width:24}}
-             />
+              <Image
+                source={require("../../assets/images/bell.png")}
+                style={{ height: 24, width: 24 }}
+              />
               <View style={styles.badge} />
             </View>
           </TouchableOpacity>
 
-          
+
         )}
 
-        
-        {filter && (
-          <TouchableOpacity onPress={filter} activeOpacity={0.9}>
-            <View style={styles.noti}>
-              <Icon type="AntDesign" name="filter" style={styles.notiicon} />
-            </View>
-          </TouchableOpacity>
-        )}
+
+
       </View>
     </Header>
   );
@@ -232,7 +235,11 @@ const styles = StyleSheet.create({
     color: goldColor,
     textTransform: "uppercase",
   },
-  right: {},
+  right: {
+    flexDirection: 'row',
+    justifyContent:'space-between'
+
+  },
   noti: {},
   notiicon: {
     color: "#fff",

@@ -50,11 +50,11 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
     <Container style={styles.container}>
 
       <HeaderRoot
-        title="MÃ HỒ SƠ B. VIỆN"
+        title="MÃ HỒ SƠ BỆNH VIỆN"
         previous={() => navigation.goBack()}
       />
-      <View style={{justifyContent:'center' , alignItems:'center'}}>
-        <TextInput
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        {/* <TextInput
           style={{
             height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
             margin: 12,
@@ -68,7 +68,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
           placeholder="Nhập tên bệnh viện"
           defaultValue={text}
 
-        />
+        /> */}
 
       </View>
       {!ready && <LazyLoading />}
@@ -76,7 +76,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
         <Empty text="Không tìm thấy bất kỳ hồ sơ bệnh viện nào" />
       )}
       {ready && data.length > 0 && (
-        
+
         <FlatList
           data={data}
           style={styles.body}
@@ -84,6 +84,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
           renderItem={({ item }) => (
 
             <View style={styles.block}>
+
 
               <View>
 
@@ -100,11 +101,13 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
                   fontSize: 14,
                   fontFamily: "Regular",
                   lineHeight: 18,
-                  borderBottomWidth: 1,
-                  borderColor: "rgba(0, 0, 0, 0.1)",
+
                   width: "100%",
                   paddingVertical: 5,
-                }}></View>
+                }}>
+
+                </View>
+
               </View>
 
             </View>
@@ -123,14 +126,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   body: {
-    paddingHorizontal: padding,
+
   },
   block: {
 
-    borderRadius: 16,
-    marginVertical: 5,
+    padding: 30,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#E8F5F8',
+    width: "150%",
+    height: 137
 
   },
   flex: {
