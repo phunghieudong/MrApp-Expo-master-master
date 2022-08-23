@@ -84,7 +84,7 @@ const InformationScreen = (props: InformationProps) => {
       </View>
       <View style={styles.language}>
         <Text style={styles.languagelabel}>Chọn ngôn ngữ</Text>
-        <TouchableWithoutFeedback onPress={() => modal.current?.open()}>
+        <TouchableWithoutFeedback >
           <View style={styles.languageselected}>
             <Text style={styles.languagecurrent}>
               {active === 0 ? "Tiếng việt" : "Tiếng anh"}

@@ -715,6 +715,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
         hideRoute
         logo
         previous={() => navigation.goBack()}
+
       />
       <View style={styles.body} onPress={(event) => setActive(event)}>
         <View style={styles.left}>
@@ -839,7 +840,20 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
                         </View>
                       </View>
                       <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
-                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận tin tức quảng cáo</Text>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận tin tức khuyến mãi</Text>
+                        <View>
+                          {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+                          <Switch
+                            onValueChange={toggleSwitch}
+                            value={enabled}
+                            thumbColor={enabled ? thumbColorOn : thumbColorOff}
+                            trackColor={{ false: trackColorOff, true: trackColorOn }}
+                            ios_backgroundColor={trackColorOff}
+                          />
+                        </View>
+                      </View>
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Nhận tin tức </Text>
                         <View>
                           {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
                           <Switch
@@ -852,7 +866,14 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
                         </View>
                       </View>
 
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Cập nhật tài khoản </Text>
 
+                      </View>
+                      <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "80%" }}>
+                        <Text style={{ fontSize: 12, paddingLeft: 10, paddingTop: 16 }}>Cập nhật số tài khoản ngân hàng </Text>
+
+                      </View>
                     </View>
 
                   ))}

@@ -116,11 +116,11 @@ const DashboardScreen = (props: DashboardProps) => {
                 />
               </View>
             </TouchableWithoutFeedback>
-          </View>
+          </View> 
         </View>
       </Modal>
     );
-  };
+  }; 
   return (
     <Container style={styles.container}>
       <HeaderRoot logo={true} />

@@ -10,6 +10,7 @@ import {
   BackHandler,
   Platform,
   Linking,
+  Image
 } from "react-native";
 import { CalendarInfoProps } from "@/navigation/types/Home";
 import { useAppSelector } from "@/store/hook";
@@ -26,6 +27,9 @@ const {
   mainColorText,
   borderColor,
 } = settings.styles;
+import Webview from "react-native-webview";
+
+const map = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2660681269867!2d106.65395381431712!3d10.790922361877834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed189fa855d%3A0xf63e15bfce46baef!2sC%C3%B4ng%20ty%20TNHH%20-%20MONA%20MEDIA!5e0!3m2!1svi!2s!4v1660727364553!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
 const CalendarInfoScreen: FC<CalendarInfoProps> = ({
   navigation,
@@ -83,15 +87,22 @@ const CalendarInfoScreen: FC<CalendarInfoProps> = ({
     <Container>
       <HeaderRoot
         title="THÔNG TIN LỊCH HẸN"
-        previous={() => navigation.navigate("Dashboard")}
+        menu={() => navigation.navigate("Dashboard")}
       />
       <Content contentContainerStyle={styles.body}>
+        <View style={{ height: 183, width: "100%", }}>
+          <Webview source={{ html: map }} style={{ height: 183, width: "158%", }} />
+          {/* <Image
+            source={require("../../../../assets/images/map.png")}
+            style={{ height: 183, width: "100%", marginRight: 8 }}
+          /> */}
+        </View>
         <View style={styles.hospital}>
           <Text style={styles.hospitalname}>{hospitalName}</Text>
-          {specialistTypeName && (
+          {/* {specialistTypeName && (
             <Text style={styles.hospitalspecial}>{specialistTypeName}</Text>
-          )}
-          <Text style={styles.hospitallabel}>ĐỊA CHỈ</Text>
+          )} */}
+          {/* <Text style={styles.hospitallabel}>ĐỊA CHỈ</Text>
           <Text style={styles.hospitalvalue}>{hospitalAddress}</Text>
           <Text style={styles.hospitallabel}>WEBSITE</Text>
           <Text
@@ -102,9 +113,9 @@ const CalendarInfoScreen: FC<CalendarInfoProps> = ({
             onPress={() => handleLinking("website")}
           >
             {hospitalWebsite}
-          </Text>
-          <Text style={styles.hospitallabel}>SỐ ĐIỆN THOẠI</Text>
-          <Text
+          </Text> */}
+          {/* <Text style={styles.hospitallabel}>SỐ ĐIỆN THOẠI</Text> bấm vào là đi luôn nè*/}
+          {/* <Text
             style={[
               styles.hospitalvalue,
               { color: blueColor, textDecorationLine: "underline" },
@@ -112,7 +123,8 @@ const CalendarInfoScreen: FC<CalendarInfoProps> = ({
             onPress={() => handleLinking("phone")}
           >
             {hospitalPhoneNumber}
-          </Text>
+          </Text> */}
+          <Text style={styles.hospitalvalue}>{hospitalAddress}</Text>
         </View>
         <View style={styles.info}>
           <View style={styles.index}>
@@ -124,8 +136,8 @@ const CalendarInfoScreen: FC<CalendarInfoProps> = ({
             </Text>
           </View>
           <View style={styles.infobox}>
-            <View style={styles.infobox}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
+
+            {/* <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Họ tên: {user?.UserFullName}
               </Text>
 
@@ -146,9 +158,55 @@ const CalendarInfoScreen: FC<CalendarInfoProps> = ({
                 <Text style={styles.infotext}>
                   Bảo hiểm y tế: {isBHYT < 2 ? "Có" : "Không"}
                 </Text>
-              )}
+              )} */}
+
+            <View style={{ flexDirection: 'column' }}>
+              <Text style={{ color: '#FB8500', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Số thứ tự</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Khoa: </Text>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>{specialistTypeName}</Text>
+
+              </View>
+
+
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Phòng: </Text>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>{roomExaminationName}</Text>
+              </View>
+              <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Khám thường</Text>
+              <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Thanh toán trực tiếp</Text>
+              <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Tái khám</Text>
+
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>Bác sĩ: </Text>
+                <Text style={{ color: '#219EBC', fontSize: 14, fontFamily: "SFProDisplay-Bold", }}>{doctorName}</Text>
+              </View>
             </View>
+            <View>
+              <Text style={{ color: '#FB8500', fontSize: 24, fontFamily: "SFProDisplay-Bold", }}>A420</Text>
+            </View>
+
           </View>
+
+          <TouchableWithoutFeedback onPress={() =>
+            Toast.show({ text: "Tính năng còn đang phát triển" })
+          }>
+            <View style={{
+              paddingHorizontal: padding,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 4,
+
+              paddingTop: 50
+            }}>
+              <Image
+                source={require("../../../../assets/images/camera.png")}
+                style={{ height: 17, width: 20, marginRight: 10 }}
+              />
+              <Text style={styles.documenttext}>ĐÍNH KÈM ẢNH TƯ LIỆU / HỒ SƠ</Text>
+            </View>
+          </TouchableWithoutFeedback>
           <TouchableWithoutFeedback>
             <View style={styles.link}>
               <Text
@@ -175,7 +233,7 @@ const styles = StyleSheet.create({
   },
   hospital: {
     borderColor,
-    backgroundColor: mainColorLight,
+    // backgroundColor: mainColorLight,
     padding,
   },
   hospitalname: {
@@ -250,6 +308,15 @@ const styles = StyleSheet.create({
   imgs: {
     marginVertical: 20,
   },
+  documenttext: {
+    textAlign: "center",
+    color: "#E85D04",
+    fontSize: 16,
+    lineHeight: 30,
+    letterSpacing: 1.5,
+    fontFamily: "SFProDisplay-Regular",
+  },
+
   imgtext: {
     fontFamily: "SFProDisplay-Bold",
     fontSize: 16,
@@ -278,13 +345,13 @@ const styles = StyleSheet.create({
   link: {
     marginVertical: 20,
     padding: 12,
-    backgroundColor: "#fff",
+    backgroundColor: "#142977",
     borderRadius: 100,
     borderWidth: 1,
     borderColor: mainColor,
   },
   linktext: {
-    color: mainColor,
+    color: "white",
     fontSize: 18,
     textAlign: "center",
     fontFamily: "SFProDisplay-Bold",
@@ -295,8 +362,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#219EBC",
     borderStyle: "dashed",
-    justifyContent: "center",
+    justifyContent: "space-between",
     marginTop: 10,
+    flexDirection: 'row', 
+   
   },
   infotext: {
     fontSize: 16,
