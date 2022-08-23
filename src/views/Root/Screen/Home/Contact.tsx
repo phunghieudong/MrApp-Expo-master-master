@@ -13,7 +13,7 @@ const ContactScreen = ({ navigation }) => {
   return (
 
     <Container>
-      <HeaderRoot title="Liên hệ" previous={() => navigation.goBack()} />
+      <HeaderRoot title="Liên hệ"/>
       <ScrollView>
         <View style={{height:183 , width:"100%" ,  }}>
           <Webview source={{ html: map }} style={{height:183 , width:"158%" , }}/>

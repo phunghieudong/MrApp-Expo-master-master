@@ -102,6 +102,7 @@ const DashboardScreen = (props: DashboardProps) => {
                 <Icon
                   type="Ionicons"
                   name="chevron-down-sharp"
+  
                   style={styles.icon}
                 />
               </View>
@@ -248,7 +249,7 @@ const DashboardScreen = (props: DashboardProps) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Profile", {
-                    screen: "Vaccination",
+                    screen: "ProfileMenu",
                     params: {},
                   })
                 }

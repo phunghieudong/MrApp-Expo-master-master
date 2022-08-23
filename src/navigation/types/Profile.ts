@@ -8,6 +8,7 @@ export type ProfileParamList = {
   EditPatientProfile: undefined;
   ServiceAccount: undefined;
   PrivacyPolicy: undefined;
+  Present: undefined;
   AdviseMenu:undefined;
   UserManual:undefined;
   TermOfUse: undefined;

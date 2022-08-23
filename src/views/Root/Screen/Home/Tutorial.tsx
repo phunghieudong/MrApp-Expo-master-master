@@ -11,7 +11,7 @@ const TutorialScreen = ({ navigation }) => {
   return (
 
     <Container>
-      <HeaderRoot title="Tư vấn trực tuyến" previous={() => navigation.goBack()} />
+      <HeaderRoot title="Tư vấn trực tuyến" previous={false} notifications={true} />
       <ScrollView>
 
         <View style={{

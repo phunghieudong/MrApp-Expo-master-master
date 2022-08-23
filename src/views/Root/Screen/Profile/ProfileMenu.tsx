@@ -23,11 +23,12 @@ const ProfileMenuScreen = ({ navigation }) => {
 
     return (
         <Container style={styles.container}>
-            <HeaderRoot logo={true} previous={() => navigation.goBack()} />
+            <HeaderRoot logo1={true} previous={() => navigation.goBack()} />
             <Content contentContainerStyle={styles.body}>
 
 
                 <View style={styles.box}>
+
 
                     <View>
                         <Image
@@ -35,7 +36,7 @@ const ProfileMenuScreen = ({ navigation }) => {
                             style={{ height: 24, width: 24, marginRight: 10 }}
                         />
                     </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Present")} >
                         <View>
 
                             <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Bệnh án hiện tại</Text>
@@ -104,7 +105,7 @@ const ProfileMenuScreen = ({ navigation }) => {
                             source={require("../../../../assets/images/1.png")}
                             style={{ height: 24, width: 24, marginRight: 10 }}
                         />
-                    </View> 
+                    </View>
                     <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
                         <View>
                             <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Thông tin thai phụ</Text>
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 18,
         borderRadius: 12,
-        alignItems:'center'
+        alignItems: 'center'
 
 
     },

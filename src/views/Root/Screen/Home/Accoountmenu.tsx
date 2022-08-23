@@ -655,7 +655,7 @@ const AccoountmenuScreen: FC<PatientProfileProps> = ({ navigation }) => {
     <Container>
       <HeaderRoot
         title="Hồ sơ người bệnh"
-        previous={() => navigation.goBack()}
+        // previous={() => navigation.goBack()}
         hideRoute
       />
       <View style={styles.info}>

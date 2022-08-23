@@ -713,7 +713,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       <HeaderRoot
         title="Menu"
         hideRoute
-        logo
+        logo1
         previous={() => navigation.goBack()}
 
       />

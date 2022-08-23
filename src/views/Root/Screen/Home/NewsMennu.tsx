@@ -42,7 +42,7 @@ const NewsMennu: FC<NewsProps> = ({ navigation }) => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="tin tức" previous={() => navigation.goBack()} />
+      <HeaderRoot title="tin tức" />
       {!ready && <LazyLoading />}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ tin tức nào" />
