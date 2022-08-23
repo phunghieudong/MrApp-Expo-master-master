@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
-import { Container, Content } from "native-base";
+import { Container, Content ,Toast} from "native-base";
 import React, { useEffect, useState } from "react";
 import { InteractionManager, StyleSheet, View, Text, Image, TouchableWithoutFeedback } from "react-native";
 
@@ -25,7 +25,7 @@ const FolderScreen = ({ navigation }) => {
   };
   return (
     <Container >
-      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true} previous={() => navigation.goBack()} filter={true} />
+      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true} menu={() => navigation.goBack()} filter={true} />
       <Content contentContainerStyle={styles.body}>
         <View style={{ height: 54, width: "100%", backgroundColor: '#F0F0F0' }}>
           <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#525252', paddingHorizontal: 30, justifyContent: 'center', paddingVertical: 18 }}>SIÊU ÂM</Text>
@@ -73,7 +73,11 @@ const FolderScreen = ({ navigation }) => {
         <View style={{ flexDirection: 'row', justifyContent: "space-evenly", alignItems: 'center', paddingHorizontal: 80, }}>
 
 
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback 
+          onPress={() =>
+            Toast.show({ text: "Tính năng còn đang phát triển" })
+          }
+          >
             <View style={styles.document}>
               <Image
                 source={require("../../../../assets/images/blue2.png")}
@@ -82,12 +86,14 @@ const FolderScreen = ({ navigation }) => {
               <Text style={styles.documenttext}>TẢI XUỐNG</Text>
             </View>
 
-          </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback >
           <View style={styles.document}>
 
             <Text style={{ color: "#D9D9D9", fontSize: 20 }}>|</Text>
           </View>
-          <TouchableWithoutFeedback >
+          <TouchableWithoutFeedback onPress={() =>
+            Toast.show({ text: "Tính năng còn đang phát triển" })
+          } >
             <View style={styles.document}>
               <Image
                 source={require("../../../../assets/images/blue3.png")}
@@ -145,7 +151,9 @@ const FolderScreen = ({ navigation }) => {
         <View style={{ flexDirection: 'row', justifyContent: "space-evenly", alignItems: 'center', paddingHorizontal: 80, }}>
 
 
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() =>
+            Toast.show({ text: "Tính năng còn đang phát triển" })
+          }>
             <View style={styles.document}>
               <Image
                 source={require("../../../../assets/images/blue2.png")}
@@ -159,7 +167,9 @@ const FolderScreen = ({ navigation }) => {
 
             <Text style={{ color: "#D9D9D9", fontSize: 20 }}>|</Text>
           </View>
-          <TouchableWithoutFeedback >
+          <TouchableWithoutFeedback onPress={() =>
+            Toast.show({ text: "Tính năng còn đang phát triển" })
+          }>
             <View style={styles.document}>
               <Image
                 source={require("../../../../assets/images/blue3.png")}

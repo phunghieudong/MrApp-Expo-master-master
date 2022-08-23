@@ -252,9 +252,7 @@ const SignInScreen = (props: SignInProps) => {
           <View>
             <TouchableOpacity
 
-              onPress={() =>
-                Toast.show({ text: "Tính năng còn đang phát triển" })
-              }
+              onPress={() => navigation.navigate("NewsOut")}
             >
               <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 
@@ -294,10 +292,7 @@ const SignInScreen = (props: SignInProps) => {
           </View>
           <View>
             <TouchableOpacity
-
-              onPress={() =>
-                Toast.show({ text: "Tính năng còn đang phát triển" })
-              }
+              onPress={() => navigation.navigate("Guide")}
             >
               <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 
@@ -315,10 +310,10 @@ const SignInScreen = (props: SignInProps) => {
           <View>
             <TouchableOpacity
 
+              onPress={() => navigation.navigate("ContactOut")}
+            // Toast.show({ text: "Tính năng còn đang phát triển" })
 
-              // Toast.show({ text: "Tính năng còn đang phát triển" })
-
-              // onPress={() => navigation.navigate("ConfirmOTP")}
+            // onPress={() => navigation.navigate("ConfirmOTP")}
             >
               <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 

@@ -6,7 +6,7 @@
       <stop offset="0.394" stop-color="#efbc2e"/>
       <stop offset="0.714" stop-color="#efbc2e"/>
       <stop offset="0.716" stop-color="#fb8500"/>
-      <stop offset="1" stop-color="#fb8500"/>
+      <stop offset="1" stop-color="red"/>
     </linearGradient>
   </defs>
   <g id="Group_847" data-name="Group 847" transform="translate(-80.326 -152.382)">

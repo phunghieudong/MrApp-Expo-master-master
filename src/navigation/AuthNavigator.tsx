@@ -7,7 +7,9 @@ import {
   RegisterScreen,
   SignInScreen,
   UsageRulesScreen,
-
+  ContactOutScreen,
+  GuideScreen,
+  NewsOutScreen
 } from "@/views";
 import { settings } from "@/config";
 import { useAppSelector } from "@/store/hook";
@@ -31,7 +33,9 @@ const AuthNavigator = () => {
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="UsageRules" component={UsageRulesScreen} />
-
+      <Stack.Screen name="ContactOut" component={ContactOutScreen} />
+      <Stack.Screen name="Guide" component={GuideScreen} />
+      <Stack.Screen name="NewsOut" component={NewsOutScreen} />
       <Stack.Screen name="Information" component  ={InformationScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />

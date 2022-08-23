@@ -53,7 +53,8 @@ const renderItem = (
   if (index === 0) first["borderTopWidth"] = 0;
 
   return (
-    <TouchableOpacity >
+
+    <TouchableOpacity onPress={() => navigation.navigate("RegularProblemsDetail")}>
       <View style={[styles.item, first]}>
 
         <View style={styles.left}>
@@ -73,9 +74,9 @@ const renderItem = (
   );
 };
 
-const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({
-  navigation,
-}) => {
+const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({navigation}) => {
+
+
   // thông báo hủy lịch hẹn, xem thông tin lịch hẹn
   const notification = useRef<Modalize>(null);
   const seeCalendar = useRef<Modalize>(null);
@@ -184,7 +185,7 @@ const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({
 
   return (
     <Container>
-      <HeaderRoot title="FAQ" />
+      <HeaderRoot title="FAQ" filter={true} />
       {!ready && <LazyLoading />}
       {ready && (
         <>
@@ -197,9 +198,9 @@ const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({
             renderItem={({ item, index }) =>
 
 
-            
+
               renderItem(item, index, pay, noti, see)
-              
+
             }
           />
 

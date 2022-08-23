@@ -51,7 +51,7 @@ const PrescriptionScreen: FC<PrescriptionProps> = ({ navigation }) => {
 
   return (
     <Container>
-      <HeaderRoot filter={true} title="TOA THUỐC" previous={() => navigation.goBack()} />
+      <HeaderRoot filter={true} title="TOA THUỐC"  menu={() => navigation.goBack()} /> 
       {!ready && <LazyLoading />}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ toa thuốc nào" />

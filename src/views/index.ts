@@ -6,7 +6,9 @@ export { default as SignInScreen } from "./Auth/Screen/SignIn";
 export { default as RegisterScreen } from "./Auth/Screen/Register";
 export { default as InformationScreen } from "./Auth/Screen/Information";
 export { default as UsageRulesScreen } from "./Auth/Screen/UsageRules";
-
+export { default as ContactOutScreen } from "./Auth/Screen/ContactOut";
+export { default as GuideScreen } from "./Auth/Screen/Guide";
+export { default as NewsOutScreen } from "./Auth/Screen/NewsOut";
 // home
 export { default as CalendarScreen } from "./Root/Screen/Home/Calendar";
 export { default as CalendarInfoScreen } from "./Root/Screen/Home/CalendarInfo";

@@ -249,63 +249,7 @@ const Index: FC<IProps> = ({
           </View>
         </TouchableWithoutFeedback>
       )}
-      {/* <BottomSheet
-        visible={visible}
-
-        onBackButtonPress={toggleBottomNavigationView}
-
-        onBackdropPress={toggleBottomNavigationView}
-        heading="Chọn hình ảnh"
-        headingButton={
-          images.length > 0 ? { text: "LƯU", onPress: _onPress } : undefined
-        }
-      >
-        <>
-          <FlatList
-            data={images}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.list}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item: i, index }) => {
-              let firstOrLast = {};
-              if (index === 0) firstOrLast = { marginLeft: 30 };
-              else if (index === images.length - 1)
-                firstOrLast = { marginRight: 30 };
-              return (
-                <View style={[styles.box, firstOrLast]}>
-                  <TouchableWithoutFeedback
-                    onPress={() => slide.current?.open()}
-                  >
-                    <Image source={{ uri: i.uri }} style={styles.img} />
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback onPress={() => removeImage(index)}>
-                    <Icon
-                      type="AntDesign"
-                      name="closecircle"
-                      style={styles.remove}
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
-              );
-            }}
-          />
-          <View
-            style={styles.bottomNavigationView}
-          >
-            <TouchableWithoutFeedback onPress={loading ? undefined : takeImage}>
-              <View style={styles.add}>
-                <Text style={styles.addtext}>Chụp ảnh</Text>
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={loading ? undefined : pickImage}>
-              <View style={styles.add}>
-                <Text style={styles.addtext}>Thêm hình ảnh từ thiết bị</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </>
-      </BottomSheet> */}
+      
       <View style={styles.container}>
 
 
@@ -417,10 +361,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
 
   },
-  documenticon: {
-    color: orangeColor,
-    marginRight: 4,
-  },
   documenttext: {
     textAlign: "center",
     color: "#E85D04",
@@ -428,6 +368,11 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
     fontFamily: "SFProDisplay-Regular",
   },
+  documenticon: {
+    color: orangeColor,
+    marginRight: 4,
+  },
+
   update: {
     elevation: 4,
     backgroundColor: blueColor,

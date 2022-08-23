@@ -53,24 +53,25 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
   return (
     <Container>
       <HeaderRoot
-        title="Tiểu sử"
-        previous={() => navigation.goBack()} 
+        title="LỊCH SỬ TIÊM CHỦNG"
+        menu={() => navigation.goBack()}
+        filter={true}
       />
-      {!ready && <LazyLoading/>}
+      {!ready && <LazyLoading />}
       {ready && !data.length && (
         <Empty text="Không tìm thấy bất kỳ lịch tiêm chủng nào cả" />
       )}
       {ready && data.length > 0 && (
         <>
           <SectionList
-        
+
             sections={data.map((item) => {
               return { title: item, data: [item] };
             })}
             stickySectionHeadersEnabled
             renderSectionHeader={({ section }) => (
-              <BaseHeadingDate 
-            
+              <BaseHeadingDate
+
                 text={
                   _format.getDateOfWeek(section.title.ExaminationDate) +
                   ", " +
@@ -85,22 +86,21 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
               <View
                 style={[styles.block, index === 0 && { borderTopWidth: 0 }]}
               >
-                <Text style={styles.hospital}>{item.VaccineTypeName}</Text>
-                <Text style={styles.address}>{item.HospitalName}</Text>
+                {/* <Text style={styles.hospital}>{item.VaccineTypeName}</Text> */}
+                <Text style={{
+                  color: blueColor,
+                  fontSize: 18,
+                  lineHeight: 30,
+                  fontFamily: "SFProDisplay-Bold",
+                  textTransform: "uppercase",
+                }}>{item.HospitalName}</Text>
                 <View style={styles.flex}>
-                  <Icon
-                    type="MaterialIcons"
-                    name="add-location"
-                    style={styles.icon}
-                  />
+
                   <Text style={styles.address}>{item.HospitalAddress}</Text>
                 </View>
-                <View style={styles.flex}>
-                  <Icon type="FontAwesome" name="phone" style={styles.icon} />
-                  <Text style={styles.address}>{item.HospitalPhone}</Text>
-                </View>
-                <View style={styles.line} />
-                <Text style={styles.address}>
+
+                {/* <View style={styles.line} /> */}
+                {/* <Text style={styles.address}>
                   Mũi thứ: {item.TotalCurrentInjections}
                 </Text>
                 <Text style={styles.address}>
@@ -108,55 +108,55 @@ const VaccinationScreen: FC<VaccinationProps> = ({ navigation }) => {
                 </Text>
                 <Text style={styles.address}>
                   Mũi kế tiếp: {item.NextInjectionDateDisplay}
-                </Text>
-                {(item.TotalCurrentInjections as number) <
+                </Text> */}
+                {/* {(item.TotalCurrentInjections as number) <
                   (item.NumberOfDoses as number) && (
-                  <View
-                    style={[
-                      styles.status,
-                      item.Status === 6 && {
-                        backgroundColor: mainColorLight,
-                      },
-                    ]}
-                  > 
-                    <Icon
-                      type="Feather"
-                      name={item.Status === 6 ? "check-circle" : "x-circle"}
+                    <View
                       style={[
-                        styles.statusicon,
-                        item.Status === 6 && { color: blueColor },
-                      ]}
-                    />
-                    <Text
-                      style={[
-                        styles.statustext,
-                        item.Status === 6 && { color: blueColor },
+                        styles.status,
+                        item.Status === 6 && {
+                          backgroundColor: mainColorLight,
+                        },
                       ]}
                     >
-                      {item.Status === 6 ? "Đã" : "Chưa"} chích
-                    </Text>
-                  </View>
-                )}
+                      <Icon
+                        type="Feather"
+                        name={item.Status === 6 ? "check-circle" : "x-circle"}
+                        style={[
+                          styles.statusicon,
+                          item.Status === 6 && { color: blueColor },
+                        ]}
+                      />
+                      <Text
+                        style={[
+                          styles.statustext,
+                          item.Status === 6 && { color: blueColor },
+                        ]}
+                      >
+                        {item.Status === 6 ? "Đã" : "Chưa"} chích
+                      </Text>
+                    </View>
+                  )}
                 {(item.TotalCurrentInjections as number) ===
                   (item.NumberOfDoses as number) && (
-                  <View
-                    style={[
-                      styles.status,
-                      {
-                        backgroundColor: orangeColorLight,
-                      },
-                    ]}
-                  >
-                    <Icon
-                      type="Feather"
-                      name={item.Status === 6 ? "check-circle" : "x-circle"}
-                      style={[styles.statusicon, { color: orangeColor }]}
-                    />
-                    <Text style={[styles.statustext, { color: orangeColor }]}>
-                      Đã chích đủ
-                    </Text>
-                  </View>
-                )}
+                    <View
+                      style={[
+                        styles.status,
+                        {
+                          backgroundColor: orangeColorLight,
+                        },
+                      ]}
+                    >
+                      <Icon
+                        type="Feather"
+                        name={item.Status === 6 ? "check-circle" : "x-circle"}
+                        style={[styles.statusicon, { color: orangeColor }]}
+                      />
+                      <Text style={[styles.statustext, { color: orangeColor }]}>
+                        Đã chích đủ
+                      </Text>
+                    </View>
+                  )} */}
               </View>
             )}
           />
@@ -173,7 +173,8 @@ const styles = StyleSheet.create({
     borderColor,
     marginHorizontal: padding,
     marginTop: 10,
-   
+   marginVertical:30
+
   },
   hospital: {
     color: blueColor,
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   flex: {
     flexDirection: "row",
     alignItems: "center",
-   
+
   },
   icon: {
     fontSize: 14,
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     letterSpacing: 1.5,
-    color: mainColorText,
+    color: "#666666",
     opacity: 0.5,
   },
   line: {
@@ -228,7 +229,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Regular",
-    color: dangerColor,
+    color: "#666666",
   },
 });
 

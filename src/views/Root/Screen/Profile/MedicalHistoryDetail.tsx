@@ -169,10 +169,11 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
   return (
     <Container>
       <HeaderRoot
-        title="Lịch sử khám bệnh"
-        previous={() => navigation.goBack()}
-        notifications={false}
+        title="Lịch sử khám bệđnh"
+        menu={() => navigation.goBack()}
+        notifications={true}
         filter={() => showModal() }
+        
         // filter={() => filter.current?.open()}
       />
       {ready < 2 && <LazyLoading />}

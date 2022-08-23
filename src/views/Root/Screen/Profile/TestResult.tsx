@@ -57,7 +57,7 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
     <Container>
       <HeaderRoot
         title="KẾT QUẢ XÉT NGHIỆM"
-        previous={() => navigation.goBack()}
+        menu={() => navigation.goBack()}
       />
       {!ready && <LazyLoading />}
       {ready && (
@@ -84,7 +84,7 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
             )}
           />
           <ModalLoading visible={loading} />
-        </>
+        </> 
       )}
     </Container>
   );

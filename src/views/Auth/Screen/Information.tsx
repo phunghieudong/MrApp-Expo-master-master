@@ -17,9 +17,10 @@ import {
 import useTranslateLanguage from "@/libs/i18n";
 import { changeLanguage } from "@/store/reducers/LanguageSlice";
 import { Modalize } from "react-native-modalize";
-
+import DropDownPicker from 'react-native-dropdown-picker'
 const { width: dW } = Dimensions.get("window");
-
+import Constants from 'expo-constants';
+import { TouchableOpacity } from "react-native-gesture-handler";
 const {
   padding,
   blueColor,
@@ -100,21 +101,35 @@ const InformationScreen = (props: InformationProps) => {
                 style={[styles.languageicon, { bottom: 3 }]}
               /> */}
 
-          <Image
-          source={require("@/assets/images/up.png")}
-          style={{height:5 , width:10}}
-        />
+              <Image
+                source={require("@/assets/images/up.png")}
+                style={{ height: 5, width: 10 }}
+              />
 
-<Image
-          source={require("@/assets/images/down.png")}
-          style={{height:5 , width:10}}
-        />
+              <Image
+                source={require("@/assets/images/down.png")}
+                style={{ height: 5, width: 10 }}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
       <Text style={styles.register}>Đăng ký LẤY SỐ thứ tự khám bệnh</Text>
       <Text style={styles.where}>Tại các bệnh viện trong và ngoài nước</Text>
+
+      {/* <View style={styles.container}>
+   
+        <DropDownPicker
+          items={[
+            { label: 'English', value: 'en' },
+            { label: 'Deutsch', value: 'de' },
+            { label: 'French', value: 'fr' },
+          ]}
+          defaultIndex={0}
+          containerStyle={{ height: 40 }}
+          onChangeItem={item => console.log(item.label, item.value)}
+        />
+      </View> */}
       <View style={styles.coop}>
         <Image
           source={require("@/assets/images/hospital-1.png")}
@@ -140,7 +155,7 @@ const InformationScreen = (props: InformationProps) => {
           source={require("@/assets/images/hospital-1.png")}
           style={styles.coopimg}
         />
-      
+
       </View>
       <Text style={styles.service}>
         <Text style={styles.servicebold}>{"Ứng dụng tiện ích từ A —> Z."}</Text>{" "}
@@ -154,10 +169,10 @@ const InformationScreen = (props: InformationProps) => {
           <View style={styles.footerbuttonlarge}>
             <Text style={styles.footertextlarge}>BẮT ĐẦU</Text>
           </View>
-       
+
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
-          onPress={() => Toast.show({ text: "Chức năng còn đang phát triển" })}
+          onPress={() => navigation.navigate("ContactOut")}
         >
           <View style={styles.footerbuttonsmall}>
             {/* <Icon
@@ -165,15 +180,16 @@ const InformationScreen = (props: InformationProps) => {
               name="chatbubble-ellipses"
               style={styles.footericon}
             /> */}
-            <View style={{flexDirection:'row' ,alignItems:'center' , justifyContent:"space-evenly"  }}>
+          
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "space-evenly" }}>
 
-            <Image
-          source={require("@/assets/images/chat.png")}
-          style={{width:15 , height:15 , marginRight:10}}
-        />
-            <Text style={styles.footertextsmall}>Liên hệ</Text>
+              <Image
+                source={require("@/assets/images/chat.png")}
+                style={{ width: 15, height: 15, marginRight: 10 }}
+              />
+              <Text style={styles.footertextsmall}>Liên hệ</Text>
             </View>
-    
+          
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -240,6 +256,12 @@ const styles = StyleSheet.create({
   right: {
     flex: 0.7,
     alignItems: "flex-end",
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   language: {
     flexDirection: "row",

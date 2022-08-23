@@ -5,8 +5,11 @@ export type AuthParamList = {
   // nơi khai báo screen và params
   Information: undefined;
   UsageRules: undefined;
+  ContactOut: undefined;
+  Guide:undefined;
   ContactLogin: undefined;
   SignIn: undefined;
+  NewsOut:undefined;
   Register: undefined;
   ForgotPassword: undefined;
   ConfirmOTP: {
@@ -47,6 +50,42 @@ export type UsageRulesProps = {
   navigation: UsageRulesScreenNavigationProp;
   route: UsageRulesScreenRouteProp;
 };
+
+
+// ++ information
+type ContactOutScreenNavigationProp = StackNavigationProp<
+  AuthParamList,
+  "ContactOut"
+>;
+type ContactOutScreenRouteProp = RouteProp<AuthParamList, "ContactOut">;
+export type ContactOutProps = {
+  navigation: ContactOutScreenNavigationProp;
+  route: ContactOutScreenRouteProp;
+};
+
+// ++ information
+type GuideScreenNavigationProp = StackNavigationProp<
+  AuthParamList,
+  "Guide"
+>;
+type GuideScreenRouteProp = RouteProp<AuthParamList, "Guide">;
+export type GuideProps = {
+  navigation: GuideScreenNavigationProp;
+  route: GuideScreenRouteProp;
+};
+
+
+// ++ information
+type NewsOutScreenNavigationProp = StackNavigationProp<
+  AuthParamList,
+  "NewsOut"
+>;
+type NewsOutScreenRouteProp = RouteProp<AuthParamList, "NewsOut">;
+export type NewsOutProps = {
+  navigation: NewsOutScreenNavigationProp;
+  route: NewsOutScreenRouteProp;
+};
+
 
 
 // ++ information
