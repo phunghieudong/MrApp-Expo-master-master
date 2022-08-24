@@ -241,21 +241,21 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
     modalSpecial.current?.close();
   };
 
-  const fetchVaccines = async (hospitalId: number) => {
-    try {
-      const res = await getVaccines(hospitalId);
-      setVaccines([...res.Data]);
-    } catch (error) {
-      throw new Error("FETCH VACCINE IS FAILED !");
-    }
-  };
+  // const fetchVaccines = async (hospitalId: number) => {
+  //   try {
+  //     const res = await getVaccines(hospitalId);
+  //     setVaccines([...res.Data]);
+  //   } catch (error) {
+  //     throw new Error("FETCH VACCINE IS FAILED !PhungHieuDong");
+  //   }
+  // };
 
   const fetchLastestExamination = async () => {
     try {
       const res = await getLastestExamination();
       setLastestExamination({ ...res.Data });
     } catch (error) {
-      throw new Error("FETCH LASTEST EXAMINATION IS FAILED !");
+      throw new Error("FETCH LASTEST EXAMINATION IS FAILED !Anh Thuc");
     }
   };
 
@@ -265,7 +265,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
         setLoading(true);
         await Promise.all([
           fetchServices(value?.hospitalId),
-          fetchVaccines(value?.hospitalId),
+          // fetchVaccines(value?.hospitalId),
           fetchSpeciallistType(value?.hospitalId),
         ]);
         setLoading(false);
@@ -619,7 +619,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 <View
                   style={[
                     styles.btn,
-                    next > 4 && { backgroundColor: blueColor },
+                    next > 4 && { backgroundColor: "#142977" },
                   ]}
                 >
                   <Text style={styles.btntext}>TIẾP THEO</Text>

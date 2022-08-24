@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, Container, Icon, Toast } from "native-base";
 import { Empty, HeaderRoot, LazyLoading, ModalLoading } from "@/components";
-import { FlatList, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { FlatList, StyleSheet, TouchableWithoutFeedback,Image } from "react-native";
 import { settings } from "@/config";
 import { AllergyProps } from "@/navigation/types/profile";
 import { editAllergy, getAllergyNote, removeAllergys } from "@/api/allergy";
@@ -19,7 +19,11 @@ const HeaderComponent = ({ onPress }: IHeader) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.btn}>
-        <Icon type="EvilIcons" name="plus" style={styles.btnicon} />
+        {/* <Icon type="EvilIcons" name="plus" style={styles.btnicon} /> */}
+        <Image
+          source={require("../../../../assets/images/themmoi.png")}
+          style={{ height: 18, width: 18, marginRight:5  }}
+        />
         <Text style={styles.btntext}>Thêm mới</Text>
       </View>
     </TouchableWithoutFeedback>

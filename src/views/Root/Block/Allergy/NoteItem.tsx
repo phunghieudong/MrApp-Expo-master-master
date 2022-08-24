@@ -1,6 +1,7 @@
+//@ts-nocheck
 import React from "react";
 import { View, Text, Icon } from "native-base";
-import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, Image } from "react-native";
 import { settings } from "@/config";
 import { useNavigation } from "@react-navigation/core";
 import { AllergyNoteData } from "@/types/Allergy";
@@ -22,13 +23,13 @@ type IProps = {
   remove: boolean;
   removeMethod: (id: number) => void;
   editMethod:
-    | ((params: {
-        id: number;
-        description: string;
-        allergyTypeId: number;
-        allergyTypeName: string;
-      }) => Promise<void>)
-    | undefined;
+  | ((params: {
+    id: number;
+    description: string;
+    allergyTypeId: number;
+    allergyTypeName: string;
+  }) => Promise<void>)
+  | undefined;
 };
 
 const NoteItem = ({
@@ -105,30 +106,63 @@ const NoteItem = ({
               />
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={() => removeMethod(Id)}>
-              <Icon
+              {/* <Icon
                 type="MaterialCommunityIcons"
                 name="delete-forever"
                 style={styles.icon}
+              /> */}
+              <Image
+                source={require("../../../../assets/images/rac.png")}
+                style={{
+                  height: 18, width: 18, marginLeft: 6,
+
+
+
+                }}
               />
             </TouchableWithoutFeedback>
           </View>
         </View>
-        <Text
-          style={[
-            styles.description,
-            (!FromDate || !ToDate) && { marginBottom: 24 },
-          ]}
-        >
-          {id === Id ? description : Description}
-        </Text>
         {((FromDate && ToDate) || (toDate && fromDate)) && (
-          <Text style={styles.date}>
+          <Text style={{
+            marginBottom: 24,
+            fontSize: 18,
+            lineHeight: 19,
+            fontFamily: "SFProDisplay-Regular",
+            color: "#000000",
+          }}>
             Thời gian:{" "}
             {_format.getShortVNDate(id === Id ? fromDate : FromDate) +
               " - " +
               _format.getShortVNDate(id === Id ? toDate : ToDate)}
           </Text>
         )}
+        <View >
+          <Text style={styles.date}>Thuốc dị ứng</Text>
+          <Text>1. amocxin</Text>
+          <Text>2. amocxin</Text>
+          <Text>3. amocxin</Text>
+          <Text>4. amocxin</Text>
+          <Text>5. amocxin</Text>
+        </View>
+
+        <Text style={styles.date}>Triệu chứng</Text>
+        <Text style={{
+          marginBottom: 24,
+          fontSize: 18,
+          lineHeight: 19,
+          fontFamily: "SFProDisplay-Regular",
+          color: "#000000",
+        }}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</Text>
+        {/* <Text
+          style={[
+            styles.description,
+            (!FromDate || !ToDate) && { marginBottom: 24 },
+          ]}
+        >
+          {id === Id ? description : Description}
+        </Text> */}
+
       </View>
     </View>
   );
@@ -176,11 +210,13 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Regular",
   },
   date: {
-    marginBottom: 24,
-    fontSize: 12,
+    marginBottom: 15,
+    marginTop: 5,
+    fontSize: 18,
     lineHeight: 19,
-    fontFamily: "SFProDisplay-Regular",
-    color: "rgba(0, 0, 0, .5)",
+    fontFamily: "SFProDisplay-Bold",
+    color: "#000000",
+
   },
   box: {
     flexDirection: "row",

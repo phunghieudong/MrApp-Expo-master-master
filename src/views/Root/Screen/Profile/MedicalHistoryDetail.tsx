@@ -8,7 +8,7 @@ import {
   ModalCenter,
   ModalLoading,
 } from "@/components";
-import { Modal} from 'react-native-paper';
+import { Modal } from 'react-native-paper';
 import ModalBottom from "@/components/ModalBottom";
 import { settings } from "@/config";
 import { MedicalHistoryDetailProps } from "@/navigation/types/profile";
@@ -22,9 +22,12 @@ import {
   Platform,
   StyleSheet,
   TouchableWithoutFeedback,
+  Image
+
 } from "react-native";
 import { Modalize } from "react-native-modalize";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { borderColor, padding, blueColor, mainColorText, successColor } =
   settings.styles;
@@ -40,34 +43,73 @@ const renderItem = (
   return (
     <View style={[styles.item, last]}>
       <View style={styles.left}>
-        <Text style={styles.word}>BV</Text>
+        {/* <Text style={styles.word}>BV</Text>
+         */}
+        <Image
+          source={require("../../../../assets/images/LKSTvuong.png")}
+          style={{ height: 90, width: 90, }}
+        />
       </View>
       <View style={styles.right}>
-        <Text style={styles.date}>
-          {_format.getVNDate(item.ExaminationDate)}{" "}
-          <Text style={[styles.paid, { color: successColor }]}>
+
+        <Text style={{
+          fontSize: 14,
+          lineHeight: 19,
+          fontFamily: "SFProDisplay-Regular",
+          color: "#FB8500",
+        }}>
+          {_format.getVNDate(item.Created)}{" "}
+          <Text style={[styles.paid, { color: "#219EBC" }]}>
             {"- Đã khám"}
           </Text>
         </Text>
+
         <Text style={styles.hospital}>{item.HospitalName}</Text>
-        <Text style={styles.position}>
-          {item.RoomExaminationName} - {"09:00 ~ 10:00"}
-        </Text>
-        <View style={styles.flex}>
+        {/* CheckSchedule */}
+
+        <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
+          <Text style={{
+            fontSize: 14,
+            lineHeight: 18,
+            fontFamily: "SFProDisplay-Regular",
+            color: "rgba(0, 0, 0, .6)",
+          }}>Phòng</Text>
+          <Text style={styles.position}>
+            {item.RoomExaminationName}
+          </Text>
+
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
+          <Text style={{
+            fontSize: 14,
+            lineHeight: 18,
+            fontFamily: "SFProDisplay-Regular",
+            color: "rgba(0, 0, 0, .6)",
+          }}>Thời gian</Text>
+
+          <View style={{ justifyContent: 'space-evenly', flexDirection: 'row' }}>
+            <Text style={styles.position}>
+              {item.FromTimeExaminationText}
+            </Text>
+            <Text style={styles.position}>
+              {item.ToTimeExaminationText}
+            </Text>
+          </View>
+        </View>
+        {/* <View style={styles.flex}>
           <TouchableWithoutFeedback onPress={() => see(item)}>
             <View style={[styles.btn, { backgroundColor: blueColor }]}>
               <Text style={[styles.btntext, { color: "#fff" }]}>CHI TIẾT</Text>
             </View>
           </TouchableWithoutFeedback>
-        </View>
+        </View> */}
+
       </View>
     </View>
   );
 };
 
-const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
-  navigation,
-}) => {
+const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({ navigation }) => {
   // dữ liệu lịch sử khám bệnh đã khám
   const [data, setData] = useState<CalendarData[]>([]);
   const [ready, setReady] = useState(0);
@@ -169,12 +211,12 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
   return (
     <Container>
       <HeaderRoot
-        title="Lịch sử khám bệnh"
+        title="Lịch sử "
         previous={() => navigation.goBack()}
         notifications={true}
-        filter={() => showModal() }
-        
-        // filter={() => filter.current?.open()}
+        filter={() => showModal()}
+
+      // filter={() => filter.current?.open()}
       />
       {ready < 2 && <LazyLoading />}
       {ready >= 2 && (
@@ -374,10 +416,10 @@ const styles = StyleSheet.create({
   },
   left: {
     marginRight: 12,
-    backgroundColor: blueColor,
+
     borderRadius: 6,
-    width: 50,
-    height: 50,
+    width: 90,
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -413,6 +455,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontFamily: "SFProDisplay-Regular",
     color: "rgba(0, 0, 0, .6)",
+    paddingHorizontal: 10
   },
   flex: {
     flexDirection: "row",

@@ -22,6 +22,7 @@ import {
   Button,
   TouchableOpacity
 } from "react-native";
+
 import { ExaminationCalendarProps } from "@/navigation/types/Home";
 import { removePayment, updatePayment } from "@/api/ExaminationForm";
 import { Modalize } from "react-native-modalize";
