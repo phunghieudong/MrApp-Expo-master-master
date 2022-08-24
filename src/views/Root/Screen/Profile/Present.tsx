@@ -1,71 +1,95 @@
-
-
 //@ts-nocheck
-import { HeaderRoot, Loading } from "@/components";
+import { HeaderRoot, LazyLoading, Loading, ModalLoading } from "@/components";
+import { Container } from "native-base";
+import React, { FC, useEffect, useRef, useState } from "react";
+import { BaseHeadingDate } from "../../Block/Base";
+import { SectionList } from "react-native";
 import { settings } from "@/config";
-import { Container, Content, Text, View } from "native-base";
-import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet } from "react-native";
+import { DiagnosticData } from "@/types/MedicalRecordDetail";
+import { useAppSelector } from "@/store/hook";
+import { getAllMedicalRecord } from "@/api/MedicalRecordDetail";
+import { _format } from "@/utils";
+import { ImageInfo } from "expo-image-picker/build/ImagePicker.types";
+import { Modalize } from "react-native-modalize";
+import ModalImage from "@/components/ModalImage";
+import { Present } from "../../Block/Present";
+import { TestResultProps } from "@/navigation/types/profile";
+import { UserData } from "@/types/User";
 
-const { mainColor, mainColorText, padding } = settings.styles;
+const { hostURL } = settings;
 
-const PresentScreen = ({ navigation }) => {
-  // interaction
+const PresentScreen: FC<TestResultProps> = ({ navigation }) => {
+  // lấy user hiện tại ra
+  const user = useAppSelector((state) => state.user.current) as UserData;
+
+  // lấy danh sách kết quả xét nghiệm
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<Array<DiagnosticData>>([]);
+  const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
+
   useEffect(() => {
-    InteractionManager.runAfterInteractions(() => {
-      setReady(true);
-    });
+    (async () => {
+      try {
+        const { current, next } = page;
+        if (next) {
+          setLoading(true);
+          const res = await getAllMedicalRecord(
+            user.UserId,
+            user.Id,
+            current,
+            10
+          );
+          setData([...data, ...res.Data.Items]);
+          if (current >= res.Data.TotalPage) {
+            setPage({ ...page, next: false });
+          }
+          if (!ready) setReady(true);
+          setLoading(false);
+        }
+      } catch (error) {
+        throw new Error("FETCH TEST RESULT DATA IS FAILED !");
+      }
+    })();
   }, []);
 
-  if (!ready) {
-    return <Loading />;
-  }
-
   return (
-    <Container style={styles.container}>
-      <HeaderRoot title="BỆNH ÁN HIỆN TẠI" previous={() => navigation.goBack()} />
-      <Content contentContainerStyle={styles.body}>
-        <View style={styles.box}> 
-          <Text style={styles.step}>PhungHieuDong</Text>
-          <Text style={styles.text}>
-            chổ này dùng để viết bệnh án hiện tại
-          </Text>
-        </View>
-     
-   
-      </Content>
+    <Container>
+      <HeaderRoot
+        title="BỆNH ÁN HIỆN TẠI"
+        previous={() => navigation.goBack()}
+      />
+      {!ready && <LazyLoading />}
+      {ready && (
+        <>
+          <SectionList
+            sections={data.map((item) => {
+              return {
+                title:
+                  _format.getDateOfWeek(item.ExaminationDate) +
+                  ", " +
+                  _format.getShortVNDate(item.ExaminationDate),
+                data: [{ ...item }],
+              };
+            })}
+            stickySectionHeadersEnabled
+            onEndReached={() => setPage({ ...page, current: page.current + 1 })}
+            onEndReachedThreshold={0.5}
+            renderSectionHeader={({ section }) => (
+              <BaseHeadingDate text={section.title} />
+            )}
+            keyExtractor={(item) => item.toString()}
+            renderItem={({ item, index }) => (
+              <Present first={index === 0} item={item} />
+            )}
+          />
+          <ModalLoading visible={loading} />
+        </>
+      )}
     </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  body: {
-    flexGrow: 1,
-    paddingHorizontal: padding,
-  },
-  box: {
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#0000003a",
-  },
-  step: {
-    color: mainColor,
-    fontSize: 20,
-    fontFamily: "SFProDisplay-Heavy",
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0.5,
-    color: mainColorText,
-    marginTop: 15,
-    fontFamily: "SFProDisplay-Regular",
-  },
-});
-
 export default PresentScreen;
+
+

@@ -68,7 +68,7 @@ const AdviseMenuScreen = ({ navigation }) => {
             </View>
 
           </View>
-          <View style={{ width: "100%", paddingLeft: 45 }}>
+          <View style={{ width: "100%", paddingLeft: 60 }}>
             <View style={{ backgroundColor: '#142977', height: 53, width: 110, borderRadius: 100, marginBottom: 20, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
               <Text style={{ color: 'white', fontSize: 16, fontFamily: 'SFProDisplay-Regular' }}>ĐĂNG KÝ</Text>
             </View>

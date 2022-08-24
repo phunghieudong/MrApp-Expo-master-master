@@ -169,8 +169,8 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({
   return (
     <Container>
       <HeaderRoot
-        title="Lịch sử khám bệđnh"
-        menu={() => navigation.goBack()}
+        title="Lịch sử khám bệnh"
+        previous={() => navigation.goBack()}
         notifications={true}
         filter={() => showModal() }
         

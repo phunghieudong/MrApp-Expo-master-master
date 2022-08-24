@@ -26,99 +26,104 @@ const ProfileMenuScreen = ({ navigation }) => {
             <HeaderRoot logo1={true} previous={() => navigation.goBack()} />
             <Content contentContainerStyle={styles.body}>
 
+                <View style={{ justifyContent:'center' , alignItems:'center'}}>
+                    <View style={styles.box}>
 
-                <View style={styles.box}>
 
-
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/1.png")}
-                            style={{ height: 24, width: 24, marginRight: 10 }}
-                        />
-                    </View>
-                    <TouchableOpacity onPress={() => navigation.navigate("Present")} >
                         <View>
-
-                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Bệnh án hiện tại</Text>
-                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            <Image
+                                source={require("../../../../assets/images/1.png")}
+                                style={{ height: 24, width: 24, marginRight: 10 }}
+                            />
                         </View>
-                    </TouchableOpacity>
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/2.png")}
-                            style={{ height: 29, width: 29 }}
-                        />
-                    </View>
+                      
+                        <TouchableOpacity onPress={() => navigation.navigate("Present")} >
+                            <View>
 
-                </View>
-                <View style={styles.box}>
-
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/1.png")}
-                            style={{ height: 24, width: 24, marginRight: 10 }}
-                        />
-                    </View>
-                    <TouchableOpacity >
+                                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Bệnh án hiện tại</Text>
+                                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            </View>
+                        </TouchableOpacity>
                         <View>
-                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiểu sử phẫu thuật</Text>
-                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            <Image
+                                source={require("../../../../assets/images/2.png")}
+                                style={{ height: 29, width: 29 }}
+                            />
                         </View>
-                    </TouchableOpacity>
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/2.png")}
-                            style={{ height: 29, width: 29 }}
-                        />
-                    </View>
 
-                </View>
-                <View style={styles.box}>
-
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/1.png")}
-                            style={{ height: 24, width: 24, marginRight: 10 }}
-                        />
                     </View>
-                    <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                    <View>
+
+                    </View>
+                    <View style={styles.box}>
+
                         <View>
-                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiền sử bệnh án</Text>
-                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            <Image
+                                source={require("../../../../assets/images/1.png")}
+                                style={{ height: 24, width: 24, marginRight: 10 }}
+                            />
                         </View>
-                    </TouchableOpacity>
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/2.png")}
-                            style={{ height: 29, width: 29 }}
-                        />
-                    </View>
-
-                </View>
-
-
-
-                <View style={styles.box}>
-
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/1.png")}
-                            style={{ height: 24, width: 24, marginRight: 10 }}
-                        />
-                    </View>
-                    <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Surgery")}>
+                            <View>
+                                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiểu sử phẫu thuật</Text>
+                                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            </View>
+                        </TouchableOpacity>
                         <View>
-                            <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Thông tin thai phụ</Text>
-                            <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            <Image
+                                source={require("../../../../assets/images/2.png")}
+                                style={{ height: 29, width: 29 }}
+                            />
                         </View>
-                    </TouchableOpacity>
-                    <View>
-                        <Image
-                            source={require("../../../../assets/images/2.png")}
-                            style={{ height: 29, width: 29 }}
-                        />
+
+                    </View>
+                    <View style={styles.box}>
+
+                        <View>
+                            <Image
+                                source={require("../../../../assets/images/1.png")}
+                                style={{ height: 24, width: 24, marginRight: 10 }}
+                            />
+                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                            <View>
+                                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Tiền sử bệnh án</Text>
+                                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View>
+                            <Image
+                                source={require("../../../../assets/images/2.png")}
+                                style={{ height: 29, width: 29 }}
+                            />
+                        </View>
+
                     </View>
 
+
+
+                    <View style={styles.box}>
+
+                        <View>
+                            <Image
+                                source={require("../../../../assets/images/1.png")}
+                                style={{ height: 24, width: 24, marginRight: 10 }}
+                            />
+                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate("MedicalStory")}>
+                            <View>
+                                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" }}>Thông tin thai phụ</Text>
+                                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View>
+                            <Image
+                                source={require("../../../../assets/images/2.png")}
+                                style={{ height: 29, width: 29 }}
+                            />
+                        </View>
+
+                    </View>
                 </View>
             </Content>
         </Container>
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         flexDirection: 'row',
         justifyContent: "flex-start",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#ffffff",
         padding: 5,
         marginTop: 18,
         borderRadius: 12,

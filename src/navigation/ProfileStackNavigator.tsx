@@ -31,7 +31,8 @@ import {
   UserManualScreen,
   AdviseMenuScreen,
   RegularProblemsDetailScreen,
-  PresentScreen
+  PresentScreen,
+  SurgeryScreen
 } from "@/views";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import React from "react";
@@ -55,6 +56,7 @@ const ProfileStackNavigator = () => {
       <Stack.Screen name="ServiceAccount" component={ServiceAccountScreen} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
       <Stack.Screen name="Present" component={PresentScreen} />
+      <Stack.Screen name="Surgery" component={SurgeryScreen} />
       <Stack.Screen name="AdviseMenu" component={AdviseMenuScreen} />
       <Stack.Screen name="UserManual" component={UserManualScreen} />
       <Stack.Screen name="TermOfUse" component={TermOfUseScreen} />

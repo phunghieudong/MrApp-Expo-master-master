@@ -9,6 +9,7 @@ export type ProfileParamList = {
   ServiceAccount: undefined;
   PrivacyPolicy: undefined;
   Present: undefined;
+  Surgery: undefined;
   AdviseMenu:undefined;
   UserManual:undefined;
   TermOfUse: undefined;

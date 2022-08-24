@@ -382,7 +382,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Đặt lịch khám" />
+      <HeaderRoot title="Đặt lịch khám" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && (
         <>

@@ -25,7 +25,7 @@ const FolderScreen = ({ navigation }) => {
   };
   return (
     <Container >
-      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true} menu={() => navigation.goBack()} filter={true} />
+      <HeaderRoot title="HÌNH ẢNH" hideAvatar={true}  previous={() => navigation.goBack()} filter={true} />
       <Content contentContainerStyle={styles.body}>
         <View style={{ height: 54, width: "100%", backgroundColor: '#F0F0F0' }}>
           <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#525252', paddingHorizontal: 30, justifyContent: 'center', paddingVertical: 18 }}>SIÊU ÂM</Text>

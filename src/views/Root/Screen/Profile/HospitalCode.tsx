@@ -51,7 +51,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
 
       <HeaderRoot
         title="MÃ HỒ SƠ BỆNH VIỆN"
-        menu={() => navigation.goBack()} 
+        previous={() => navigation.goBack()}
       />
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <TextInput

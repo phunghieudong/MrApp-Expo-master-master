@@ -12,13 +12,14 @@ import { _format } from "@/utils";
 import { ImageInfo } from "expo-image-picker/build/ImagePicker.types";
 import { Modalize } from "react-native-modalize";
 import ModalImage from "@/components/ModalImage";
-import { TestResultItem } from "../../Block/TestResult";
+import { Surgery } from "../../Block/Surgery";
 import { TestResultProps } from "@/navigation/types/profile";
 import { UserData } from "@/types/User";
+import { Present } from "../../Block/Present";
 
 const { hostURL } = settings;
 
-const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
+const SurgeryScreen: FC<TestResultProps> = ({ navigation }) => {
   // lấy user hiện tại ra
   const user = useAppSelector((state) => state.user.current) as UserData;
 
@@ -56,7 +57,7 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
   return (
     <Container>
       <HeaderRoot
-        title="KẾT QUẢ XÉT NGHIỆM"
+        title="Tiểu sử phẩu thuật"
         previous={() => navigation.goBack()}
       />
       {!ready && <LazyLoading />}
@@ -80,14 +81,16 @@ const TestResultScreen: FC<TestResultProps> = ({ navigation }) => {
             )}
             keyExtractor={(item) => item.toString()}
             renderItem={({ item, index }) => (
-              <TestResultItem first={index === 0} item={item} />
+              <Surgery first={index === 0} item={item} />
             )}
           />
           <ModalLoading visible={loading} />
-        </> 
+        </>
       )}
     </Container>
   );
 };
 
-export default TestResultScreen;
+export default SurgeryScreen;
+
+

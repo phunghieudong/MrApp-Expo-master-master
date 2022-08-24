@@ -37,6 +37,8 @@ export { default as PatientProfileScreen } from "./Root/Screen/Profile/PatientPr
 export { default as AdviseMenuScreen } from "./Root/Screen/Profile/AdviseMenu";
 export { default as PrivacyPolicyScreen } from "./Root/Screen/Profile/PrivacyPolicy";
 export { default as PresentScreen } from "./Root/Screen/Profile/Present";
+export { default as SurgeryScreen } from "./Root/Screen/Profile/Surgery";
+
 export { default as UserManualScreen } from "./Root/Screen/Profile/UserManual";
 export { default as MenuScreen } from "./Root/Screen/Profile/Menu";
 export { default as RegularProblemsScreen } from "./Root/Screen/Profile/RegularProblems";

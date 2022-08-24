@@ -185,7 +185,7 @@ const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({navigation}) => {
 
   return (
     <Container>
-      <HeaderRoot title="FAQ" filter={true} />
+      <HeaderRoot title="FAQ" filter={true}  previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && (
         <>
