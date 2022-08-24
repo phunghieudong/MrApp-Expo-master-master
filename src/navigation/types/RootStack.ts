@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { ProfileParamList } from "./profile";
 import { RouteProp, NavigatorScreenParams } from "@react-navigation/core";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
