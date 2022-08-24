@@ -27,7 +27,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
   } = props;
 
   const nav = (
-    hospitalId: number,  
+    hospitalId: number,
     hospitalName: string,
     hospitalAddress: string,
     hospitalWebsite: string,
@@ -87,61 +87,63 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
               }
             >
               <View style={styles.box}>
+
                 <View>
-                  <Image
-                    source={require("../../../../assets/images/LKSTvuong.png")}
-                    style={{ height: 87, width: 87 }}
-                  />
+                  <Text style={{ color: '#000000', fontSize: 20, fontFamily: "SFProDisplay-Bold", paddingLeft: 30, paddingTop: 30 }}>{item.Name}</Text>
                 </View>
-                <View style={{flexDirection:'column'}}>
-
-
-                  <View style={{ width:280}}>
-                    {/* <Icon
-                      type="Feather"
-                      name="bookmark"
-                      style={styles.headingicon}
-                    /> */}
-                    <Text style={styles.headingtext} numberOfLines={2}>{item.Name}</Text>
-                  </View>
-                  <View style={styles.detail}>
-                    <Text style={styles.value}>{item.Address}</Text>
-                  </View>
-                </View>
-
-                {/* <View style={styles.detail}>
-                  <Text style={styles.label}>WEBSITE</Text>
-                  <Text style={styles.value}>{item.WebSiteUrl}</Text>
-                </View>
-                <View style={styles.detail}>
-                  <Text style={styles.label}>ĐIỆN THOẠI</Text>
-                  <Text style={[styles.value, { color: orangeColor }]}>
-                    {item.Phone}
-                  </Text>
-                </View>
-                <View style={styles.detail}>
-                  <Text style={styles.label}>EMAIL</Text>
-                  <Text style={styles.value}>{item.Email}</Text>
-                </View>
-                <View style={styles.click}>
-                  {hospitalId !== item.Id && (
-                    <View style={styles.clickcircle}>
-                      <Icon
-                        type="MaterialCommunityIcons"
-                        name="plus"
-                        style={styles.clickplus}
-                      />
-                    </View>
-                  )}
-                  {hospitalId === item.Id && (
-                    <Icon
-                      type="Feather"
-                      name="check-circle"
-                      style={styles.clickchecked}
+                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
+                  <View>
+                    <Image
+                      source={require("../../../../assets/images/diachi.png")}
+                      style={{ height: 20, width: 16.81, marginRight: 20, marginLeft: 30 }}
                     />
-                  )}
-                </View> */}
+                  </View>
+                  <View style={{ flexDirection: 'column', paddingTop: 8 }}>
+                    <Text style={{ color: '#666666', fontSize: 12, }}>ĐỊA CHỈ</Text>
+                    <Text style={{ fontSize: 16 }}>{item.Address}</Text>
+                  </View>
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
+                  <View>
+                    <Image
+                      source={require("../../../../assets/images/gmailblue.png")}
+                      style={{ height: 20, width: 20, marginRight: 20, marginLeft: 30 }}
+                    />
+                  </View>
+                  <View style={{ flexDirection: 'column', paddingTop: 8 }}>
+                    <Text style={{ color: '#666666', fontSize: 12, }}>EMAIL</Text>
+                    <Text style={{ fontSize: 16 }}>{item.Email}</Text>
+                  </View>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
+                  <View>
+                    <Image
+                      source={require("../../../../assets/images/phoneblue.png")}
+                      style={{ height: 20, width: 20, marginRight: 20, marginLeft: 30 }}
+                    />
+                  </View>
+                  <View style={{ flexDirection: 'column', paddingTop: 8 }}>
+                    <Text style={{ color: '#666666', fontSize: 12, }}>SỐ ĐIỆN THOẠI-FAX</Text>
+                    <Text style={{ fontSize: 16 }}>{item.Phone}</Text>
+                  </View>
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', paddingBottom:30 }}>
+                  <View>
+                    <Image
+                      source={require("../../../../assets/images/word.png")}
+                      style={{ height: 20, width: 20, marginRight: 20, marginLeft: 30 }}
+                    />
+                  </View>
+                  <View style={{ flexDirection: 'column', paddingTop: 8 }}>
+                    <Text style={{ color: '#666666', fontSize: 12, }}>WEBSITE</Text>
+                    <Text style={{ fontSize: 16 }}>{item.WebSiteUrl}</Text>
+                  </View>
+                </View>
               </View>
+
+
             </TouchableWithoutFeedback>
           )}
         />
@@ -156,18 +158,15 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgb(216, 227, 232)",
+    backgroundColor: "#ffffff",
   },
   body: {
     flexGrow: 1,
   },
   box: {
-    backgroundColor: "#fff",
-    marginHorizontal: padding,
-    borderRadius: 12,
-    padding: 15,
-    marginTop: 10,
-    flexDirection: 'row',
+    backgroundColor: "#ffffff",
+    borderWidth: 0.5,
+    flexDirection: "column",
 
   },
 
@@ -179,15 +178,17 @@ const styles = StyleSheet.create({
   headingtext: {
     color: "#000000",
     fontFamily: "SFProDisplay-Semibold",
-    fontSize: 20, 
-    paddingLeft:10,
+    fontSize: 20,
+    paddingLeft: 10,
 
-   
-  
+
+
   },
   detail: {
     marginTop: 6,
-    paddingLeft:10
+    paddingLeft: 10,
+
+    width: "80%"
   },
   label: {
     fontSize: 13,
