@@ -108,7 +108,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
                   <View>
                     <Image
                       source={require("../../../../assets/images/gmailblue.png")}
-                      style={{ height: 20, width: 20, marginRight: 20, marginLeft: 30 }}
+                      style={{ height: 18.33, width: 20, marginRight: 20, marginLeft: 30 }}
                     />
                   </View>
                   <View style={{ flexDirection: 'column', paddingTop: 8 }}>
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: "#ffffff",
     borderWidth: 0.5,
+    borderColor:'#CACEE1',
     flexDirection: "column",
 
   },

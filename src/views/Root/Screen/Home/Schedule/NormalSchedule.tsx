@@ -27,8 +27,8 @@ import { ServiceData, SpecialTypeData, VaccineData } from "@/types/base";
 import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { getLastestExamination } from "@/api/ExaminationForm";
-import { Modal} from 'react-native-paper';
-import { TouchableOpacity } from 'react-native';
+import { Modal } from 'react-native-paper';
+import { TouchableOpacity, Button, ScrollView ,Image} from 'react-native';
 const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
   settings.styles;
 
@@ -344,7 +344,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   const [visible2, setVisible2] = React.useState(false);
   const showModal2 = () => setVisible2(true);
   const hideModal2 = () => setVisible2(false);
-  const containerStyle2= { backgroundColor: 'white' };
+  const containerStyle2 = { backgroundColor: 'white' };
   // chuyển hướng trang
   const navHospital = () => {
     navigation.navigate("HospitalPicker", {
@@ -352,6 +352,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       typeId,
     });
   };
+
+
+
   // Cái lịch
   const navCalendar = () => {
     navigation.navigate("Calendar", {
@@ -434,10 +437,10 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
 
                 </View>
               </TouchableWithoutFeedback>
-          
-          
+
+
             </View>
-           
+
             <Form style={styles.frmcontrol}>
               <Select
                 nav={navHospital}
@@ -449,6 +452,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 nav={next >= 2 ? () => showModal() : undefined}
                 // nav={navDepartment}
                 // onPress={showModal}
+
                 placeholder="CHỌN CHUYÊN KHOA"
                 next={next === 1 ? true : false}
                 selected={value?.specialistTypeName || ""}
@@ -460,6 +464,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 next={next >= 2 ? true : false}
                 selected={value?.serviceTypeName || ""}
               />
+
               {value.isBHYTService === false && (
                 <Text style={styles.note}>
                   *LƯU Ý: Dịch vụ này hiện tại {value.hospitalName} chưa hỗ trợ
@@ -469,7 +474,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
               {value?.serviceTypeId === 6 && (
                 <Select
                   nav={
-                    next >= 2 ? () =>showModal2() : undefined
+                    next >= 2 ? () => showModal2() : undefined
                   }
                   placeholder="CHỌN VACCINE"
                   next={next >= 2 ? true : false}
@@ -498,7 +503,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
 
 
                 )}
-              
+
               <ModalCenter ref={modalSpecial} style={{ borderRadius: 4 }}>
                 <>
                   {specialistType.length > 0 &&
@@ -507,7 +512,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                         key={i.Id}
                         onPress={() => handleSpecial(i.Id, i.Name)}
                       >
+
                         <View style={styles.service}>
+
                           <Text
                             style={[
                               styles.servicename,
@@ -525,7 +532,9 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                               style={styles.serviceicon}
                             />
                           )}
+
                         </View>
+
                       </TouchableWithoutFeedback>
                     ))}
                   {!specialistType.length && (
@@ -613,28 +622,40 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                     </View>
                   </View>
                 )}
-              <TouchableWithoutFeedback
-                onPress={next > 4 ? () => _onPress(value) : undefined}
-              >
-                <View
-                  style={[
-                    styles.btn,
-                    next > 4 && { backgroundColor: "#142977" },
-                  ]}
-                >
-                  <Text style={styles.btntext}>TIẾP THEO</Text>
-                </View>
-              </TouchableWithoutFeedback>
+
             </Form>
-            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{height: "100%", width: "100%"}}>
-                <>
-                  {specialistType.length > 0 &&
-                    specialistType.map((i) => (
-                      <TouchableWithoutFeedback
-                        key={i.Id}
-                        onPress={() => handleSpecial(i.Id, i.Name)}
-                      >
-                        <View style={styles.service}>
+            <TouchableOpacity
+              onPress={next > 4 ? () => _onPress(value) : undefined}
+            >
+              <View
+                style={[
+                  styles.btn,
+                  next > 4 && { backgroundColor: "#142977" },
+                ]}
+              >
+                <Text style={styles.btntext}>TIẾP THEO</Text>
+              </View>
+            </TouchableOpacity>
+            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "90%", width: "100%" , paddingBottom:5}}>
+              <>
+                {specialistType.length > 0 &&
+                  specialistType.map((i) => (
+                    <TouchableWithoutFeedback
+                      key={i.Id}
+                      onPress={() => handleSpecial(i.Id, i.Name)}
+                    >
+
+                      <View
+                        style={styles.service}>
+                        {/* <TouchableWithoutFeedback onPress={hideModal}> */}
+                        <View style={{ backgroundColor: "#fff", width: 343, height: 50, borderRadius: 12, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+                          <View style={{ backgroundColor: '#E8F5F8', height: 38, width: 38, borderRadius: 100 , justifyContent:'center' , alignItems:'center' , marginLeft:10 , marginRight:10}}>
+                            <Image
+                              source={require("../../../../../assets/images/lungs.png")}
+                              style={{ height: 38, width: 38, borderRadius:100}}
+                            />
+                          </View>
+                          <View style={{flexDirection:'column'}}>
                           <Text
                             style={[
                               styles.servicename,
@@ -645,7 +666,65 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                           >
                             {i.Name}
                           </Text>
-                          {value?.specialistTypeId === i.Id && (
+
+                          <Text
+                            style={[
+                              styles.servicename1,
+                              value?.specialistTypeId === i.Id && {
+                                color: blueColor,
+                              },
+                            ]}
+                          >
+                            {i.Price}
+                          </Text>
+                          </View>
+                       
+                        </View>
+                        {/* </TouchableWithoutFeedback> */}
+                        {/* {value?.specialistTypeId === i.Id && (
+                            <Icon
+                              type="Feather"
+                              name="check-circle"
+                              style={styles.serviceicon}
+                            />
+                          )} */}
+                      </View>
+
+                    </TouchableWithoutFeedback>
+
+                  ))}
+                {!specialistType.length && (
+                  <Text style={[styles.service, styles.servicename]}>
+                    Hiện tại chưa có bất kỳ khoa nào
+                  </Text>
+                )}
+                <Button title="XÁC NHẬN" onPress={hideModal} />
+              </>
+            </Modal>
+            <Modal visible={visible1} onDismiss={hideModal1} contentContainerStyle={containerStyle1} style={{ height: "100%", width: "100%" }}>
+              <>
+                {services.map((i) => {
+                  if (i.Id !== 7) {
+                    return (
+                      <TouchableWithoutFeedback
+                        key={i.Id}
+                        onPress={() =>
+                          handleModal(i.Id, i.Name, i.IsBHYT, "service")
+                        }
+                      >
+                        <View style={styles.service}>
+                          <Text
+                            style={[
+                              styles.servicename,
+                              value?.serviceTypeId === i.Id && {
+                                color: blueColor,
+                              },
+                            ]}
+                          >
+                            {i.Name}
+
+                          </Text>
+                          {value?.serviceTypeId === i.Id && (
                             <Icon
                               type="Feather"
                               name="check-circle"
@@ -654,53 +733,15 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                           )}
                         </View>
                       </TouchableWithoutFeedback>
-                    ))}
-                  {!specialistType.length && (
-                    <Text style={[styles.service, styles.servicename]}>
-                      Hiện tại chưa có bất kỳ khoa nào
-                    </Text>
-                  )}
-                </>
-              </Modal>
-              <Modal visible={visible1} onDismiss={hideModal1} contentContainerStyle={containerStyle1} style={{height: "100%", width: "100%"}}>
-              <>
-              {services.map((i) => {
-                if (i.Id !== 7) {
-                  return (
-                    <TouchableWithoutFeedback
-                      key={i.Id}
-                      onPress={() =>
-                        handleModal(i.Id, i.Name, i.IsBHYT, "service")
-                      }
-                    >
-                      <View style={styles.service}>
-                        <Text
-                          style={[
-                            styles.servicename,
-                            value?.serviceTypeId === i.Id && {
-                              color: blueColor,
-                            },
-                          ]}
-                        >
-                          {i.Name}
-                        </Text>
-                        {value?.serviceTypeId === i.Id && (
-                          <Icon
-                            type="Feather"
-                            name="check-circle"
-                            style={styles.serviceicon}
-                          />
-                        )}
-                      </View>
-                    </TouchableWithoutFeedback>
-                  );
-                }
-              })}
-            </>
-              </Modal>
+                    );
+                  }
+                })}
+              </>
+            </Modal>
+
           </Content>
-       
-          <Modal visible={visible2} onDismiss={hideModal2} contentContainerStyle={containerStyle2} style={{height: "100%", width: "100%"}}>
+
+          <Modal visible={visible2} onDismiss={hideModal2} contentContainerStyle={containerStyle2} style={{ height: "100%", width: "100%" }}>
             <>
               {vaccines.length > 0 &&
                 vaccines.map((i) => (
@@ -770,6 +811,8 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
           <ModalLoading visible={loading} />
         </>
       )}
+
+
     </Container>
   );
 };
@@ -786,10 +829,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+
   },
   body: {
     flexGrow: 1,
     paddingHorizontal: padding,
+
+
   },
   frmcontrol: {
     marginTop: -20,
@@ -835,7 +881,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginVertical: 15,
-    backgroundColor: placeholderColor,
+    backgroundColor: "#666666",
     alignSelf: "flex-end",
     elevation: 4,
     paddingHorizontal: 20,
@@ -846,7 +892,6 @@ const styles = StyleSheet.create({
   btntext: {
     color: "#fff",
     fontSize: 16,
-    letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Semibold",
   },
   rowCenter: {
@@ -891,16 +936,32 @@ const styles = StyleSheet.create({
   service: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingHorizontal: 14,
-    paddingVertical: 12,
-  
+    paddingVertical: 5,
+    backgroundColor: "#E8F5F8",
+    // height: 80,
+    height: 70,
+    paddingBottom: 20
+
+
   },
   servicename: {
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 21,
+    fontFamily: "SFProDisplay-Bold",
+    color: mainColorText,
+  
+   
+
+  },
+  servicename1: {
+    fontSize: 14,
     lineHeight: 21,
     fontFamily: "SFProDisplay-Regular",
-    color: mainColorText,
+    color: "#FB8500",
+   
+
   },
   serviceicon: {
     fontSize: 20,

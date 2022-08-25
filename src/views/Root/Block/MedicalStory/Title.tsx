@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { settings } from "@/config";
 import { DiagnosticData } from "@/types/MedicalRecordDetail";
 import { Icon } from "native-base";

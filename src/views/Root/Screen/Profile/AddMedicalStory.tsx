@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useEffect, useRef, useState } from "react";
 import { View, Text, Container, Input, Content, Toast } from "native-base";
 import {

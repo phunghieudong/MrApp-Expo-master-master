@@ -60,6 +60,7 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
             { key: "first", title: "THÔNG TIN BỆNH ÁN" },
             { key: "second", title: "TIỀN SỬ BỆNH ÁN" },
             { key: "third ", title: "Hieu Dong test" },
+            { key: "thi ", title: "Hieu Dong test" },
           ],
         }}
         renderScene={({ route }) => {
@@ -67,9 +68,11 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
             case "first":
               return <Information />;
             case "second":
-              return <Diagnosis />;
-            case "third":
               return <Information />;
+            case "third":
+              return <Title />;
+              case "thi":
+              return <Title />;
             default:
               return null;
           }
