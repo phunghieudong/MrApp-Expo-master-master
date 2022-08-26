@@ -1,14 +1,20 @@
 //@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
-import { Container, Content, Text, View, } from "native-base";
+import { Container, Content, Text, View } from "native-base";
 import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet, Image } from "react-native";
+import { InteractionManager, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 
 const { mainColor, mainColorText, padding } = settings.styles;
 
-const UserManualScreen = ({ navigation }) => {
+const PrivacyPolicyDetailScreen = ({ navigation }) => {
   // interaction
+
+
+
+  const [shouldShow, setShouldShow] = useState(false);
+  const [shouldShow1, setShouldShow1] = useState(false);
+  const [shouldShow2, setShouldShow2] = useState(false);
   const [ready, setReady] = useState(false);
   useEffect(() => {
     InteractionManager.runAfterInteractions(() => {
@@ -22,7 +28,7 @@ const UserManualScreen = ({ navigation }) => {
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Hướng dẫn sử dụng" previous={() => navigation.goBack()} />
+      <HeaderRoot title="Chính sách" filter={true} previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
         <View style={styles.box}>
           <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 1</Text>
@@ -38,12 +44,7 @@ const UserManualScreen = ({ navigation }) => {
             sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
             et dolore magna
           </Text>
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-            <Image
-              source={require("../../../../assets/images/FAQ.png")}
-              style={{ height: 163, width: 370, borderRadius: 6 }}
-            />
-          </View>
+         
         </View>
         <View style={styles.box}>
           <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 2</Text>
@@ -59,12 +60,7 @@ const UserManualScreen = ({ navigation }) => {
             sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
             et dolore magna
           </Text>
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-            <Image
-              source={require("../../../../assets/images/FAQ.png")}
-              style={{ height: 163, width: 370, borderRadius: 6 }}
-            />
-          </View>
+        
         </View>
         <View style={[styles.box, { borderBottomWidth: 0 }]}>
           <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 3</Text>
@@ -80,12 +76,7 @@ const UserManualScreen = ({ navigation }) => {
             sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
             et dolore magna
           </Text>
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-            <Image
-              source={require("../../../../assets/images/FAQ.png")}
-              style={{ height: 163, width: 370, borderRadius: 6 }}
-            />
-          </View>
+        
         </View>
       </Content>
     </Container>
@@ -102,9 +93,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding,
   },
   box: {
+
     paddingVertical: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#0000003a",
+    paddingHorizontal: 20
   },
   step: {
     color: "#000000",
@@ -118,8 +111,10 @@ const styles = StyleSheet.create({
     color: mainColorText,
     marginTop: 15,
     fontFamily: "SFProDisplay-Regular",
+
   },
 });
 
-export default UserManualScreen;
+export default PrivacyPolicyDetailScreen;
+
 

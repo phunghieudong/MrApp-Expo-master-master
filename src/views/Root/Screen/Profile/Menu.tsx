@@ -49,6 +49,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
   const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // menu
   const menuLeft = [
+    //1
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -61,22 +62,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Hồ sơ\ncá nhân",
       navigate: () => navigation.navigate("PatientProfile"),
     },
-    {
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Image
-            source={require("../../../../assets/images/hdsd.png")}
-            style={{ height: 20, width: 15, }}
-          />
-        </Svg>
-      ),
-      text: "Hướng dẫn\nsử dụng",
-      // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
-      navigate: () => navigation.navigate("UserManual"),
-
-
-
-    },
+    //3
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20" >
@@ -140,6 +126,200 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Hồ sơ\nbệnh án",
       navigate: () => setActive(0),
     },
+    {
+      svg: (
+        <Svg width="20" height="20" viewBox="0 0 20 20">
+          <Defs>
+            <ClipPath id="clipPath">
+              <Rect
+                id="Rectangle_1071"
+                data-name="Rectangle 1071"
+                width="20"
+                height="20"
+                transform="translate(37 692)"
+                fill="#219ebc"
+                stroke="#707070"
+                strokeWidth="1"
+              />
+            </ClipPath>
+          </Defs>
+          <G
+            id="Mask_Group_345"
+            data-name="Mask Group 345"
+            transform="translate(-37 -692)"
+            clipPath="url(#clipPath)"
+          >
+            <G
+              id="Layer_2"
+              data-name="Layer 2"
+              transform="translate(36.333 691.333)"
+            >
+              <Path
+                id="Path_2251"
+                data-name="Path 2251"
+                d="M14.873,20.667H9.787a1.853,1.853,0,0,1-1.24-.473L2.613,14.86A1.86,1.86,0,0,1,2,13.507V2.46A1.793,1.793,0,0,1,3.793.667h11.08A1.793,1.793,0,0,1,16.667,2.46V18.873a1.793,1.793,0,0,1-1.793,1.793ZM3.793,2a.46.46,0,0,0-.46.46V13.507a.527.527,0,0,0,.173.393L9.44,19.233a.52.52,0,0,0,.347.133h5.087a.46.46,0,0,0,.46-.46V2.46a.46.46,0,0,0-.46-.46Z"
+                fill="#219ebc"
+              />
+              <Path
+                id="Path_2252"
+                data-name="Path 2252"
+                d="M10,19.627H8.667V14.833a.127.127,0,0,0-.127-.127H2.667V13.373H8.54A1.46,1.46,0,0,1,10,14.833Z"
+                fill="#219ebc"
+              />
+              <Rect
+                id="Rectangle_1152"
+                data-name="Rectangle 1152"
+                width="6.667"
+                height="1.333"
+                rx="0.667"
+                transform="translate(5.78 6.873)"
+                fill="#219ebc"
+              />
+              <Rect
+                id="Rectangle_1153"
+                data-name="Rectangle 1153"
+                width="2.667"
+                height="1.333"
+                rx="0.667"
+                transform="translate(5.78 4)"
+                fill="#219ebc"
+              />
+              <Path
+                id="Path_2253"
+                data-name="Path 2253"
+                d="M17.667,17.767a1.694,1.694,0,0,1-.333-.033l-1.433-.24.22-1.333,1.46.247a.353.353,0,0,0,.307-.06.333.333,0,0,0,.127-.26V5.233a.34.34,0,0,0-.407-.327l-1.507.2-.173-1.333,1.46-.193a1.62,1.62,0,0,1,1.333.347,1.66,1.66,0,0,1,.613,1.307V16.1a1.673,1.673,0,0,1-1.667,1.667Z"
+                fill="#219ebc"
+              />
+            </G>
+          </G>
+        </Svg>
+      ),
+      text: "Tin tức",
+      navigate: () => navigation.navigate("News"),
+    },
+    {
+      svg: (
+        <Svg width="20" height="20" viewBox="0 0 20 20">
+          <Defs>
+            <ClipPath id="clipPath">
+              <Rect
+                id="Rectangle_1070"
+                data-name="Rectangle 1070"
+                width="20"
+                height="20"
+                transform="translate(37 618)"
+                fill="#219ebc"
+                stroke="#707070"
+                strokeWidth="1"
+              />
+            </ClipPath>
+          </Defs>
+          <G
+            id="Mask_Group_344"
+            data-name="Mask Group 344"
+            transform="translate(-37 -618)"
+            clipPath="url(#clipPath)"
+          >
+            <G
+              id="Layer_2"
+              data-name="Layer 2"
+              transform="translate(35.571 616.571)"
+            >
+              <Path
+                id="Path_2248"
+                data-name="Path 2248"
+                d="M20,2.857H8.571a1.429,1.429,0,0,0,0,2.857H20a1.429,1.429,0,1,0,0-2.857Z"
+                fill="#219ebc"
+              />
+              <Circle
+                id="Ellipse_146"
+                data-name="Ellipse 146"
+                cx="1.429"
+                cy="1.429"
+                r="1.429"
+                transform="translate(1.429 2.857)"
+                fill="#219ebc"
+              />
+              <Path
+                id="Path_2249"
+                data-name="Path 2249"
+                d="M20,10H8.571a1.429,1.429,0,0,0,0,2.857H20A1.429,1.429,0,1,0,20,10Z"
+                fill="#219ebc"
+              />
+              <Circle
+                id="Ellipse_147"
+                data-name="Ellipse 147"
+                cx="1.429"
+                cy="1.429"
+                r="1.429"
+                transform="translate(1.429 10)"
+                fill="#219ebc"
+              />
+              <Path
+                id="Path_2250"
+                data-name="Path 2250"
+                d="M20,17.143H8.571a1.429,1.429,0,0,0,0,2.857H20a1.429,1.429,0,1,0,0-2.857Z"
+                fill="#219ebc"
+              />
+              <Circle
+                id="Ellipse_148"
+                data-name="Ellipse 148"
+                cx="1.429"
+                cy="1.429"
+                r="1.429"
+                transform="translate(1.429 17.143)"
+                fill="#219ebc"
+              />
+            </G>
+          </G>
+        </Svg>
+      ),
+      text: "Quy trình\nkhám bệnh",
+
+      navigate: () => navigation.navigate("TermOfMedical"),
+      // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+    },
+    //2
+    {
+      svg: (
+        <Svg width="20" height="20" viewBox="0 0 20 20">
+          <Defs>
+            <ClipPath id="clipPath">
+              <Rect
+                id="Rectangle_1067"
+                data-name="Rectangle 1067"
+                width="20"
+                height="20"
+                transform="translate(37 412)"
+                fill="#219ebc"
+                stroke="#707070"
+                strokeWidth="1"
+              />
+            </ClipPath>
+          </Defs>
+          <G
+            id="Mask_Group_342"
+            data-name="Mask Group 342"
+            transform="translate(-37 -412)"
+            clipPath="url(#clipPath)"
+          >
+            <Path
+              id="video-camera-2"
+              d="M19.743,5.122a.586.586,0,0,0-.546-.059L13.724,7.252V5.607a1.843,1.843,0,0,0-1.841-1.841H1.841A1.843,1.843,0,0,0,0,5.607v8.786a1.843,1.843,0,0,0,1.841,1.841H11.883a1.843,1.843,0,0,0,1.841-1.841V12.748L19.2,14.937a.586.586,0,0,0,.8-.544V5.607a.586.586,0,0,0-.257-.485Zm-7.19,9.272a.67.67,0,0,1-.669.669H1.841a.67.67,0,0,1-.669-.669V5.607a.67.67,0,0,1,.669-.669H11.883a.67.67,0,0,1,.669.669Zm6.276-.865-5.1-2.042V8.514l5.1-2.042Z"
+              transform="translate(37 412)"
+              fill="#219ebc"
+            />
+          </G>
+        </Svg>
+
+      ),
+
+      text: "Tư vấn khám\ntrực tiếp",
+      navigate: () => navigation.navigate("AdviseMenu"),
+    },
+    
+
+    //4
     {
 
 
@@ -229,43 +409,9 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       navigate: () => setActive(1),
 
     },
-    {
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clipPath">
-              <Rect
-                id="Rectangle_1067"
-                data-name="Rectangle 1067"
-                width="20"
-                height="20"
-                transform="translate(37 412)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_342"
-            data-name="Mask Group 342"
-            transform="translate(-37 -412)"
-            clipPath="url(#clipPath)"
-          >
-            <Path
-              id="video-camera-2"
-              d="M19.743,5.122a.586.586,0,0,0-.546-.059L13.724,7.252V5.607a1.843,1.843,0,0,0-1.841-1.841H1.841A1.843,1.843,0,0,0,0,5.607v8.786a1.843,1.843,0,0,0,1.841,1.841H11.883a1.843,1.843,0,0,0,1.841-1.841V12.748L19.2,14.937a.586.586,0,0,0,.8-.544V5.607a.586.586,0,0,0-.257-.485Zm-7.19,9.272a.67.67,0,0,1-.669.669H1.841a.67.67,0,0,1-.669-.669V5.607a.67.67,0,0,1,.669-.669H11.883a.67.67,0,0,1,.669.669Zm6.276-.865-5.1-2.042V8.514l5.1-2.042Z"
-              transform="translate(37 412)"
-              fill="#219ebc"
-            />
-          </G>
-        </Svg>
-
-      ),
-
-      text: "Tư vấn khám\ntrực tiếp",
-      navigate: () => navigation.navigate("AdviseMenu"),
-    },
+    //5
+ 
+    //6
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -334,6 +480,23 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
+          <Image
+            source={require("../../../../assets/images/hdsd.png")}
+            style={{ height: 20, width: 15, }}
+          />
+        </Svg>
+      ),
+      text: "Hướng dẫn\nsử dụng",
+      // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
+      navigate: () => navigation.navigate("UserManual"),
+
+
+
+    },
+    //7
+    {
+      svg: (
+        <Svg width="20" height="20" viewBox="0 0 20 20">
           <Defs>
             <ClipPath id="clipPath">
               <Rect
@@ -370,159 +533,11 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Chính sách",
       navigate: () => navigation.navigate("PrivacyPolicy"),
     },
-    {
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clipPath">
-              <Rect
-                id="Rectangle_1070"
-                data-name="Rectangle 1070"
-                width="20"
-                height="20"
-                transform="translate(37 618)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_344"
-            data-name="Mask Group 344"
-            transform="translate(-37 -618)"
-            clipPath="url(#clipPath)"
-          >
-            <G
-              id="Layer_2"
-              data-name="Layer 2"
-              transform="translate(35.571 616.571)"
-            >
-              <Path
-                id="Path_2248"
-                data-name="Path 2248"
-                d="M20,2.857H8.571a1.429,1.429,0,0,0,0,2.857H20a1.429,1.429,0,1,0,0-2.857Z"
-                fill="#219ebc"
-              />
-              <Circle
-                id="Ellipse_146"
-                data-name="Ellipse 146"
-                cx="1.429"
-                cy="1.429"
-                r="1.429"
-                transform="translate(1.429 2.857)"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2249"
-                data-name="Path 2249"
-                d="M20,10H8.571a1.429,1.429,0,0,0,0,2.857H20A1.429,1.429,0,1,0,20,10Z"
-                fill="#219ebc"
-              />
-              <Circle
-                id="Ellipse_147"
-                data-name="Ellipse 147"
-                cx="1.429"
-                cy="1.429"
-                r="1.429"
-                transform="translate(1.429 10)"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2250"
-                data-name="Path 2250"
-                d="M20,17.143H8.571a1.429,1.429,0,0,0,0,2.857H20a1.429,1.429,0,1,0,0-2.857Z"
-                fill="#219ebc"
-              />
-              <Circle
-                id="Ellipse_148"
-                data-name="Ellipse 148"
-                cx="1.429"
-                cy="1.429"
-                r="1.429"
-                transform="translate(1.429 17.143)"
-                fill="#219ebc"
-              />
-            </G>
-          </G>
-        </Svg>
-      ),
-      text: "Quy trình\nkhám bệnh",
-
-      navigate: () => navigation.navigate("TermOfMedical"),
-      // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
-    },
-    {
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clipPath">
-              <Rect
-                id="Rectangle_1071"
-                data-name="Rectangle 1071"
-                width="20"
-                height="20"
-                transform="translate(37 692)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_345"
-            data-name="Mask Group 345"
-            transform="translate(-37 -692)"
-            clipPath="url(#clipPath)"
-          >
-            <G
-              id="Layer_2"
-              data-name="Layer 2"
-              transform="translate(36.333 691.333)"
-            >
-              <Path
-                id="Path_2251"
-                data-name="Path 2251"
-                d="M14.873,20.667H9.787a1.853,1.853,0,0,1-1.24-.473L2.613,14.86A1.86,1.86,0,0,1,2,13.507V2.46A1.793,1.793,0,0,1,3.793.667h11.08A1.793,1.793,0,0,1,16.667,2.46V18.873a1.793,1.793,0,0,1-1.793,1.793ZM3.793,2a.46.46,0,0,0-.46.46V13.507a.527.527,0,0,0,.173.393L9.44,19.233a.52.52,0,0,0,.347.133h5.087a.46.46,0,0,0,.46-.46V2.46a.46.46,0,0,0-.46-.46Z"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2252"
-                data-name="Path 2252"
-                d="M10,19.627H8.667V14.833a.127.127,0,0,0-.127-.127H2.667V13.373H8.54A1.46,1.46,0,0,1,10,14.833Z"
-                fill="#219ebc"
-              />
-              <Rect
-                id="Rectangle_1152"
-                data-name="Rectangle 1152"
-                width="6.667"
-                height="1.333"
-                rx="0.667"
-                transform="translate(5.78 6.873)"
-                fill="#219ebc"
-              />
-              <Rect
-                id="Rectangle_1153"
-                data-name="Rectangle 1153"
-                width="2.667"
-                height="1.333"
-                rx="0.667"
-                transform="translate(5.78 4)"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2253"
-                data-name="Path 2253"
-                d="M17.667,17.767a1.694,1.694,0,0,1-.333-.033l-1.433-.24.22-1.333,1.46.247a.353.353,0,0,0,.307-.06.333.333,0,0,0,.127-.26V5.233a.34.34,0,0,0-.407-.327l-1.507.2-.173-1.333,1.46-.193a1.62,1.62,0,0,1,1.333.347,1.66,1.66,0,0,1,.613,1.307V16.1a1.673,1.673,0,0,1-1.667,1.667Z"
-                fill="#219ebc"
-              />
-            </G>
-          </G>
-        </Svg>
-      ),
-      text: "Tin tức",
-      navigate: () => navigation.navigate("News"),
-    },
+    //8
+ 
+    //9
+  
+    //10
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -623,7 +638,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
           />
         </Svg>
       ),
-      text: "Lịch tiêm chủng",
+      text: "Lịch sử tiêm chủng",
       navigate: () => navigation.navigate("Vaccination"),
     },
     {
@@ -736,7 +751,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
             <View style={{ flexDirection: 'row', alignItems: "baseline", justifyContent: 'space-between' }}>
 
 
-              <Text style={styles.name}>Phùng Hiểu Đông</Text>
+              <Text style={styles.name}>Trương Thức</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                 <Text onPress={() => navigation.navigate("PatientProfile", {})} style={{ color: "#FB8500", fontSize: 13, marginRight: 5 }}>Xem chi tiết</Text>
                 <Image

@@ -71,7 +71,10 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <Text style={styles.text}>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                erat, sed diam voluptua.
+              </Text>
+              <Text style={styles.text}>
+                At vero eos et accusam et justo duo dolores
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
                 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
@@ -80,7 +83,7 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
                 <Image
                   source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 315 }}
+                  style={{ height: 163, width: 370 , borderRadius:6 }}
                 />
               </View>
             </View>
@@ -128,7 +131,10 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <Text style={styles.text}>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                erat, sed diam voluptua.
+              </Text>
+              <Text style={styles.text}>
+                At vero eos et accusam et justo duo dolores
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
                 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
@@ -137,7 +143,7 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
                 <Image
                   source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 315 }}
+                  style={{ height: 163, width: 370 , borderRadius:6 }}
                 />
               </View>
             </View>
@@ -185,7 +191,10 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <Text style={styles.text}>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                erat, sed diam voluptua.
+              </Text>
+              <Text style={styles.text}>
+                At vero eos et accusam et justo duo dolores
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
                 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
@@ -194,7 +203,7 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
               <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
                 <Image
                   source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 315 }}
+                  style={{ height: 163, width: 370 , borderRadius:6 }}
                 />
               </View>
             </View>
@@ -234,6 +243,7 @@ const styles = StyleSheet.create({
     color: mainColorText,
     marginTop: 15,
     fontFamily: "SFProDisplay-Regular",
+
   },
 });
 

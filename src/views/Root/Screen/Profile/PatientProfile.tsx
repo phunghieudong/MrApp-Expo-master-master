@@ -17,7 +17,7 @@ import { useAppSelector } from "@/store/hook";
 import { _format } from "@/utils";
 import { UserData } from "@/types/User";
 import { Modalize } from "react-native-modalize";
-
+import Modal from "react-native-modal";
 const { padding, mainColorText, blueColor, dangerColor, borderColor } =
   settings.styles;
 
@@ -26,7 +26,7 @@ type IInformation = {
   value: string;
   svg: ReactElement;
   hide?: boolean;
-  openModal?: () => void;
+  toggleModal?: () => void;
   closeModal?: () => void;
 };
 
@@ -40,7 +40,7 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
       ? userAvatarFiles[userAvatarFiles?.length - 1]?.FileUrl
       : null
   );
-
+  const [shouldShow, setShouldShow] = useState(false);
   // xem thông tin ẩn
   const modal = useRef<Modalize>(null);
   const [secret, setSecret] = useState(true);
@@ -73,7 +73,10 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
       setError("");
     }
   };
-
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const information: IInformation[] = [
     {
       label: "NGÀY SINH",
@@ -271,7 +274,8 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
       label: "CMND",
       value: user.CertificateNo,
       svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
+         <Svg width="20" height="20" viewBox="0 0 20 20"   onPress={toggleModal}>
+          
           <Defs>
             <ClipPath id="clip-path">
               <Rect
@@ -327,328 +331,330 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
               />
             </G>
           </G>
+   
         </Svg>
       ),
+      
       hide: secret,
-      openModal: () => modal.current?.open(),
-      closeModal: () => modal.current?.close(),
+      // toggleModal: () => modal.current?.open(),
+      // closeModal: () => modal.current?.close(),
     },
-    {
-      label: "QUỐC TỊCH",
-      value: user.CountryName,
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_984"
-                data-name="Rectangle 984"
-                width="20"
-                height="20"
-                transform="translate(30 486)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_291"
-            data-name="Mask Group 291"
-            transform="translate(-30 -486)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="phone-call_14_"
-              data-name="phone-call (14)"
-              transform="translate(29.378 485.353)"
-            >
-              <Path
-                id="Path_1999"
-                data-name="Path 1999"
-                d="M15.6,13.923a2,2,0,0,0-2.827,0l-.965.965a17.388,17.388,0,0,1-3-2.408,17.707,17.707,0,0,1-2.408-3l.965-.965a2,2,0,0,0,0-2.827L5.481,3.812a1.949,1.949,0,0,0-1.4-.585,2,2,0,0,0-1.417.585l-.9.9A4.237,4.237,0,0,0,.665,8.2C.878,10.7,2.514,13.7,5.036,16.224s5.554,4.157,8.049,4.4a5.235,5.235,0,0,0,.559,0,4.038,4.038,0,0,0,2.934-1.091l.9-.9a2,2,0,0,0,.585-1.417,1.949,1.949,0,0,0-.585-1.4Zm.938,3.765-.9.9a3.04,3.04,0,0,1-2.435.665c-2.162-.186-4.916-1.716-7.191-3.991S2.2,10.251,2,8.089a3.013,3.013,0,0,1,.665-2.435l.938-.9a.675.675,0,0,1,.945,0l1.883,1.9a.665.665,0,0,1,0,.938L5.1,8.92a.665.665,0,0,0-.106.8,18.286,18.286,0,0,0,2.88,3.712,18.286,18.286,0,0,0,3.712,2.88.665.665,0,0,0,.8-.106l1.33-1.33a.665.665,0,0,1,.938,0l1.883,1.883a.65.65,0,0,1,0,.925Z"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2000"
-                data-name="Path 2000"
-                d="M17.694,3.585A9.925,9.925,0,0,0,10.643.665a.665.665,0,0,0,0,1.33,8.648,8.648,0,0,1,8.648,8.721.665.665,0,1,0,1.33,0,9.918,9.918,0,0,0-2.927-7.131Z"
-                fill="#219ebc"
-              />
-              <Path
-                id="Path_2001"
-                data-name="Path 2001"
-                d="M13.909,7.39a3.991,3.991,0,0,1,1.177,2.867.665.665,0,0,0,1.33,0A5.322,5.322,0,0,0,11.1,4.869a.665.665,0,0,0,0,1.33A3.991,3.991,0,0,1,13.909,7.39Z"
-                fill="#219ebc"
-              />
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "ĐỊA CHỈ",
-      value: _format.getCurrentAddress(
-        user.Address,
-        user.WardName,
-        user.DistrictName,
-        user.CityName
-      ),
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "DÂN TỘC",
-      value: user.NationName,
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "CHIỀU CAO",
-      value: "- -",
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "CÂN NẶNG",
-      value: "- -",
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "NHÓM MÁU",
-      value: "- -",
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
-    {
-      label: "CÔNG VIỆC",
-      value: user.JobName,
-      svg: (
-        <Svg width="20" height="20" viewBox="0 0 20 20">
-          <Defs>
-            <ClipPath id="clip-path">
-              <Rect
-                id="Rectangle_716"
-                data-name="Rectangle 716"
-                width="20"
-                height="20"
-                transform="translate(30 571)"
-                fill="#219ebc"
-                stroke="#707070"
-                strokeWidth="1"
-              />
-            </ClipPath>
-          </Defs>
-          <G
-            id="Mask_Group_191"
-            data-name="Mask Group 191"
-            transform="translate(-30 -571)"
-            clipPath="url(#clip-path)"
-          >
-            <G
-              id="calendar_5_"
-              data-name="calendar (5)"
-              transform="translate(30 571)"
-            >
-              <G id="Group_661" data-name="Group 661">
-                <Path
-                  id="Path_1272"
-                  data-name="Path 1272"
-                  d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
-                  fill="#219ebc"
-                />
-              </G>
-            </G>
-          </G>
-        </Svg>
-      ),
-    },
+    // {
+    //   label: "QUỐC TỊCH",
+    //   value: user.CountryName,
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_984"
+    //             data-name="Rectangle 984"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 486)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_291"
+    //         data-name="Mask Group 291"
+    //         transform="translate(-30 -486)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="phone-call_14_"
+    //           data-name="phone-call (14)"
+    //           transform="translate(29.378 485.353)"
+    //         >
+    //           <Path
+    //             id="Path_1999"
+    //             data-name="Path 1999"
+    //             d="M15.6,13.923a2,2,0,0,0-2.827,0l-.965.965a17.388,17.388,0,0,1-3-2.408,17.707,17.707,0,0,1-2.408-3l.965-.965a2,2,0,0,0,0-2.827L5.481,3.812a1.949,1.949,0,0,0-1.4-.585,2,2,0,0,0-1.417.585l-.9.9A4.237,4.237,0,0,0,.665,8.2C.878,10.7,2.514,13.7,5.036,16.224s5.554,4.157,8.049,4.4a5.235,5.235,0,0,0,.559,0,4.038,4.038,0,0,0,2.934-1.091l.9-.9a2,2,0,0,0,.585-1.417,1.949,1.949,0,0,0-.585-1.4Zm.938,3.765-.9.9a3.04,3.04,0,0,1-2.435.665c-2.162-.186-4.916-1.716-7.191-3.991S2.2,10.251,2,8.089a3.013,3.013,0,0,1,.665-2.435l.938-.9a.675.675,0,0,1,.945,0l1.883,1.9a.665.665,0,0,1,0,.938L5.1,8.92a.665.665,0,0,0-.106.8,18.286,18.286,0,0,0,2.88,3.712,18.286,18.286,0,0,0,3.712,2.88.665.665,0,0,0,.8-.106l1.33-1.33a.665.665,0,0,1,.938,0l1.883,1.883a.65.65,0,0,1,0,.925Z"
+    //             fill="#219ebc"
+    //           />
+    //           <Path
+    //             id="Path_2000"
+    //             data-name="Path 2000"
+    //             d="M17.694,3.585A9.925,9.925,0,0,0,10.643.665a.665.665,0,0,0,0,1.33,8.648,8.648,0,0,1,8.648,8.721.665.665,0,1,0,1.33,0,9.918,9.918,0,0,0-2.927-7.131Z"
+    //             fill="#219ebc"
+    //           />
+    //           <Path
+    //             id="Path_2001"
+    //             data-name="Path 2001"
+    //             d="M13.909,7.39a3.991,3.991,0,0,1,1.177,2.867.665.665,0,0,0,1.33,0A5.322,5.322,0,0,0,11.1,4.869a.665.665,0,0,0,0,1.33A3.991,3.991,0,0,1,13.909,7.39Z"
+    //             fill="#219ebc"
+    //           />
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "ĐỊA CHỈ",
+    //   value: _format.getCurrentAddress(
+    //     user.Address,
+    //     user.WardName,
+    //     user.DistrictName,
+    //     user.CityName
+    //   ),
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "DÂN TỘC",
+    //   value: user.NationName,
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "CHIỀU CAO",
+    //   value: "- -",
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "CÂN NẶNG",
+    //   value: "- -",
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "NHÓM MÁU",
+    //   value: "- -",
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
+    // {
+    //   label: "CÔNG VIỆC",
+    //   value: user.JobName,
+    //   svg: (
+    //     <Svg width="20" height="20" viewBox="0 0 20 20">
+    //       <Defs>
+    //         <ClipPath id="clip-path">
+    //           <Rect
+    //             id="Rectangle_716"
+    //             data-name="Rectangle 716"
+    //             width="20"
+    //             height="20"
+    //             transform="translate(30 571)"
+    //             fill="#219ebc"
+    //             stroke="#707070"
+    //             strokeWidth="1"
+    //           />
+    //         </ClipPath>
+    //       </Defs>
+    //       <G
+    //         id="Mask_Group_191"
+    //         data-name="Mask Group 191"
+    //         transform="translate(-30 -571)"
+    //         clipPath="url(#clip-path)"
+    //       >
+    //         <G
+    //           id="calendar_5_"
+    //           data-name="calendar (5)"
+    //           transform="translate(30 571)"
+    //         >
+    //           <G id="Group_661" data-name="Group 661">
+    //             <Path
+    //               id="Path_1272"
+    //               data-name="Path 1272"
+    //               d="M3.022,20H16.978a2.654,2.654,0,0,0,2.652-2.652V4.133a2.654,2.654,0,0,0-2.652-2.652H15.926V.741a.741.741,0,0,0-1.482,0v.741H5.556V.741a.741.741,0,0,0-1.482,0v.741H3.022A2.654,2.654,0,0,0,.37,4.133V17.348A2.654,2.654,0,0,0,3.022,20ZM1.852,4.133a1.173,1.173,0,0,1,1.17-1.17H4.074V3.7a.741.741,0,0,0,1.481,0V2.963h8.889V3.7a.741.741,0,0,0,1.481,0V2.963h1.052a1.173,1.173,0,0,1,1.17,1.17V6.3H1.852Zm0,3.644h16.3v9.57a1.173,1.173,0,0,1-1.17,1.17H3.022a1.173,1.173,0,0,1-1.17-1.17Z"
+    //               fill="#219ebc"
+    //             />
+    //           </G>
+    //         </G>
+    //       </G>
+    //     </Svg>
+    //   ),
+    // },
   ];
 
   return (
@@ -677,6 +683,7 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
             btnText: "Chỉnh sửa",
             onPress: () => navigation.navigate("EditPatientProfile"),
           }}
+
         />
         {information.map((item) => (
           <InformationBlock
@@ -688,12 +695,7 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
         ))}
         <View style={{ height: 10 }} />
       </Content>
-      <ModalCenter
-        ref={modal}
-        style={{ borderRadius: 24 }}
-        avoidKeyboard
-        onClosed={() => setError("")}
-      >
+      <Modal isVisible={isModalVisible} style={{ borderRadius: 12, backgroundColor: '#fff', }}>
         <View style={styles.modal}>
           <Text style={styles.modalheading}>XÁC THỰC MẬT KHẨU</Text>
           <Input
@@ -710,9 +712,10 @@ const ProfileScreen: FC<PatientProfileProps> = ({ navigation }) => {
             <View style={styles.modalcreate}>
               <Text style={styles.modalcreatetext}>XÁC NHẬN</Text>
             </View>
+            
           </TouchableWithoutFeedback>
         </View>
-      </ModalCenter>
+      </Modal>
     </Container>
   );
 };
@@ -721,6 +724,7 @@ const styles = StyleSheet.create({
   body: {
     flexGrow: 1,
     paddingHorizontal: padding,
+
   },
   info: {
     alignSelf: "center",
