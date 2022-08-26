@@ -3,12 +3,14 @@ import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Content, Text, View } from "native-base";
 import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet } from "react-native";
+import { InteractionManager, StyleSheet, TouchableOpacity } from "react-native";
 
 const { mainColor, mainColorText, padding } = settings.styles;
 
-const TermOfMedicalScreen = ({navigation}) => {
+const TermOfMedicalScreen = ({ navigation }) => {
   // interaction
+
+
   const [ready, setReady] = useState(false);
   useEffect(() => {
     InteractionManager.runAfterInteractions(() => {
@@ -24,6 +26,7 @@ const TermOfMedicalScreen = ({navigation}) => {
     <Container style={styles.container}>
       <HeaderRoot title="Quy trình khám bệnh" previous={() => navigation.goBack()} />
       <Content contentContainerStyle={styles.body}>
+
         <View style={styles.box}>
           <Text style={styles.step}>Bước 1:</Text>
           <Text style={styles.text}>

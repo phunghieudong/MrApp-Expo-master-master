@@ -1,284 +1,242 @@
-
 //@ts-nocheck
-import { getUpcomingExaminationCalendar } from "@/api/ExaminationCalendar";
-import {
-
-  HeaderRoot,
-  LazyLoading,
-
-  ModalLoading,
-} from "@/components";
-
+import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
-import { CalendarData } from "@/types/ExaminationCalendar";
-import { Container, Text, Toast, View } from "native-base";
-import React, { FC, useEffect, useRef, useState } from "react";
-import {
-  FlatList,
+import { Container, Content, Text, View } from "native-base";
+import React, { useEffect, useState } from "react";
+import { InteractionManager, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 
-  StyleSheet,
+const { mainColor, mainColorText, padding } = settings.styles;
 
-  Image,
+const RegularProblemsDetailScreen = ({ navigation }) => {
+  // interaction
 
-  TouchableOpacity
-} from "react-native";
-import { ExaminationCalendarProps } from "@/navigation/types/Home";
-import { removePayment, updatePayment } from "@/api/ExaminationForm";
-import { Modalize } from "react-native-modalize";
 
-// import { TouchableOpacity } from "react-native-gesture-handler";
-const {
-  mainColorText,
-  padding,
-  blueColor,
-  dangerColor,
-  dangerColorLight,
-  borderColor,
-  successColor,
-} = settings.styles;
 
-const renderItem = (
-  item: CalendarData,
-  index,
-  pay: (item: CalendarData) => void,
-  toggleModal: (item: CalendarData, index: number) => void,
-  see: (item: CalendarData) => void
-
-) => {
-  let first = {};
-  if (index === 0) first["borderTopWidth"] = 0;
-
-  return (
-    <TouchableOpacity>
-    <View style={[styles.item, first]}>
-
-      <View style={styles.left}>
-        <View style={{ height: 87, width: 87 }}>
-          <Image
-            source={require("../../../../assets/images/LKSTvuong.png")}
-            style={{ height: 87, width: 87 }}
-          />
-        </View>
-      </View>
-      <View style={styles.right}>
-
-        <Text style={styles.hospital}>{item.HospitalName}</Text>
-      </View>
-    </View>
-    </TouchableOpacity>
-  );
-};
-
-const RegularProblemsDetailScreen: FC<ExaminationCalendarProps> = ({
-  navigation,
-}) => {
-  // thông báo hủy lịch hẹn, xem thông tin lịch hẹn
-  const notification = useRef<Modalize>(null);
-  const seeCalendar = useRef<Modalize>(null);
-  const [item, setItem] = useState<CalendarData & { index?: number }>();
-  // const calendar = useRef<{ examinationFormId?: number; index?: number, status?: number }>({});
-
-  // các chức năng
-  const pay = (item: CalendarData) => {
-    const newParams = {
-      doctorId: item.DoctorId,
-      doctorName: item.DoctorDisplayName,
-      examinationDate: item.ExaminationDate,
-      examinationScheduleDetailId: item.ExaminationScheduleDetailId,
-      examinationScheduleDetailName: item.ConfigTimeExaminationValue,
-      hospitalId: item.HospitalId,
-      hospitalName: item.HospitalName,
-      hospitalAddress: item.HospitalAddress,
-      hospitalWebsite: item.HospitalWebSite,
-      hospitalPhoneNumber: item.HospitalPhone,
-      isBHYT: item.IsBHYT ? 1 : 2,
-      roomExaminationId: item.RoomExaminationId,
-      roomExaminationName: item.RoomExaminationName,
-      specialistTypeId: item.SpecialistTypeId
-        ? item.SpecialistTypeId
-        : undefined,
-      specialistTypeName: item.SpecialistTypeName
-        ? item.SpecialistTypeName
-        : undefined,
-      serviceTypeId: item.ServiceTypeId,
-      serviceTypeName: item.ServiceTypeName,
-      typeId: item.TypeId,
-      recordId: item.RecordId,
-      examinationFormId: item.Id,
-      status: item.Status,
-      form: 0,
-    };
-    navigation.navigate("CheckSchedule", { ...newParams });
-  };
-
-  const noti = (item: CalendarData, index: number) => {
-    setItem({ ...item, index });
-    // notification.current?.open();
-    setModalVisible(!isModalVisible);
-  };
-
-  const remove = async () => {
-    if (item) {
-      try {
-        const { index, Id } = item;
-        if (typeof index === "number") {
-          await removePayment(Id);
-          setCalendarsUpcoming([
-            ...calendarsUpcoming.slice(0, index),
-            ...calendarsUpcoming.slice(index + 1),
-          ]);
-          notification.current?.close();
-        }
-      } catch (error) {
-        Toast.show({ text: "Hủy lịch hẹn thất bại" });
-      }
-    }
-  };
-
-  const see = (item: CalendarData) => {
-    setItem(item);
-    seeCalendar.current?.open();
-  };
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  // dữ liệu lịch sử khám bệnh sắp tới
+  const [shouldShow, setShouldShow] = useState(false);
+  const [shouldShow1, setShouldShow1] = useState(false);
+  const [shouldShow2, setShouldShow2] = useState(false);
   const [ready, setReady] = useState(false);
-  const [calendarsUpcoming, setCalendarsUpcoming] = useState<
-    Array<CalendarData>
-  >([]);
-
-  // page
-  const [page, setPage] = useState({ current: 1, next: true });
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
-    (async () => {
-      try {
-        const { current, next } = page;
-        if (next) {
-          setLoading(true);
-          const res = await getUpcomingExaminationCalendar(current, 10);
-          if (current <= 1) {
-            setCalendarsUpcoming([...res.Data.Items]);
-          } else {
-            setCalendarsUpcoming([...calendarsUpcoming, ...res.Data.Items]);
-          }
-          if (current >= res.Data.TotalPage) {
-            setPage({ ...page, next: false });
-          }
-        }
-      } catch (error) {
-        throw new Error("FETCH CALENDAR DATA IS FAILED !");
-      } finally {
-        if (!ready) setReady(true);
-        setLoading(false);
-      }
-    })();
-  }, [page.current]);
+    InteractionManager.runAfterInteractions(() => {
+      setReady(true);
+    });
+  }, []);
+
+  if (!ready) {
+    return <Loading />;
+  }
 
   return (
-    <Container>
-      <HeaderRoot title="FAQ" />
-      {!ready && <LazyLoading />}
-      {ready && (
-        <>
-          <FlatList
-            style={styles.body}
-            data={calendarsUpcoming}
-            onEndReached={() => setPage({ ...page, current: page.current + 1 })}
-            onEndReachedThreshold={0.5}
-            keyExtractor={(item) => item.Id.toString()}
-            renderItem={({ item, index }) =>
-              renderItem(item, index, pay, noti, see)
-            }
-          />
+    <Container style={styles.container}>
+      <HeaderRoot title="FAQ" filter={true} previous={() => navigation.goBack()} />
+      <ScrollView>
+        <View>
+          <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+            <View
+              style={{
+                backgroundColor: "#219EBC",
+                height: 65,
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 24,
+              }}
+            >
+              <View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: "SFProDisplay-Bold",
+                    color: "#fff",
+                  }}
+                >
+                  Tiêu đề 1
+                </Text>
+              </View>
+              <View>
 
+                <Image
+                  source={require("../../../../assets/images/upfff.png")}
+                  style={{ height: 4.78, width: 9.33 }}
+                />
 
-          <ModalLoading visible={loading} />
+              </View>
+            </View>
+          </TouchableOpacity>
+          {shouldShow ? (
+            <View style={styles.box}>
+              <Text style={styles.step}>Bước 1:</Text>
 
+              <Text style={styles.text}>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+                et dolore magna
+              </Text>
+              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
+                <Image
+                  source={require("../../../../assets/images/FAQ.png")}
+                  style={{ height: 163, width: 315 }}
+                />
+              </View>
+            </View>
+          ) : null}
 
-        </>
-      )}
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => setShouldShow1(!shouldShow1)}>
+            <View
+              style={{
+                backgroundColor: "#219EBC",
+                height: 65,
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 24,
+              }}
+            >
+              <View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: "SFProDisplay-Bold",
+                    color: "#fff",
+                  }}
+                >
+                  Tiêu đề 2
+                </Text>
+              </View>
+              <View>
+
+                <Image
+                  source={require("../../../../assets/images/upfff.png")}
+                  style={{ height: 4.78, width: 9.33 }}
+                />
+
+              </View>
+            </View>
+          </TouchableOpacity>
+          {shouldShow1 ? (
+            <View style={styles.box}>
+              <Text style={styles.step}>Bước 2:</Text>
+
+              <Text style={styles.text}>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+                et dolore magna
+              </Text>
+              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
+                <Image
+                  source={require("../../../../assets/images/FAQ.png")}
+                  style={{ height: 163, width: 315 }}
+                />
+              </View>
+            </View>
+          ) : null}
+
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => setShouldShow2(!shouldShow2)}>
+            <View
+              style={{
+                backgroundColor: "#219EBC",
+                height: 65,
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 24,
+              }}
+            >
+              <View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: "SFProDisplay-Bold",
+                    color: "#fff",
+                  }}
+                >
+                  Tiêu đề 3
+                </Text>
+              </View>
+              <View>
+
+                <Image
+                  source={require("../../../../assets/images/upfff.png")}
+                  style={{ height: 4.78, width: 9.33 }}
+                />
+
+              </View>
+            </View>
+          </TouchableOpacity>
+          {shouldShow2 ? (
+            <View style={styles.box}>
+              <Text style={styles.step}>Bước 3:</Text>
+
+              <Text style={styles.text}>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+                et dolore magna
+              </Text>
+              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
+                <Image
+                  source={require("../../../../assets/images/FAQ.png")}
+                  style={{ height: 163, width: 315 }}
+                />
+              </View>
+            </View>
+          ) : null}
+
+        </View>
+      </ScrollView>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  body: {
-    paddingHorizontal: padding,
-  },
-  item: {
-    flexDirection: "row",
-    paddingVertical: 20,
-    borderTopWidth: 1,
-    borderColor,
-  },
-  left: {
-    marginRight: 12,
-    width: 100,
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  word: {
-    color: "#fff",
-    fontFamily: "SFProDisplay-Bold",
-    letterSpacing: 2,
-  },
-  right: {
+  container: {
     flex: 1,
-    justifyContent: 'center'
+    backgroundColor: "#fff",
   },
-  date: {
-    fontSize: 14,
-    lineHeight: 19,
-    fontFamily: "SFProDisplay-Regular",
-    color: mainColorText,
-  },
-  paid: {
-    fontSize: 14,
-    lineHeight: 19,
-    fontFamily: "SFProDisplay-Bold",
-    color: "#142977",
-  },
-  hospital: {
-    fontSize: 20,
-    lineHeight: 24,
-    letterSpacing: 0.25,
-    fontFamily: "SFProDisplay-Semibold",
-    color: mainColorText,
-  },
-  position: {
-    fontSize: 14,
-    lineHeight: 18,
-    fontFamily: "SFProDisplay-Regular",
-    color: "rgba(0, 0, 0, .6)",
-  },
-  flex: {
-    flexDirection: "row",
-    marginTop: 11,
-  },
-  btn: {
-    marginRight: 12,
-    backgroundColor: dangerColorLight,
-    minWidth: 100,
-    paddingTop: 8,
-    paddingBottom: 10,
-    borderRadius: 100,
-  },
-
-  modal: {
+  body: {
+    flexGrow: 1,
     paddingHorizontal: padding,
   },
+  box: {
 
-  value: {
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#0000003a",
+    paddingHorizontal: 20
+  },
+  step: {
+    color: mainColor,
+    fontSize: 20,
+    fontFamily: "SFProDisplay-Heavy",
+  },
+  text: {
     fontSize: 16,
-    lineHeight: 21,
+    lineHeight: 24,
+    letterSpacing: 0.5,
+    color: mainColorText,
+    marginTop: 15,
     fontFamily: "SFProDisplay-Regular",
-    color: "#0000009a",
   },
 });
 
 export default RegularProblemsDetailScreen;
+
+

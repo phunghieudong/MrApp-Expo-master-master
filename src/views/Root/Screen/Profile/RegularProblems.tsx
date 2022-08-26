@@ -1,228 +1,164 @@
-
+// Chổ này đang xài api của phần News -> chờ anh Hùng làm xong api FAQ thì gắn vào
 //@ts-nocheck
-import { getUpcomingExaminationCalendar } from "@/api/ExaminationCalendar";
-import {
-  Dialog,
-  HeaderRoot,
-  LazyLoading,
-  Loading,
-  ModalCenter,
-  ModalLoading,
-} from "@/components";
+import React, { FC, useEffect, useState } from "react";
+import { View, Text, Container, Icon } from "native-base";
+import { Empty, HeaderRoot, LazyLoading } from "@/components";
 
-import { settings } from "@/config";
-import { CalendarData } from "@/types/ExaminationCalendar";
-import { Container, Text, Toast, View } from "native-base";
-import React, { FC, useEffect, useRef, useState } from "react";
 import {
   FlatList,
-  InteractionManager,
+  Image,
   StyleSheet,
   TouchableWithoutFeedback,
-  Image,
-  Button,
-  TouchableOpacity
 } from "react-native";
-import { useNavigation } from "@react-navigation/core";
-import { ExaminationCalendarProps } from "@/navigation/types/Home";
-import { removePayment, updatePayment } from "@/api/ExaminationForm";
-import { Modalize } from "react-native-modalize";
-import ModalBottom from "@/components/ModalBottom";
+import { getNewFeed } from "@/api/NewFeed";
+import { NewsProps } from "@/navigation/types/profile";
+import { NewFeedData } from "@/types/NewFeed";
+import { settings } from "@/config";
+
+const { padding, mainColorText, successColor } = settings.styles;
 import { _format } from "@/utils";
-import Modal from "react-native-modal";
-// import { TouchableOpacity } from "react-native-gesture-handler";
-const {
-  mainColorText,
-  padding,
-  blueColor,
-  dangerColor,
-  dangerColorLight,
-  borderColor,
-  successColor,
-} = settings.styles;
-
-const renderItem = (
-  item: CalendarData,
-  index,
-  pay: (item: CalendarData) => void,
-  toggleModal: (item: CalendarData, index: number) => void,
-  see: (item: CalendarData) => void
-
-) => {
-  let first = {};
-  if (index === 0) first["borderTopWidth"] = 0;
-
-  return (
-
-    <TouchableOpacity onPress={() => navigation.navigate("RegularProblemsDetail")}>
-      <View style={[styles.item, first]}>
-
-        <View style={styles.left}>
-          <View style={{ height: 87, width: 87 }}>
-            <Image
-              source={require("../../../../assets/images/LKSTvuong.png")}
-              style={{ height: 87, width: 87 }}
-            />
-          </View>
-        </View>
-        <View style={styles.right}>
-
-          <Text style={styles.hospital}>{item.HospitalName}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
-const RegularProblemsScreen: FC<ExaminationCalendarProps> = ({navigation}) => {
-
-
-  // thông báo hủy lịch hẹn, xem thông tin lịch hẹn
-  const notification = useRef<Modalize>(null);
-  const seeCalendar = useRef<Modalize>(null);
-  const [item, setItem] = useState<CalendarData & { index?: number }>();
-  // const calendar = useRef<{ examinationFormId?: number; index?: number, status?: number }>({});
-
-  // các chức năng
-  const pay = (item: CalendarData) => {
-    const newParams = {
-      doctorId: item.DoctorId,
-      doctorName: item.DoctorDisplayName,
-      examinationDate: item.ExaminationDate,
-      examinationScheduleDetailId: item.ExaminationScheduleDetailId,
-      examinationScheduleDetailName: item.ConfigTimeExaminationValue,
-      hospitalId: item.HospitalId,
-      hospitalName: item.HospitalName,
-      hospitalAddress: item.HospitalAddress,
-      hospitalWebsite: item.HospitalWebSite,
-      hospitalPhoneNumber: item.HospitalPhone,
-      isBHYT: item.IsBHYT ? 1 : 2,
-      roomExaminationId: item.RoomExaminationId,
-      roomExaminationName: item.RoomExaminationName,
-      specialistTypeId: item.SpecialistTypeId
-        ? item.SpecialistTypeId
-        : undefined,
-      specialistTypeName: item.SpecialistTypeName
-        ? item.SpecialistTypeName
-        : undefined,
-      serviceTypeId: item.ServiceTypeId,
-      serviceTypeName: item.ServiceTypeName,
-      typeId: item.TypeId,
-      recordId: item.RecordId,
-      examinationFormId: item.Id,
-      status: item.Status,
-      form: 0,
-    };
-    navigation.navigate("CheckSchedule", { ...newParams });
-  };
-
-  const noti = (item: CalendarData, index: number) => {
-    setItem({ ...item, index });
-    // notification.current?.open();
-    setModalVisible(!isModalVisible);
-  };
-
-  const remove = async () => {
-    if (item) {
-      try {
-        const { index, Id } = item;
-        if (typeof index === "number") {
-          await removePayment(Id);
-          setCalendarsUpcoming([
-            ...calendarsUpcoming.slice(0, index),
-            ...calendarsUpcoming.slice(index + 1),
-          ]);
-          notification.current?.close();
-        }
-      } catch (error) {
-        Toast.show({ text: "Hủy lịch hẹn thất bại" });
-      }
-    }
-  };
-
-  const see = (item: CalendarData) => {
-    setItem(item);
-    seeCalendar.current?.open();
-  };
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  // dữ liệu lịch sử khám bệnh sắp tới
-  const [ready, setReady] = useState(false);
-  const [calendarsUpcoming, setCalendarsUpcoming] = useState<
-    Array<CalendarData>
-  >([]);
-
-  // page
+const RegularProblemsScreen: FC<NewsProps> = ({ navigation }) => {
+  const [data, setData] = useState<NewFeedData[]>([]); 
   const [page, setPage] = useState({ current: 1, next: true });
-  const [loading, setLoading] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
         const { current, next } = page;
         if (next) {
-          setLoading(true);
-          const res = await getUpcomingExaminationCalendar(current, 10);
-          if (current <= 1) {
-            setCalendarsUpcoming([...res.Data.Items]);
-          } else {
-            setCalendarsUpcoming([...calendarsUpcoming, ...res.Data.Items]);
-          }
+          const params = { pageIndex: current, pageSize: 10 };
+          const res = await getNewFeed(params);
+          setData([...res.Data.Items]);
           if (current >= res.Data.TotalPage) {
             setPage({ ...page, next: false });
           }
+          if (!ready) setReady(true);
         }
       } catch (error) {
-        throw new Error("FETCH CALENDAR DATA IS FAILED !");
-      } finally {
-        if (!ready) setReady(true);
-        setLoading(false);
+        throw new Error("FETCH FAQ DATA IS FAILED !");
       }
     })();
   }, [page.current]);
 
   return (
-    <Container>
-      <HeaderRoot title="FAQ" filter={true}  previous={() => navigation.goBack()} />
+    <Container style={styles.container}>
+      <HeaderRoot title="FAQ" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
-      {ready && (
-        <>
-          <FlatList
-            style={styles.body}
-            data={calendarsUpcoming}
-            onEndReached={() => setPage({ ...page, current: page.current + 1 })}
-            onEndReachedThreshold={0.5}
-            keyExtractor={(item) => item.Id.toString()}
-            renderItem={({ item, index }) =>
-
-
-
-              renderItem(item, index, pay, noti, see)
-
-            }
-          />
-
-
-          <ModalLoading visible={loading} />
-
-
-        </>
+      {ready && !data.length && (
+        <Empty text="Không tìm thấy câu hỏi thường gặp nào" />
       )}
-    </Container>
+      {ready && data.length > 0 && (
+        <FlatList
+          data={data}
+          style={styles.body}
+          onEndReached={() => setPage({ ...page, current: page.current + 1 })}
+          onEndReachedThreshold={0.5}
+          keyExtractor={(i) => i.Id.toString()}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+              onPress={() =>
+                navigation.navigate("RegularProblemsDetail", {
+                  bannerImage: item.BannerUrl,
+                  backgroundImage: item.BackGroundImgUrl,
+                  content: item.Content,
+                  title: item.Title,
+                })
+              }
+            >
+              <View style={{
+                flexDirection: "row",
+                paddingVertical: 20,
+                borderTopWidth: 0.5,
+                borderColor:'#CACEE1'
+              }}>
+
+                <View style={styles.left}>
+                  <View style={{ height: 87, width: 87 }}>
+                    <Image
+                      source={require("../../../../assets/images/LKSTvuong.png")}
+                      style={{ height: 87, width: 87 }}
+                    />
+                  </View>
+                </View>
+                <View style={styles.right}>
+
+                  <Text style={styles.hospital}>{item.HospitalName}</Text>
+
+
+
+
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          )
+          }
+        />
+      )}
+    </Container >
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+  },
   body: {
     paddingHorizontal: padding,
   },
-  item: {
+
+  logo: {
+
+    borderRadius: 100,
+    width: 34,
+    height: 34,
+    marginRight: 8,
+    marginTop: 4,
+  },
+  logotext: {
+    textAlign: "center",
+    lineHeight: 34,
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "SFProDisplay-Regular",
+  },
+  box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
+
+  },
+  detail: {
+    flex: 1,
+  },
+  flex: {
     flexDirection: "row",
-    paddingVertical: 20,
-    borderTopWidth: 1,
-    borderColor,
+    justifyContent: "space-between",
+  },
+  content: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: "rgba(0, 0, 0, .5)",
+    fontFamily: "SFProDisplay-Regular",
+  },
+  title: {
+    marginTop: 8,
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SFProDisplay-Regular",
+
+  },
+  img: {
+    width: 40,
+  },
+
+  icon: {
+    fontSize: 18,
+    padding: 8,
+    left: 8,
+
   },
   left: {
     marginRight: 12,
@@ -233,31 +169,32 @@ const styles = StyleSheet.create({
   },
   word: {
     color: "#fff",
-    fontFamily: "SFProDisplay-Bold",
+    // fontFamily: "SFProDisplay-Bold",
     letterSpacing: 2,
   },
   right: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent:'center', 
+    alignItems:'center'
   },
   date: {
     fontSize: 14,
     lineHeight: 19,
     fontFamily: "SFProDisplay-Regular",
-    color: mainColorText,
+
   },
   paid: {
     fontSize: 14,
     lineHeight: 19,
-    fontFamily: "SFProDisplay-Bold",
+    // fontFamily: "SFProDisplay-Bold",
     color: "#142977",
   },
   hospital: {
     fontSize: 20,
     lineHeight: 24,
     letterSpacing: 0.25,
-    fontFamily: "SFProDisplay-Semibold",
-    color: mainColorText,
+    // fontFamily: "SFProDisplay-Semibold",
+
   },
   position: {
     fontSize: 14,
@@ -271,17 +208,30 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginRight: 12,
-    backgroundColor: dangerColorLight,
+
     minWidth: 100,
     paddingTop: 8,
     paddingBottom: 10,
     borderRadius: 100,
   },
+  btntext: {
 
+    textAlign: "center",
+    fontSize: 14,
+    letterSpacing: 1.25,
+    fontFamily: "SFProDisplay-Regular",
+  },
   modal: {
     paddingHorizontal: padding,
   },
-
+  label: {
+    marginTop: 10,
+    fontSize: 14,
+    lineHeight: 19,
+    fontFamily: "SFProDisplay-Regular",
+    color: "#0000006a",
+    letterSpacing: 0.5,
+  },
   value: {
     fontSize: 16,
     lineHeight: 21,
@@ -291,3 +241,5 @@ const styles = StyleSheet.create({
 });
 
 export default RegularProblemsScreen;
+
+
