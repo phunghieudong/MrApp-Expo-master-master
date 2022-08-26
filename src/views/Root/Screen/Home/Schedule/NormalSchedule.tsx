@@ -28,7 +28,7 @@ import { Modalize } from "react-native-modalize";
 import ModalBottom from "@/components/ModalBottom";
 import { getLastestExamination } from "@/api/ExaminationForm";
 import { Modal } from 'react-native-paper';
-import { TouchableOpacity, Button, ScrollView ,Image} from 'react-native';
+import { TouchableOpacity, Button, ScrollView, Image } from 'react-native';
 const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
   settings.styles;
 
@@ -636,7 +636,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 <Text style={styles.btntext}>TIẾP THEO</Text>
               </View>
             </TouchableOpacity>
-            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "90%", width: "100%" , paddingBottom:5}}>
+            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "90%", width: "100%", paddingBottom: 5 }}>
               <>
                 {specialistType.length > 0 &&
                   specialistType.map((i) => (
@@ -649,36 +649,36 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                         style={styles.service}>
                         {/* <TouchableWithoutFeedback onPress={hideModal}> */}
                         <View style={{ backgroundColor: "#fff", width: 343, height: 50, borderRadius: 12, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                          <View style={{ backgroundColor: '#E8F5F8', height: 38, width: 38, borderRadius: 100 , justifyContent:'center' , alignItems:'center' , marginLeft:10 , marginRight:10}}>
+                          <View style={{ backgroundColor: '#E8F5F8', height: 38, width: 38, borderRadius: 100, justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginRight: 10 }}>
                             <Image
                               source={require("../../../../../assets/images/lungs.png")}
-                              style={{ height: 38, width: 38, borderRadius:100}}
+                              style={{ height: 38, width: 38, borderRadius: 100 }}
                             />
                           </View>
-                          <View style={{flexDirection:'column'}}>
-                          <Text
-                            style={[
-                              styles.servicename,
-                              value?.specialistTypeId === i.Id && {
-                                color: blueColor,
-                              },
-                            ]}
-                          >
-                            {i.Name}
-                          </Text>
+                          <View style={{ flexDirection: 'column' }}>
+                            <Text
+                              style={[
+                                styles.servicename,
+                                value?.specialistTypeId === i.Id && {
+                                  color: blueColor,
+                                },
+                              ]}
+                            >
+                              {i.Name}
+                            </Text>
 
-                          <Text
-                            style={[
-                              styles.servicename1,
-                              value?.specialistTypeId === i.Id && {
-                                color: blueColor,
-                              },
-                            ]}
-                          >
-                            {i.Price}
-                          </Text>
+                            <Text
+                              style={[
+                                styles.servicename1,
+                                value?.specialistTypeId === i.Id && {
+                                  color: blueColor,
+                                },
+                              ]}
+                            >
+                              {i.Price}
+                            </Text>
                           </View>
-                       
+
                         </View>
                         {/* </TouchableWithoutFeedback> */}
                         {/* {value?.specialistTypeId === i.Id && (
@@ -712,30 +712,44 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                           handleModal(i.Id, i.Name, i.IsBHYT, "service")
                         }
                       >
-                        <View style={styles.service}>
-                          <Text
-                            style={[
-                              styles.servicename,
-                              value?.serviceTypeId === i.Id && {
-                                color: blueColor,
-                              },
-                            ]}
-                          >
-                            {i.Name}
 
-                          </Text>
-                          {value?.serviceTypeId === i.Id && (
-                            <Icon
-                              type="Feather"
-                              name="check-circle"
-                              style={styles.serviceicon}
-                            />
-                          )}
+
+                        <View
+                          style={styles.service}>
+                          {/* <TouchableWithoutFeedback onPress={hideModal}> */}
+                          <View style={{ backgroundColor: "#fff", width: 343, height: 50, borderRadius: 12, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+                            <View style={{ backgroundColor: '#E8F5F8', height: 38, width: 38, borderRadius: 100, justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginRight: 10 }}>
+                              <Image
+                                source={require("../../../../../assets/images/unthu.png")}
+                                style={{ height: 38, width: 38, borderRadius: 100 }}
+                              />
+                            </View>
+                            <View style={{ flexDirection: 'column' }}>
+                              <Text
+                                style={[
+                                  styles.servicename,
+                                  value?.serviceTypeId === i.Id && {
+                                    color: blueColor,
+                                  },
+                                ]}
+                              >
+                                {i.Name}
+
+                              </Text>
+
+
+                            </View>
+
+                          </View>
+
                         </View>
+
+
                       </TouchableWithoutFeedback>
                     );
                   }
                 })}
+                <Button title="XÁC NHẬN" onPress={hideModal1} />
               </>
             </Modal>
 
@@ -951,8 +965,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: "SFProDisplay-Bold",
     color: mainColorText,
-  
-   
+
+
 
   },
   servicename1: {
@@ -960,7 +974,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: "SFProDisplay-Regular",
     color: "#FB8500",
-   
+
 
   },
   serviceicon: {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getExaminationSchedules } from "@/api/ExaminationForm";
 import { HeaderRoot, LazyLoading } from "@/components";
 import { settings } from "@/config";
@@ -6,8 +7,9 @@ import { ExaminationScheduleData } from "@/types/ExaminationForm";
 import { _format } from "@/utils";
 import { Container, Icon, Text, View } from "native-base";
 import React, { FC, useEffect, useState } from "react";
-import { Dimensions, InteractionManager, StyleSheet } from "react-native";
+import { Dimensions, InteractionManager, StyleSheet, ScrollView } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
+
 
 const { width: dW } = Dimensions.get("screen");
 const {
@@ -120,63 +122,137 @@ const CalendarScreen: FC<CalendarProps> = ({
 
   return (
     <Container>
+
       <HeaderRoot title="Chọn ngày khám" previous={() => navigation.goBack()} />
-      {!ready && <LazyLoading />}
-      {ready && (
-        <>
-          <Calendar
-            renderArrow={(direction) => (
-              <Icon
-                type="Ionicons"
-                name={direction === "left" ? "chevron-back" : "chevron-forward"}
-                style={styles.headingicon}
-              />
-            )}
-            minDate={new Date()}
-            firstDay={0}
-            onDayPress={(day) => nav(new Date(day.dateString))}
-            enableSwipeMonths={true}
-            disableAllTouchEventsForDisabledDays
-            hideExtraDays={true}
-            markedDates={calendars}
-            theme={
-              {
-                "stylesheet.calendar.main": {
-                  container: { paddingLeft: 0, paddingRight: 0 },
-                },
-                "stylesheet.calendar.header": {
-                  header: {
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    backgroundColor: mainColor,
+      <ScrollView>
+        {!ready && <LazyLoading />}
+        {ready && (
+          <>
+            <Calendar
+              renderArrow={(direction) => (
+                <Icon
+                  type="Ionicons"
+                  name={direction === "left" ? "chevron-back" : "chevron-forward"}
+                  style={styles.headingicon}
+                />
+              )}
+              minDate={new Date()}
+              firstDay={0}
+              onDayPress={(day) => nav(new Date(day.dateString))}
+              enableSwipeMonths={true}
+              disableAllTouchEventsForDisabledDays
+              hideExtraDays={true}
+              markedDates={calendars}
+              theme={
+                {
+                  "stylesheet.calendar.main": {
+                    container: { paddingLeft: 0, paddingRight: 0 },
                   },
-                  week: {
-                    marginTop: 0,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    backgroundColor: "rgba(125,125,125,0.25)",
+                  "stylesheet.calendar.header": {
+                    header: {
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      backgroundColor: "#D9D9D9",
+                    },
+                    week: {
+                      marginTop: 0,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      backgroundColor: "rgba(125,125,125,0.25)",
+                    },
+                    dayTextAtIndex6: {
+                      color: dangerColor,
+                    },
+                    monthText: styles.headingtext,
+                    dayHeader: styles.date,
                   },
-                  dayTextAtIndex6: {
-                    color: dangerColor,
-                  },
-                  monthText: styles.headingtext,
-                  dayHeader: styles.date,
-                },
-                dayTextColor: placeholderColor,
-                todayTextColor: placeholderColor,
-                textDisabledColor: placeholderColor,
-                textDayFontFamily: "SFProDisplay-Regular",
-                textMonthFontFamily: "SFProDisplay-Regular",
-                textDayHeaderFontFamily: "SFProDisplay-Regular",
-                textMonthFontSize: 18,
-                textDayFontSize: 16,
-                textDayHeaderFontSize: 16,
-                monthTextColor: "#fff",
-              } as any
-            }
-          />
-          <View style={styles.explain}>
+                  dayTextColor: placeholderColor,
+                  todayTextColor: placeholderColor,
+                  textDisabledColor: placeholderColor,
+                  textDayFontFamily: "SFProDisplay-Regular",
+                  textMonthFontFamily: "SFProDisplay-Regular",
+                  textDayHeaderFontFamily: "SFProDisplay-Regular",
+                  textMonthFontSize: 18,
+                  textDayFontSize: 16,
+                  textDayHeaderFontSize: 16,
+                  monthTextColor: "#fff",
+                } as any
+              }
+            />
+            <View style={{ marginTop: 30, width: '100%', height: 20, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ backgroundColor: "#D9D9D9", borderRadius: 5, height: 32, width: 32, marginRight: 10 }}></View>
+                <Text>
+                  Full lịch
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ backgroundColor: "#142977", borderRadius: 5, height: 32, width: 32, marginRight: 10 }}></View>
+                <Text>
+                  Ngày trống
+                </Text>
+              </View>
+            </View>
+            <View style={{ width: "100%", height: 167, borderRadius: 12, marginTop: 40, justifyContent: "center", alignItems: "center" }}>
+              <View style={{ backgroundColor: '#142977', width: 343, height: 167, borderRadius: 12, justifyContent: "flex-start", alignItems: "flex-start", paddingTop: 10, paddingLeft: 10 }}>
+                <View style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+
+
+                  <View style={{ flexDirection: 'row', }}>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>02 tháng 9 , 2021</Text>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>09:00 ~ 10:10</Text>
+                  </View>
+                  <View>
+                    <Text style={{ color: "#ffffff", fontSize: 20, fontFamily: 'SFProDisplay-Bold' }}>Phòng khám 401</Text>
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>Bác sĩ:</Text>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>Nguyễn Anh Tuấn</Text>
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>Dịch vụ:</Text>
+                    <Text style={{ color: "#ffffff", fontSize: 16 }}>Chích ngừa uốn ván</Text>
+                  </View>
+
+
+                </View>
+                <View style={{ justifyContent: "flex-end", alignItems: 'flex-end', flexDirection: "row-reverse" }}>
+                  <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#fff' }}>ĐÃ XÁC NHẬN</Text>
+                </View>
+              </View>
+
+            </View>
+            <View style={{ width: "100%", height: 167, borderRadius: 12, marginTop: 10, justifyContent: "center", alignItems: "center" }}>
+              <View style={{ backgroundColor: '#D9D9D9', width: 343, height: 167, borderRadius: 12, justifyContent: "flex-start", alignItems: "flex-start", paddingTop: 10, paddingLeft: 10 }}>
+                <View style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+
+
+                  <View style={{ flexDirection: 'row', }}>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>02 tháng 9 , 2021</Text>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>09:00 ~ 10:10</Text>
+                  </View>
+                  <View>
+                    <Text style={{ color: "#000000", fontSize: 20, fontFamily: 'SFProDisplay-Bold' }}>Phòng khám 401</Text>
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>Bác sĩ:</Text>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>Nguyễn Anh Tuấn</Text>
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>Dịch vụ:</Text>
+                    <Text style={{ color: "#000000", fontSize: 16 }}>Chích ngừa uốn ván</Text>
+                  </View>
+
+
+                </View>
+                <View style={{ justifyContent: "flex-end", alignItems: 'flex-end', flexDirection: "row" }}>
+                  <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#000000' }}>XÁC NHẬN</Text>
+                  <Text style={{ fontSize: 14, fontFamily: 'SFProDisplay-Bold', color: '#000000' }}>HỦY</Text>
+                </View>
+              </View>
+            </View>
+            {/* <View style={styles.explain}>
             <Text style={styles.explainheading}>Chú thích</Text>
             <View style={styles.explainbody}>
               <View style={styles.explainbox}>
@@ -199,9 +275,10 @@ const CalendarScreen: FC<CalendarProps> = ({
                 <Text style={styles.explaintext}>Ngày đủ lịch hẹn</Text>
               </View>
             </View>
-          </View>
-        </>
-      )}
+          </View> */}
+          </>
+        )}
+      </ScrollView>
     </Container>
   );
 };
@@ -221,13 +298,13 @@ const styles = StyleSheet.create({
     marginTop: -10,
   },
   headingtext: {
-    color: "#fff",
+    color: "#222B45",
     fontSize: 18,
     lineHeight: 22,
     fontFamily: "SFProDisplay-Medium",
   },
   headingicon: {
-    color: "#fff",
+    color: "#222B45",
   },
   dates: {
     width: dW,
@@ -279,6 +356,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     overflow: "hidden",
     borderRadius: 4,
+
   },
   explainheading: {
     fontFamily: "SFProDisplay-Regular",
