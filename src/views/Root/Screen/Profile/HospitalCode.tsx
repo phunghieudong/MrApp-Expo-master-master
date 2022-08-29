@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { View, Text, Container, Input, Icon } from "native-base";
 import { Empty, HeaderRoot, LazyLoading, Loading } from "@/components";
-import { StyleSheet, Dimensions, FlatList, Image, TextInput } from "react-native";
+import { StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { settings } from "@/config";
 import { HospitalData } from "@/types/base";
 import { _format } from "@/utils";
@@ -15,6 +15,9 @@ import { UserData } from "@/types/User";
 const { padding, mainColorText, blueColor } = settings.styles;
 
 const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
+
+
+  const [shouldShow, setShouldShow] = useState(false);
   // lấy user hiện tại
   const user = useAppSelector((state) => state.user.current) as UserData;
   const [text, setText] = useState('');
@@ -50,7 +53,7 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
     <Container style={styles.container}>
 
       <HeaderRoot
-        title="MÃ HỒ SƠ BỆNH VIỆN"
+        title="DS MÃ HỒ SƠ BỆNH VIỆN"
         previous={() => navigation.goBack()}
       />
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -59,11 +62,11 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
             height: 40, width: 315, borderRadius: 6, borderWidth: 0.5, height: 40,
             margin: 12,
             borderWidth: 1,
-            borderColor:'#D8D6D2',
+            borderColor: '#D8D6D2',
             padding: 10,
-            justifyContent:'center',
-            backgroundColor:'#F0F0F0',
-          
+            justifyContent: 'center',
+            backgroundColor: '#F0F0F0',
+
           }}
           placeholder="Nhập tên bệnh viện"
           defaultValue={text}
@@ -82,35 +85,119 @@ const HospitalCodeScreen: FC<HospitalCodeProps> = ({ navigation }) => {
           style={styles.body}
           keyExtractor={(i) => i.Id.toString()}
           renderItem={({ item }) => (
-
-            <View style={styles.block}>
-
-
+            <ScrollView>
               <View>
+                <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+                  <View style={styles.block}>
 
-                <Image
-                  source={require("../../../../assets/images/LKSTvuong.png")}
-                  style={{ height: 87, width: 87 }}
-                />
+                    <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+                      <View >
+
+                        <Image
+                          source={require("../../../../assets/images/LKSTvuong.png")}
+                          style={{ height: 87, width: 87 }}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                    <View style={{ flexDirection: 'column', paddingLeft: 10, width: 250 }}>
+                      <Text numberOfLines={2} style={{ fontSize: 18, fontFamily: 'SFProDisplay-Bold', width: "100%", }}> {item.HospitalName}</Text>
+                      <Text style={{ color: "#FB8500", fontSize: 14 }}> Mã hồ sơ: {item.Code}</Text>
+
+
+                      <Text style={{ color: "#142977", fontSize: 14 }}> Ngày cấp {_format.getShortVNDate(item.Created)}</Text>
+                      <View style={{
+                        fontSize: 14,
+                        fontFamily: "Regular",
+                        lineHeight: 18,
+
+                        width: "100%",
+                        paddingVertical: 5,
+                      }}>
+
+                      </View>
+
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+
+                      <Image
+                        source={require("../../../../assets/images/upblue.png")}
+                        style={{ height: 9, width: 14 }}
+                      />
+                    </View>
+
+
+                  </View>
+                </TouchableOpacity>
+                {shouldShow ? (
+                  <View style={{ paddingHorizontal: 30 }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 30, paddingBottom: 8 }}>
+                      <Image
+                        source={require("../../../../assets/images/codengang.png")}
+                        style={{ height: 52, width: 269, }}
+                      />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                      <Text style={{ color: "#FB8500", fontSize: 14 }}>1234567890123456</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={styles.text}>
+                        Mã cấp lần 1
+                      </Text>
+                      <Text style={styles.text}>
+                        TD 0908
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={styles.text}>
+                        Ngày cấp
+                      </Text>
+                      <Text style={styles.text}>
+                       11/2/2022
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={styles.text}>
+                        Mã cấp lần 2
+                      </Text>
+                      <Text style={styles.text}>
+                        TD 0908
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={styles.text}>
+                        Ngày cấp
+                      </Text>
+                      <Text style={styles.text}>
+                       12/4/2022
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={styles.text}>
+                        Website
+                      </Text>
+                      <Text style={styles.text}>
+                        www.benhvienhoahao.vn
+                      </Text>
+                    </View>
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingBottom:30 }}>
+                      <Text style={{color:'#000000' , fontFamily:"SFProDisplay-Bold"}}>
+                       Địa chỉ
+                      </Text>
+                      <Text style={{color:'#000000' , fontFamily:"SFProDisplay-Bold"}}>
+                      342 Sư Vạn Hạnh, Phường 14 quận 1
+                      </Text>
+                    </View>
+
+
+
+                  </View>
+                ) : null}
+
               </View>
-              <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                <Text numberOfLines={2} style={{ fontSize: 18, fontFamily: 'SFProDisplay-Bold' }}> {item.HospitalName}</Text>
-                <Text style={{ color: "#FB8500", fontSize: 14 }}> Mã hồ sơ: {item.Code}</Text>
-                <Text style={{ color: "#142977", fontSize: 14 }}> Ngày cấp {item.ConfigTimeValue}</Text>
-                <View style={{
-                  fontSize: 14,
-                  fontFamily: "Regular",
-                  lineHeight: 18,
 
-                  width: "100%",
-                  paddingVertical: 5,
-                }}>
+            </ScrollView>
 
-                </View>
-
-              </View>
-
-            </View>
 
           )}
         />
@@ -128,6 +215,10 @@ const styles = StyleSheet.create({
   body: {
 
   },
+
+  text: {
+    color: '#525252'
+  },
   block: {
 
     padding: 30,
@@ -135,7 +226,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E8F5F8',
     width: "150%",
-    height: 137
+    height: 137,
+    borderBottomWidth: 0.5,
+    borderColor: '#CACEE1',
+    borderWidth: 0.5,
+
+
 
   },
   flex: {

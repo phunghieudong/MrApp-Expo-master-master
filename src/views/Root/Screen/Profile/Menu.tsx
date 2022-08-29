@@ -49,7 +49,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
   const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // menu
   const menuLeft = [
-    //1
+   
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -62,7 +62,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Hồ sơ\ncá nhân",
       navigate: () => navigation.navigate("PatientProfile"),
     },
-    //3
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20" >
@@ -279,7 +278,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       navigate: () => navigation.navigate("TermOfMedical"),
       // navigate: () => Toast.show({ text: "Tính năng còn đang phát triển" }),
     },
-    //2
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -316,10 +314,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
       text: "Tư vấn khám\ntrực tiếp",
       navigate: () => navigation.navigate("AdviseMenu"),
-    },
-    
-
-    //4
+    }, 
     {
 
 
@@ -409,9 +404,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       navigate: () => setActive(1),
 
     },
-    //5
- 
-    //6
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -493,7 +485,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
 
     },
-    //7
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -533,11 +524,6 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
       text: "Chính sách",
       navigate: () => navigation.navigate("PrivacyPolicy"),
     },
-    //8
- 
-    //9
-  
-    //10
     {
       svg: (
         <Svg width="20" height="20" viewBox="0 0 20 20">
@@ -586,7 +572,7 @@ const MenuScreen: FC<ProfileProps> = ({ navigation }) => {
 
 
 
-
+  
   ];
   const menuRight = [
 

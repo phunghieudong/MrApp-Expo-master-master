@@ -101,6 +101,8 @@ const RegularProblemsDetailScreen = ({ navigation }) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 paddingHorizontal: 24,
+                borderWidth:0.5,
+                borderColor:'#fff'
               }}
             >
               <View>
