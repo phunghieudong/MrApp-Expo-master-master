@@ -8,3 +8,4 @@ export { default as DiagnosisBlock } from "./DiagnosisBlock";
 export { default as Title } from "./Title";
 export { default as Dong } from "./Informationcopy";
 export { default as ListVaccines } from "./ListVaccines";
+export { default as Aiary } from "./Aiary";

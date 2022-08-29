@@ -9,7 +9,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
-import { Information, NoteList,ListVaccines, NoteBlock, SurveyNoteBlock, Diagnosis, DiagnosisBlock, Title, Dong } from "../../Block/MedicalStory";
+import { Information, NoteList, Aiary, ListVaccines, NoteBlock, SurveyNoteBlock, Diagnosis, DiagnosisBlock, Title, Dong } from "../../Block/MedicalStory";
 import { MedicalStoryProps } from "@/navigation/types/Profile";
 import { _format } from "@/utils";
 import { TabView } from "react-native-tab-view";
@@ -59,18 +59,18 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
           routes: [
             { key: "first", title: "LỊCH TIÊM SẮP TỚI" },
             { key: "second", title: "DANH SÁCH VACCINES" },
-            { key: "first", title: "NHẬT KÍ" },
+            { key: "third", title: "NHẬT KÍ" },
 
           ],
         }}
         renderScene={({ route }) => {
           switch (route.key) {
             case "first":
-              return <Information />;
+              return <Dong />;
             case "second":
               return < ListVaccines />;
-            case "second":
-              return <NoteList />;
+            case "third":
+              return <Aiary />;
 
             default:
               return null;
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     paddingRight: 25,
   },
-  menuline: {
+  menuline: { 
     position: "absolute",
     left: 0,
     top: 15,

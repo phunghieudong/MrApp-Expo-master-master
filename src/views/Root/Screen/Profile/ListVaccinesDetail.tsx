@@ -4,12 +4,12 @@ import { settings } from "@/config";
 import { Container, Content, Text, View } from "native-base";
 import React, { useEffect, useState } from "react";
 import { InteractionManager, StyleSheet, TouchableOpacity, Image } from "react-native";
-
+import { useNavigation } from "@react-navigation/core";
 const { mainColor, mainColorText, padding } = settings.styles;
 
-const ListVaccinesDetailScreen = ({ navigation }) => {
+const ListVaccinesDetailScreen = () => {
   // interaction
-
+  const navigation = useNavigation();
 
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -53,11 +53,13 @@ const ListVaccinesDetailScreen = ({ navigation }) => {
           </Text>
 
         </View>
-        <View style={{
-          backgroundColor: '#142977', borderRadius: 100, width: 150, height: 53, justifyContent: 'center', alignItems: 'center'
-        }}>
-          <Text style={{ fontSize: 16, color: '#ffffff', fontFamily: 'SFProDisplay-Bold' }}>ĐĂNG KÝ TIÊM</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("ListVaccinesDetailRegister")}>
+          <View style={{
+            backgroundColor: '#142977', borderRadius: 100, width: 150, height: 53, justifyContent: 'center', alignItems: 'center'
+          }}>
+            <Text style={{ fontSize: 16, color: '#ffffff', fontFamily: 'SFProDisplay-Bold' }}>ĐĂNG KÝ TIÊM</Text>
+          </View>
+        </TouchableOpacity>
       </Content>
     </Container>
   );

@@ -47,6 +47,7 @@ export { default as PrivacyPolicyDetailScreen } from "./Root/Screen/Profile/Priv
 export { default as ServiceAccountScreen } from "./Root/Screen/Profile/ServiceAccount";
 export { default as TermOfMedicalScreen } from "./Root/Screen/Profile/TermOfMedical";
 export { default as ListVaccinesDetailScreen } from "./Root/Screen/Profile/ListVaccinesDetail";
+export { default as ListVaccinesDetailRegisterScreen } from "./Root/Screen/Profile/ListVaccinesDetailRegister";
 export { default as TermOfUseScreen } from "./Root/Screen/Profile/TermOfUse";
 export { default as MedicalStoryScreen } from "./Root/Screen/Profile/MedicalStory";
 export { default as AddMedicalStoryScreen } from "./Root/Screen/Profile/AddMedicalStory";
