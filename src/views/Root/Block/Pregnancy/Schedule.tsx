@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot } from "@/components";
 import { settings } from "@/config";
 import { Container, Text, View } from "native-base";

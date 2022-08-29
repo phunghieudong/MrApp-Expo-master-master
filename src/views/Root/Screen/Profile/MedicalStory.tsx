@@ -9,7 +9,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
-import { NoteList, Diagnosis, Information } from "../../Block/MedicalStory";
+import { Information, NoteList,ListVaccines, NoteBlock, SurveyNoteBlock, Diagnosis, DiagnosisBlock, Title, Dong } from "../../Block/MedicalStory";
 import { MedicalStoryProps } from "@/navigation/types/Profile";
 import { _format } from "@/utils";
 import { TabView } from "react-native-tab-view";
@@ -27,7 +27,7 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
 
   return (
     <Container>
-      <HeaderRoot title="LỊCH SỬ TIÊM CHỦNG" previous={() => navigation.goBack()} />
+      <HeaderRoot title="LỊCH TIÊM CHỦNG" filter={true} previous={() => navigation.goBack()} />
       <TabView
         lazy
         renderTabBar={(props) => (
@@ -57,10 +57,10 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
         navigationState={{
           index: menu,
           routes: [
-            { key: "first", title: "THÔNG TIN BỆNH ÁN" },
-            { key: "second", title: "TIỀN SỬ BỆNH ÁN" },
-            { key: "third ", title: "Hieu Dong test" },
-            { key: "thi ", title: "Hieu Dong test" },
+            { key: "first", title: "LỊCH TIÊM SẮP TỚI" },
+            { key: "second", title: "DANH SÁCH VACCINES" },
+            { key: "first", title: "NHẬT KÍ" },
+
           ],
         }}
         renderScene={({ route }) => {
@@ -68,11 +68,10 @@ const MedicalStoryScreen: FC<MedicalStoryProps> = ({
             case "first":
               return <Information />;
             case "second":
-              return <Information />;
-            case "third":
-              return <Title />;
-              case "thi":
-              return <Title />;
+              return < ListVaccines />;
+            case "second":
+              return <NoteList />;
+
             default:
               return null;
           }
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     bottom: 17,
     width: 1,
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "#525252",
   },
   body: {
     flex: 1,
