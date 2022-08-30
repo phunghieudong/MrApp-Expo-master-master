@@ -16,7 +16,7 @@ const Empty = (props: Props) => {
       <AnimatedLottieView
         source={require("@/assets/images/no-search.json")}
         autoPlay
-        loop={false}
+        loop={true}
         style={{ bottom: 40 }}
       />
       <Text style={styles.emptytext}>{text}</Text>

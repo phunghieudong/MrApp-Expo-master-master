@@ -1,3 +1,5 @@
+// Chọn phòng và giờ khám
+//@ts-nocheck
 import { getExaminationSchedules } from "@/api/ExaminationForm";
 import { Empty, HeaderRoot, LazyLoading, Loading } from "@/components";
 import { settings } from "@/config";

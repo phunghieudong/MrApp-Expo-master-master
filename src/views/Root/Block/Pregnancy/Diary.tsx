@@ -1,91 +1,131 @@
+//@ts-nocheck
+import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
-import { Icon, Text, View } from "native-base";
-import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { Container, Content, Text, View ,Toast} from "native-base";
+import React, { useEffect, useState } from "react";
+import { InteractionManager, StyleSheet, Image, TouchableOpacity } from "react-native";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 
-const { padding, blueColor, mainColorText } = settings.styles;
+const { mainColor, mainColorText, padding } = settings.styles;
 
-const menu = [
-  {
-    type: "Feather",
-    name: "activity",
-    label: "Chế độ\ndinh dưỡng",
-  },
-  {
-    type: "Feather",
-    name: "activity",
-    label: "Quy trình\nchích ngừa",
-  },
-  {
-    type: "Feather",
-    name: "activity",
-    label: "Lịch theo dõi\nthai kỳ",
-  },
-  {
-    type: "Feather",
-    name: "activity",
-    label: "Danh sách\nmũi tiêm",
-  },
-  {
-    type: "Feather",
-    name: "activity",
-    label: "Hình ảnh",
-  },
-];
+const Index = ({ navigation }) => {
+  // interaction
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    InteractionManager.runAfterInteractions(() => {
+      setReady(true);
+    });
+  }, []);
 
-const Index = () => {
+  if (!ready) {
+    return <Loading />;
+  }
+
   return (
-    <FlatList
-      style={styles.body}
-      numColumns={2}
-      data={menu}
-      keyExtractor={(i) => i.label}
-      renderItem={({ item }) => (
-        <View style={styles.box}>
-          <View style={styles.circle}>
-            <Icon
-              type={item.type as any}
-              name={item.name}
-              style={styles.icon}
-            />
+    <Container style={styles.container}>
+
+      <Content contentContainerStyle={styles.body}>
+
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View style={styles.box}>
+
+
+            <View>
+              <Image
+                source={require("../../../../assets/images/Tk.png")}
+                style={{ height: 24, width: 24, marginRight: 10 }}
+              />
+            </View>
+
+            <TouchableOpacity onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View>
+
+                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold", color: '#023047' }}>Lịch tiêm sắp tới</Text>
+                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+              </View>
+            </TouchableOpacity>
+            <View>
+              <Image
+                source={require("../../../../assets/images/2.png")}
+                style={{ height: 29, width: 29 }}
+              />
+            </View>
+
           </View>
-          <Text style={styles.label}>{item.label}</Text>
+          <View>
+
+          </View>
+          <View style={styles.box}>
+
+            <View>
+              <Image
+                source={require("../../../../assets/images/Tk.png")}
+                style={{ height: 24, width: 24, marginRight: 10 }}
+              />
+            </View>
+            <TouchableOpacity onPress={() =>
+              Toast.show({ text: "Tính năng còn đang phát triển" })
+            }
+            >
+              <View>
+                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold", color: '#023047' }}>Danh sách vaccines</Text>
+                <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
+              </View>
+            </TouchableOpacity>
+            <View>
+              <Image
+                source={require("../../../../assets/images/2.png")}
+                style={{ height: 29, width: 29 }}
+              />
+            </View>
+
+          </View>
+
+
         </View>
-      )}
-    />
+      </Content>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#E8F5F8",
+  },
   body: {
+    flexGrow: 1,
     paddingHorizontal: padding,
   },
   box: {
-    width: "50%",
-    alignSelf: "center",
-    marginVertical: 10,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: "flex-start",
+    backgroundColor: "#ffffff",
+    padding: 5,
+    marginTop: 18,
+    borderRadius: 12,
+    alignItems: 'center'
+
+
   },
-  circle: {
-    flex: 1,
-    alignSelf: "center",
-    borderRadius: 100,
-    overflow: "hidden",
+  step: {
+    color: mainColor,
+    fontSize: 20,
+    fontFamily: "SFProDisplay-Heavy",
   },
-  icon: {
-    fontSize: 50,
-    padding: 20,
-    backgroundColor: blueColor,
-    color: "#fff",
-  },
-  label: {
-    textAlign: "center",
-    marginHorizontal: 12,
-    marginTop: 4,
-    fontSize: 14,
-    lineHeight: 19,
-    fontFamily: "SFProDisplay-Medium",
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: 0.5,
     color: mainColorText,
+    marginTop: 15,
+    fontFamily: "SFProDisplay-Regular",
   },
 });
 
 export default Index;
+

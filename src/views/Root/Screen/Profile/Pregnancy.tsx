@@ -27,8 +27,8 @@ const {
 const { width: dW } = Dimensions.get("window");
 
 const routes = [
-  { key: "first", title: "LỊCH TIÊM CHỦNG" },
-  { key: "second", title: "NHẬT KÝ" },
+  { key: "first", title: "THEO DÕI THAI KÌ" },
+  { key: "second", title: "LỊCH TIÊM CHỦNG" },
 ];
 
 const renderScene = (route) => {
@@ -39,7 +39,7 @@ const renderScene = (route) => {
       return <Diary />;
     default:
       return null;
-  }
+  } 
 };
 
 const PregnancyScreen: FC<PregnancyProps> = ({ navigation }) => {
@@ -51,7 +51,7 @@ const PregnancyScreen: FC<PregnancyProps> = ({ navigation }) => {
       let firstOrLast = {};
       if (i === 0) firstOrLast = { paddingLeft: padding };
       else if (i === 1) firstOrLast = { paddingRight: padding };
-      if (i === index) active = { color: blueColor, opacity: 1 };
+      if (i === index) active = { color: "#142977", opacity: 1 };
       return (
         <TouchableWithoutFeedback onPress={() => setIndex(i)}>
           <View style={styles.menu}>
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     width: dW * 0.5,
     paddingTop: 15,
     paddingBottom: 17,
+   
   },
   menutext: {
     textAlign: "center",
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
     fontFamily: "SFProDisplay-Semibold",
-    color: blueColor,
+    color: "#142977",
   },
   detail: {},
   detailtext: {

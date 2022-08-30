@@ -3,113 +3,150 @@ import { HeaderRoot } from "@/components";
 import { settings } from "@/config";
 import { Container, Text, View } from "native-base";
 import React from "react";
-import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, Image } from "react-native";
 
 const { padding, blueColor, mainColorText, dangerColor } = settings.styles;
 
 const Index = () => {
   return (
-    <View style={styles.body}>
-      <View style={styles.box}>
-        <Text style={styles.vaccine}>Vắc-xin Sởi - Quai bị - Rubella</Text>
-        <Text style={styles.note}>* Mỗi mũi cách nhau 1 - 3 tháng</Text>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm trước khi có thai</Text>
-          <Text style={styles.value}>Đã chích - 19/10/2021</Text>
-        </View>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm trong thai kỳ</Text>
-          <Text style={styles.value}>Đã chích - 19/05/2022</Text>
-        </View>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm sau sinh</Text>
-          <Text style={styles.value}>Đã chích - 19/10/2022</Text>
-        </View>
-      </View>
-      <View style={styles.box}>
-        <Text style={styles.vaccine}>Thuỷ đậu</Text>
-        <Text style={styles.note}>* Mỗi mũi cách nhau 1 - 3 tháng</Text>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm trước khi có thai</Text>
-          <Text style={styles.value}>Đã chích - 19/10/2021</Text>
-        </View>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm trong thai kỳ</Text>
-          <Text style={styles.value}>Chưa chích</Text>
-        </View>
-        <View style={styles.group}>
-          <Text style={styles.label}>Tiêm sau sinh</Text>
-          <Text style={styles.value}>Chưa chích</Text>
-        </View>
-        <TouchableWithoutFeedback>
-          <View style={styles.btn}>
-            <Text style={styles.btntext}>ĐẶT LỊCH</Text>
+    <View style={[styles.item]}>
+      <View style={{
+        flexDirection: 'row',
+
+      }}>
+        <View style={styles.left}>
+          <View style={{ height: 87, width: 87 }}>
+            <Image
+              source={require("../../../../assets/images/LKSTvuong.png")}
+              style={{ height: 87, width: 87 }}
+            />
           </View>
-        </TouchableWithoutFeedback>
+        </View>
+        <View style={{ justifyContent: 'center', marginTop: 20 }}>
+          <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontSize: 14, color: '#FB8500' }}>25/07/21</Text>
+              <Text style={{ fontSize: 14, color: '#666666' }}> | </Text>
+              <Text style={{ fontSize: 14, color: '#666666' }}>09:00 ~ 10:00</Text>
+            </View>
+            <Text style={styles.hospital}>Bệnh viện Hòa Hảo</Text>
+            <Text style={styles.position}>
+              Tên mũi chích
+            </Text>
+          </View>
+
+
+          <View style={styles.flex}>
+            <View style={[styles.btn, { backgroundColor: "#142977" }]}>
+              <Text style={[styles.btntext, { color: "#fff" }]}>
+                XÁC NHẬN
+              </Text>
+            </View>
+            <View style={styles.btn}>
+              <Text style={styles.btntext}>HỦY</Text>
+            </View>
+
+          </View>
+
+
+        </View>
+
       </View>
+
     </View>
+
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    flexGrow: 1,
-    backgroundColor: "rgb(216, 227, 232)",
+    paddingHorizontal: padding,
   },
-  box: {
-    backgroundColor: "#fff",
-    marginHorizontal: padding,
-    marginVertical: 5,
-    padding: 14,
-    borderRadius: 4,
-  },
-  vaccine: {
-    fontSize: 18,
-    lineHeight: 23,
-    fontFamily: "SFProDisplay-Medium",
-    color: blueColor,
-  },
-  note: {
-    fontSize: 12,
-    lineHeight: 19,
-    fontFamily: "SFProDisplay-Regular",
-    color: dangerColor,
-    fontStyle: "italic",
-    marginBottom: 4,
-  },
-  group: {
-    marginTop: 8,
+  item: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: "#CACEE1",
+
+
   },
-  label: {
+  left: {
+    marginRight: 12,
+    width: 100,
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  word: {
+    color: "#fff",
+    fontFamily: "SFProDisplay-Bold",
+    letterSpacing: 2,
+  },
+
+  date: {
     fontSize: 14,
     lineHeight: 19,
     fontFamily: "SFProDisplay-Regular",
-    color: "rgba(0, 0, 0, .7)",
-  },
-  value: {
-    fontSize: 14,
-    lineHeight: 19,
-    fontFamily: "SFProDisplay-Medium",
     color: mainColorText,
   },
+  paid: {
+    fontSize: 14,
+    lineHeight: 19,
+    fontFamily: "SFProDisplay-Bold",
+    color: "#142977",
+  },
+  hospital: {
+    fontSize: 20,
+    lineHeight: 24,
+    letterSpacing: 0.25,
+    fontFamily: "SFProDisplay-Semibold",
+    color: mainColorText,
+  },
+  position: {
+    fontSize: 14,
+    lineHeight: 18,
+    fontFamily: "SFProDisplay-Regular",
+    color: "rgba(0, 0, 0, .6)",
+  },
+  flex: {
+    flexDirection: "row",
+    marginTop: 11,
+    paddingTop: 25
+  },
   btn: {
-    elevation: 4,
-    backgroundColor: blueColor,
-    alignSelf: "flex-end",
-    marginTop: 8,
-    paddingHorizontal: 30,
-    paddingTop: 10,
-    paddingBottom: 12,
+    marginRight: 12,
+    backgroundColor: '#FFDDDD',
+    minWidth: 100,
+    paddingTop: 8,
+    paddingBottom: 10,
     borderRadius: 100,
   },
   btntext: {
+    color: dangerColor,
+    textAlign: "center",
     fontSize: 14,
     letterSpacing: 1.25,
-    color: "#fff",
-    fontFamily: "SFProDisplay-Semibold",
+    fontFamily: "SFProDisplay-Regular",
+  },
+  modal: {
+    paddingHorizontal: padding,
+  },
+  label: {
+    marginTop: 10,
+    fontSize: 14,
+    lineHeight: 19,
+    fontFamily: "SFProDisplay-Regular",
+    color: "#0000006a",
+    letterSpacing: 0.5,
+  },
+  value: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontFamily: "SFProDisplay-Regular",
+    color: "#0000009a",
   },
 });
 
