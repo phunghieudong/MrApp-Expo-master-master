@@ -82,7 +82,7 @@ const ChooseARoom: FC<ChooseARoomProps> = ({
           renderItem={({ item }) => (
             <TouchableWithoutFeedback onPress={() => navTimePicker(item)}>
               <View style={styles.box}>
-                {/* <View style={styles.detail}>
+                <View style={styles.detail}>
                   <Icon
                     type={"Fontisto" as any}
                     name="doctor"
@@ -104,9 +104,9 @@ const ChooseARoom: FC<ChooseARoomProps> = ({
                   type="Ionicons"
                   name="chevron-forward"
                   style={styles.next}
-                /> */}
+                />
 
-
+{/* 
                 <View style={{flexDirection:'column' , borderBottomWidth:0.5 ,borderColor:'#D9D9D9' }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Image
@@ -138,8 +138,8 @@ const ChooseARoom: FC<ChooseARoomProps> = ({
                   </View>
                 </View>
                 <View>
-                  <Text style={{color:"##666666" , fontSize:16 , paddingTop:16}}>Buổi sáng</Text>
-                </View>
+                  <Text style={{color:"#666666" , fontSize:16 , paddingTop:16}}>Buổi sáng</Text>
+                </View> */}
               </View>
             </TouchableWithoutFeedback>
           )}

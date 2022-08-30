@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { HeaderRoot, Loading } from "@/components";
 import { settings } from "@/config";
 import { Container, Icon, Text, View } from "native-base";
@@ -7,9 +8,10 @@ import {
   InteractionManager,
   StyleSheet,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { TimePickerProps } from "@/navigation/types/Home";
-
+import { _format } from "@/utils";
 const { mainColorText, blueColor, borderColor, placeholderColor, orangeColor } =
   settings.styles;
 
@@ -45,7 +47,41 @@ const TimePickerScreen = ({
     <Container>
       <HeaderRoot title="CHỌN GIỜ KHÁM" previous={() => navigation.goBack()} />
       <View style={styles.box}>
-        <View style={styles.detail}>
+        <View style={{ flexDirection: 'column', borderBottomWidth: 0.5, borderColor: '#D9D9D9' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Image
+              source={require("../../../../assets/images/bs.png")}
+              style={{ height: 53, width: 53, marginRight: 10 }}
+            />
+            <View style={{ width: 250 }}>
+              <Text style={{ color: '#219EBC', fontSize: 16 }}>Bác sĩ</Text>
+              <Text style={{ fontSize: 20, color: '#000000', fontFamily: "SFProDisplay-Bold", }}>{doctorName}</Text>
+
+
+            </View>
+            <Image
+              source={require("../../../../assets/images/2.png")}
+              style={{ height: 29, width: 29, marginRight: 10 }}
+            />
+          </View>
+          <View style={{ paddingBottom: 16, flexDirection: 'row', alignItems: 'center', justifyContent: "space-evenly" }}>
+            <View style={{ paddingTop: 12 }}>
+              <Text style={{ color: "#666666", fontSize: 16 }}>Chuyên khoa</Text>
+              <Text style={{ color: "#666666", fontSize: 16 }}>Giới tính</Text>
+              <Text style={{ color: "#666666", fontSize: 16 }}>Lịch khám</Text>
+            </View>
+            <View style={{ paddingTop: 12 }}>
+              <Text style={{ color: "#000000", fontSize: 16 }}>{RoomExaminationName}</Text>
+              <Text style={{ color: "#000000", fontSize: 16 }}>{RoomExaminationName}</Text>
+              <Text style={{ color: "#000000", fontSize: 16 }}>{RoomExaminationName}</Text>
+              {/* {_format.getShortVNDate(item?.ExaminationDate)} */}
+            </View>
+          </View>
+        </View>
+        <View >
+          <Text style={{ color: "#666666", fontSize: 16, paddingTop: 16 }}>Buổi sáng</Text>
+        </View>
+        {/* <View style={styles.detail}>
           <Icon type={"Fontisto" as any} name="doctor" style={styles.icon} />
           <Text style={styles.value}>{doctorName}</Text>
         </View>
@@ -53,7 +89,7 @@ const TimePickerScreen = ({
           <Icon type="MaterialIcons" name="add-location" style={styles.icon} />
           <Text style={styles.label}>Phòng:</Text>
           <Text style={styles.value}>{RoomExaminationName}</Text>
-        </View>
+        </View> */}
         {/* <View style={styles.detail}>
           <Icon
             type="MaterialIcons"
@@ -75,12 +111,12 @@ const TimePickerScreen = ({
                 onPress={
                   !item.IsMaximum
                     ? () =>
-                        nav(
-                          item.ExaminationScheduleDetailId,
-                          item.ConfigTimeExaminationValue,
-                          item.RoomExaminationId,
-                          item.RoomName
-                        )
+                      nav(
+                        item.ExaminationScheduleDetailId,
+                        item.ConfigTimeExaminationValue,
+                        item.RoomExaminationId,
+                        item.RoomName
+                      )
                     : () => null
                 }
               >
@@ -92,7 +128,7 @@ const TimePickerScreen = ({
                       borderColor: placeholderColor,
                     },
                     item.ExaminationScheduleDetailId ===
-                      examinationScheduleDetailId && {
+                    examinationScheduleDetailId && {
                       backgroundColor: blueColor,
                     },
                   ]}
@@ -102,7 +138,7 @@ const TimePickerScreen = ({
                       styles.timetext,
                       (item.IsMaximum ||
                         item.ExaminationScheduleDetailId ===
-                          examinationScheduleDetailId) && {
+                        examinationScheduleDetailId) && {
                         color: "#fff",
                       },
                     ]}
@@ -122,13 +158,13 @@ const TimePickerScreen = ({
 const styles = StyleSheet.create({
   body: {
     flexGrow: 1,
+    backgroundColor:'red'
   },
   box: {
     marginHorizontal: 10,
     marginTop: 10,
     padding: 10,
-    borderWidth: 1,
-    borderColor: blueColor,
+    backgroundColor:'#E8F5F8',
     borderRadius: 4,
   },
   detail: {
@@ -154,10 +190,9 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Medium",
   },
   session: {
-    marginTop: 16,
+    
     paddingVertical: 10,
-    borderTopWidth: 1,
-    borderColor,
+ 
   },
   sessionheading: {
     color: "rgba(0, 0, 0, .5)",
@@ -167,7 +202,6 @@ const styles = StyleSheet.create({
   },
   time: {
     borderWidth: 1,
-    borderColor: blueColor,
     borderRadius: 4,
     width: 110,
     marginRight: 10,
@@ -175,6 +209,8 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingBottom: 6,
     marginTop: 10,
+    backgroundColor:'#142977',
+    borderColor:'#142977'
   },
   disabled: {
     backgroundColor: placeholderColor,
@@ -182,13 +218,14 @@ const styles = StyleSheet.create({
   },
   disabledtext: {
     color: "#fff",
+   
   },
   timetext: {
     textAlign: "center",
     fontSize: 14,
     lineHeight: 19,
     fontFamily: "SFProDisplay-Regular",
-    color: blueColor,
+    color: "white",
   },
 });
 

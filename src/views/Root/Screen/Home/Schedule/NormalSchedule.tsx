@@ -190,7 +190,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   // status = 1 là khám mới, = 4 tái khám
   const [status, setStatus] = useState(1);
   const _onPress = (data: NormalScheduleData) => {
-    navigation.navigate("CheckSchedule", {
+    navigation.navigate("Department", {
       ...(data as any),
       status,
       isBHYT: status === 1 ? data.isBHYT : 2,
@@ -465,12 +465,12 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 selected={value?.serviceTypeName || ""}
               />
 
-              {value.isBHYTService === false && (
+              {/* {value.isBHYTService === false && (
                 <Text style={styles.note}>
                   *LƯU Ý: Dịch vụ này hiện tại {value.hospitalName} chưa hỗ trợ
                   bảo hiểm y tế
                 </Text>
-              )}
+              )} */}
               {value?.serviceTypeId === 6 && (
                 <Select
                   nav={
@@ -545,7 +545,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 </>
               </ModalCenter>
 
-              {status === 1 &&
+              {/* {status === 1 &&
                 (value.isBHYTService === undefined ||
                   value.isBHYTService === true) && (
                   <View style={styles.chkbox}>
@@ -621,7 +621,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                       </TouchableWithoutFeedback>
                     </View>
                   </View>
-                )}
+                )} */}
 
             </Form>
             <TouchableOpacity
