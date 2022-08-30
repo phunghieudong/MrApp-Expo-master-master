@@ -75,7 +75,7 @@ const DashboardScreen = (props: DashboardProps) => {
     return (
       <Modal
         entry="bottom"
-        backdropPressToClose={true}
+        backdropPressToClose={true} // cái phông nền 
         isOpen={modalVisible}
         style={styles.modalBox1}
         onClosed={() => setModalVisible(false)}

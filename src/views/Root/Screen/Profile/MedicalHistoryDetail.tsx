@@ -22,12 +22,13 @@ import {
   Platform,
   StyleSheet,
   TouchableWithoutFeedback,
-  Image
+  Image,
+  TouchableOpacity
 
 } from "react-native";
 import { Modalize } from "react-native-modalize";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { borderColor, padding, blueColor, mainColorText, successColor } =
   settings.styles;
@@ -41,62 +42,66 @@ const renderItem = (
   if (index === 0) last["borderTopWidth"] = 0;
 
   return (
-    <View style={[styles.item, last]}>
-      <View style={styles.left}>
-        {/* <Text style={styles.word}>BV</Text>
+    <TouchableOpacity onPress={() =>
+      Toast.show({ text: "Tính năng còn đang phát triển" })
+    }
+    >
+      <View style={[styles.item, last]}>
+        <View style={styles.left}>
+          {/* <Text style={styles.word}>BV</Text>
          */}
-        <Image
-          source={require("../../../../assets/images/LKSTvuong.png")}
-          style={{ height: 90, width: 90, }}
-        />
-      </View>
-      <View style={styles.right}>
-
-        <Text style={{
-          fontSize: 14,
-          lineHeight: 19,
-          fontFamily: "SFProDisplay-Regular",
-          color: "#FB8500",
-        }}>
-          {_format.getVNDate(item.Created)}{" "}
-          <Text style={[styles.paid, { color: "#219EBC" }]}>
-            {"- Đã khám"}
-          </Text>
-        </Text>
-
-        <Text style={styles.hospital}>{item.HospitalName}</Text>
-        {/* CheckSchedule */}
-
-        <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
-          <Text style={{
-            fontSize: 14,
-            lineHeight: 18,
-            fontFamily: "SFProDisplay-Regular",
-            color: "rgba(0, 0, 0, .6)",
-          }}>Phòng</Text>
-          <Text style={styles.position}>
-            {item.RoomExaminationName}
-          </Text>
-
+          <Image
+            source={require("../../../../assets/images/LKSTvuong.png")}
+            style={{ height: 90, width: 90, }}
+          />
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
+        <View style={styles.right}>
+
           <Text style={{
             fontSize: 14,
-            lineHeight: 18,
+            lineHeight: 19,
             fontFamily: "SFProDisplay-Regular",
-            color: "rgba(0, 0, 0, .6)",
-          }}>Thời gian</Text>
+            color: "#FB8500",
+          }}>
+            {_format.getVNDate(item.Created)}{" "}
+            <Text style={[styles.paid, { color: "#219EBC" }]}>
+              {"- Đã khám"}
+            </Text>
+          </Text>
 
-          <View style={{ justifyContent: 'space-evenly', flexDirection: 'row' }}>
+          <Text style={styles.hospital}>{item.HospitalName}</Text>
+          {/* CheckSchedule */}
+
+          <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
+            <Text style={{
+              fontSize: 14,
+              lineHeight: 18,
+              fontFamily: "SFProDisplay-Regular",
+              color: "rgba(0, 0, 0, .6)",
+            }}>Phòng</Text>
             <Text style={styles.position}>
-              {item.FromTimeExaminationText}
+              {item.RoomExaminationName}
             </Text>
-            <Text style={styles.position}>
-              {item.ToTimeExaminationText}
-            </Text>
+
           </View>
-        </View>
-        {/* <View style={styles.flex}>
+          <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: "center", }}>
+            <Text style={{
+              fontSize: 14,
+              lineHeight: 18,
+              fontFamily: "SFProDisplay-Regular",
+              color: "rgba(0, 0, 0, .6)",
+            }}>Thời gian</Text>
+
+            <View style={{ justifyContent: 'space-evenly', flexDirection: 'row' }}>
+              <Text style={styles.position}>
+                {item.FromTimeExaminationText}
+              </Text>
+              <Text style={styles.position}>
+                {item.ToTimeExaminationText}
+              </Text>
+            </View>
+          </View>
+          {/* <View style={styles.flex}>
           <TouchableWithoutFeedback onPress={() => see(item)}>
             <View style={[styles.btn, { backgroundColor: blueColor }]}>
               <Text style={[styles.btntext, { color: "#fff" }]}>CHI TIẾT</Text>
@@ -104,8 +109,9 @@ const renderItem = (
           </TouchableWithoutFeedback>
         </View> */}
 
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -268,35 +274,7 @@ const MedicalHistoryDetail: FC<MedicalHistoryDetailProps> = ({ navigation }) => 
                 </>
               </Modal>
 
-              {/* <ModalBottom ref={info} heading="Xem chi tiết">
-                <View style={styles.modal}>
-                  <Text style={styles.label}>BỆNH VIỆN</Text>
-                  <Text style={styles.value}>{item?.HospitalName}</Text>
-                  <Text style={styles.label}>ĐỊA CHỈ</Text>
-                  <Text style={styles.value}>{item?.HospitalAddress}</Text>
-                  <Text style={styles.label}>WEBSITE</Text>
-                  <Text style={styles.value}>{item?.HospitalWebSite}</Text>
-                  <Text style={styles.label}>SỐ ĐIỆN THOẠI</Text>
-                  <Text style={styles.value}>{item?.HospitalPhone}</Text>
-                  <Text style={styles.label}>LOẠI KHÁM</Text>
-                  <Text style={styles.value}>{item?.ServiceTypeName}</Text>
-                  {item?.ServiceTypeId === 7 && (
-                    <>
-                      <Text style={styles.label}>CHUYÊN KHOA</Text>
-                      <Text style={styles.value}>
-                        {item?.SpecialistTypeName}
-                      </Text>
-                    </>
-                  )}
-                  <Text style={styles.label}>PHÒNG KHÁM</Text>
-                  <Text style={styles.value}>{item?.RoomExaminationName}</Text>
-                  <Text style={styles.label}>NGÀY KHÁM</Text>
-                  <Text style={styles.value}>
-                    {_format.getVNDate(item?.ExaminationDate)}
-                  </Text>
-                  <View style={{ height: 10 }} />
-                </View>
-              </ModalBottom> */}
+
             </>
           )}
           <ModalBottom
@@ -413,6 +391,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderColor,
+
   },
   left: {
     marginRight: 12,
@@ -430,6 +409,7 @@ const styles = StyleSheet.create({
   },
   right: {
     flex: 1,
+
   },
   date: {
     fontSize: 14,
@@ -478,6 +458,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     paddingHorizontal: padding,
+
   },
   label: {
     marginTop: 10,

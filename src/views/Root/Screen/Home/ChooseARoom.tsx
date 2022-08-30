@@ -16,8 +16,9 @@ import {
   StyleSheet,
   FlatList,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
-
+import { _format } from "@/utils";
 const { padding, blueColor, mainColorText } = settings.styles;
 
 const ChooseARoom: FC<ChooseARoomProps> = ({
@@ -81,7 +82,7 @@ const ChooseARoom: FC<ChooseARoomProps> = ({
           renderItem={({ item }) => (
             <TouchableWithoutFeedback onPress={() => navTimePicker(item)}>
               <View style={styles.box}>
-                <View style={styles.detail}>
+                {/* <View style={styles.detail}>
                   <Icon
                     type={"Fontisto" as any}
                     name="doctor"
@@ -103,7 +104,42 @@ const ChooseARoom: FC<ChooseARoomProps> = ({
                   type="Ionicons"
                   name="chevron-forward"
                   style={styles.next}
-                />
+                /> */}
+
+
+                <View style={{flexDirection:'column' , borderBottomWidth:0.5 ,borderColor:'#D9D9D9' }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Image
+                      source={require("../../../../assets/images/bs.png")}
+                      style={{ height: 53, width: 53, marginRight: 10 }}
+                    />
+                    <View style={{ width: 250 }}>
+                      <Text style={{ color: '#219EBC', fontSize: 16 }}>{time.DegreeTypeName}</Text>
+                      <Text style={{ fontSize: 20, color: '#000000', fontFamily: "SFProDisplay-Bold", }}>{time.DoctorName}</Text>
+
+
+                    </View>
+                    <Image
+                      source={require("../../../../assets/images/2.png")}
+                      style={{ height: 29, width: 29, marginRight: 10 }}
+                    />
+                  </View>
+                  <View style={{ paddingBottom:16,flexDirection: 'row', alignItems: 'center', justifyContent: "space-evenly" }}>
+                    <View style={{ paddingTop: 12 }}>
+                      <Text style={{ color: "#666666", fontSize: 16 }}>Chuyên khoa</Text>
+                      <Text style={{ color: "#666666", fontSize: 16 }}>Giới tính</Text>
+                      <Text style={{ color: "#666666", fontSize: 16 }}>Lịch khám</Text>
+                    </View>
+                    <View style={{ paddingTop: 12 }}>
+                      <Text style={{ color: "#000000", fontSize: 16 }}>{time.SpecialistTypeName}</Text>
+                      <Text style={{ color: "#000000", fontSize: 16 }}>{time.DoctorGenderName}</Text>
+                      <Text style={{ color: "#000000", fontSize: 16 }}>{_format.getShortVNDate(time?.ExaminationDate)}</Text>
+                    </View>
+                  </View>
+                </View>
+                <View>
+                  <Text style={{color:"##666666" , fontSize:16 , paddingTop:16}}>Buổi sáng</Text>
+                </View>
               </View>
             </TouchableWithoutFeedback>
           )}
@@ -133,6 +169,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 4,
+
   },
   icon: {
     fontSize: 16,
