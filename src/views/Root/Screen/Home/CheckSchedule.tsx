@@ -196,13 +196,13 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
                 Ngày khám
               </Text>
               <Text>{_format.getVNDate(user?.Created)}</Text>
-           
+
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
               <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Giờ khám
               </Text>
-              
+
               <Text>{_format.getVNDate(user?.Created)}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
@@ -215,7 +215,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Phòng khám
               </Text>
-    
+
               <Text>{user?.NationName}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
@@ -263,15 +263,18 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
 
           </View>
           <View style={styles.agreement}>
-            <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}>
-              <Icon
-                type="Feather"
-                name={agreement ? "check-circle" : "circle"}
-                style={[
-                  styles.agreementchkbox,
-                  agreement && { color: orangeColor },
-                ]}
-              />
+          <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+            {/* <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}> */}
+             
+                <Icon
+                  type="Feather"
+                  name={agreement ? "check-circle" : "circle"}
+                  style={[
+                    styles.agreementchkbox,
+                    agreement && { color: orangeColor },
+                  ]}
+                />
+              {/* </TouchableWithoutFeedback> */}
             </TouchableWithoutFeedback>
             <Text style={styles.agreementtext}>
               Tôi đồng ý với{" "}
@@ -280,12 +283,12 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               {hospitalName}
             </Text>
           </View>
-          <View style={{ flexDirection: 'row',paddingTop:30 }}>
+          <View style={{ flexDirection: 'row', paddingTop: 30 }}>
             <TouchableWithoutFeedback
               onPress={agreement && !loading ? navPayment : undefined}
             >
               <View
-                style={[styles.btn, { backgroundColor: "#142977", width:80 , height:30 , justifyContent:'center' , alignItems:'center' }]}
+                style={[styles.btn, { backgroundColor: "#142977", width: 80, height: 30, justifyContent: 'center', alignItems: 'center' }]}
               >
                 <Text style={styles.btntext}>ĐỔI LỊCH</Text>
               </View>
@@ -296,7 +299,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             >
 
               <View
-                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)" ,width:80 , height:30 , justifyContent:'center' , alignItems:'center' ,marginLeft:10 }]}
+                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)", width: 80, height: 30, justifyContent: 'center', alignItems: 'center', marginLeft: 10 }]}
               // style={[styles.btn, agreement && { backgroundColor: "#FFDDDD" }]} đổi màu khi click sự kiện
 
               >

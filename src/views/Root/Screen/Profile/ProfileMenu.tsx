@@ -85,7 +85,7 @@ const ProfileMenuScreen = ({ navigation }) => {
                                 style={{ height: 24, width: 24, marginRight: 10 }}
                             />
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate("Surgery")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
                             <View>
                                 <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold" ,color:'#023047'}}>Tiền sử bệnh án</Text>
                                 <Text style={{ color: '#919191' }}>Lorem ipsum dolor sit amet,Lorem ipsum </Text>
