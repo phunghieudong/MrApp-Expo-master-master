@@ -93,6 +93,36 @@ export type HomeParamList = {
     examinationFormId?: number; // tồn tại field này thì không cần tạo thêm phiếu
     form?: number; // tồn tại field này thì không cần tạo thêm phiếu
   };
+
+  CheckScheduleNew: {
+    doctorId?: number;
+    doctorName?: string;
+    examinationDate: Date;
+    examinationScheduleDetailId: number;
+    examinationScheduleDetailName: string;
+    hospitalId: number;
+    hospitalName: string;
+    hospitalAddress: string;
+    hospitalWebsite: string;
+    hospitalPhoneNumber: string;
+    isBHYT: number;
+    roomExaminationId: number;
+    roomExaminationName: string;
+    specialistTypeId?: number;
+    specialistTypeName?: string;
+    status: number;
+    typeId: number;
+    recordId: number;
+    serviceTypeId: number;
+    serviceTypeName: string;
+    vaccineTypeId?: number;
+    vaccineTypeName?: string;
+    examinationFormId?: number; // tồn tại field này thì không cần tạo thêm phiếu
+    form?: number; // tồn tại field này thì không cần tạo thêm phiếu
+  };
+
+
+
   ExaminationCalendar: undefined;
   Payment: {
     doctorId?: number;
@@ -207,6 +237,16 @@ type CheckScheduleScreenRouteProp = RouteProp<HomeParamList, "CheckSchedule">;
 export type CheckScheduleProps = {
   navigation: CheckScheduleScreenNavigationProp;
   route: CheckScheduleScreenRouteProp;
+};
+//Schedule (phan này di theo luồng đặt lịch)
+type CheckScheduleNewScreenNavigationProp = StackNavigationProp<
+  HomeParamList,
+  "CheckScheduleNew"
+>;
+type CheckScheduleNewScreenRouteProp = RouteProp<HomeParamList, "CheckScheduleNew">;
+export type CheckScheduleNewProps = {
+  navigation: CheckScheduleNewScreenNavigationProp;
+  route: CheckScheduleNewScreenRouteProp;
 };
 
 // ++ hospital picker

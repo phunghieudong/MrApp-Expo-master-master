@@ -190,7 +190,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   // status = 1 là khám mới, = 4 tái khám
   const [status, setStatus] = useState(1);
   const _onPress = (data: NormalScheduleData) => {
-    navigation.navigate("Department", {
+    navigation.navigate("CheckScheduleNew", {
       ...(data as any),
       status,
       isBHYT: status === 1 ? data.isBHYT : 2,
@@ -545,83 +545,6 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 </>
               </ModalCenter>
 
-              {/* {status === 1 &&
-                (value.isBHYTService === undefined ||
-                  value.isBHYTService === true) && (
-                  <View style={styles.chkbox}>
-                    <Text style={styles.chkboxlabel}>BẢO HIỂM Y TẾ</Text>
-                    <View style={styles.flex}>
-                      <TouchableWithoutFeedback
-                        onPress={
-                          next > 4 ? () => modalBHYT.current?.open() : undefined
-                        }
-                      >
-                        <View style={styles.flex}>
-                          <Icon
-                            type="Feather"
-                            name={
-                              next > 4 && (value?.isBHYT as number) < 2
-                                ? "check-circle"
-                                : "circle"
-                            }
-                            style={[
-                              styles.chkboxvalue,
-                              next > 4 &&
-                              (value?.isBHYT as number) < 2 && {
-                                color: orangeColor,
-                              },
-                            ]}
-                          />
-                          <Text
-                            style={[
-                              styles.chkboxlabel,
-                              { fontFamily: "SFProDisplay-Semibold" },
-                              next > 4 &&
-                              (value?.isBHYT as number) < 2 && {
-                                color: orangeColor,
-                              },
-                            ]}
-                          >
-                            Có
-                          </Text>
-                        </View>
-                      </TouchableWithoutFeedback>
-                      <TouchableWithoutFeedback
-                        onPress={next > 4 ? () => toggleBHYT(2) : undefined}
-                      >
-                        <View style={styles.flex}>
-                          <Icon
-                            type="Feather"
-                            name={
-                              next > 4 && (value?.isBHYT as number) >= 2
-                                ? "check-circle"
-                                : "circle"
-                            }
-                            style={[
-                              styles.chkboxvalue,
-                              next > 4 &&
-                              (value?.isBHYT as number) >= 2 && {
-                                color: orangeColor,
-                              },
-                            ]}
-                          />
-                          <Text
-                            style={[
-                              styles.chkboxlabel,
-                              { fontFamily: "SFProDisplay-Semibold" },
-                              next > 4 &&
-                              (value?.isBHYT as number) >= 2 && {
-                                color: orangeColor,
-                              },
-                            ]}
-                          >
-                            Không
-                          </Text>
-                        </View>
-                      </TouchableWithoutFeedback>
-                    </View>
-                  </View>
-                )} */}
 
             </Form>
             <TouchableOpacity

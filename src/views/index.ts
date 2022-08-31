@@ -13,6 +13,7 @@ export { default as NewsOutScreen } from "./Auth/Screen/NewsOut";
 export { default as CalendarScreen } from "./Root/Screen/Home/Calendar";
 export { default as CalendarInfoScreen } from "./Root/Screen/Home/CalendarInfo";
 export { default as CheckScheduleScreen } from "./Root/Screen/Home/CheckSchedule";
+export { default as CheckScheduleNewScreen } from "./Root/Screen/Home/CheckScheduleNew";
 export { default as ContactScreen } from "./Root/Screen/Home/Contact";
 export { default as DashboardScreen } from "./Root/Screen/Home/Dashboard";
 export { default as DoctorPickerScreen } from "./Root/Screen/Home/DoctorPicker";

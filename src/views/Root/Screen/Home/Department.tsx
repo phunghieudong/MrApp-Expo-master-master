@@ -45,16 +45,6 @@ const DepartmentScreen = (props: HospitalPickerProps) => {
   // data
   const [hospitals, setHospitals] = useState<Array<HospitalData>>([]);
   const [load, setLoad] = useState(true);
-
-
-
-  
-
-
-
-
-
-  
   useEffect(() => {
     (async () => {
       const res = await getSpeciallistType();

@@ -18,7 +18,7 @@ import {
   SpecialScheduleScreen,
   TimePickerScreen,
   DepartmentScreen,
-
+  CheckScheduleNewScreen
 } from "@/views";
 
 const { animationIOS, android } = settings;
@@ -45,9 +45,9 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="SpecialSchedule" component={SpecialScheduleScreen} />
       <Stack.Screen name="NormalSchedule" component={NormalScheduleScreen} />
       <Stack.Screen name="CheckSchedule" component={CheckScheduleScreen} />
+      <Stack.Screen name="CheckScheduleNew" component={CheckScheduleNewScreen} />
       <Stack.Screen name="CalendarInfo" component={CalendarInfoScreen} />
       <Stack.Screen name="HospitalPicker" component={HospitalPickerScreen} />
-
       <Stack.Screen name="Department" component={DepartmentScreen} />
       <Stack.Screen name="DoctorPicker" component={DoctorPickerScreen} />
       <Stack.Screen name="Calendar" component={CalendarScreen} />
