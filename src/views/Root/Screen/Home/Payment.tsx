@@ -301,6 +301,99 @@ const PaymentScreen: FC<PaymentProps> = ({ navigation, route: { params } }) => {
                 />
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+              activeOpacity={1}
+              style={styles.box}
+            >
+              <View style={styles.left}>
+                <PaymentOnlineIcon />
+                <Text
+                  style={[
+                    styles.payment,
+                    paymentMethodId === 2 && {
+                      fontFamily: "SFProDisplay-Bold",
+                    },
+                  ]}
+                >
+                  Thanh toán thẻ khám bệnh
+                </Text>
+              </View>
+              <View style={styles.right}>
+                <Icon
+                  type="Feather"
+                  name={paymentMethodId === 2 ? "check-circle" : "circle"}
+                  style={[
+                    styles.checkbox,
+                    paymentMethodId === 2 && { color: orangeColor },
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+              activeOpacity={1}
+              style={styles.box}
+            >
+              <View style={styles.left}>
+                <PaymentOnlineIcon />
+                <Text
+                  style={[
+                    styles.payment,
+                    paymentMethodId === 2 && {
+                      fontFamily: "SFProDisplay-Bold",
+                    },
+                  ]}
+                >
+                  Thanh toán thẻ tính dụng
+                </Text>
+              </View>
+              <View style={styles.right}>
+                <Icon
+                  type="Feather"
+                  name={paymentMethodId === 2 ? "check-circle" : "circle"}
+                  style={[
+                    styles.checkbox,
+                    paymentMethodId === 2 && { color: orangeColor },
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                Toast.show({ text: "Tính năng còn đang phát triển" })
+              }
+              activeOpacity={1}
+              style={styles.box}
+            >
+              <View style={styles.left}>
+                <PaymentOnlineIcon />
+                <Text
+                  style={[
+                    styles.payment,
+                    paymentMethodId === 2 && {
+                      fontFamily: "SFProDisplay-Bold",
+                    },
+                  ]}
+                >
+                  Thanh toán thẻ nội địa
+                </Text>
+              </View>
+              <View style={styles.right}>
+                <Icon
+                  type="Feather"
+                  name={paymentMethodId === 2 ? "check-circle" : "circle"}
+                  style={[
+                    styles.checkbox,
+                    paymentMethodId === 2 && { color: orangeColor },
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
             {paymentMethodId === 2 && (
               <Form style={styles.frmcontrol}>
                 <Item style={styles.frmgroup} stackedLabel>

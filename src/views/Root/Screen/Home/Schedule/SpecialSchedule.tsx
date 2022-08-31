@@ -32,7 +32,7 @@ import { Modalize } from "react-native-modalize";
 import { _format } from "@/utils";
 import ModalBottom from "@/components/ModalBottom";
 import { getDoctors, getLastestExamination } from "@/api/ExaminationForm";
-
+import { Modal } from 'react-native-paper';
 const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
   settings.styles;
 
@@ -62,7 +62,7 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
   const [status, setStatus] = useState(1);
 
   const _onPress = (data: SpecialScheduleData) => {
-    navigation.navigate("CheckSchedule", {
+    navigation.navigate("CheckScheduleNew", {
       ...(data as any),
       status,
       isBHYT: status === 1 ? data.isBHYT : 2,
@@ -395,9 +395,14 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
     });
   }, []);
 
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = { backgroundColor: 'white' };
+
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="ĐẶT LỊCH KHÁM" />
+      <HeaderRoot title="ĐẶT LỊCH KHÁM" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && (
         <Content contentContainerStyle={styles.body}>
@@ -440,7 +445,8 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
               selected={value?.hospitalName || ""}
             />
             <Select
-              nav={next >= 1 ? () => modalSpecial.current?.open() : undefined}
+
+              nav={next >= 1 ? () => showModal() : undefined}
               placeholder="KHOA"
               next={next === 1 ? true : false}
               selected={value?.specialistTypeName || ""}
@@ -527,7 +533,7 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
               </View>
             </TouchableWithoutFeedback>
           </Form>
-          <ModalCenter ref={modalSpecial} style={{ borderRadius: 4 }}>
+          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "90%", width: "100%", paddingBottom: 5 }}>
             <>
               {specialistType.length > 0 &&
                 specialistType.map((i) => (
@@ -562,7 +568,7 @@ const SpecialScheduleScreen: FC<SpecialScheduleProps> = ({
                 </Text>
               )}
             </>
-          </ModalCenter>
+          </Modal>
           <ModalBottom heading="Kiểm tra bảo hiểm y tế" ref={modalBHYT}>
             <>
               <Text
@@ -664,7 +670,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginVertical: 15,
-    backgroundColor: blueColor,
+    backgroundColor: "#142977",
     alignSelf: "flex-end",
     elevation: 4,
     paddingHorizontal: 20,

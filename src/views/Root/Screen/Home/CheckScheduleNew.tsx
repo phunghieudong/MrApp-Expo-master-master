@@ -5,7 +5,7 @@ import { settings } from "@/config";
 import { CheckScheduleNewProps } from "@/navigation/types/Home";
 import { Container, Content, Icon, Text, Toast, View, Button } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
-
+// import { _format } from "@/utils";
 
 import {
   Linking,
@@ -142,8 +142,8 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
   return (
     <Container style={styles.container}>
       <HeaderRoot
-        title="KIỂM TRA THÔNG TIN Phunghieudong"
-        filter={true}
+        title="KIỂM TRA THÔNG TIN"
+
         previous={() => navigation.goBack()}
       />
       <Content contentContainerStyle={styles.body} style={{}}>
@@ -166,101 +166,59 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
         <View style={styles.info}>
 
           <View style={styles.infobox}>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Website
-              </Text>
-              <Text>{user?.Email}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
+              <Image
+                source={require("../../../../assets/images/kttt2.png")}
+                style={{ height: 20, width: 20, marginRight: 20 }}
+              />
+              <View style={{ flexDirection: 'column' }}>
+                <Text style={[styles.infotext, { marginTop: 0 }]}>
+                  NGÀY KHÁM
+                </Text>
+                <Text style={{ fontSize: 18, color: '#000000' }}>{_format.getShortVNDate(user?.Created)}</Text>
+              </View>
             </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Số điện thoại
-              </Text>
-              <Text>{user?.CreatedBy}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', paddingTop: 25 }}>
+              <Image
+                source={require("../../../../assets/images/kttt.png")}
+                style={{ height: 18.75, width: 20, marginRight: 20 }}
+              />
+              <View style={{ flexDirection: 'column' }}>
+                <Text style={[styles.infotext, { marginTop: 0 }]}>
+                  THỜI GIAN KHÁM
+                </Text>
+                <Text style={{ fontSize: 18, color: '#000000' }}>15:00 ~ 16:00</Text>
+              </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Tên bệnh nhân
-              </Text>
-              <Text>{user?.UserFullName}</Text>
+            <View style={{ paddingBottom: 8, flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', paddingTop: 25 }}>
+              <Image
+                source={require("../../../../assets/images/diachi.png")}
+                style={{ height: 22, width: 20, marginRight: 20 }}
+              />
+              <View style={{ flexDirection: 'column', }}>
+                <Text style={[styles.infotext, { marginTop: 0 }]}>
+                  KHOA KHÁM
+                </Text>
+                <Text style={{ fontSize: 18, color: '#000000' }}>Khoa ung bứu</Text>
+              </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Mã bệnh viện
-              </Text>
-              <Text>{user?.CountryId}</Text>
+            <View style={{ justifyContent: "center", alignItems: 'center', backgroundColor: '#fff3e5', borderRadius: 100, width: 190, height: 30, marginBottom: 30 }}>
+              <Text style={{ color: '#FB8500', fontSize: 12, fontFamily: "SFProDisplay-Regular", }}>KHU A - LẦU 02 - PHÒNG 208</Text>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Ngày khám
-              </Text>
-              <Text>{_format.getVNDate(user?.Created)}</Text>
-           
+            <View style={{ backgroundColor: '#E8F5F8', height: 124, width: 315, justifyContent: 'center', alignItems: "center", borderRadius: 8, }}>
+              <Text style={{ color: '#666666', fontSize: 12 }}>SỐ THỨ TỰ KHÁM BỆNH</Text>
+              <Text style={{ color: "#219EBC", fontSize: 50 }}>A120</Text>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Giờ khám
-              </Text>
-              
-              <Text>{_format.getVNDate(user?.Created)}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 33 }}>
+              <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.navigate("TermOfMedical")}
+              >
+                <Image
+                  source={require("../../../../assets/images/qtkb.png")}
+                  style={{ height: 20, width: 15, marginRight: 5 }}
+                />
+                <Text style={{ color: "#023047", fontSize: 16 }}>Xem quy trình khám bệnh</Text>
+              </TouchableOpacity>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Khu vực khám
-              </Text>
-              <Text>{user?.CountryName}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Phòng khám
-              </Text>
-    
-              <Text>{user?.NationName}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Bác sĩ khám
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Loại dịch vụ khám
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Trạng thái
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Loại khám
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Khoa khám
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Sổ bảo hiểm
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
-              <Text style={[styles.infotext, { marginTop: 0 }]}>
-                Khoa khám
-              </Text>
-              <Text>{user?.Code}</Text>
-            </View>
-
           </View>
           <View style={styles.agreement}>
             <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}>
@@ -280,27 +238,28 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
               {hospitalName}
             </Text>
           </View>
-          <View style={{ flexDirection: 'row',paddingTop:30 }}>
-            <TouchableWithoutFeedback
-              onPress={agreement && !loading ? navPayment : undefined}
-            >
-              <View
-                style={[styles.btn, { backgroundColor: "#142977", width:80 , height:30 , justifyContent:'center' , alignItems:'center' }]}
-              >
-                <Text style={styles.btntext}>ĐỔI LỊCH</Text>
-              </View>
-            </TouchableWithoutFeedback>
+          <View style={{ flexDirection: 'row', paddingTop: 30, justifyContent: 'space-between' }}>
+
             <TouchableWithoutFeedback
               onPress={toggleModal}
             // onPress={agreement && !loading ? navPayment : undefined}
             >
 
               <View
-                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)" ,width:80 , height:30 , justifyContent:'center' , alignItems:'center' ,marginLeft:10 }]}
+                style={[styles.btn, { backgroundColor: "#D9D9D9", width: 119, height: 53, justifyContent: 'center', alignItems: 'center', marginLeft: 10 }]}
               // style={[styles.btn, agreement && { backgroundColor: "#FFDDDD" }]} đổi màu khi click sự kiện
 
               >
-                <Text style={styles.btntext1}>HỦY LỊCH</Text>
+                <Text style={styles.btntext1}>TRỞ VỀ</Text>
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={agreement && !loading ? navPayment : undefined}
+            >
+              <View
+                style={[styles.btn, { backgroundColor: "#142977", width: 119, height: 53, justifyContent: 'center', alignItems: 'center' }]}
+              >
+                <Text style={styles.btntext}>TIẾP THEO</Text>
               </View>
             </TouchableWithoutFeedback>
           </View>
@@ -396,9 +355,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   infotext: {
-    fontSize: 16,
-    // fontFamily: "SFProDisplay-Semibold",
-    color: "#525252",
+    fontSize: 12,
+    fontFamily: "SFProDisplay-Medium",
+    color: "#666666",
     marginTop: 5,
   },
   date: {
@@ -466,13 +425,13 @@ const styles = StyleSheet.create({
   },
   btntext: {
     color: "#fff",
-    fontSize: 12,
+    fontSize: 16,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Medium",
   },
   btntext1: {
-    color: "#DC233C",
-    fontSize: 12,
+    color: "white",
+    fontSize: 16,
     letterSpacing: 1.25,
     fontFamily: "SFProDisplay-Medium",
   },

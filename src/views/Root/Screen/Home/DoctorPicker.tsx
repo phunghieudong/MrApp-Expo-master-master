@@ -12,6 +12,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { DoctorPickerProps } from "@/navigation/types/Home";
 import { getDegree } from "@/api/Catalogue";
@@ -307,22 +308,17 @@ const DoctorPickerScreen: FC<DoctorPickerProps> = ({
                 <View style={styles.box}>
                   <View style={styles.heading}>
                     <View style={styles.left}>
-                      <Text style={styles.word}>BS</Text>
+                      <Image
+                        source={require("../../../../assets/images/bs.png")}
+                        style={{ height: 53, width: 53, }}
+                      />
                     </View>
                     <View style={styles.right}>
                       <Text style={styles.headinglabel}>Bác Sĩ</Text>
                       <Text style={styles.headingvalue}>{item.DoctorName}</Text>
                     </View>
                   </View>
-                  <View style={{ flex: 1 }}>
-                    <View style={styles.detail}>
-                      <Text style={styles.label}>Giới tính</Text>
-                      <View style={styles.valuebox}>
-                        <Text style={styles.value}>
-                          {item.DoctorGenderName}
-                        </Text>
-                      </View>
-                    </View>
+                  <View style={{ flex: 1 , width:"100%" , justifyContent:"flex-end" , alignItems:"center" , paddingLeft:75}}>
                     <View style={styles.detail}>
                       <Text style={styles.label}>Chuyên khoa</Text>
                       <View style={styles.valuebox}>
@@ -331,6 +327,15 @@ const DoctorPickerScreen: FC<DoctorPickerProps> = ({
                         </Text>
                       </View>
                     </View>
+                    <View style={styles.detail}>
+                      <Text style={styles.label}>Giới tính</Text>
+                      <View style={styles.valuebox}>
+                        <Text style={styles.value}>
+                          {item.DoctorGenderName}
+                        </Text>
+                      </View>
+                    </View>
+
                     <View style={styles.detail}>
                       <Text style={styles.label}>Lịch khám</Text>
                       <View style={styles.valuebox}>

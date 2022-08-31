@@ -14,7 +14,7 @@ import { settings } from "@/config";
 import { MedicalHistoryDetailProps } from "@/navigation/types/profile";
 import { HospitalData } from "@/types/base";
 import { CalendarData } from "@/types/ExaminationCalendar";
-import { _format } from "@/utils";
+import {_format} from "@/utils";
 import { Container, Icon, Text, Toast, View } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
 import {
