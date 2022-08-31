@@ -5,6 +5,8 @@ import { settings } from "@/config";
 import { CheckScheduleProps } from "@/navigation/types/Home";
 import { Container, Content, Icon, Text, Toast, View, Button } from "native-base";
 import React, { FC, useEffect, useRef, useState } from "react";
+
+
 import {
   Linking,
   Platform,
@@ -91,7 +93,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
     };
 
     if (typeof form === "number") {
-      navigation.navigate("Payment", {
+      navigation.navigate("NormalSchedule", {
         ...params,
         examinationFormId: examinationFormId as number,
         form: 0,
@@ -101,7 +103,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
       schedule(newParams)
         .then((res) => {
           const examinationFormId: number = res.Data.Id;
-          navigation.navigate("Payment", {
+          navigation.navigate("NormalSchedule", {
             ...params,
             examinationFormId,
             form: 0,
@@ -141,6 +143,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
     <Container style={styles.container}>
       <HeaderRoot
         title="KIỂM TRA THÔNG TIN"
+        filter={true}
         previous={() => navigation.goBack()}
       />
       <Content contentContainerStyle={styles.body} style={{}}>
@@ -192,13 +195,15 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Ngày khám
               </Text>
-              <Text>{user?.Created}</Text>
+              <Text>{_format.getVNDate(user?.Created)}</Text>
+           
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
               <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Giờ khám
               </Text>
-              <Text>{user?.Created}</Text>
+              
+              <Text>{_format.getVNDate(user?.Created)}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
               <Text style={[styles.infotext, { marginTop: 0 }]}>
@@ -210,7 +215,8 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               <Text style={[styles.infotext, { marginTop: 0 }]}>
                 Phòng khám
               </Text>
-              <Text>{user?.Code}</Text>
+    
+              <Text>{user?.NationName}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
               <Text style={[styles.infotext, { marginTop: 0 }]}>
@@ -274,12 +280,12 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
               {hospitalName}
             </Text>
           </View>
-          <View style={{ flexDirection: 'row', }}>
+          <View style={{ flexDirection: 'row',paddingTop:30 }}>
             <TouchableWithoutFeedback
               onPress={agreement && !loading ? navPayment : undefined}
             >
               <View
-                style={[styles.btn, { backgroundColor: "#142977" }]}
+                style={[styles.btn, { backgroundColor: "#142977", width:80 , height:30 , justifyContent:'center' , alignItems:'center' }]}
               >
                 <Text style={styles.btntext}>ĐỔI LỊCH</Text>
               </View>
@@ -290,7 +296,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             >
 
               <View
-                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)" }]}
+                style={[styles.btn, { backgroundColor: "rgba(220, 35, 60, 0.1)" ,width:80 , height:30 , justifyContent:'center' , alignItems:'center' ,marginLeft:10 }]}
               // style={[styles.btn, agreement && { backgroundColor: "#FFDDDD" }]} đổi màu khi click sự kiện
 
               >
@@ -455,23 +461,20 @@ const styles = StyleSheet.create({
   btn: {
 
     backgroundColor: placeholderColor,
-
-    paddingHorizontal: 20,
-    paddingVertical: 19,
     borderRadius: 100,
 
   },
   btntext: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 12,
     letterSpacing: 1.25,
-    fontFamily: "SFProDisplay-Semibold",
+    fontFamily: "SFProDisplay-Medium",
   },
   btntext1: {
     color: "#DC233C",
-    fontSize: 16,
+    fontSize: 12,
     letterSpacing: 1.25,
-    fontFamily: "SFProDisplay-Semibold",
+    fontFamily: "SFProDisplay-Medium",
   },
 });
 
