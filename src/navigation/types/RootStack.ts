@@ -13,6 +13,7 @@ export type RootStackParamList = {
   Taikhoan :undefined;
   Profile: NavigatorScreenParams<ProfileParamList>;
   Notification: undefined;
+  UserManual:undefined;
 };
 
 // nơi khai báo props
@@ -50,4 +51,19 @@ type NotificationScreenRouteProp = RouteProp<
 export type NotificationProps = {
   navigation: NotificationScreenNavigationProp;
   route: NotificationScreenRouteProp;
+};
+
+
+// ++ UserManual
+type UserManualScreenNavigationProp = BottomTabNavigationProp<
+  RootStackParamList,
+  "UserManual"
+>;
+type UserManualRouteProp = RouteProp<
+  RootStackParamList,
+  "UserManual"
+>;
+export type UserManualProps = {
+  navigation: UserManualScreenNavigationProp;
+  route: UserManualScreenRouteProp;
 };

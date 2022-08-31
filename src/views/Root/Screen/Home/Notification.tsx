@@ -103,29 +103,22 @@ const NotificationScreen: FC<NotificationProps> = ({ navigation }) => {
           keyExtractor={(i) => i.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() =>
-                navigation.navigate("NewsDetail", {
-                  bannerImage: item.BannerUrl,
-                  backgroundImage: item.BackGroundImgUrl,
-                  content: item.Content,
-                  title: item.Title,
-                })
-              }
+
             >
               <View style={styles.box}>
 
-                <View style={{ borderRadius: 12, backgroundColor: "#ffffff", flexDirection: "row", paddingVertical: 5, paddingLeft: 10 ,justifyContent:"flex-start", alignItems:'center'}}>
-                  <View style={{backgroundColor:'#219EBC' , borderRadius:100 , height:20 , width:20 , justifyContent:'center', alignItems:"center", marginRight:30}}>
+                <View style={{ borderRadius: 12, backgroundColor: "#ffffff", flexDirection: "row", paddingVertical: 5, paddingLeft: 10, justifyContent: "flex-start", alignItems: 'center' }}>
+                  <View style={{ backgroundColor: '#219EBC', borderRadius: 100, height: 20, width: 20, justifyContent: 'center', alignItems: "center", marginRight: 30 }}>
 
                   </View>
                   <View style={{ flexDirection: 'column' }}>
                     <Text style={{ color: "#666666", fontFamily: 'SFProDisplay-Bold', fontSize: 16 }}> {item.Title}</Text>
                     <Text style={{ color: "#666666", fontSize: 12 }}> {item.Content}</Text>
-                    <View style={{ 
+                    <View style={{
                       fontSize: 14,
                       fontFamily: "Regular",
                       lineHeight: 18,
-                      borderBottomWidth: 1,       
+                      borderBottomWidth: 1,
                       borderColor: "rgba(0, 0, 0, 0.1)",
                       width: "100%",
                       paddingVertical: 5,
