@@ -1,10 +1,11 @@
 
 //@ts-nocheck
 import { getHospitals } from "@/api/Catalogue";
-import { HeaderRoot, Empty, Loading, LazyLoading } from "@/components";
-import { settings } from "@/config";
 import { HospitalPickerProps } from "@/navigation/types/Home";
 import { HospitalData } from "@/types/base";
+import { HeaderRoot, Empty, Loading, LazyLoading } from "@/components";
+import { settings } from "@/config";
+
 import { Container, Icon, Text, View } from "native-base";
 import React, { useEffect, useState } from "react";
 import {

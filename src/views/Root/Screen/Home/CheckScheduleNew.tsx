@@ -231,7 +231,7 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
                 ]}
               />
             </TouchableWithoutFeedback>
-            <Text style={styles.agreementtext}> 
+            <Text style={styles.agreementtext}>
               Tôi đồng ý với{" "}
               <Text style={styles.agreementlink}>chính sách</Text> và{" "}
               <Text style={styles.agreementlink}>quy trình khám bệnh</Text> của{" "}
@@ -241,7 +241,7 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
           <View style={{ flexDirection: 'row', paddingTop: 30, justifyContent: 'space-between' }}>
 
             <TouchableWithoutFeedback
-              onPress={toggleModal}
+              onPress={() => navigation.goBack()}
             // onPress={agreement && !loading ? navPayment : undefined}
             >
 
@@ -250,7 +250,7 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
               // style={[styles.btn, agreement && { backgroundColor: "#FFDDDD" }]} đổi màu khi click sự kiện
 
               >
-                <Text style={styles.btntext1}>TRỞ VỀ</Text>
+                <Text style={styles.btntext1}>TRỞ LẠI</Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
