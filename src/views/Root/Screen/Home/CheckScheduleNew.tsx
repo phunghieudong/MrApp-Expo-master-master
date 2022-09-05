@@ -231,7 +231,7 @@ const CheckScheduleNewScreen: FC<CheckScheduleNewProps> = ({
                 ]}
               />
             </TouchableWithoutFeedback>
-            <Text style={styles.agreementtext}>
+            <Text style={styles.agreementtext}> 
               Tôi đồng ý với{" "}
               <Text style={styles.agreementlink}>chính sách</Text> và{" "}
               <Text style={styles.agreementlink}>quy trình khám bệnh</Text> của{" "}

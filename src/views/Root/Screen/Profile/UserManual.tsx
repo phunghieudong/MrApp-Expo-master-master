@@ -45,9 +45,6 @@ const UserManualScreen: FC<UserManualProps> = ({ navigation }) => {
     <Container style={styles.container}>
       <HeaderRoot title="Hướng dẫn sử dụng" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
-      {/* {ready && !data.length && (
-        // <Empty text="Không tìm thấy thông báo nào" />
-      )} */}
       {ready && (
         <View style={{justifyContent:'center' , alignItems:'center'}}>
           {/* <Text>{data.UserManualContent}</Text> */}
