@@ -262,27 +262,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
             </View>
 
           </View>
-          <View style={styles.agreement}>
-          <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-            {/* <TouchableWithoutFeedback onPress={() => setAgreement(!agreement)}> */}
-             
-                <Icon
-                  type="Feather"
-                  name={agreement ? "check-circle" : "circle"}
-                  style={[
-                    styles.agreementchkbox,
-                    agreement && { color: orangeColor },
-                  ]}
-                />
-              {/* </TouchableWithoutFeedback> */}
-            </TouchableWithoutFeedback>
-            <Text style={styles.agreementtext}>
-              Tôi đồng ý với{" "}
-              <Text style={styles.agreementlink}>chính sách</Text> và{" "}
-              <Text style={styles.agreementlink}>quy trình khám bệnh</Text> của{" "}
-              {hospitalName}
-            </Text>
-          </View>
+
           <View style={{ flexDirection: 'row', paddingTop: 30 }}>
             <TouchableWithoutFeedback
               onPress={agreement && !loading ? navPayment : undefined}
