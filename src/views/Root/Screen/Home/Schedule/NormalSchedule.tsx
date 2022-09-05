@@ -334,12 +334,12 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = { backgroundColor: 'white' };
+  const containerStyle = { backgroundColor: '#E8F5F8', height: "150%" };
 
   const [visible1, setVisible1] = React.useState(false);
   const showModal1 = () => setVisible1(true);
   const hideModal1 = () => setVisible1(false);
-  const containerStyle1 = { backgroundColor: 'white' };
+  const containerStyle1 = { backgroundColor: '#E8F5F8', height: "150%" };
 
   const [visible2, setVisible2] = React.useState(false);
   const showModal2 = () => setVisible2(true);
@@ -449,10 +449,10 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 selected={value?.hospitalName || ""}
               />
               <Select
-                nav={next >= 2 ? () => showModal() : undefined}
-                // nav={navDepartment}
-                // onPress={showModal}
+                nav={next >= 0 ? () => showModal() : undefined}
 
+                // onPress={showModal}
+                // nav={next >= 2 ? navDepartment : undefined}
                 placeholder="CHỌN CHUYÊN KHOA"
                 next={next === 1 ? true : false}
                 selected={value?.specialistTypeName || ""}
@@ -559,7 +559,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
                 <Text style={styles.btntext}>TIẾP THEO</Text>
               </View>
             </TouchableOpacity>
-            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ height: "90%", width: "100%", paddingBottom: 5 }}>
+            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={{ backgroundColor: '#E8F5F8', height: "100%", flex: 1 }}>
               <>
                 {specialistType.length > 0 &&
                   specialistType.map((i) => (
@@ -638,7 +638,13 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
 
 
                         <View
-                          style={styles.service}>
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: "#E8F5F8",
+                            height: 80
+                          }}>
                           {/* <TouchableWithoutFeedback onPress={hideModal}> */}
                           <View style={{ backgroundColor: "#fff", width: 343, height: 50, borderRadius: 12, flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                             <View style={{ backgroundColor: '#E8F5F8', height: 38, width: 38, borderRadius: 100, justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginRight: 10 }}>
@@ -874,13 +880,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 14,
-    paddingVertical: 5,
     backgroundColor: "#E8F5F8",
-    // height: 80,
-    height: 70,
-    paddingBottom: 20
-
+    height: 60
 
   },
   servicename: {
