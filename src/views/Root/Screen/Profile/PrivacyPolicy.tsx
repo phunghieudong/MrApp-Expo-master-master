@@ -1,70 +1,64 @@
-// Chổ này đang xài api của phần News -> chờ anh Hùng làm xong api FAQ thì gắn vào
-//@ts-nocheck
-import React, { FC, useEffect, useState } from "react";
-import { View, Text, Container, Icon } from "native-base";
-import { Empty, HeaderRoot, LazyLoading } from "@/components";
 
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
-import { getNewFeed } from "@/api/NewFeed";
-import { NewsProps } from "@/navigation/types/profile";
-import { NewFeedData } from "@/types/NewFeed";
+//@ts-nocheck
+import { getHospitals } from "@/api/Catalogue";
+import { HospitalPickerProps } from "@/navigation/types/Home";
+import { HospitalData } from "@/types/base";
+import { HeaderRoot, Empty, Loading, LazyLoading } from "@/components";
 import { settings } from "@/config";
 
-const { padding, mainColorText, successColor } = settings.styles;
-import { _format } from "@/utils";
-const PrivacyPolicyScreen: FC<NewsProps> = ({ navigation }) => {
-  const [data, setData] = useState<NewFeedData[]>([]);
-  const [page, setPage] = useState({ current: 1, next: true });
-  const [ready, setReady] = useState(false);
+import { Container, Icon, Text, View } from "native-base";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  InteractionManager,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Image
+} from "react-native";
+
+const { mainColor, mainColorText, padding, blueColor, orangeColor } =
+  settings.styles;
+
+
+const PrivacyPolicyScreen: FC<HospitalPickerProps> = ({ navigation }) => {
+
+  // data
+  const [hospitals, setHospitals] = useState<Array<HospitalData>>([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     (async () => {
-      try {
-        const { current, next } = page;
-        if (next) {
-          const params = { pageIndex: current, pageSize: 10 };
-          const res = await getNewFeed(params);
-          setData([...res.Data.Items]);
-          if (current >= res.Data.TotalPage) {
-            setPage({ ...page, next: false });
-          }
-          if (!ready) setReady(true);
-        }
-      } catch (error) {
-        throw new Error("FETCH FAQ DATA IS FAILED !");
-      }
+      const res = await getHospitals();
+      setHospitals([...res.Data]);
+      setLoad(false);
     })();
-  }, [page.current]);
+  }, []);
+
+  // interaction
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    InteractionManager.runAfterInteractions(() => {
+      if (!load) {
+        setReady(true);
+      }
+    });
+  }, [load]);
 
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Chính sách" filter={true} previous={() => navigation.goBack()} />
+      <HeaderRoot title="Chính sách" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
-      {ready && !data.length && (
-        <Empty text="Không tìm thấy câu hỏi thường gặp nào" />
-      )}
-      {ready && data.length > 0 && (
+      {ready && hospitals.length > 0 && (
         <FlatList
-          data={data}
+          data={hospitals}
           style={styles.body}
-          onEndReached={() => setPage({ ...page, current: page.current + 1 })}
-          onEndReachedThreshold={0.5}
-          keyExtractor={(i) => i.Id.toString()}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+          keyExtractor={(item) => item.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() =>
-                navigation.navigate("PrivacyPolicyDetail", {
-                  bannerImage: item.BannerUrl,
-                  backgroundImage: item.BackGroundImgUrl,
-                  content: item.Content,
-                  title: item.Title,
-                })
-              }
+              onPress={() => navigation.navigate("PrivacyPolicyDetail")}
+
             >
               <View style={{
                 flexDirection: "row",
@@ -83,7 +77,7 @@ const PrivacyPolicyScreen: FC<NewsProps> = ({ navigation }) => {
                 </View>
                 <View style={styles.right}>
 
-                  <Text style={styles.hospital}>{item.HospitalName}</Text>
+                  <Text style={styles.hospital}>{item.Name}</Text>
 
 
 
@@ -91,11 +85,13 @@ const PrivacyPolicyScreen: FC<NewsProps> = ({ navigation }) => {
                 </View>
               </View>
             </TouchableWithoutFeedback>
-          )
-          }
+          )}
         />
       )}
-    </Container >
+      {ready && !hospitals.length && (
+        <Empty text="Không tìm thấy bất kỳ bệnh viện nào" />
+      )}
+    </Container>
   );
 };
 
@@ -175,7 +171,8 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: "flex-start",
+
   },
   date: {
     fontSize: 14,
@@ -241,7 +238,3 @@ const styles = StyleSheet.create({
 });
 
 export default PrivacyPolicyScreen;
-
-
-
-

@@ -265,7 +265,7 @@ const CheckScheduleScreen: FC<CheckScheduleProps> = ({
 
           <View style={{ flexDirection: 'row', paddingTop: 30 }}>
             <TouchableWithoutFeedback
-              onPress={agreement && !loading ? navPayment : undefined}
+              onPress={navPayment}
             >
               <View
                 style={[styles.btn, { backgroundColor: "#142977", width: 80, height: 30, justifyContent: 'center', alignItems: 'center' }]}
