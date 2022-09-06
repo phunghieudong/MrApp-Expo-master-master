@@ -1,254 +1,280 @@
+
+//   return (
+//     <Container style={styles.container}>
+//       <HeaderRoot title="FAQ" filter={true} previous={() => navigation.goBack()} />
+//       <ScrollView>
+//         <View>
+//           <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+//             <View
+//               style={{
+//                 backgroundColor: "#219EBC",
+//                 height: 65,
+//                 width: "100%",
+//                 flexDirection: "row",
+//                 justifyContent: "space-between",
+//                 alignItems: "center",
+//                 paddingHorizontal: 24,
+//               }}
+//             >
+//               <View>
+//                 <Text
+//                   style={{
+//                     fontSize: 16,
+//                     fontFamily: "SFProDisplay-Bold",
+//                     color: "#fff",
+//                   }}
+//                 >
+//                   Tiêu đề 1
+//                 </Text>
+//               </View>
+//               <View>
+
+//                 <Image
+//                   source={require("../../../../assets/images/upfff.png")}
+//                   style={{ height: 4.78, width: 9.33 }}
+//                 />
+
+//               </View>
+//             </View>
+//           </TouchableOpacity>
+//           {shouldShow ? (
+//             <View style={styles.box}>
+//               <Text style={styles.step}>Bước 1:</Text>
+
+//               <Text style={styles.text}>
+//                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+//                 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+//                 erat, sed diam voluptua.
+//               </Text>
+//               <Text style={styles.text}>
+//                 At vero eos et accusam et justo duo dolores
+//                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+//                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+//                 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+//                 et dolore magna
+//               </Text>
+//               <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
+//                 <Image
+//                   source={require("../../../../assets/images/FAQ.png")}
+//                   style={{ height: 163, width: 370 , borderRadius:6 }}
+//                 />
+//               </View>
+//             </View>
+//           ) : null}
+
+//         </View>
+
+//       </ScrollView>
+//     </Container>
+//   );
+// };
+
+
+
+
 //@ts-nocheck
-import { HeaderRoot, Loading } from "@/components";
+import React, { FC, useEffect, useState } from "react";
+import { View, Text, Container, Icon } from "native-base";
+import { Empty, HeaderRoot, LazyLoading } from "@/components";
+import { getRegularProblems } from "@/api/RegularProblems";
+
+import { RegularProblemsProps } from "@/navigation/types/RootStack";
+import { RegularProblemsData } from "@/types/RegularProblems";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  ScrollView,
+  TouchableOpacity
+} from "react-native";
+
 import { settings } from "@/config";
-import { Container, Content, Text, View } from "native-base";
-import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 
-const { mainColor, mainColorText, padding } = settings.styles;
-
-const RegularProblemsDetailScreen = ({ navigation }) => {
-  // interaction
+const { padding, mainColorText, successColor } = settings.styles;
+import { _format } from "@/utils";
+import { Item } from 'native-base';
+import { useRoute } from "@react-navigation/native";
 
 
+const RegularProblemsDetailScreen: FC<RegularProblemsProps> = ({ navigation }) => {
+  const [data, setData] = useState<RegularProblemsData[]>([]);
+  const [page, setPage] = useState({ current: 1, next: true });
+  const [ready, setReady] = useState(false);
 
   const [shouldShow, setShouldShow] = useState(false);
-  const [shouldShow1, setShouldShow1] = useState(false);
-  const [shouldShow2, setShouldShow2] = useState(false);
-  const [ready, setReady] = useState(false);
+  // chổ này là choorr này , chính xác là chổ này 
+  const route = useRoute(); // cái params
+  console.log("route ", route);
   useEffect(() => {
-    InteractionManager.runAfterInteractions(() => {
-      setReady(true);
-    });
-  }, []);
-
-  if (!ready) {
-    return <Loading />;
-  }
-
+    (async () => {
+      try {
+        const { current, next } = page;
+        if (next) {
+          const params = { pageIndex: current, pageSize: 10, HospitalId: route.params.HospitalId }; // cái params
+          const res = await getRegularProblems(params);
+          if (res.ResultCode == 200) {
+            setData(res.Data.Items)
+          }
+          if (!ready) setReady(true);
+        }
+      } catch (error) {
+        throw new Error(error);
+      }
+    })
+      // tao cai fleasst
+      ();
+  }, [page.current]);
+  console.log('dataDong', data)
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="FAQ" filter={true} previous={() => navigation.goBack()} />
-      <ScrollView>
-        <View>
-          <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
-            <View
-              style={{
-                backgroundColor: "#219EBC",
-                height: 65,
-                width: "100%",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingHorizontal: 24,
-              }}
+      <HeaderRoot title="Quy trình khám bệnh" previous={() => navigation.goBack()} />
+
+      {!ready && <LazyLoading />}
+      {ready && !data.length && (
+        <Empty text="Không tìm thấy bất quy trình nào" />
+      )}
+      {ready && (
+
+        <FlatList
+          data={data}
+          style={styles.body}
+          keyExtractor={(i) => i.Id.toString()}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+
             >
-              <View>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "SFProDisplay-Bold",
-                    color: "#fff",
-                  }}
-                >
-                  Tiêu đề 1
-                </Text>
-              </View>
-              <View>
+           
+              <ScrollView style={{backgroundColor:'#1D87A2'}}>
 
-                <Image
-                  source={require("../../../../assets/images/upfff.png")}
-                  style={{ height: 4.78, width: 9.33 }}
-                />
+                <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+                  <View
+                    style={{
+                      backgroundColor: "#219EBC",
+                      height: 86,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingHorizontal: 24,
+                      
+                    }}
+                  >
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 15,
+                          fontFamily: "SFProDisplay-Bold",
+                          color: "#fff",
+                        
+                        
+                        }}
+                      >
+                        {item.Question}
+                      </Text>
+                    </View>
+                    <View>
 
-              </View>
-            </View>
-          </TouchableOpacity>
-          {shouldShow ? (
-            <View style={styles.box}>
-              <Text style={styles.step}>Bước 1:</Text>
+                      <Image
+                        source={require("../../../../assets/images/upfff.png")}
+                        style={{ height: 4.78, width: 9.33 }}
+                      />
 
-              <Text style={styles.text}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua.
-              </Text>
-              <Text style={styles.text}>
-                At vero eos et accusam et justo duo dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                et dolore magna
-              </Text>
-              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-                <Image
-                  source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 370 , borderRadius:6 }}
-                />
-              </View>
-            </View>
-          ) : null}
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                {shouldShow ? (
+                  <View style={styles.box}>
 
-        </View>
-        <View>
-          <TouchableOpacity onPress={() => setShouldShow1(!shouldShow1)}>
-            <View
-              style={{
-                backgroundColor: "#219EBC",
-                height: 65,
-                width: "100%",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingHorizontal: 24,
-                borderWidth:0.5,
-                borderColor:'#fff'
-              }}
-            >
-              <View>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "SFProDisplay-Bold",
-                    color: "#fff",
-                  }}
-                >
-                  Tiêu đề 2
-                </Text>
-              </View>
-              <View>
+                    <Text style={{ color: '#666666', fontSize: 14 ,}}>
+                      {item.Answer}
+                    </Text>
 
-                <Image
-                  source={require("../../../../assets/images/upfff.png")}
-                  style={{ height: 4.78, width: 9.33 }}
-                />
+                    <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
+                      <Image
+                        source={require("../../../../assets/images/FAQ.png")}
+                        style={{ height: 163, width: 370, borderRadius: 6 }}
+                      />
+                    </View>
+                  </View>
+                ) : null}
 
-              </View>
-            </View>
-          </TouchableOpacity>
-          {shouldShow1 ? (
-            <View style={styles.box}>
-              <Text style={styles.step}>Bước 2:</Text>
 
-              <Text style={styles.text}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua.
-              </Text>
-              <Text style={styles.text}>
-                At vero eos et accusam et justo duo dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                et dolore magna
-              </Text>
-              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-                <Image
-                  source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 370 , borderRadius:6 }}
-                />
-              </View>
-            </View>
-          ) : null}
 
-        </View>
-        <View>
-          <TouchableOpacity onPress={() => setShouldShow2(!shouldShow2)}>
-            <View
-              style={{
-                backgroundColor: "#219EBC",
-                height: 65,
-                width: "100%",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingHorizontal: 24,
-              }}
-            >
-              <View>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "SFProDisplay-Bold",
-                    color: "#fff",
-                  }}
-                >
-                  Tiêu đề 3
-                </Text>
-              </View>
-              <View>
-
-                <Image
-                  source={require("../../../../assets/images/upfff.png")}
-                  style={{ height: 4.78, width: 9.33 }}
-                />
-
-              </View>
-            </View>
-          </TouchableOpacity>
-          {shouldShow2 ? (
-            <View style={styles.box}>
-              <Text style={styles.step}>Bước 3:</Text>
-
-              <Text style={styles.text}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua.
-              </Text>
-              <Text style={styles.text}>
-                At vero eos et accusam et justo duo dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-                sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                et dolore magna
-              </Text>
-              <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-                <Image
-                  source={require("../../../../assets/images/FAQ.png")}
-                  style={{ height: 163, width: 370 , borderRadius:6 }}
-                />
-              </View>
-            </View>
-          ) : null}
-
-        </View>
-      </ScrollView>
+              </ScrollView>
+     
+            </TouchableWithoutFeedback>
+          )}
+        />
+      )}
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  container:{
+    backgroundColor:'#fff',
+   
   },
   body: {
-    flexGrow: 1,
-    paddingHorizontal: padding,
+ 
+  },
+
+  logo: {
+    backgroundColor: successColor,
+    borderRadius: 100,
+    width: 34,
+    height: 34,
+    marginRight: 8,
+    marginTop: 4,
+  },
+  logotext: {
+    textAlign: "center",
+    lineHeight: 34,
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "SFProDisplay-Regular",
   },
   box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
 
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#0000003a",
-    paddingHorizontal: 20
   },
-  step: {
-    color: mainColor,
-    fontSize: 20,
-    fontFamily: "SFProDisplay-Heavy",
+  detail: {
+    flex: 1,
   },
-  text: {
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0.5,
-    color: mainColorText,
-    marginTop: 15,
+  flex: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  content: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: "rgba(0, 0, 0, .5)",
     fontFamily: "SFProDisplay-Regular",
+  },
+  title: {
+    marginTop: 8,
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SFProDisplay-Regular",
+    color: mainColorText,
+  },
+  img: {
+    width: 40,
+  },
+
+  icon: {
+    fontSize: 18,
+    padding: 8,
+    left: 8,
 
   },
 });
 
 export default RegularProblemsDetailScreen;
+
 
 

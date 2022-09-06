@@ -15,6 +15,8 @@ export type RootStackParamList = {
   Notification: undefined;
   UserManual:undefined;
   Policy:undefined;
+  TermOfMedical:undefined;
+  RegularProblems:undefined;
 };
 
 // nơi khai báo props
@@ -84,3 +86,39 @@ export type PolicyProps = {
   navigation: PolicyScreenNavigationProp;
   route: PolicyScreenRouteProp;
 };
+
+
+
+// ++ TermOfMedical
+type TermOfMedicalScreenNavigationProp = BottomTabNavigationProp<
+  RootStackParamList,
+  "TermOfMedical"
+>;
+type TermOfMedicalRouteProp = RouteProp<
+  RootStackParamList,
+  "TermOfMedical"
+>;
+export type TermOfMedicalProps = {
+  navigation: TermOfMedicalScreenNavigationProp;
+  route: TermOfMedicalScreenRouteProp;
+};
+
+
+
+
+// ++ RegularProblems
+type RegularProblemsScreenNavigationProp = BottomTabNavigationProp<
+  RootStackParamList,
+  "RegularProblems"
+>;
+type RegularProblemsRouteProp = RouteProp<
+  RootStackParamList,
+  "RegularProblems"
+>;
+export type RegularProblemsProps = {
+  navigation: RegularProblemsScreenNavigationProp;
+  route: RegularProblemsScreenRouteProp;
+};
+
+
+

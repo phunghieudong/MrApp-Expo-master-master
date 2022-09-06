@@ -19,6 +19,7 @@ export type ProfileParamList = {
   RegularProblems: undefined;
   RegularProblemsDetail: undefined;
   PrivacyPolicyDetail: undefined;
+  TermOfMedicalDetail: undefined;
   Introduct: undefined;
   MedicalStory: {
     refetchMRD?: number;

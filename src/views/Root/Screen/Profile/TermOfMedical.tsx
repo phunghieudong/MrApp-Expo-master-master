@@ -1,5 +1,4 @@
-
-
+      
 //@ts-nocheck
 import { getHospitals } from "@/api/Catalogue";
 import { HospitalPickerProps } from "@/navigation/types/Home";
@@ -50,6 +49,7 @@ const TermOfMedicalScreen: FC<HospitalPickerProps> = ({ navigation }) => {
     <Container style={styles.container}>
       <HeaderRoot title="Quy trình khám bệnh" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
+    
       {ready && hospitals.length > 0 && (
         <FlatList
           data={hospitals}
@@ -58,7 +58,7 @@ const TermOfMedicalScreen: FC<HospitalPickerProps> = ({ navigation }) => {
           keyExtractor={(item) => item.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate("PrivacyPolicyDetail")}
+              onPress={() => navigation.navigate("TermOfMedicalDetail" , {HospitalId:item.Id})} // cái params
 
             >
               <View style={{
@@ -239,5 +239,3 @@ const styles = StyleSheet.create({
 });
 
 export default TermOfMedicalScreen;
-
-

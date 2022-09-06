@@ -46,6 +46,7 @@ export { default as MenuScreen } from "./Root/Screen/Profile/Menu";
 export { default as RegularProblemsScreen } from "./Root/Screen/Profile/RegularProblems";
 export { default as RegularProblemsDetailScreen } from "./Root/Screen/Profile/RegularProblemsDetail";
 export { default as PrivacyPolicyDetailScreen } from "./Root/Screen/Profile/PrivacyPolicyDetail";
+export { default as TermOfMedicalDetailScreen } from "./Root/Screen/Profile/TermOfMedicalDetail";
 export { default as ServiceAccountScreen } from "./Root/Screen/Profile/ServiceAccount";
 export { default as TermOfMedicalScreen } from "./Root/Screen/Profile/TermOfMedical";
 export { default as ListVaccinesDetailScreen } from "./Root/Screen/Profile/ListVaccinesDetail";
