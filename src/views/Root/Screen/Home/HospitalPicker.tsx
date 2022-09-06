@@ -129,7 +129,7 @@ const HospitalPickerScreen = (props: HospitalPickerProps) => {
                   </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', paddingBottom:30 }}>
+                <View style={{ flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', paddingBottom: 30 }}>
                   <View>
                     <Image
                       source={require("../../../../assets/images/word.png")}
@@ -166,9 +166,9 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: "#ffffff",
     borderWidth: 0.5,
-    borderColor:'#CACEE1',
+    borderColor: '#CACEE1',
     flexDirection: "column",
-
+   
   },
 
   headingicon: {

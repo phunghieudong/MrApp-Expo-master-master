@@ -38,7 +38,9 @@ const UserManualScreen: FC<UserManualProps> = ({ navigation }) => {
       } catch (error) {
         throw new Error(error);
       }
-    })();
+    })
+    
+    ();
   }, [page.current]);
 
   return (

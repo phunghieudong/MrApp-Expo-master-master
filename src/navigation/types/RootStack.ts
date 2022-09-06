@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Profile: NavigatorScreenParams<ProfileParamList>;
   Notification: undefined;
   UserManual:undefined;
+  Policy:undefined;
 };
 
 // nơi khai báo props
@@ -66,4 +67,20 @@ type UserManualRouteProp = RouteProp<
 export type UserManualProps = {
   navigation: UserManualScreenNavigationProp;
   route: UserManualScreenRouteProp;
+};
+
+
+
+// ++ Policy
+type PolicyScreenNavigationProp = BottomTabNavigationProp<
+  RootStackParamList,
+  "Policy"
+>;
+type PolicyRouteProp = RouteProp<
+  RootStackParamList,
+  "Policy"
+>;
+export type PolicyProps = {
+  navigation: PolicyScreenNavigationProp;
+  route: PolicyScreenRouteProp;
 };

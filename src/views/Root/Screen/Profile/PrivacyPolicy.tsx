@@ -49,6 +49,7 @@ const PrivacyPolicyScreen: FC<HospitalPickerProps> = ({ navigation }) => {
     <Container style={styles.container}>
       <HeaderRoot title="Chính sách" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
+    
       {ready && hospitals.length > 0 && (
         <FlatList
           data={hospitals}
@@ -57,7 +58,7 @@ const PrivacyPolicyScreen: FC<HospitalPickerProps> = ({ navigation }) => {
           keyExtractor={(item) => item.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate("PrivacyPolicyDetail")}
+              onPress={() => navigation.navigate("PrivacyPolicyDetail" , {HospitalId:item.Id})} // cái params
 
             >
               <View style={{

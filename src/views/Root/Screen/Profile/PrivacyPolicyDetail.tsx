@@ -1,120 +1,165 @@
+
 //@ts-nocheck
-import { HeaderRoot, Loading } from "@/components";
+import React, { FC, useEffect, useState } from "react";
+import { View, Text, Container, Icon } from "native-base";
+import { Empty, HeaderRoot, LazyLoading } from "@/components";
+import { getPolicy } from "@/api/Policy";
+
+import { PolicyProps } from "@/navigation/types/RootStack";
+import { PolicyData } from "@/types/Policy";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
+
 import { settings } from "@/config";
-import { Container, Content, Text, View } from "native-base";
-import React, { useEffect, useState } from "react";
-import { InteractionManager, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 
-const { mainColor, mainColorText, padding } = settings.styles;
-
-const PrivacyPolicyDetailScreen = ({ navigation }) => {
-  // interaction
+const { padding, mainColorText, successColor } = settings.styles;
+import { _format } from "@/utils";
+import { Item } from 'native-base';
+import { useRoute } from "@react-navigation/native";
 
 
-
-  const [shouldShow, setShouldShow] = useState(false);
-  const [shouldShow1, setShouldShow1] = useState(false);
-  const [shouldShow2, setShouldShow2] = useState(false);
+const PrivacyPolicyDetailScreen: FC<PolicyProps> = ({ navigation }) => {
+  const [data, setData] = useState<PolicyData[]>([]);
+  const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
+  // chổ này là choorr này , chính xác là chổ này 
+  const route = useRoute(); // cái params
+  console.log("route ", route);
   useEffect(() => {
-    InteractionManager.runAfterInteractions(() => {
-      setReady(true);
-    });
-  }, []);
+    (async () => {
+      try {
+        const { current, next } = page;
+        if (next) {
+          const params = { pageIndex: current, pageSize: 10, HospitalId: route.params.HospitalId }; // cái params
+          const res = await getPolicy(params);
+          if (res.ResultCode == 200) {
+            setData(res.Data.Items)
 
-  if (!ready) {
-    return <Loading />;
-  }
 
+
+          }
+          if (!ready) setReady(true);
+        }
+      } catch (error) {
+        throw new Error(error);
+      }
+    })
+      // tao cai fleasst
+      ();
+  }, [page.current]);
+  console.log('data', data)
   return (
     <Container style={styles.container}>
-      <HeaderRoot title="Chính sách" filter={true} previous={() => navigation.goBack()} />
-      <Content contentContainerStyle={styles.body}>
-        <View style={styles.box}>
-          <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 1</Text>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
-          </Text>
-          <Text style={styles.text}>
-            At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna
-          </Text>
-         
-        </View>
-        <View style={styles.box}>
-          <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 2</Text>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
-          </Text>
-          <Text style={styles.text}>
-            At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna
-          </Text>
-        
-        </View>
-        <View style={[styles.box, { borderBottomWidth: 0 }]}>
-          <Text style={styles.step}>Hướng dẫn sử dụng ứng dụng 3</Text>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
-          </Text>
-          <Text style={styles.text}>
-            At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna
-          </Text>
-        
-        </View>
-      </Content>
+      <HeaderRoot title="Chính sách" previous={() => navigation.goBack()} />
+
+      {!ready && <LazyLoading />}
+      {ready && !data.length && (
+        <Empty text="Không tìm thấy bất kỳ chính sách nào" />
+      )}
+      {ready && (
+        // <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        //   <Text>{data.Title}</Text>
+
+        //   <View style={{ marginTop: 20, width: "90%", backgroundColor: '#ffffff', borderRadius: 12, paddingTop: 10, paddingHorizontal: 20, justifyContent: 'center', alignItems: 'center', paddingVertical: 20 }}>
+
+        //   </View>
+        // </View>
+        <FlatList
+          data={data}
+          style={styles.body}
+          keyExtractor={(i) => i.Id.toString()}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+
+            >
+              <View style={styles.box}>
+
+                <Text style={{ fontSize: 20, fontFamily: "SFProDisplay-Bold", }}>
+                  {item.Title}
+                </Text>
+
+                <Text style={{color:"#666666" , fontSize:14}}>
+                  {item.Content}
+                </Text>
+
+
+              </View>
+            </TouchableWithoutFeedback>
+          )}
+        />
+      )}
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
   },
   body: {
-    flexGrow: 1,
     paddingHorizontal: padding,
   },
-  box: {
 
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#0000003a",
-    paddingHorizontal: 20
+  logo: {
+    backgroundColor: successColor,
+    borderRadius: 100,
+    width: 34,
+    height: 34,
+    marginRight: 8,
+    marginTop: 4,
   },
-  step: {
-    color: "#000000",
-    fontSize: 20,
-    fontFamily: "SFProDisplay-Heavy",
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0.5,
-    color: mainColorText,
-    marginTop: 15,
+  logotext: {
+    textAlign: "center",
+    lineHeight: 34,
+    color: "#fff",
+    fontSize: 14,
     fontFamily: "SFProDisplay-Regular",
+  },
+  box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
+
+  },
+  detail: {
+    flex: 1,
+  },
+  flex: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  content: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: "rgba(0, 0, 0, .5)",
+    fontFamily: "SFProDisplay-Regular",
+  },
+  title: {
+    marginTop: 8,
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SFProDisplay-Regular",
+    color: mainColorText,
+  },
+  img: {
+    width: 40,
+  },
+
+  icon: {
+    fontSize: 18,
+    padding: 8,
+    left: 8,
 
   },
 });
 
 export default PrivacyPolicyDetailScreen;
+
 
 
