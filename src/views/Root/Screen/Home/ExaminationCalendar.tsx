@@ -227,7 +227,7 @@ const ExaminationCalendarScreen: FC<ExaminationCalendarProps> = ({
 
   return (
     <Container>
-      <HeaderRoot title="LỊCH KHÁM SẮP TỚI" />
+      <HeaderRoot title="LỊCH KHÁM SẮP TỚI" previous={() => navigation.goBack()} />
       {!ready && <LazyLoading />}
       {ready && (
         <>
