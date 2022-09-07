@@ -35,6 +35,7 @@ const { mainColorText, padding, orangeColor, blueColor, placeholderColor } =
 const NormalScheduleScreen: FC<NormalScheduleProps> = ({
   navigation,
   route: { params },
+  
 }) => {
   const {
     examinationDate,
@@ -48,7 +49,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
     roomExaminationId,
     roomExaminationName,
   } = params;
-
+  
   // lấy user hiện tại ra
   const user = useAppSelector((state) => state.user.current) as UserData;
 
@@ -246,7 +247,7 @@ const NormalScheduleScreen: FC<NormalScheduleProps> = ({
       const res = await getVaccines(hospitalId);
       setVaccines([...res.Data]);
     } catch (error) {
-      throw new Error("FETCH VACCINE IS FAILED !PhungHieuDong");
+      throw new Error("FETCH VACCINE IS FAILED !");
     }
   };
 

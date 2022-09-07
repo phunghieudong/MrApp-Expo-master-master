@@ -136,14 +136,8 @@ const DashboardScreen = (props: DashboardProps) => {
           bottom: 8,
         }}
       >
-
         {/* 
 <TouchableOpacity onPress={() => Linking.openURL(supportedURL)}> */}
-
-
-
-
-
 
         <OpenURLButton url={supportedURL} >
 

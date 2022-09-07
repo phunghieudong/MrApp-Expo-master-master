@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Policy:undefined;
   TermOfMedical:undefined;
   RegularProblems:undefined;
+  Department:undefined;
 };
 
 // nơi khai báo props
@@ -118,6 +119,23 @@ type RegularProblemsRouteProp = RouteProp<
 export type RegularProblemsProps = {
   navigation: RegularProblemsScreenNavigationProp;
   route: RegularProblemsScreenRouteProp;
+};
+
+
+
+
+// ++ Department
+type DepartmentScreenNavigationProp = BottomTabNavigationProp<
+  RootStackParamList,
+  "Department"
+>;
+type DepartmentRouteProp = RouteProp<
+  RootStackParamList,
+  "Department"
+>;
+export type DepartmentProps = {
+  navigation: DepartmentScreenNavigationProp;
+  route: DepartmentScreenRouteProp;
 };
 
 

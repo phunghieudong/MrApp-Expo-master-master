@@ -724,6 +724,7 @@ const styles = StyleSheet.create({
   body: {
     flexGrow: 1,
     paddingHorizontal: padding,
+   
 
   },
   info: {

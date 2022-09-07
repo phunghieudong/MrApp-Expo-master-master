@@ -1,76 +1,4 @@
 
-//   return (
-//     <Container style={styles.container}>
-//       <HeaderRoot title="FAQ" filter={true} previous={() => navigation.goBack()} />
-//       <ScrollView>
-//         <View>
-//           <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
-//             <View
-//               style={{
-//                 backgroundColor: "#219EBC",
-//                 height: 65,
-//                 width: "100%",
-//                 flexDirection: "row",
-//                 justifyContent: "space-between",
-//                 alignItems: "center",
-//                 paddingHorizontal: 24,
-//               }}
-//             >
-//               <View>
-//                 <Text
-//                   style={{
-//                     fontSize: 16,
-//                     fontFamily: "SFProDisplay-Bold",
-//                     color: "#fff",
-//                   }}
-//                 >
-//                   Tiêu đề 1
-//                 </Text>
-//               </View>
-//               <View>
-
-//                 <Image
-//                   source={require("../../../../assets/images/upfff.png")}
-//                   style={{ height: 4.78, width: 9.33 }}
-//                 />
-
-//               </View>
-//             </View>
-//           </TouchableOpacity>
-//           {shouldShow ? (
-//             <View style={styles.box}>
-//               <Text style={styles.step}>Bước 1:</Text>
-
-//               <Text style={styles.text}>
-//                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-//                 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-//                 erat, sed diam voluptua.
-//               </Text>
-//               <Text style={styles.text}>
-//                 At vero eos et accusam et justo duo dolores
-//                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-//                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-//                 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-//                 et dolore magna
-//               </Text>
-//               <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 10 }}>
-//                 <Image
-//                   source={require("../../../../assets/images/FAQ.png")}
-//                   style={{ height: 163, width: 370 , borderRadius:6 }}
-//                 />
-//               </View>
-//             </View>
-//           ) : null}
-
-//         </View>
-
-//       </ScrollView>
-//     </Container>
-//   );
-// };
-
-
-
 
 //@ts-nocheck
 import React, { FC, useEffect, useState } from "react";
@@ -156,6 +84,8 @@ const RegularProblemsDetailScreen: FC<RegularProblemsProps> = ({ navigation }) =
                       justifyContent: "space-between",
                       alignItems: "center",
                       paddingHorizontal: 24,
+                      borderBottomWidth:0.5,
+                      borderColor:"#CACEE1"
                       
                     }}
                   >
